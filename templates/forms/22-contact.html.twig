@@ -1,0 +1,341 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact Crown Commercial Services - CCS{% endblock %}
+
+{% block header %}
+    {% embed '/includes/header.html.twig' %}
+        {% block bannerarea %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block body %}
+
+    <!-- required wrapper 1 -->
+    <div class="govuk-width-container">
+
+        <!-- If your design requires them, you should place components such as breadcrumbs, back link and phase banner inside this wrapper so that they sit directly underneath the header. -->
+
+        <div class="govuk-phase-banner">
+            <p class="govuk-phase-banner__content">
+                <strong class="govuk-tag govuk-phase-banner__content__tag ">
+                    beta </strong> <span class="govuk-phase-banner__text">
+      This is a new service – your
+      <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/QWDZX/">feedback</a> will help us to improve it.
+    </span>
+            </p>
+        </div>
+
+
+        <!--<div class="govuk-breadcrumbs">-->
+        <!--<ol class="govuk-breadcrumbs__list">-->
+        <!--<li class="govuk-breadcrumbs__list-item">-->
+        <!--<a class="govuk-breadcrumbs__link" href="/">Home</a>-->
+        <!--</li>-->
+        <!--<li class="govuk-breadcrumbs__list-item">-->
+        <!--<a class="govuk-breadcrumbs__link" href="#">Search suppliers</a>-->
+        <!--</li>-->
+        <!--<li class="govuk-breadcrumbs__list-item" aria-current="page">-->
+        <!--Amey OW Limited-->
+        <!--</li>-->
+        <!--</ol>-->
+        <!--</div>-->
+
+
+        <!-- required wrapper 2 -->
+        <main id="main-content" role="main" class="govuk-main-wrapper">
+
+
+            {#<div class="govuk-grid-row">#}
+            {#<div class="govuk-grid-column-full">#}
+
+            {#<h1 class="govuk-heading-xl page-title">Book online training for the CCS eSourcing tool</h1>#}
+
+            {#</div>#}
+            {#</div>#}
+
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-three-quarters">
+
+                    <h1 class="govuk-heading-xl page-title">Contact CCS</h1>
+
+
+                    <p class="govuk-body-l">You can contact us by email or by using the form below.</p>
+
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-quarter">
+                            <h2 class="govuk-heading-m">Email:</h2>
+                        </div>
+                        <div class="govuk-grid-column-three-quarters">
+                            <p class="govuk-!-font-size-24">
+                                <a href="mailto:info@crowncommercial.gov.uk">info@crowncommercial.gov.uk</a>
+                            </p>
+                        </div>
+
+                    </div>
+
+                    {# Remove phone number temporarily during COVID-19 pandemic
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-one-quarter">
+                            <h2 class="govuk-heading-m">Phone:</h2>
+                        </div>
+                        <div class="govuk-grid-column-three-quarters">
+                            <p class="govuk-!-font-size-24">
+                                <a href="tel:03454102222">0345 410 2222</a></p>
+                            <p>CCS customer services team is available Monday to
+                                Friday, 9am to 5pm.</p>
+                        </div>
+                    </div>
+                    #}
+
+                    <!-- form -->
+                    {# For Twig global variables see config/packages/<environment>/twig.yaml #}
+                    <form class="govuk-!-width-three-quarters" action="{{ web_to_case_post_url }}" method="POST">
+
+                        {# Change these field types to hidden for Production #}
+                        <input type="hidden" name="orgid" value="{{ web_to_case_orgid }}">
+                        {# Post-submit redirect URL #}
+                        <input type="hidden" id="returnURL" name="retURL" value="{{ site_url }}/contact/thanks">
+                        <!-- add the redirect url here-->
+                        <input type="hidden" id="priority" name="priority" value="Green"/>
+                        <input type="hidden" id="recordType" name="recordType" value="{{ web_to_case_record_type }}"/>
+                        <input type="hidden" id="subject" maxlength="80" name="subject" size="20" value="Contact CCS" />
+
+                        {# See https://symfony.com/doc/current/templating/app_variable.html #}
+                        {% if app.debug %}
+                            <input type="hidden" name="debug" value=1>
+                            <input type="hidden" name="debugEmail" value="{{ web_to_case_debug_email }}">
+                        {% endif %}
+
+
+                        {# `name` value must match fields in Salesforce. `class` value must match GDS components #}
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset" aria-describedby="how-contacted-conditional-hint">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                    <h1 class="govuk-fieldset__heading">
+                                        Type of enquiry
+                                    </h1>
+                                </legend>
+                                <span id="how-contacted-conditional-hint" class="govuk-hint">
+      Select one option.
+    </span>
+                                <div class="govuk-radios govuk-radios--conditional" data-module="radios">
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="how-contacted-conditional-1" name="origin" type="radio" value="Website - Enquiry" data-aria-controls="conditional-how-contacted-conditional-1" checked>
+                                        <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-1">
+                                            General enquiry </label>
+                                    </div>
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input" id="how-contacted-conditional-2" name="origin" type="radio" value="Website - Complaint" data-aria-controls="conditional-how-contacted-conditional-2">
+                                        <label class="govuk-label govuk-radios__label" for="how-contacted-conditional-2">
+                                            Feedback </label>
+                                    </div>
+                                    <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional-2">
+                                        <div class="govuk-form-group">
+                                            <p>We like to receive feedback because it helps us to improve the services we offer. If you would like to give us feedback please use the form below.</p>
+                                            <p>If you're unhappy with our service you can <a href="/make-a-complaint">make a complaint</a>.</p>
+                                            {#<p>We're sorry to hear you're#}
+                                                {#unhappy with CCS. We will#}
+                                                {#respond in 2 working days with#}
+                                                {#the name of the person dealing#}
+                                                {#with your complaint and any#}
+                                                {#actions taken. We will#}
+                                                {#communicate progress of your#}
+                                                {#complaint at least every 10 days#}
+                                                {#until your complaint is#}
+                                                {#resolved.</p>#}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+
+
+                        {# wrapper class for error states; `govuk-form-group--error`  #}
+                        <div class="govuk-form-group --govuk-form-group--error">
+                            <label class="govuk-label" for="name">Name</label>
+                            {#<span id="full-name-error" class="govuk-error-message">#}
+                            {#Descriptive and helpful error message#}
+                            {#</span>#}
+                            {# input class for error states; `govuk-input--error`  #}
+                            <input class="govuk-input --govuk-input--error" aria-describedby="full-name-error" id="name" maxlength="80" name="name" size="20" type="text"/>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="email">
+                                Email </label>
+                            <input class="govuk-input" id="email" maxlength="80" name="email" size="20" type="email" required/>
+                        </div>
+
+
+                        <div class="govuk-form-group">
+                            <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                                    <h1 class="govuk-fieldset__heading">
+                                        Do you require a callback?
+                                    </h1>
+                                </legend>
+                                <div class="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="00Nb0000009IXEg" name="00Nb0000009IXEg" type="checkbox" value="1"/>
+                                        <label class="govuk-label govuk-checkboxes__label" for="00Nb0000009IXEg">
+                                            Yes </label>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="phone"> Telephone
+                                number</label>
+                            <input class="govuk-input" id="phone" maxlength="40" name="phone" size="20" type="text" required/>
+                        </div>
+
+
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="company">
+                                Organisation </label>
+                            <input class="govuk-input" id="company" maxlength="80" name="company" size="20" type="text"/>
+                        </div>
+                        <div class="govuk-form-group">
+                            <label class="govuk-label" for="00Nb0000009IXEs">
+                                Job title </label>
+                            <input class="govuk-input" id="00Nb0000009IXEs" maxlength="100" name="00Nb0000009IXEs" size="20" type="text"/>
+                        </div>
+                        <div class="govuk-form-group govuk-!-width-one-half">
+                            <label class="govuk-label" for="post-code">
+                                Organisation post code </label>
+                            <input class="govuk-input" id="post-code" maxlength="100" name="post-code" size="20" type="text"/>
+                        </div>
+
+
+                        <div id="conditional-fields" class="govuk-radios__conditional--hidden">
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset" aria-describedby="waste-hint">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                        <h1 class="govuk-fieldset__heading">
+                                            Is your feedback about
+                                        </h1>
+                                    </legend>
+                                    <div class="govuk-checkboxes">
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="complaint-1" name="complaint" type="checkbox" value="Service">
+                                            <label class="govuk-label govuk-checkboxes__label" for="complaint-1">
+                                                Service </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="complaint-2" name="complaint" type="checkbox" value="Supplier staff">
+                                            <label class="govuk-label govuk-checkboxes__label" for="complaint-2">
+                                                Supplier staff </label>
+                                        </div>
+                                        <div class="govuk-checkboxes__item">
+                                            <input class="govuk-checkboxes__input" id="complaint-3" name="complaint" type="checkbox" value="Other">
+                                            <label class="govuk-label govuk-checkboxes__label" for="complaint-3">
+                                                Other </label>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+
+                        <div class="govuk-form-group">
+                            <label id="more-detail-label" class="govuk-label" for="more-detail">Can
+                                you provide more detail?</label>
+                            <span id="more-detail-hint" class="govuk-hint">
+    Do not include personal or financial information, like your credit card details.
+  </span>
+                            <textarea class="govuk-textarea" id="more-detail" name="more-detail" rows="5" aria-describedby="more-detail-hint" required></textarea>
+                        </div>
+
+                        {# Catch-all field for additional Salesforce data #}
+                        <input type="hidden" class="govuk-!-width-full" name="description" id="salesforce-textarea"/>
+
+                        <p>For information about how we use your data, you can read our <a href="https://www.gov.uk/government/publications/crown-commercial-service-privacy-notice">privacy notice</a>. When you submit this form we will add you to our mailing list and send you our newsletters, or information about our products and services.</p>
+                        <p>You will receive an email when you submit your details. You can unsubscribe using the link in the email.</p>
+
+                        <div class="govuk-form-group">
+                            {# Please do not remove the gtm--submit-contact-form class as this is used to track submissions in Google Analytics! #}
+                            <button type="submit" id="submit" class="--gem-c-button govuk-!-font-size-18 govuk-!-font-weight-bold govuk-button gtm--submit-contact-form">
+                                Send enquiry
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <script>
+
+                        // Collect all the radio values
+                        fieldCheckboxes = document.getElementsByName("origin");
+
+                        // Collect the Postcode value
+                        fieldPostCode = document.getElementById("post-code");
+
+                        // Collect the More detail value
+                        fieldMoreDetail = document.getElementById("more-detail");
+                        labelMoreDetail = document.getElementById("more-detail-label");
+
+                        // The field were we collect all the data for Salesforce
+                        dataCollectionFieldForSalesforce = document.getElementById("salesforce-textarea");
+
+                        // Set up the custom fields. We need to update the retURL field depending on the `fieldCheckboxes` values
+                        retURLfield = document.getElementById("returnURL");
+                        condtionalFields = document.getElementById("conditional-fields");
+                        generalEnquiryReturnURL = "{{ site_url }}/contact/thanks";
+                        complaintReturnURL = "{{ site_url }}/contact/thanks-complaint";
+
+                        for (var i = 0; i < fieldCheckboxes.length; i++) {
+
+                            fieldCheckboxes[i].addEventListener('click', function (e) {
+
+                                // If user selects "Website - Complaint", update redirect URL, show additional fields and update textarea label
+                                if (this.value === "Website - Complaint" && this.checked) {
+                                    retURLfield.value = complaintReturnURL;
+                                    condtionalFields.classList.remove("govuk-radios__conditional--hidden");
+                                    labelMoreDetail.textContent = "Briefly state your feedback:";
+                                }
+
+                                // If user selects "Website - Enquiry", update redirect URL, hide additional fields and update textarea label
+                                if (this.value === "Website - Enquiry" && this.checked) {
+                                    retURLfield.value = generalEnquiryReturnURL;
+                                    condtionalFields.classList.add("govuk-radios__conditional--hidden");
+                                    labelMoreDetail.textContent = "Can you provide more detail?";
+                                }
+
+                            }, false);
+                        }
+
+
+                        // We gather the data once the user submits the form
+                        formSubmitButton = document.getElementById("submit");
+
+                        formSubmitButton.addEventListener('click', function (e) {
+
+                            for (var i = 0, length = fieldCheckboxes.length; i < length; i++) {
+
+                                if (fieldCheckboxes[i].checked) {
+                                    // do whatever you want with the checked radio
+                                    // alert(fieldCheckboxes[i].value);
+                                    dataCollectionFieldForSalesforce.value += fieldCheckboxes[i].name + ": " + fieldCheckboxes[i].value + ", ";
+
+                                }
+                            }
+
+                            dataCollectionFieldForSalesforce.value += fieldPostCode.name + ": " + fieldPostCode.value;
+                            dataCollectionFieldForSalesforce.value += " " + fieldMoreDetail.name + ": " + fieldMoreDetail.value;
+
+                        }, false);
+
+                    </script>
+
+
+                </div>
+                {#<div class="govuk-grid-column-one-quarter">#}
+                {#</div>#}
+            </div>
+
+
+        </main>
+    </div>
+
+{% endblock %}

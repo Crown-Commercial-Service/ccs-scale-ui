@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /deploy
+hooks:
+  ApplicationStop:
+    - location: deploy/server_stop.sh
+      timeout: 60
+      runas: root
+  AfterInstall:
+    - location: deploy/server_setup.sh
+      timeout: 300
+      runas: root
+    - location: deploy/app_setup.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: deploy/server_start.sh
+      timeout: 60
+      runas: root
