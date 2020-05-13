@@ -21,8 +21,10 @@ RUN a2enmod rewrite
 RUN a2enmod php7
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-#copy project into container
-COPY ./ ./
+COPY ./package.json ./
+
+COPY ./composer.json ./
+
 
 # increase memory limit to 2GB
 RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
@@ -33,13 +35,16 @@ RUN composer update
 #install javascript modules
 RUN npm install
 
+#copy project into container
+COPY ./ ./
+
 # restart apache
 RUN service apache2 restart
 
 VOLUME /var/www/html/ccs/public
 
 #set container port
-EXPOSE 80
+EXPOSE 9030
 
 # usage :
 # docker build .
