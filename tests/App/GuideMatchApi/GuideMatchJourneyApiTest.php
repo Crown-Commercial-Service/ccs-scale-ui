@@ -1,5 +1,4 @@
 <?php
-//namespace App\Tests\App\Utils;
 
 namespace App\Tests\App\GuideMatchyApi;
 use PHPUnit\Framework\TestCase;
