@@ -1,5 +1,7 @@
 FROM php:7.3.8-apache
 
+ENV PORT 9030
+
 #set aplication directory
 WORKDIR  /var/www/html/ccs
 
@@ -7,7 +9,7 @@ RUN apt-get update
 RUN apt-get install -y  git unzip zip curl
 
 # install node/npm
-RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
 RUN apt-get -y install nodejs
 
 # install composer
@@ -19,7 +21,7 @@ RUN sed -ri -e 's!/var/www/html!/var/www/html/ccs/public!g' /etc/apache2/sites-a
 RUN sed -ri -e 's!/var/www/!/var/www/html/ccs/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 RUN a2enmod rewrite
 RUN a2enmod php7
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+RUN echo "ServerName localhost:$PORT" >> /etc/apache2/apache2.conf
 
 COPY ./package.json ./
 
@@ -44,8 +46,10 @@ RUN service apache2 restart
 VOLUME /var/www/html/ccs/public
 
 #set container port
-EXPOSE 9030
+EXPOSE $PORT
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
+
 
 # usage :
 # docker build .
-# docker run -p 8080:80 #idcontainer
+# docker run  -d  -p  9030:9030 -e PORT=9030 #id_container
