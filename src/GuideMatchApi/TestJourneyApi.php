@@ -1,5 +1,5 @@
 <?php
-    namespace App\Models;
+    namespace App\GuideMatchApi;
     use App\GuideMatchApi\GuideMatchJourneyApi;
     use \Exception;
 

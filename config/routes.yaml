@@ -202,6 +202,12 @@ form_esourcing_register_thanks:
   defaults:
     template: forms/30-esourcing-register-thanks.html.twig
 
+guide_match_journery:
+  path: /guide-match/test-journey/
+  controller: App\Controller\GuideMatchJourneyTestController:guideMatchJourney
+  
+
+
 page:
   path: /{slug}
   controller: App\Controller\PageController::page
