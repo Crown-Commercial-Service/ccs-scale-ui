@@ -3,6 +3,15 @@ healthcheck:
   path: /healthcheck_r53
   controller: App\Controller\PageController::healthcheck
 
+# GM PAGES
+landing_page:
+  path: /guided-match/{slug}
+  controller: App\Controller\GuidedMatchPagesController::landingPage
+
+question_page:
+  path: /guided-match/{slug}/questions
+  controller: App\Controller\GuidedMatchPagesController::questionsPage
+
 # Page routes
 home:
   path: /
