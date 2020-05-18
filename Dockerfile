@@ -27,7 +27,6 @@ COPY ./package.json ./
 
 COPY ./composer.json ./
 
-
 # increase memory limit to 2GB
 RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 
@@ -43,7 +42,7 @@ COPY ./ ./
 # restart apache
 RUN service apache2 restart
 
-VOLUME /var/www/html/ccs/public
+VOLUME /var/www/html/ccs/
 
 #set container port
 EXPOSE $PORT

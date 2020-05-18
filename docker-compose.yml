@@ -1,0 +1,60 @@
+version: "3.3"
+services:
+    mysql:
+        image: mysql
+        ports: 
+            - 3306:3306
+        restart: always
+        command: "--default-authentication-plugin=mysql_native_password"
+        environment: 
+            MYSQL_ROOT_PASSWORD: test
+            MYSQL_DATABASE: ccs_wordpress
+            MYSQL_USER: user
+            MYSQL_PASSWORD: test
+        volumes:      
+            - ./wordpress:/docker-entrypoint-initdb.d
+    wordpress:
+        build: ./wordpress
+        ports:
+            - 8000:8000
+        working_dir: /var/www/html/wordpress/ccs-wordpress
+        links:
+            - mysql:mysql
+       # volumes: 
+       #     - /var/www/html/ccs/wordpress/ccs-wordpress
+        tty: true
+        env_file: .env
+        depends_on: 
+            - mysql
+        #command: tail -f /dev/null
+        restart: always
+        environment:
+            WP_DB_HOST: mysql:3306
+            WP_DB_USER: user
+            WP_DB_PASSWORD: test
+            WP_DB_NAME: ccs_wordpress
+            WP_DB_CHARSET: utf8mb4
+            WP_TABLE_PREFIX: ccs_15423_
+            WP_SITEURL: http://localhost:9031
+            AS3CF_ENABLED: 'true'
+    ccs_ui:
+        build: . 
+        ports: 
+            - 9030:9030
+        volumes: 
+            - /var/www/html/ccs/
+        environment:
+            APP_API_BASE_URL: http://127.0.0.1:9031/wp-json/
+
+            #URL of CMS - i’m not sure about this one
+            APP_CMS_BASE_URL: http://127.0.0.1:9031
+            
+            #URL of website (css-scale-ui app)
+            APP_BASE_URL: http://127.0.0.1:9030
+         
+
+volumes:
+    db_data: {}
+    
+            
+  
