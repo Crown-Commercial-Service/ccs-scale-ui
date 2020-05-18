@@ -16,7 +16,7 @@ services:
     wordpress:
         build: ./wordpress
         ports:
-            - 8000:8000
+            - 80:80
         working_dir: /var/www/html/wordpress/ccs-wordpress
         links:
             - mysql:mysql
@@ -44,10 +44,10 @@ services:
         volumes: 
             - /var/www/html/ccs/
         environment:
-            APP_API_BASE_URL: http://127.0.0.1:9031/wp-json/
+            APP_API_BASE_URL: http://127.0.0.1:80/wp-json/
 
             #URL of CMS - i’m not sure about this one
-            APP_CMS_BASE_URL: http://127.0.0.1:9031
+            APP_CMS_BASE_URL: http://127.0.0.1:80
             
             #URL of website (css-scale-ui app)
             APP_BASE_URL: http://127.0.0.1:9030

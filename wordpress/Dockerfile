@@ -1,7 +1,7 @@
 FROM php:7.3-apache
 
 
-ENV PORT 9031
+ENV PORT 80
 
 # set work directory
  WORKDIR  /var/www/html/wordpress
