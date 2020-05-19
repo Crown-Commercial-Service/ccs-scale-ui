@@ -6,10 +6,7 @@ namespace App\Controller;
 
 use Psr\SimpleCache\CacheInterface;
 use Studio24\Frontend\Cms\Wordpress;
-use Studio24\Frontend\ContentModel\ContentModel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -38,7 +35,7 @@ class MenuController extends AbstractController
      * @param integer $id
      * @param string $templatePath
      * @param string $currentPath
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      */
     public function menu(int $id, string $currentPath, string $templatePath = 'menus/default-menu.html.twig')
     {
