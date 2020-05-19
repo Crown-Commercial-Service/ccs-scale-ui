@@ -11,3 +11,7 @@ question_page:
 home:
   path: /
   controller: App\Controller\PageController::home
+
+guide_match_journery:
+  path: /gm/test-journey/
+  controller: App\Controller\GuideMatchJourneyTestController:guideMatchJourney
