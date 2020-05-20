@@ -14,14 +14,11 @@ class GuideMatchJourneyTestController extends AbstractController
     
     public function guideMatchJourney(Request $request)
     {
-        $base_api_url =   getenv('APP_ENV');
-        dump(getenv('APP_BASE_URL'));
-
         $q =$request->query->get('q');
 
         if(empty($q)){
-            echo 'Invalid query string: You should add a term for search';
-            die();       
+            echo 'Invalid query string: You should add a term for search' ;    
+            die();   
         }
 
         dump($q);

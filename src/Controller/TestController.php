@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
  class TestController extends  AbstractController{
 
     public function index(){
-        echo 'test';
 dump(getenv());
 dump(getenv('GUIDE_MATCH_DECISION_TREE_API'));
+die();
 
 die();
         return new Response('Test Redirect');

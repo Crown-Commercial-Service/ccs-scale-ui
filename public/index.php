@@ -9,8 +9,7 @@ require dirname(__DIR__) . '/config/bootstrap.php';
 
 // Set environment, default to prod
 $env = $_SERVER['APP_ENV'] ?? 'prod';
-dump(getenv());
-dump($env);
+
 $debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
 
 if ($debug) {
