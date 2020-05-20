@@ -3,16 +3,22 @@
 namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+
  
  class TestController extends  AbstractController{
 
-    public function index(){
-dump(getenv());
-dump(getenv('GUIDE_MATCH_DECISION_TREE_API'));
-die();
+    public function index(Request $request){
 
-die();
-        return new Response('Test Redirect');
+        $debug = $request->query->get('debug');
+        $test  = $request->query->get('test');
+        if(!empty($debug)){
+             dump($_SERVER);
+             die();
+        }
+     
+
+        return new Response('Uri variable test : ' . $test);
     }
 
  }

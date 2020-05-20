@@ -6,7 +6,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\GuideMatchApi\TestJourneyApi;
-use \Exception;
 
 class GuideMatchJourneyTestController extends AbstractController
 {
