@@ -20,7 +20,10 @@ if(!empty($_GET['debug'])){
 }
 // Set environment, default to prod
 $env = $_SERVER['APP_ENV'] ?? 'prod';
+if(!empty($_GET['debug'])){
+    dump($env);//die();
 
+}
 $debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
 
 if ($debug) {
