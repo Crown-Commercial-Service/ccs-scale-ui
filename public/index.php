@@ -5,12 +5,19 @@ use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 if(!empty($_GET['debug'])){
-    dump($_SERVER);die();
+    echo '<pre>';
+    var_dump($_SERVER);
+    if($_GET['debug'] == 2)
+        die();
 
 }
 
 require dirname(__DIR__) . '/config/bootstrap.php';
 
+if(!empty($_GET['debug'])){
+    dump($_SERVER);die();
+
+}
 // Set environment, default to prod
 $env = $_SERVER['APP_ENV'] ?? 'prod';
 
