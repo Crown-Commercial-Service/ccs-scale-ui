@@ -14,6 +14,8 @@ class GuideMatchJourneyTestController extends AbstractController
     
     public function guideMatchJourney(Request $request)
     {
+        $base_api_url =   getenv('APP_ENV');
+        dump(getenv('APP_BASE_URL'));
 
         $q =$request->query->get('q');
 

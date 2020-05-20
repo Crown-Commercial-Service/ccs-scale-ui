@@ -9,7 +9,8 @@
         public function testJourney($q){
 
             $api = new GuideMatchJourneyApi();
-            $base_api_url =   getenv('GUIDE_MATCH_DECISION_TREE_API');
+            $base_api_url =   getenv('APP_ENV');
+            dump(getenv('APP_BASE_URL'));
             $journey_data = $api->getJourneyUuid($base_api_url, $q);
             if(empty($journey_data)){
                 echo "Don't exist a guide match journey for {$q}";
