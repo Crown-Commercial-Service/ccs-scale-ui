@@ -15,13 +15,13 @@ if(!empty($_GET['debug'])){
 require dirname(__DIR__) . '/config/bootstrap.php';
 
 if(!empty($_GET['debug'])){
-    dump($_SERVER);die();
+    dump($_SERVER);//die();
 
 }
 // Set environment, default to prod
 $env = $_SERVER['APP_ENV'] ?? 'prod';
 if(!empty($_GET['debug'])){
-    dump($env);//die();
+    dump($env);die();
 
 }
 $debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
