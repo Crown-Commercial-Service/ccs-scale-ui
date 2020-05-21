@@ -24,22 +24,7 @@
         </span>
             </button>
 
-            {% block mainnavigation %}
-            <nav class="global-navigation" data-toggle="nav" data-app-uri="{{ app.request.uri }}" data-app-pathinfo="{{ app.request.pathinfo }}">
-
-                {{ render(controller(
-                    'App\\Controller\\MenuController::menu',
-                    { 'id': 22, 'currentPath': app.request.pathinfo, 'templatePath': 'menus/secondary-menu.html.twig' }
-                )) }}
-
-                {{ render(controller(
-                    'App\\Controller\\MenuController::menu',
-                    { 'id': 21, 'currentPath': app.request.pathinfo, 'templatePath': 'menus/primary-menu.html.twig' }
-                )) }}
-
-            </nav>
-
-            {% endblock %}
+ 
         </div>
 
         {% block featuredcontent %}{% endblock %}
