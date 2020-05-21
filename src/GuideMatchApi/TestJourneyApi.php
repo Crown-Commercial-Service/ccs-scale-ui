@@ -9,8 +9,7 @@
         public function testJourney($q){
 
             $api = new GuideMatchJourneyApi();
-            $base_api_url =   getenv('APP_ENV');
-            dump(getenv('APP_BASE_URL'));
+            $base_api_url =   getenv('GUIDE_MATCH_DECISION_TREE_API');
             $journey_data = $api->getJourneyUuid($base_api_url, $q);
             if(empty($journey_data)){
                 echo "Don't exist a guide match journey for {$q}";
@@ -55,14 +54,16 @@
                 
                 $user_response = $definedAnswers[$response_question_number]['uuid'];
                 $questionUuid = $questions['data']['uuid'];
-
+echo '<pre>';
                 echo '<br/>';
                 echo '------------ RESPONSE -------' ;
                 echo '<br/>';
-            
-                dump($questions);
+                echo '<div>';
+                    dump($questions);
+                echo '</div>';
                 echo '<br/>';
-                echo 'Set a response: ______ID:'.$user_response .' _____________ Text: '. $definedAnswers[$response_question_number]['text'];
+                echo '<div>Set a response: ______ID:'.$user_response .' _____________ Text: '. $definedAnswers[$response_question_number]['text'] .'</div>';
+                
             }
 
         }
