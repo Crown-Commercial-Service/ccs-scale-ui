@@ -15,6 +15,9 @@ use App\CacheKernel;
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
+
+use function GuzzleHttp\debug_resource;
+
 require dirname(__DIR__) . '/config/bootstrap.php';
 // Set environment, default to prod
 $env = $_SERVER['APP_ENV'] ?? 'prod';
@@ -33,6 +36,7 @@ if ($debug) {
 }
 
 if($ddebug == 3 ){
+dump($ddebug);
     dump($_SERVER);
     die('Before TRUSTED_PROXIESzz');
 }
@@ -71,7 +75,7 @@ if($ddebug == 6 ){
     die('After HTTP Cache');
 }
 
-$response = Request::createFromGlobals();
+$request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 
 if($ddebug == 7 ){
@@ -83,7 +87,7 @@ $response->send();
 
 if($ddebug == 8 ){
 
-    dump($response);
+    dump($request);
     die('After handle send');
 }
 $kernel->terminate($request, $response);
