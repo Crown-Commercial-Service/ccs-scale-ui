@@ -55,7 +55,7 @@ DirectoryIndex index.php
 
     # Rewrite all other queries to the front controller.
 
-    RewriteRule . index.php?$0 [PT,L] 
+    RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>

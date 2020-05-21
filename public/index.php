@@ -41,20 +41,36 @@ dump($ddebug);
     die('Before TRUSTED_PROXIESzz');
 }
 
+Request::setTrustedProxies(
+   
+    // the IP address (or range) of your proxy
+    [' 5.12.0.66', '130.176.33.140'],
 
-// if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ?? false) {
-//     Request::setTrustedProxies(explode(',', $trustedProxies), Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST);
-// }
+    // trust *all* "X-Forwarded-*" headers
+    Request::HEADER_X_FORWARDED_ALL,
 
-// if($ddebug == 4 ){
+    // // or, if your proxy instead uses the "Forwarded" header
+    //  Request::HEADER_FORWARDED,
 
-//     die('Before TRUSTED_HOSTS after TRUSTED_PROXIES' );
-// }
+    // // or, if you're using AWS ELB
+    // Request::HEADER_X_FORWARDED_AWS_ELB
+);
+
+/*
+    if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ?? false) {
+    Request::setTrustedProxies(explode(',', $trustedProxies), Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST);
+    }
+*/
+
+if($ddebug == 4 ){
+
+    die('Before TRUSTED_HOSTS after TRUSTED_PROXIES' );
+}
 
 
-// if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false) {
-//     Request::setTrustedHosts([$trustedHosts]);
-// }
+if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false) {
+    Request::setTrustedHosts([$trustedHosts]);
+}
 
 
 if($ddebug == 5 ){
