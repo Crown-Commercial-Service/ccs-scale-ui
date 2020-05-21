@@ -1,4 +1,6 @@
 <?php
+echo 'Test 1';
+echo '<br/>';
 if (!empty($_GET['debug'])) {
     echo '<pre>';
     

@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 
     public function index(Request $request){
 
+        echo 'Test: 1';
+        echo '<br/>';
         $debug = $request->query->get('debug');
         $test  = $request->query->get('test');
         if(!empty($debug)){
