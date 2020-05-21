@@ -33,7 +33,6 @@ if ($debug) {
 }
 
 if($ddebug == 3 ){
-dump($ddebug);
     dump($_SERVER);
     die('Before TRUSTED_PROXIESzz');
 }
@@ -72,7 +71,7 @@ if($ddebug == 6 ){
     die('After HTTP Cache');
 }
 
-$request = Request::createFromGlobals();
+$response = Request::createFromGlobals();
 $response = $kernel->handle($request);
 
 if($ddebug == 7 ){
@@ -84,6 +83,7 @@ $response->send();
 
 if($ddebug == 8 ){
 
+    dump($response);
     die('After handle send');
 }
 $kernel->terminate($request, $response);
