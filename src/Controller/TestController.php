@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
         $test  = $request->query->get('test');
         if(!empty($debug)){
              dump($_SERVER);
+             dump($request);
              die();
         }
      

@@ -39,19 +39,19 @@ dump($ddebug);
 }
 
 
-if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ?? false) {
-    Request::setTrustedProxies(explode(',', $trustedProxies), Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST);
-}
+// if ($trustedProxies = $_SERVER['TRUSTED_PROXIES'] ?? $_ENV['TRUSTED_PROXIES'] ?? false) {
+//     Request::setTrustedProxies(explode(',', $trustedProxies), Request::HEADER_X_FORWARDED_ALL ^ Request::HEADER_X_FORWARDED_HOST);
+// }
 
-if($ddebug == 4 ){
+// if($ddebug == 4 ){
 
-    die('Before TRUSTED_HOSTS after TRUSTED_PROXIES' );
-}
+//     die('Before TRUSTED_HOSTS after TRUSTED_PROXIES' );
+// }
 
 
-if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false) {
-    Request::setTrustedHosts([$trustedHosts]);
-}
+// if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false) {
+//     Request::setTrustedHosts([$trustedHosts]);
+// }
 
 
 if($ddebug == 5 ){
@@ -64,7 +64,7 @@ $kernel = new Kernel($env, $debug);
 // Enable HTTP Cache for prod
 // @see https://symfony.com/doc/current/http_cache.html
 if ('prod' === $env) {
-    $kernel = new CacheKernel($kernel);
+  //  $kernel = new CacheKernel($kernel);
 }
 
 if($ddebug == 6 ){
