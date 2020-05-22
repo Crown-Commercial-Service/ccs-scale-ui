@@ -15,14 +15,14 @@ if($ddebug == 1){
 if($ddebug == 10){
 
    $_SERVER['HTTP_HOST'] = 'https://kt363e9i9g.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer';
-   $_SERVER['SERVER_NAME'] = 'https://kt363e9i9g.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer'
+   $_SERVER['SERVER_NAME'] = 'https://kt363e9i9g.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer';
     
 }
 
 if($ddebug == 11){
 
     $_SERVER['HTTP_HOST'] = 'https://kt363e9i9g.execute-api.eu-west-2.amazonaws.com';
-    $_SERVER['SERVER_NAME'] = 'https://kt363e9i9g.execute-api.eu-west-2.amazonaws.com'
+    $_SERVER['SERVER_NAME'] = 'https://kt363e9i9g.execute-api.eu-west-2.amazonaws.com';
      
  }
 
