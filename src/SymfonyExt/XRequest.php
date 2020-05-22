@@ -35,11 +35,45 @@ class XRequest extends Request{
      */
     public function getHost()
     {
-        //var_dump($this->server->get('APP_HOST'));die('xxx');
+
         return $this->server->get('APP_HOST', parent::getHost());
         
     }
     
+    /**
+     * 
+     */
+    protected function preparePathInfo(){
+
+        if (null === ($requestUri = $this->getRequestUri())) {
+            return '/';
+        }
+
+        // Remove the query string from REQUEST_URI
+        if (false !== $pos = strpos($requestUri, '?')) {
+            $requestUri = substr($requestUri, 0, $pos);
+        }
+        if ('' !== $requestUri && '/' !== $requestUri[0]) {
+            $requestUri = '/'.$requestUri;
+        }
+
+        if (null === ($baseUrl = $this->getBaseUrl())) {
+            return $requestUri;
+        }
+
+        if ($this->server->get('APP_BASE_URL')) {
+            return $requestUri;
+        }
+
+        $pathInfo = substr($requestUri, \strlen($baseUrl));
+        if (false === $pathInfo || '' === $pathInfo) {
+            // If substr() returns false then PATH_INFO is set to an empty string
+            return '/';
+        }
+
+        return (string) $pathInfo;
+
+    }
 }
 
 ?>
