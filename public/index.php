@@ -14,15 +14,15 @@ if($ddebug == 1){
 
 if($ddebug == 10){
 
-   $_SERVER['HTTP_HOST'] = 'https://sgs5c4khwd.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer';
-   $_SERVER['SERVER_NAME'] = 'https://sgs5c4khwd.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer';
+   $_SERVER['HTTP_HOST'] = 'sgs5c4khwd.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer';
+   $_SERVER['SERVER_NAME'] = 'sgs5c4khwd.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer';
     
 }
 
 if($ddebug == 11){
 
-    $_SERVER['HTTP_HOST'] = 'https://sgs5c4khwd.execute-api.eu-west-2.amazonaws.com';
-    $_SERVER['SERVER_NAME'] = 'https://sgs5c4khwd.execute-api.eu-west-2.amazonaws.com';
+    $_SERVER['HTTP_HOST'] = 'sgs5c4khwd.execute-api.eu-west-2.amazonaws.com';
+    $_SERVER['SERVER_NAME'] = 'sgs5c4khwd.execute-api.eu-west-2.amazonaws.com';
      
  }
 
@@ -30,8 +30,8 @@ use App\CacheKernel;
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
+use App\SymfonyExt\XRequest;
 
-use function GuzzleHttp\debug_resource;
 
 require dirname(__DIR__) . '/config/bootstrap.php';
 // Set environment, default to prod
@@ -101,8 +101,11 @@ if($ddebug == 6 ){
     die('After HTTP Cache');
 }
 
+$xrequest = XRequest::createFromGlobals();
+
+
 $request = Request::createFromGlobals();
-$response = $kernel->handle($request);
+$response = $kernel->handle($xrequest);
 
 if($ddebug == 7 ){
 
@@ -116,4 +119,4 @@ if($ddebug == 8 ){
     dump($request);
     die('After handle send');
 }
-$kernel->terminate($request, $response);
+$kernel->terminate($xrequest, $response);
