@@ -1,5 +1,5 @@
 <?php
-echo 'Test 7';
+echo 'Test 8';
 echo '<br/>';
 if (!empty($_GET['debug'])) {
     echo '<pre>';

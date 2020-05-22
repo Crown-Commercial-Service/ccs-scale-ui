@@ -42,18 +42,13 @@ dump($ddebug);
 }
 
 Request::setTrustedProxies(
-   
     // the IP address (or range) of your proxy
-    [' 5.12.0.66', '130.176.33.140'],
-
+    // ['5.12.0.66', '130.176.33.140'],
     // trust *all* "X-Forwarded-*" headers
+    
+    //trust all requests
+    ['127.0.0.1', 'REMOTE_ADDR'],
     Request::HEADER_X_FORWARDED_ALL,
-
-    // // or, if your proxy instead uses the "Forwarded" header
-    //  Request::HEADER_FORWARDED,
-
-    // // or, if you're using AWS ELB
-    // Request::HEADER_X_FORWARDED_AWS_ELB
 );
 
 /*
