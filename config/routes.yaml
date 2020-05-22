@@ -13,10 +13,10 @@ home:
   controller: App\Controller\PageController::home
 
 guide_match_journery:
-  path: /gm/test-journey/
+  path: /guided-match/test-journey/{slug}
   controller: App\Controller\GuideMatchJourneyTestController:guideMatchJourney
 
   # Test redirect routes
 test_redirect_routes:
-  path: /gm/test/
+  path: /guided-match/test/{slug}
   controller: App\Controller\TestController:index
