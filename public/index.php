@@ -12,19 +12,6 @@ if($ddebug == 1){
     
 }
 
-if($ddebug == 10){
-
-   $_SERVER['HTTP_HOST'] = 'sgs5c4khwd.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer';
-   $_SERVER['SERVER_NAME'] = 'sgs5c4khwd.execute-api.eu-west-2.amazonaws.com/dev/scale/buyer';
-    
-}
-
-if($ddebug == 11){
-
-    $_SERVER['HTTP_HOST'] = 'sgs5c4khwd.execute-api.eu-west-2.amazonaws.com';
-    $_SERVER['SERVER_NAME'] = 'sgs5c4khwd.execute-api.eu-west-2.amazonaws.com';
-     
- }
 
 use App\CacheKernel;
 use App\Kernel;
