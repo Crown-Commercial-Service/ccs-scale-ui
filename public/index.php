@@ -104,9 +104,15 @@ if($ddebug == 6 ){
 $xrequest = XRequest::createFromGlobals();
 
 
-$request = Request::createFromGlobals();
+//$request = Request::createFromGlobals();
 $response = $kernel->handle($xrequest);
 
+
+if($ddebug == 8 ){
+var_dump($xrequest->getHost());
+    dump($xrequest);
+    die('After handle send');
+}
 if($ddebug == 7 ){
 
     die('After handle request');
@@ -114,9 +120,5 @@ if($ddebug == 7 ){
 
 $response->send();
 
-if($ddebug == 8 ){
 
-    dump($request);
-    die('After handle send');
-}
 $kernel->terminate($xrequest, $response);
