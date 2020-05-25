@@ -27,11 +27,14 @@ COPY ./package.json ./
 
 COPY ./composer.json ./
 
+
 # increase memory limit to 2GB
 RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 
 # run composer update
 RUN composer update
+
+#RUN composer dump-env dev
 
 #install javascript modules
 RUN npm install
@@ -46,7 +49,8 @@ VOLUME /var/www/html/ccs/
 
 #set container port
 EXPOSE $PORT
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
+
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground ; npm run build
 
 
 # usage :
