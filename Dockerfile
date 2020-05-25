@@ -45,11 +45,12 @@ COPY ./ ./
 # restart apache
 RUN service apache2 restart
 
-VOLUME /var/www/html/ccs/public
+VOLUME /var/www/html/ccs/
 
 #set container port
 EXPOSE $PORT
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
+
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground ; npm run build
 
 
 # usage :
