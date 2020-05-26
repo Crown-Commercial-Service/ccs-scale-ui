@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpClient\CurlHttpClient;
 use App\GuideMatchApi\GuideMatchJourneyApi;
 
 
@@ -12,7 +13,7 @@ class GuideMatchModel{
     private $httpClient;
     private $baseApiUrl;
 
-    function __construct(HttpClient $httpClient, string $baseApiUrl, string $searchBy)
+    function __construct(CurlHttpClient $httpClient, string $baseApiUrl, string $searchBy)
     {
         $this->httpClient = $httpClient;
         $this->baseApiUrl = $baseApiUrl;

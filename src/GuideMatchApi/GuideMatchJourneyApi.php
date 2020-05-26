@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\GuideMatchApi;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpClient\CurlHttpClient;
+
 use \Exception;
 
 class GuideMatchJourneyApi
@@ -12,7 +14,7 @@ class GuideMatchJourneyApi
     private $httpClient;
     private $baseApiUrl;
 
-    public function __construct(HttpClient $httpClient, string $baseApiUrl)
+    public function __construct(CurlHttpClient $httpClient, string $baseApiUrl)
     {
         $this->httpClient = $httpClient;
         $this->baseApiUrl = $baseApiUrl;
@@ -27,7 +29,7 @@ class GuideMatchJourneyApi
     
     public function getJourneyUuid(string $search_by)
     {
-        if (empty($$this->baseApiUrl) && empty($qsearch_by)) {
+        if (empty($search_by)) {
             throw new Exception('Invalid arguments of method');
         }
      
@@ -39,6 +41,7 @@ class GuideMatchJourneyApi
 
         $content = $response->getContent();
         $content = $response->toArray();
+        var_dump($content);die();
         return $content;
     }
 
