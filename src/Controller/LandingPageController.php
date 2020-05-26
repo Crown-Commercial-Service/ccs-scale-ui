@@ -17,10 +17,11 @@ class LandingPageController extends AbstractController
         $q =$request->query->get('q');
         $httpClient = HttpClient::create();
         $model = new GuideMatchModel($httpClient, getenv('GUIDE_MATCH_DECISION_TREE_API'), $q);
-        $journeyData = $model->getJurneyData();
-
        
+        $this->render('pages/landing_page.html.twig', [
+            'journeyUuid' => $model->getJourneyUuid(),
+            'questionUuid' => $model->getJourneyQuestionUuid(),
+        ]);
      }
-
 }
 ?>

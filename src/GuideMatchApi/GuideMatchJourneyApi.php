@@ -41,7 +41,6 @@ class GuideMatchJourneyApi
 
         $content = $response->getContent();
         $content = $response->toArray();
-        var_dump($content);die();
         return $content;
     }
 
