@@ -1,7 +1,7 @@
 # GM PAGES
 landing_page:
-  path: /guided-match/{slug}
-  controller: App\Controller\GuidedMatchPagesController::landingPage
+  path: /guided-match/landing-page
+  controller: App\Controller\LandingPageController::landingPage
 
 question_page:
   path: /guided-match/{slug}/questions
