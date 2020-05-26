@@ -4,7 +4,7 @@ landing_page:
   controller: App\Controller\LandingPageController::landingPage
 
 question_page:
-  path: /guided-match/{slug}/questions
+  path: /guided-match/journey
   controller: App\Controller\GuidedMatchPagesController::questionsPage
 
 # Page routes
