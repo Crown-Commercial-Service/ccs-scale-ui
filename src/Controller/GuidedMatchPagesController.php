@@ -38,6 +38,7 @@ class GuidedMatchPagesController extends AbstractController
     public function questionsPage(string $slug)
     {
         return $this->render('pages/questions_page.html.twig', [
+            'question' => [ 'type' => "type5" ],
             'slug' => $slug
         ]);
     }

@@ -33,9 +33,24 @@
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper " id="main-content" role="main">
             <div class="govuk-grid-row">
-                <div class="govuk-grid-column-two-thirds">
-                    <h1 class="govuk-heading-l">Question Page ...</h1>
-                </div>
+                {% if question.type == "type1" %}
+                    {{ include('_components/boolean.html.twig') }}
+                {% elseif question.type == "type2" %}
+                    {{ include('_components/radio_hint.html.twig') }}
+                {% elseif question.type == "type3" %}
+                    {{ include('_components/multi_select.html.twig') }}
+                {% elseif question.type == "type4" %}
+                    {{ include('_components/multi_select_hint.html.twig') }}
+                {% elseif question.type == "type5" %}
+                    {{ include('_components/radio_conditional.html.twig') }}
+                {% elseif question.type == "type6" %}
+                    {{ include('_components/radio_me.html.twig') }}
+                {% elseif question.type == "type7" %}
+                    {{ include('_components/multi_select_me.html.twig') }}
+                {% endif %}
+                <button class="govuk-button" data-module="govuk-button">
+                    Continue
+                </button>
             </div>
         </main>
     </div>
