@@ -12,9 +12,6 @@
   {% endembed %}
 {% endblock %}
 
-{% block flourishClasses %}
-{% endblock %}
-
 {% block body %}
   <!-- required wrapper 1 -->
   <div class="govuk-width-container">
@@ -32,29 +29,19 @@
       </p>
     </div>
 
-    <a href="{{
-      path(
-        'landing_page',
-        {
-          slug: 'back'
-        }
-      )
-      }}"
-      class="govuk-back-link">
-      Back
-    </a>
+    <a href="{{ path( 'landing_page') }}?q=linen" class="govuk-back-link">Back</a>
 
     <!-- required wrapper 2 -->
     <main class="govuk-main-wrapper" id="main-content" role="main">
       <div class="govuk-grid-row">
-        {% if type == 'boolean' %}
-          {% include '/questions_types/{{ type }}.html.twig' with {
-            questions: definedAnswers
-          } only %}
-        {% endif %}
-        <button class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
+
+        <form action="{{ path('question_page', {'journeyUuid': journeyUuid ,'questionUuid': uuid}) }}" method="post">
+          {% include "/questions_types/#{type}h.html.twig" %}
+          <button class="govuk-button" data-module="govuk-button" type="submit">
+            Continue
+          </button>
+        </form>
+
       </div>
     </main>
   </div>
