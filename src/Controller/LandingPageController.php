@@ -18,6 +18,7 @@ class LandingPageController extends AbstractController
         $q = $request->query->get('q');
 
         if (empty($q)) {
+            echo 'You need to provide a word for Guide Match Journey';die();
             throw new Exception('You need to provide a word for Guide Match Journey');
         }
 
