@@ -3,14 +3,13 @@
 declare(strict_types=1);
 
 namespace App\GuideMatchApi;
+
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\CurlHttpClient;
-
 use \Exception;
 
 class GuideMatchJourneyApi
 {
-
     private $httpClient;
     private $baseApiUrl;
 
@@ -20,7 +19,7 @@ class GuideMatchJourneyApi
         $this->baseApiUrl = $baseApiUrl;
     }
 
-    /**
+    /**Í
      * Start Guide Match Journey
      *
      * @param strig  $search_by
@@ -55,7 +54,7 @@ class GuideMatchJourneyApi
      */
     public function getQuestions($journeyUuid, $questionsUuid)
     {
-        if (empty($$this->baseApiUrl) && empty($q)) {
+        if (empty($journeyUuid) && empty($questionsUuid)) {
             throw new Exception('Invalid arguments of method');
         }
 
