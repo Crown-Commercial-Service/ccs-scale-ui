@@ -38,8 +38,12 @@ class GuideMatchJourneyApi
             ]
         ]);
 
-        $content = $response->getContent();
-        $content = $response->toArray();
+        try {
+            $content = $response->getContent();
+            $content = $response->toArray();
+        } catch (Exception $e) {
+            throw new Exception('Invalid API response:'.$e->getMessage());
+        }
         return $content;
     }
 
@@ -59,8 +63,13 @@ class GuideMatchJourneyApi
         }
 
         $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}");
-        $content = $response->getContent();
-        $content = $response->toArray();
+       
+        try {
+            $content = $response->getContent();
+            $content = $response->toArray();
+        } catch (Exception $e) {
+            throw new Exception('Invalid API response:'.$e->getMessage());
+        }
         return $content;
     }
     
@@ -94,9 +103,12 @@ class GuideMatchJourneyApi
         $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}/outcome", [
             'json' => $data
         ]);
-        
-        $content = $response->getContent();
-        $content = $response->toArray();
+        try {
+            $content = $response->getContent();
+            $content = $response->toArray();
+        } catch (Exception $e) {
+            throw new Exception('Invalid API response:'.$e->getMessage());
+        }
         return $content;
     }
     /**
@@ -110,8 +122,13 @@ class GuideMatchJourneyApi
     public function getJourneySummary($journeyUuid)
     {
         $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/ourney-summaries/{$journeyUuid}");
-        $content = $response->getContent();
-        $content = $response->toArray();
+
+        try {
+            $content = $response->getContent();
+            $content = $response->toArray();
+        } catch (Exception $e) {
+            throw new Exception('Invalid API response:'.$e->getMessage());
+        }
         return $content;
     }
 }
