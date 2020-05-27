@@ -18,18 +18,23 @@ class GuideMatchJourneyController extends AbstractController
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDE_MATCH_DECISION_TREE_API'));
 
         $response = [];
-        if (!empty($request->request->get('uuid'))) {
-            $response = !is_array($request->request->get('uuid')) ? [$request->request->get('uuid')] : $request->request->get('uuid');
+
+        if($request->isMethod('post')){
+            if (!empty($request->request->get('uuid'))) {
+                $response = !is_array($request->request->get('uuid')) ? [$request->request->get('uuid')] : $request->request->get('uuid');
+            }else{
+                $this->redirect($request->server->get('HTTP_REFERER'));
+            }
         }
 
         $model = new GuideMatchJourneyModel($api, $journeyUuid, $questionUuid, $response);
-        
-        return $this->render('pages/guide_match_questions.htßml.twig', [
+
+        return $this->render('pages/guide_match_questions.html.twig', [
             'journeyUuid' => $journeyUuid,
             'definedAnswers' => $model->getDefinedAnswers(),
             'uuid' => $model->getUuid(),
             'text' => $model->getText(),
-            'type' => $model->gettype(),
+            'type' => $model->getType(),
             'hint' => $model->getHint(),
         ]);
     }
