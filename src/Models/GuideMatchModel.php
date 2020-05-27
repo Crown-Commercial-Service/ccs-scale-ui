@@ -1,69 +1,86 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Models;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\HttpClient\CurlHttpClient;
+
 use App\GuideMatchApi\GuideMatchJourneyApi;
-// use App\Models\Entities\JourneyEntity;
+use \Exception;
 
-
-class GuideMatchModel{
-
-  
-    private $httpClient;
-    private $baseApiUrl;
+class GuideMatchModel
+{
+    private $journeyApi;
     private $journeyUuid;
     private $journeyName;
     private $questionUuid;
     private $journeyData;
+    
 
-    function __construct(CurlHttpClient $httpClient, string $baseApiUrl, string $searchBy)
+    /**
+     * Get Api Response to start a  journey
+     *
+     * @param GuideMatchJourneyApi $api
+     * @param string $searchBy
+     */
+    public function __construct(GuideMatchJourneyApi $api, string $searchBy)
     {
-        $this->httpClient = $httpClient;
-        $this->baseApiUrl = $baseApiUrl;
+        $this->journeyApi = $api;
         $this->setJourneyId($searchBy);
-
     }
     
-    private function setJourneyId(string $searchBy){
+    private function setJourneyId(string $searchBy)
+    {
+        $this->journeyData = $this->journeyApi->getJourneyUuid($searchBy);
 
-        $journeyApi = new GuideMatchJourneyApi($this->httpClient, $this->baseApiUrl);
-        $this->journeyData = $journeyApi->getJourneyUuid($searchBy);
         if (!empty($this->journeyData)) {
-            $this->setJourneyUuid($this->journeyData[0]['uuid']);
-            $this->setJourneyQuestionUuid($this->journeyData[0]['uuid']);
-            $this->setJourneyName($this->journeyData[0]['name']);
+            if (!empty($this->journeyData[0]['uuid'])) {
+                $this->setJourneyUuid($this->journeyData[0]['uuid']);
+            }
+
+            if (!empty($this->journeyData[0]['questionUuid'])) {
+                $this->setJourneyQuestionUuid($this->journeyData[0]['questionUuid']);
+            }
+
+            if (!empty($this->journeyData[0]['questionUuid'])) {
+                $this->setJourneyName($this->journeyData[0]['name']);
+            }
+        } else {
+            throw new Exception("Don't exists a journey for : {$searchBy}");
         }
     }
 
-    private function setJourneyUuid($journeyUuid){
+    private function setJourneyUuid($journeyUuid)
+    {
         $this->journeyUuid = $journeyUuid;
     }
 
-    public function getJourneyUuid(){
+    public function getJourneyUuid()
+    {
         return $this->journeyUuid;
     }
 
-    private function setJourneyQuestionUuid($questionUuid){
+    private function setJourneyQuestionUuid($questionUuid)
+    {
         $this->questionUuid = $questionUuid;
     }
 
-    public function getJourneyQuestionUuid(){
+    public function getJourneyQuestionUuid()
+    {
         return $this->questionUuid;
     }
 
-    private function setJourneyName($name){
+    private function setJourneyName($name)
+    {
         $this->journeyName = $name;
     }
 
-    public function getJourneyName(){
+    public function getJourneyName()
+    {
         return $this->journeyName ;
     }
 
-    public function getJurneyData(){
+    public function getJurneyData()
+    {
         return $this->journeyData;
     }
 }
-
-?>
