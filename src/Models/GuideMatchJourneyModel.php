@@ -85,7 +85,7 @@ class GuideMatchJourneyModel
         }
 
         if (!empty($apiResponse['hint'])) {
-            $this->setHint($apiResponse['definedAnswers']);
+            $this->setHint($apiResponse['hint']);
         }
     }
     
@@ -152,15 +152,14 @@ class GuideMatchJourneyModel
     private function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
-
         if (empty($apiResponse)) {
             throw new Exception('Error api response');
         }
 
-        if ($apiResponse[0]=='lot') {
+        if ($apiResponse['outcomeType']=='lot') {
             dump($apiResponse);
             die('Final Journey');
         }
-        $this->handleApiResponse($apiResponse);
+        $this->handleApiResponse($apiResponse['data']);
     }
 }
