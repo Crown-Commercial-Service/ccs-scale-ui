@@ -11,9 +11,17 @@ class GuideMatchJourneyModel
 {
     private $journeyApi;
     private $uuid;
+
     private $definedAnswers;
+
+    // question type
     private $type;
+
+    // question text
     private $text;
+
+    // question hint
+    private $hint = '';
 
     /**
      * Get Guide Match Api response
@@ -75,6 +83,10 @@ class GuideMatchJourneyModel
         if (!empty($apiResponse['definedAnswers'])) {
             $this->setDefinedAnswers($apiResponse['definedAnswers']);
         }
+
+        if (!empty($apiResponse['hint'])) {
+            $this->setHint($apiResponse['definedAnswers']);
+        }
     }
     
     private function setUuid(string $uuid)
@@ -105,6 +117,17 @@ class GuideMatchJourneyModel
     public function getText()
     {
         return $this->text;
+    }
+
+
+    private function setHint(string $hint)
+    {
+        $this->hint = $hint;
+    }
+ 
+    public function getHint()
+    {
+        return $this->hint;
     }
 
     private function setDefinedAnswers(array $definedAnswers)

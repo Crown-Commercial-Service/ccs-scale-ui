@@ -22,7 +22,8 @@ class GuideMatchJourneyController extends AbstractController
             'definedAnswers' => $model->getDefinedAnswers(),
             'uuid' => $model->getUuid(),
             'text' => $model->getText(),
-            'type' => $model->gettype()
+            'type' => $model->gettype(),
+            'hint' => $model->getHint(),
         ]);
     }
 }
