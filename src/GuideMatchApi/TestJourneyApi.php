@@ -2,15 +2,17 @@
     namespace App\GuideMatchApi;
     use App\GuideMatchApi\GuideMatchJourneyApi;
     use \Exception;
-
+    use Symfony\Component\HttpClient\HttpClient;
 
     class TestJourneyApi{
 
         public function testJourney($q){
 
-            $api = new GuideMatchJourneyApi();
+            $httpClient = HttpClient::create();
+            $api =  new GuideMatchJourneyApi($httpClient, getenv('GUIDE_MATCH_DECISION_TREE_API'));
+
             $base_api_url =   getenv('GUIDE_MATCH_DECISION_TREE_API');
-            $journey_data = $api->getJourneyUuid($base_api_url, $q);
+            $journey_data = $api->getJourneyUuid($q);
             if(empty($journey_data)){
                 echo "Don't exist a guide match journey for {$q}";
                 die();
@@ -19,7 +21,7 @@
             $questionUuid = $journey_data[0]['questionUuid'];
             $definedAnswers = [];
 
-            $questions= $api->getQuestions($base_api_url, $uuid, $questionUuid);
+            $questions= $api->getQuestions($uuid, $questionUuid);
             $definedAnswers = $questions['definedAnswers'];
             $response_question_number = rand(0, count($definedAnswers)-1);
             $user_response = $definedAnswers[$response_question_number]['uuid'];
@@ -28,7 +30,7 @@
             $questions['outcomeType'] = false;
 
             while (true) {
-                $questions =  $api->getDecisionTree($base_api_url, $uuid, $questionUuid, [$user_response]);
+                $questions =  $api->getDecisionTree($uuid, $questionUuid, [$user_response]);
 
                 if (empty($questions['outcomeType'])) {
                     dump($questions);
@@ -54,14 +56,16 @@
                 
                 $user_response = $definedAnswers[$response_question_number]['uuid'];
                 $questionUuid = $questions['data']['uuid'];
-
+                echo '<pre>';
                 echo '<br/>';
                 echo '------------ RESPONSE -------' ;
                 echo '<br/>';
-            
-                dump($questions);
+                echo '<div>';
+                    dump($questions);
+                echo '</div>';
                 echo '<br/>';
-                echo 'Set a response: ______ID:'.$user_response .' _____________ Text: '. $definedAnswers[$response_question_number]['text'];
+                echo '<div>Set a response: ______ID:'.$user_response .' _____________ Text: '. $definedAnswers[$response_question_number]['text'] .'</div>';
+                
             }
 
         }

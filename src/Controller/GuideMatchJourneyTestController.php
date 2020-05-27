@@ -6,7 +6,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use App\GuideMatchApi\TestJourneyApi;
-use \Exception;
 
 class GuideMatchJourneyTestController extends AbstractController
 {
@@ -14,12 +13,11 @@ class GuideMatchJourneyTestController extends AbstractController
     
     public function guideMatchJourney(Request $request)
     {
-
         $q =$request->query->get('q');
 
         if(empty($q)){
-            echo 'Invalid query string: You should add a term for search';
-            die();       
+            echo 'Invalid query string: You should add a term for search' ;    
+            die();   
         }
 
         dump($q);

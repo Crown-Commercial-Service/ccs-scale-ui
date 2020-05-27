@@ -4,11 +4,10 @@ use App\CacheKernel;
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
-
 require dirname(__DIR__) . '/config/bootstrap.php';
-
 // Set environment, default to prod
 $env = $_SERVER['APP_ENV'] ?? 'prod';
+
 $debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
 
 if ($debug) {
