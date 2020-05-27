@@ -28,12 +28,6 @@ class GuidedMatchPagesController extends AbstractController
         $this->api->setCacheLifetime(900);
     }
 
-    public function landingPage(string $slug)
-    {
-        return $this->render('pages/landing_page.html.twig', [
-            'slug' => $slug
-        ]);
-    }
 
     public function questionsPage(string $slug)
     {
