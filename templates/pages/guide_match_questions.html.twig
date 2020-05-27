@@ -1,48 +1,75 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-  Guided Match - Questions
+    Guided Match - Questions
 {% endblock %}
 
 {% block header %}
-  {% embed '/includes/header.html.twig' %}
-    {% block bannerarea %}
+    {% embed '/includes/header.html.twig' %}
+        {% block bannerarea %}
 
-    {% endblock %}
-  {% endembed %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block script %}
+    <script type="text/javascript">
+        function validate()
+        {
+            let return_value = false;
+            for (let i=0; i < document.question.uuid.length; i++)
+            {
+                if (document.question.uuid[i].checked)
+                {
+                    return_value = true;
+                }
+            }
+            return return_value;
+        }
+    </script>
 {% endblock %}
 
 {% block body %}
-  <!-- required wrapper 1 -->
-  <div class="govuk-width-container">
-    <!-- If your design requires them, you should place components such as breadcrumbs, back link and phase banner inside this wrapper so that they sit directly underneath the header. -->
-    <div class="govuk-phase-banner">
-      <p class="govuk-phase-banner__content">
-        <strong class="govuk-tag govuk-phase-banner__content__tag">beta</strong>
-        <span class="govuk-phase-banner__text">
-          This is a new service – your
-          <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/QWDZX/">
-            feedback
-          </a>
-          will help us to improve it.
-        </span>
-      </p>
+    <!-- required wrapper 1 -->
+    <div class="govuk-width-container">
+        <!-- If your design requires them, you should place components such as breadcrumbs, back link and phase banner inside this wrapper so that they sit directly underneath the header. -->
+        <div class="govuk-phase-banner">
+            <p class="govuk-phase-banner__content">
+                <strong class="govuk-tag govuk-phase-banner__content__tag">beta</strong>
+                <span class="govuk-phase-banner__text">
+                    This is a new service – your
+                    <a class="govuk-link" href="https://www.smartsurvey.co.uk/s/QWDZX/">feedback</a>
+                    will help us to improve it.
+                </span>
+            </p>
+        </div>
+
+        <a href="{{ path( 'landing_page') }}?q=linen" class="govuk-back-link">Back</a>
+
+        <!-- required wrapper 2 -->
+        <main class="govuk-main-wrapper" id="main-content" role="main">
+            <div class="govuk-grid-row">
+
+                <form action="{{ path('question_page', {'journeyUuid': journeyUuid ,'questionUuid': uuid}) }}"
+                      onsubmit="return validate()" name="question" method="post">
+                    <div class="govuk-form-group">
+                        <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                <h1 class="govuk-fieldset__heading">
+                                    {{ text }}
+                                </h1>
+                            </legend>
+                            {% if  hint is defined %}
+                                <span id="changed-name-hint" class="govuk-hint">{{- hint -}}</span>
+                            {% endif %}
+                            {% include "/questions_types/#{type}.html.twig" %}
+                        </fieldset>
+                    </div>
+                    <button class="govuk-button" data-module="govuk-button" type="submit">
+                        Continue
+                    </button>
+                </form>
+            </div>
+        </main>
     </div>
-
-    <a href="{{ path( 'landing_page') }}?q=linen" class="govuk-back-link">Back</a>
-
-    <!-- required wrapper 2 -->
-    <main class="govuk-main-wrapper" id="main-content" role="main">
-      <div class="govuk-grid-row">
-
-        <form action="{{ path('question_page', {'journeyUuid': journeyUuid ,'questionUuid': uuid}) }}" method="post">
-          {% include "/questions_types/#{type}h.html.twig" %}
-          <button class="govuk-button" data-module="govuk-button" type="submit">
-            Continue
-          </button>
-        </form>
-
-      </div>
-    </main>
-  </div>
 {% endblock %}

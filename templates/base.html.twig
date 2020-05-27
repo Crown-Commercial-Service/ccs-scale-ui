@@ -9,12 +9,12 @@
      # https://twig.symfony.com/doc/2.x/templates.html#whitespace-control
      #}
     <title>{%- block title %}
-        {%- if page.head.title is not empty and page.head.title != page.title -%}
-            {{ page.head.title }}
-        {%- else -%}
-            {{ page.title|raw }} - CCS
-        {%- endif -%}
-    {% endblock -%}</title>
+            {%- if page.head.title is not empty and page.head.title != page.title -%}
+                {{ page.head.title }}
+            {%- else -%}
+                {{ page.title|raw }} - CCS
+            {%- endif -%}
+        {% endblock -%}</title>
 
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
@@ -37,7 +37,7 @@
         <link rel="stylesheet" href="{{ asset ('/assets/styles/styles.min.css?v=1.2.1') }} ">
     {% endif %}
 
-
+    {% block script %}{% endblock %}
 </head>
 
 {% set flourish = "none" %}
@@ -70,22 +70,6 @@
  # If `show-flourishes` isn't included, then certain colour flourishes won't show
 #}
 <body class="govuk-template__body {% block flourishClasses %}show-flourishes  {{ taxonomy }}--{{ flourish }}{% endblock %}">
-
-
-{# Google Tag Manager (noscript) THIS SHOULD BE REMOVED IF EXPLICIT OPT-IN is used #}
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NQGRQN" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-{# End Google Tag Manager (noscript) #}
-
-<div id="skiplink-container">
-    <div>
-        <a href="#main-content" class="govuk-skip-link">Skip to main content</a>
-    </div>
-</div>
-
-{#<a href="#main-content" class="govuk-skip-link">Skip to main content</a>#}
-
 {% block header %}
     {% embed '/includes/header.html.twig' %}
     {% endembed %}
@@ -110,7 +94,6 @@
     {% endif %}
 
 {% endblock %}
-
 
 
 <script src="/assets/scripts/libraries/jquery-1.12.4.min.js"></script>
