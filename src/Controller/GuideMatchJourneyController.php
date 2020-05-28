@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class GuideMatchJourneyController extends AbstractController
 {
-    public function journey(Request $request, $journeyUuid, $questionUuid)
+    public function journey(Request $request, $searchBy ,$journeyUuid, $questionUuid)
     {
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDE_MATCH_DECISION_TREE_API'));
@@ -36,6 +36,7 @@ class GuideMatchJourneyController extends AbstractController
             'text' => $model->getText(),
             'type' => $model->getType(),
             'hint' => $model->getHint(),
+            'searchBy' => $searchBy
         ]);
     }
 }

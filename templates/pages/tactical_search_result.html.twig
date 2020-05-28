@@ -1,0 +1,523 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Guided Match
+{% endblock %}
+
+{% block header %}
+  {% embed '/includes/header.html.twig' %}
+    {% block bannerarea %}
+
+    {% endblock %}
+  {% endembed %}
+{% endblock %}
+
+{% block flourishClasses %}
+
+{% endblock %}
+
+{% block body %}
+  <div    class="--govuk-width-container">
+    <router-outlet   ></router-outlet>
+    <agreements>
+      <div  class="govuk-width-container">
+        <div  class="govuk-phase-banner">
+          <p  class="govuk-phase-banner__content">
+            <strong 
+              class="govuk-tag govuk-phase-banner__content__tag">
+              beta
+            </strong><span 
+              class="govuk-phase-banner__text">
+              This is a new service – your <a 
+                class="govuk-link"
+                href="https://www.smartsurvey.co.uk/s/QWDZX/">
+                feedback
+              </a> will help us to improve it.
+            </span>
+          </p>
+        </div>
+        <div  class="govuk-breadcrumbs">
+          <ol   class="govuk-breadcrumbs__list">
+            <li   class="govuk-breadcrumbs__list-item">
+              <a  
+                class="govuk-breadcrumbs__link"
+                href="index.html">
+                Home
+              </a>
+            </li><li  
+              aria-current="page"
+              class="govuk-breadcrumbs__list-item">
+              Search frameworks
+            </li>
+          </ol>
+        </div>
+        <main  
+          class="govuk-main-wrapper"
+          id="main-content"
+          role="main">
+          <div   class="govuk-grid-row">
+            <div   class="govuk-grid-column-full">
+              <h1   class="govuk-heading-xl page-title">
+                Search frameworks
+              </h1>
+            </div>
+          </div>
+          <div  class="govuk-grid-row">
+            <div  class="govuk-grid-column-one-third">
+              <div 
+                class="govuk-form-group govuk-form-group--enclosure">
+                <div 
+                  class="govuk-form-group sidebar__search-group">
+                  <label  class="govuk-label" for="q">
+                    Keyword search
+                  </label><input 
+                    class="govuk-input ng-untouched ng-pristine ng-valid"
+                    id="q"
+                    name="q"
+                    type="text"
+                    ng-reflect-form="[object Object]" /><button 
+                    class="sidebar__search-button govuk-input"
+                    type="submit">
+                    <span  class="visuallyhidden">
+                      Search frameworks
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <h2  class="govuk-heading-m">
+                Browse by category
+              </h2>
+              <ul  class="govuk-list">
+                <li >
+                  <a 
+                    href="https://www.crowncommercial.gov.uk/agreements/pillar/buildings">
+                    Buildings
+                  </a><ul  class="govuk-list">
+                    <li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/construction">
+                        Construction
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/utilities-fuels">
+                        Utilities &amp; Fuels
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/workplace">
+                        Workplace
+                      </a>
+                    </li>
+                  </ul>
+                </li><li >
+                  <a 
+                    href="https://www.crowncommercial.gov.uk/agreements/pillar/corporate-solutions">
+                    Corporate Solutions
+                  </a><ul  class="govuk-list">
+                    <li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/document-management-logistics">
+                        Document Management &amp; Logistics
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/financial-services">
+                        Financial Services
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/fleet">
+                        Fleet
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/marcomms-research">
+                        Marcomms &amp; Research
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/travel">
+                        Travel
+                      </a>
+                    </li>
+                  </ul>
+                </li><li >
+                  <a 
+                    href="https://www.crowncommercial.gov.uk/agreements/pillar/people">
+                    People
+                  </a><ul  class="govuk-list">
+                    <li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/contact-centres">
+                        Contact Centres
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/people-services">
+                        People Services
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/professional-services">
+                        Professional Services
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/workforce-health-education">
+                        Workforce Health &amp; Education
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/psr-permanent-recruitment">
+                        PSR &amp; Permanent Recruitment
+                      </a>
+                    </li>
+                  </ul>
+                </li><li >
+                  <a 
+                    href="https://www.crowncommercial.gov.uk/agreements/pillar/technology">
+                    Technology
+                  </a><ul  class="govuk-list">
+                    <li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/digital-future">
+                        Digital Future
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/network-services">
+                        Network Services
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/software-cyber">
+                        Software &amp; Cyber
+                      </a>
+                    </li><li >
+                      <a 
+                        href="https://www.crowncommercial.gov.uk/agreements/category/technology-products-services">
+                        Technology Products &amp; Services
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div  class="govuk-grid-column-two-thirds">
+              <div 
+              
+                class="btn-box"
+                style="width:100%">
+                <h2 
+                
+                  class="govuk-heading-m ccs-font-weight-semibold govuk-!-font-size-36">
+                  Get help finding the right framework
+                </h2>
+                <p  style="margin: 0px 0px 0px">
+                  <strong >
+                    There are 11 results found for "{{searchBy}}"
+                  </strong>
+                </p>
+                <p >
+                  Answer a few simple questions to find the best agreements for
+                  your needs.
+                </p>
+                <!--  bindings={
+  "ng-reflect-ng-for-of": "[object Object]"
+}  -->           
+
+                 <a href="{{ path('landing_page') }}?q={{searchBy}}"           
+                  class="govuk-button cta-button govuk-button--start"
+                  data-module="govuk-button">
+                  Start now<svg 
+                    aria-hidden="true"
+                    class="govuk-button__start-icon"
+                    focusable="false"
+                    height="19"
+                    viewBox="0 0 33 40"
+                    width="17.5"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path 
+                      d="M0 0h13l20 20-20 20H0l20-20z"
+                      fill="currentColor"></path>
+                  </svg>
+                </a>
+              </div><br  /><br  /><ul 
+                class="govuk-list govuk-list--frameworks">
+                <!--  bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}  --><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM3788">
+                      WPS Legal Services
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM3788
+                    </li><li >
+                      <strong >Start Date:</strong> 19/10/2018
+                    </li><li >
+                      <strong >End Date:</strong> 18/10/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Legal services for the wider public sector.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM3786">
+                      General Legal Advice Services
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM3786
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Legal advice for central government, covering 23 most
+                    commonly required areas of law including major projects
+                    including litigation and advisory services.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM3756">
+                      Rail Legal Services
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM3756
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Rail-specific legal advice only for Department for
+                    Transport, covering rail franchising. Not for use by the
+                    wider public sector. Replaces part of RM919.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM3787">
+                      Finance &amp; Complex Legal Services
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM3787
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Legal advice on complex corporate finance matters for
+                    high-value, high-profile projects. For government
+                    departments, executive agencies and arm’s length bodies.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM971">
+                      Non Medical Non Clinical
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM971
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Source temporary non-medical and non-clinical staff. NHS
+                    Improvement approved for all public sector organisations.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM1062">
+                      Vehicle Hire Services
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM1062
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Hire vehicles, including cars, 4x4s, light commercial and
+                    heavy goods vehicles, and minibuses. Includes international
+                    hire and car-sharing solutions.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM1092">
+                      Language Services
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM1092
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Interpreting, translation and transcription services across
+                    250 languages and dialects. For all public sector.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM3828">
+                      Payment Solutions
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM3828
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Supply, maintenance and prepaid payment solutions for
+                    central government and the wider public sector.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM6138">
+                      Insurance Services 3 DPS
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM6138
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    The new Insurance Services 3 (IS3) solution is split into 2
+                    commercial agreements. This framework RM6138 is a dynamic
+                    purchasing system for insurance providers for placement of
+                    insurance policies and associated services. There are direct
+                    dealing customer insurance providers, as well as insurers
+                    that will only deal direct via a broker. If you need an
+                    insurance broker or a claims handling company then RM6020
+                    provides this. Both of these agreements are open to the
+                    whole public sector.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM6002">
+                      Permanent Recruitment Solutions
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM6002
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Permanent recruitment services for the public sector
+                    including: general recruitment, executive search and talent
+                    mapping to fill permanent, fixed term requirements and
+                    inward secondments.
+                  </p>
+                </li><li >
+                  <h3 
+                    class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                    <a 
+                      target="_blank"
+                      href="https://www.crowncommercial.gov.uk/agreements/RM6160">
+                      Non Clinical Temporary and Fixed Term Staff
+                    </a>
+                  </h3>
+                  <ul 
+                    class="list--inline govuk-body-s govuk-!-margin-bottom-2">
+                    <li >
+                      <strong >Framework ID:</strong> RM6160
+                    </li><li >
+                      <strong >Start Date:</strong> 28/02/2017
+                    </li><li >
+                      <strong >End Date:</strong> 27/02/2021
+                    </li>
+                  </ul>
+                  <p  class="govuk-body-s">
+                    Hire a range of non-clinical roles from admin and clerical
+                    to catering and maintenance.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </main>
+      </div>
+    </agreements>
+  </div>
+{% endblock %}

@@ -28,6 +28,7 @@ class LandingPageController extends AbstractController
         return $this->render('pages/landing_page.html.twig', [
             'journeyUuid' => $model->getJourneyUuid(),
             'questionUuid' => $model->getJourneyQuestionUuid(),
+            'searchBy' => $q,
         ]);
     }
 }
