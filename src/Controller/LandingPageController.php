@@ -18,7 +18,6 @@ class LandingPageController extends AbstractController
         $q = $request->query->get('q');
 
         if (empty($q)) {
-            echo 'You need to provide a word for Guide Match Journey';die();
             throw new Exception('You need to provide a word for Guide Match Journey');
         }
 
@@ -29,6 +28,7 @@ class LandingPageController extends AbstractController
         return $this->render('pages/landing_page.html.twig', [
             'journeyUuid' => $model->getJourneyUuid(),
             'questionUuid' => $model->getJourneyQuestionUuid(),
+            'searchBy' => $q,
         ]);
     }
 }

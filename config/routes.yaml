@@ -20,3 +20,8 @@ guide_match_journery:
 test_redirect_routes:
   path: /gm/test/
   controller: App\Controller\TestController:index
+
+# Tactical back to search
+back_to_search:
+  path: /guided-match/back-to-search-results/
+  controller: App\Controller\TacticalSerchResultController:backToSearch
