@@ -45,8 +45,8 @@
 {% block script %}
     <script type="text/javascript">
         function validate() {
-            let return_value = false;
-            for (let i = 0; i < document.question.uuid.length; i++) {
+            var return_value = false;
+            for (var i = 0; i < document.question.uuid.length; i++) {
                 if (document.question.uuid[i].checked) return_value = true;
             }
             return return_value;
