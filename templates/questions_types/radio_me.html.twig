@@ -1,0 +1,27 @@
+<div class="govuk-radios">
+    {% for i in definedAnswers|length -1 %}
+        <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="{{ i.uuid }}" name="uuid" type="radio" value="{{ i.uuid }}">
+            <label class="govuk-label govuk-radios__label govuk-label--s" for="{{ i.uuid }}">
+                {{- i.text -}}
+            </label>
+            {% if i.hint is defined  and i.hint is not empty %}
+                <span class="govuk-hint govuk-radios__hint">{{- i.hint -}}</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <div class="govuk-radios__divider">or</div>
+
+    {% set lastElement = definedAnswers|last %}
+    <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="{{ lastElement.uuid }}" name="uuid" type="radio"
+               value="{{ lastElement.uuid }}">
+        <label class="govuk-label govuk-radios__label govuk-label--s" for="{{ lastElement.uuid }}">
+            {{- lastElement.text -}}
+        </label>
+        {% if lastElement.hint is defined  and lastElement.hint is not empty %}
+            <span class="govuk-hint govuk-radios__hint">not listed above</span>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="govuk-checkboxes">
+    {% for i in definedAnswers|length -1 %}
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="{{ i.uuid }}" name="uuid" type="checkbox" value="{{ i.uuid }}">
+            <label class="govuk-label govuk-checkboxes__label" for="{{ i.uuid }}">
+                {{- i.text -}}
+            </label>
+            {% if i.hint is defined  and i.hint is not empty %}
+                <span class="govuk-hint govuk-checkboxes__hint">{{- i.hint -}}</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <div class="govuk-radios__divider">or</div>
+
+    {% set lastElement = definedAnswers|last %}
+    <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="{{ lastElement.uuid }}" name="uuid" type="checkbox"
+               value="{{ lastElement.uuid }}">
+        <label class="govuk-label govuk-checkboxes__label" for="{{ lastElement.uuid }}">
+            {{- lastElement.text -}}
+        </label>
+        {% if lastElement.hint is defined  and lastElement.hint is not empty %}
+            <span class="govuk-hint govuk-checkboxes__hint">{{- lastElement.hint -}}</span>
+        {% endif %}
+    </div>
+</div>
