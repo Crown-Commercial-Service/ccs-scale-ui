@@ -1,8 +1,8 @@
 <div class="govuk-radios">
     {% for answer in definedAnswers %}
         <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="{{ answer.uuid }}" name="uuid" type="radio" value="{{ answer.uuid }}"
-                   aria-describedby="sign-in-item-hint">
+            <input class="govuk-radios__input" id="{{ answer.uuid }}" name="uuid" type="radio"
+                   value="{{ answer.uuid }}" aria-describedby="sign-in-item-hint">
             <label class="govuk-label govuk-radios__label govuk-label--s" for="{{ answer.uuid }}">
                 {{- answer.text -}}
             </label>

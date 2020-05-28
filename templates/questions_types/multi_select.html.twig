@@ -1,0 +1,34 @@
+<div class="govuk-checkboxes">
+    {% for answer in definedAnswers %}
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="{{ answer.uuid }}" name="uuid" type="checkbox"
+                   value="{{ answer.uuid }}">
+            <label class="govuk-label govuk-checkboxes__label" for="{{ answer.uuid }}">
+                {{- answer.text -}}
+            </label>
+            {% if answer.hint is defined  and answer.hint is not empty %}
+                <span class="govuk-hint govuk-checkboxes__hint">{{- answer.hint -}}</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <div class="govuk-radios__divider">or</div>
+
+    <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="all" type="checkbox" onclick="SelectAll()" name="CheckAll">
+        <label class="govuk-label govuk-checkboxes__label" for="all">
+            Sellect all
+        </label>
+    </div>
+</div>
+
+{% block script %}
+    <script type="text/javascript">
+        function SelectAll() {
+            let a = document.form, b = a.elements['uuid'], c = b.length, d, e = a.elements['CheckAll'];
+            for (d = 0; d < c; d++) {
+                b[d].checked = e.checked === true;
+            }
+        }
+    </script>
+{% endblock %}
