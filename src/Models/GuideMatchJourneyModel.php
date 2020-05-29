@@ -23,42 +23,19 @@ class GuideMatchJourneyModel
     // question hint
     private $hint = '';
 
+    private $journeyInstanceId;
+
     /**
      * Get Guide Match Api response
      *
      * @param GuideMatchJourneyApi $journeyApi
-     * @param string $journeyUuid
-     * @param string $questionUuid
-     * @param array $questionResponse
      */
-    public function __construct(GuideMatchJourneyApi $journeyApi, string $journeyUuid, string $questionUuid, array $questionResponse=[])
+    public function __construct(GuideMatchJourneyApi $journeyApi)
     {
         $this->journeyApi = $journeyApi;
-
-        if (empty($questionResponse)) {
-            $this->getApiResponse($journeyUuid, $questionUuid);
-        } else {
-            $this->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
-        }
+       
     }
 
-    /**
-     * Get first set of questions from Guide Match Api
-     *
-     * @param string $journeyUuid
-     * @param string $questionUuid
-     * @return void
-     */
-    private function getApiResponse(string $journeyUuid, string $questionUuid)
-    {
-        $apiResponse = $this->journeyApi->getQuestions($journeyUuid, $questionUuid);
-
-        if (empty($apiResponse)) {
-            throw new Exception('Error api response');
-        }
-
-        $this->handleApiResponse($apiResponse);
-    }
 
     /**
      * Set Api response variables
@@ -68,25 +45,49 @@ class GuideMatchJourneyModel
      */
     private function handleApiResponse(array $apiResponse)
     {
-        if (!empty($apiResponse['uuid'])) {
-            $this->setUuid($apiResponse['uuid']);
+
+    
+        if (!empty($apiResponse[0]['question']['id'])) {
+            $this->setUuid($apiResponse[0]['question']['id']);
         }
 
-        if (!empty($apiResponse['type'])) {
-            $this->setType($apiResponse['type']);
+        if (!empty($apiResponse[0]['question']['type'])) {
+            $this->setType($apiResponse[0]['question']['type']);
         }
         
-        if (!empty($apiResponse['text'])) {
-            $this->setText($apiResponse['text']);
+        if (!empty($apiResponse[0]['question']['text'])) {
+            $this->setText($apiResponse[0]['question']['text']);
         }
 
-        if (!empty($apiResponse['definedAnswers'])) {
-            $this->setDefinedAnswers($apiResponse['definedAnswers']);
+        if (!empty($apiResponse[0]['question']['hint'])) {
+            $this->setHint($apiResponse[0]['question']['hint']);
         }
 
-        if (!empty($apiResponse['hint'])) {
-            $this->setHint($apiResponse['hint']);
+        if (!empty($apiResponse[0]['definedAnswers'])) {
+            $this->setDefinedAnswers($apiResponse[0]['definedAnswers']);
         }
+    }
+ 
+    public function startJourney($journeyUuid, $searchBy){
+
+        $apiResponse =  $this->journeyApi->startJourney($searchBy,$journeyUuid);
+
+        if (!empty($apiResponse['journeyInstanceId'])) {
+            $this->setJourneyInstanceId($apiResponse['journeyInstanceId']);
+        }
+
+        $this->handleApiResponse($apiResponse['questions']);
+
+    }
+
+    private function setJourneyInstanceId($journeyInstanceId){
+
+        $this->journeyInstanceId = $journeyInstanceId;
+    }
+
+    public function getJourneyInstanceId(){
+
+        return $this->journeyInstanceId;
     }
     
     private function setUuid(string $uuid)
@@ -149,17 +150,18 @@ class GuideMatchJourneyModel
      * @param array $questionResponse
      * @return void
      */
-    private function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
+    public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
         if (empty($apiResponse)) {
             throw new Exception('Error api response');
         }
-
-        if ($apiResponse['outcomeType']=='lot') {
+     
+        if($apiResponse['outcome']['outcomeType'] != 'question'){
             dump($apiResponse);
             die('Final Journey');
         }
-        $this->handleApiResponse($apiResponse['data']);
+
+        $this->handleApiResponse($apiResponse['outcome']['data']);
     }
 }

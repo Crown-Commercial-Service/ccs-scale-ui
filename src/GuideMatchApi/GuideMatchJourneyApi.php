@@ -44,9 +44,36 @@ class GuideMatchJourneyApi
         } catch (Exception $e) {
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
+       
         return $content;
     }
 
+
+    /**
+     *
+     * @param string $searchBy
+     * @param string $journeyId
+     * @return void
+     */
+    public function startJourney(string $searchBy, string $journeyId)
+    {
+        if (empty($searchBy)) {
+            throw new Exception('Invalid arguments of method');
+        }
+     
+        $response = $this->httpClient->request('POST', $this->baseApiUrl."/journeys/{$journeyId}", [
+            'json' => ['searchTerm' => $searchBy]
+        ]);
+
+        try {
+            $content = $response->getContent();
+            $content = $response->toArray();
+        } catch (Exception $e) {
+            throw new Exception('Invalid API response:'.$e->getMessage());
+        }
+       
+        return $content;
+    }
     /**
      * Get first set of Questions from Guide Match Journey
      *
@@ -96,19 +123,21 @@ class GuideMatchJourneyApi
         }
 
         $data = [
-            "data"=> $questionResponse
+            "id"=> $questionsUuid,
+            'answers' => $questionResponse
         ];
 
-
-        $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}/outcome", [
-            'json' => $data
+        $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/journey-instances/{$journeyUuid}/questions/{$questionsUuid}", [
+            'json' => [$data]
         ]);
         try {
             $content = $response->getContent();
             $content = $response->toArray();
         } catch (Exception $e) {
+            
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
+       
         return $content;
     }
     /**
