@@ -25,3 +25,7 @@ test_redirect_routes:
 back_to_search:
   path: /guided-match/back-to-search-results/
   controller: App\Controller\TacticalSerchResultController:backToSearch
+
+start-journey:
+  path: /guided-match/start-journey/{searchBy}/{journeyUuid}
+  controller: App\Controller\StartJourneyController:startJourney
