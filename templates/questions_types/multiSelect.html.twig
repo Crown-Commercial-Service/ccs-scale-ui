@@ -1,5 +1,11 @@
  <div class="govuk-checkboxes">
      {% for answer in definedAnswers %}
+
+        {% set checked = '' %}
+        {% if answer.id  in answers|keys %}
+            {% set checked = 'checked' %}
+        {% endif %}
+        
          <div class="govuk-checkboxes__item">
              <input class="govuk-checkboxes__input" id="{{ answer.id }}" name="uuid[]" type="checkbox"
                     value="{{ answer.id }} aria-describedby="{{- answer.hint -}}">

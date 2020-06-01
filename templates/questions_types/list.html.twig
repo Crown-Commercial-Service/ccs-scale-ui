@@ -1,8 +1,14 @@
 <div class="govuk-radios">
     {% for answer in definedAnswers %}
+    
+         {% set checked = '' %}
+        {% if answer.id  in answers|keys %}
+            {% set checked = 'checked' %}
+        {% endif %}
+
         <div class="govuk-radios__item">
             <input class="govuk-radios__input" id="{{ answer.id }}" name="uuid" type="radio"
-                   value="{{ answer.id }}" aria-describedby="sign-in-item-hint">
+                   value="{{ answer.id }}" aria-describedby="sign-in-item-hint"  {{checked}}>
             <label class="govuk-label govuk-radios__label govuk-label--s" for="{{ answer.id }}">
 
 
