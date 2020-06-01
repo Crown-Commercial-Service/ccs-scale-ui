@@ -12,14 +12,25 @@
     <!-- required wrapper 1 -->
     <div class="govuk-width-container">
         {% include "/includes/phase_banner.html.twig" %}
-
-       <a href="{{ path( 'landing_page') }}?q=linen" class="govuk-back-link">Back</a>
-
+        {% if  lastPage >=  0  and  journeyHistory is defined %}
+            <a href="{{ 
+                path( 
+                    'back-to-previous',
+                    {
+                        'journeyId': journeyId,
+                        'journeyInstanceId': journeyInstanceId,
+                        'questionUuid': lastQuestionId,
+                        'journeyHistory': journeyHistory, 
+                        'gPage': lastPage,
+                    }
+                    )}}?q={{ searchBy }}"
+                class="govuk-back-link">Back</a>
+        {% endif %}
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper" id="main-content" role="main">
             <div class="govuk-grid-row">
 
-                <form action="{{ path('question_page', {'journeyUuid': journeyUuid ,'questionUuid': uuid}) }}"
+                <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy }}"
                       onsubmit="return validate()" name="question" method="post">
                     <div class="govuk-form-group">
                         <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">

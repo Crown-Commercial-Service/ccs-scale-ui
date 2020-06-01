@@ -1,11 +1,14 @@
 # GM PAGES
 landing_page:
   path: /guided-match/landing-page
-  controller: App\Controller\LandingPageController::landingPage
+  controller: App\Controller\LandingPageController::landingPage 
 
 question_page:
-  path: /guided-match/journey/{journeyUuid}/{questionUuid}
+  path: /guided-match/journey/{journeyId}/{journeyInstanceId}/{questionUuid}/{gPage}
   controller: App\Controller\GuideMatchJourneyController::journey
+  defaults:
+    gPage: 0
+
 
 # Page routes
 home:
@@ -27,5 +30,12 @@ back_to_search:
   controller: App\Controller\TacticalSerchResultController:backToSearch
 
 start-journey:
-  path: /guided-match/start-journey/{searchBy}/{journeyUuid}
+  path: /guided-match/start-journey/{journeyUuid}
   controller: App\Controller\StartJourneyController:startJourney
+
+back-to-previous:
+  path: /guided-match/journey-back/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
+  controller: App\Controller\GuideMatchBackToPreviousController::backToPrevious
+  defaults:
+    gPage: 0
+  

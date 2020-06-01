@@ -17,9 +17,9 @@ class LandingPageController extends AbstractController
        
         if ($q == 'linen') {
             $journeyId = 'b87a0636-654e-11ea-bc55-0242ac130003';
-        }else if($q == 'legal'){
+        } elseif ($q == 'legal') {
             $journeyId = 'ccb5c730-75b5-11ea-bc55-0242ac130003';
-        }else{
+        } else {
             die('We have mockups API just for linen and legal.');
         }
 
