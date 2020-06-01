@@ -61,9 +61,6 @@ class GuideMatchJourneyApi
             throw new Exception('Invalid arguments of method');
         }
 
-    //    dump($journeyId );
-
-     //dump($searchBy );die();
         $response = $this->httpClient->request('POST', $this->baseApiUrl."/journeys/{$journeyId}", [
             'json' => ['searchTerm' => $searchBy]
         ]);
