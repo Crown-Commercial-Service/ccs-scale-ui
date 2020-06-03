@@ -2,5 +2,5 @@
 echo 'Test';
 echo '<br/>';
 var_dump($_GET);
-echo 'Deployment Testing - v2';
+echo 'Deployment Testing - v3';
 ?>
