@@ -41,7 +41,7 @@
                 class="govuk-back-link">Back</a>
         {% endif %}
         <!-- required wrapper 2 -->
-        <main class="govuk-main-wrapper" id="main-content" role="main">
+        <main class="govuk-main-wrapper questions-page" id="main-content" role="main">
             <div class="govuk-grid-row">
 
                 <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy }}"
