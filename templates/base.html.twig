@@ -40,36 +40,7 @@
     {% block script %}{% endblock %}
 </head>
 
-{% set flourish = "none" %}
-{% set taxonomy = "pillar" %}
-{% if page.taxonomies is defined %}
-
-    {% for taxonomy in page.taxonomies %}
-
-        {% for term in taxonomy %}
-            {#{{ term.slug }}#}
-            {% set flourish = term.slug %}
-        {% endfor %}
-
-    {% endfor %}
-
-    {% if "sectors" in page.taxonomies|keys %}
-        {% set taxonomy = "sector" %}
-    {% endif %}
-    {% if "pillar" in page.taxonomies|keys %}
-        {% set taxonomy = "pillar" %}
-    {% endif %}
-
-{% endif %}
-
-
-{#
- # Colour flourishes are specified using the `pillar--` class on the body, different
- # values result in different colours being used.
- #
- # If `show-flourishes` isn't included, then certain colour flourishes won't show
-#}
-<body class="govuk-template__body {% block flourishClasses %}show-flourishes  {{ taxonomy }}--{{ flourish }}{% endblock %}">
+<body class="govuk-template__body">
 {% block header %}
     {% embed '/includes/header.html.twig' %}
     {% endembed %}
