@@ -315,6 +315,7 @@ class GuideMatchJourneyModel
         }
      
         if ($apiResponse['outcome']['outcomeType'] != 'question') {
+            dump($apiResponse);
             die('Final Journey');
         }
         $this->setJourneyHistory($apiResponse['journeyHistory']);

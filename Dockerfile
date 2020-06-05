@@ -1,4 +1,4 @@
-FROM php:7.3.8-apache
+FROM php:7.4.4-apache
 
 ENV PORT 9030
 

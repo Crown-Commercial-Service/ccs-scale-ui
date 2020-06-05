@@ -31,6 +31,10 @@ if ('prod' === $env) {
     $kernel = new CacheKernel($kernel);
 }
 
+if(!empty($_GET['debug'])){
+    dump($_SERVER);die();
+}
+
 $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
