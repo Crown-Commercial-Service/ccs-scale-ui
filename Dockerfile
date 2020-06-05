@@ -1,4 +1,4 @@
-FROM php:7.4.4-apache
+FROM php:7.4-apache
 
 ENV PORT 9030
 
@@ -21,7 +21,10 @@ RUN sed -ri -e 's!/var/www/html!/var/www/html/ccs/public!g' /etc/apache2/sites-a
 RUN sed -ri -e 's!/var/www/!/var/www/html/ccs/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 RUN a2enmod rewrite
 RUN a2enmod php7
+
 RUN echo "ServerName localhost:$PORT" >> /etc/apache2/apache2.conf
+
+#RUN docker-php-ext-disable sqlite
 
 #COPY ./package.json ./
 
