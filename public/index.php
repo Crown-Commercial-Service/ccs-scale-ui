@@ -32,6 +32,7 @@ if ('prod' === $env) {
 }
 
 if(!empty($_GET['debug'])){
+    var_dump(getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
     dump($_SERVER);die();
 }
 
