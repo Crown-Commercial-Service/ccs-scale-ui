@@ -9,7 +9,10 @@ use \Exception;
 
 class GuideMatchJourneyModel
 {
+
+
     private $journeyApi;
+    
     private $uuid;
 
     private $definedAnswers;
@@ -24,11 +27,11 @@ class GuideMatchJourneyModel
 
     private $journeyHistory;
 
-    private $lastJourneyQuestion;
-
     private $lastJourneyQuestionAnswers = [];
 
     private $lastJourneyAction = [];
+
+    private $apiResponseType;
 
     /**
      * Get Guide Match Api response
