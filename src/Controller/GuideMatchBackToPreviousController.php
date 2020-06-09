@@ -26,7 +26,7 @@ class GuideMatchBackToPreviousController extends AbstractController
 
 
         $httpClient = HttpClient::create();
-        $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDE_MATCH_DECISION_TREE_API'));
+        $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
         $model = new GuideMatchJourneyModel($api);
        
         $lastPage = $gPage -2 > 1 ? $gPage -2 : 0;

@@ -16,7 +16,7 @@ class GuideMatchJourneyController extends AbstractController
     {
         $searchBy = $request->query->get('q');
         $httpClient = HttpClient::create();
-        $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDE_MATCH_DECISION_TREE_API'));
+        $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
 
         $response = [];
 

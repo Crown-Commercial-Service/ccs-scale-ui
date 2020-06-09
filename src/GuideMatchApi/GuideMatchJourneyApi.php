@@ -61,7 +61,7 @@ class GuideMatchJourneyApi
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('POST', $this->baseApiUrl."/journeys/{$journeyId}", [
+        $response = $this->httpClient->request('POST', $this->baseApiUrl."/scale/guided-match-service/journeys/{$journeyId}", [
             'json' => ['searchTerm' => $searchBy]
         ]);
 
@@ -121,13 +121,13 @@ class GuideMatchJourneyApi
         ) {
             throw new Exception('Invalid arguments of method');
         }
-
+       
         $data = [
             "id"=> $questionsUuid,
             'answers' => $questionResponse
         ];
         
-        $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/journey-instances/{$journeyUuid}/questions/{$questionsUuid}", [
+        $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}", [
             'json' => [$data]
         ]);
         try {
@@ -150,7 +150,7 @@ class GuideMatchJourneyApi
 
     public function getJourneySummary($journeyUuid)
     {
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/ourney-summaries/{$journeyUuid}");
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/journey-summaries/{$journeyUuid}");
 
         try {
             $content = $response->getContent();
