@@ -10,6 +10,6 @@ class PageController extends AbstractController
 {
     public function home()
     {
-        return $this->redirectToRoute('landing_page', ['slug' => 'example']);
+        return $this->redirectToRoute('landing_page', ['q' => 'legal']);
     }
 }
