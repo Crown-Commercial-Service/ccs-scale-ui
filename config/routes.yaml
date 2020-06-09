@@ -9,6 +9,10 @@ question_page:
   defaults:
     gPage: 0
 
+result_page:
+  path: /guided-match/result-page
+  controller: App\Controller\ResultPageController::resultPage
+
 
 # Page routes
 home:
