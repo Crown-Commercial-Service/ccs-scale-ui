@@ -12,16 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class GuideMatchJourneyResultController extends AbstractController
 {
-    public function journey(Request $request, $journeyId, $journeyHistory)
+    public function journeyResult(Request $request, $journeyId, $journeyInstanceId, $journeyData)
     {
-        $httpClient = HttpClient::create();
-        $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
-
-  
-        $model = new GuideMatchJourneyModel($api);
+        die('x');
                
 
-        return $this->render('pages/guide_match_questions.html.twig', [
+        return $this->render('pages/result_page.twig', [
            
         ]);
     }
