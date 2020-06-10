@@ -10,14 +10,18 @@ use App\Models\GuideMatchJourneyModel;
 use App\GuideMatchApi\GuideMatchJourneyApi;
 use Exception;
 use Symfony\Component\HttpFoundation\Request;
+use App\Models\Encrypt;
+use App\Models\Decrypt;
 
 class GuideMatchBackToPreviousController extends AbstractController
 {
     public function backToPrevious(Request $request, $journeyId, $journeyInstanceId, $questionUuid, $journeyHistory, $gPage)
     {
         $searchBy = $request->query->get('q');
-        $response =  json_decode(urldecode($journeyHistory), true);
 
+        $decrypt = new Decrypt(urldecode($journeyHistory));
+        $response = json_decode($decrypt->getDecryptedString(), true);
+       
         $anwers  =  !empty($response['lastJourney']) ? $response['lastJourney'] : [];
 
         if (empty($anwers)) {
@@ -44,8 +48,12 @@ class GuideMatchBackToPreviousController extends AbstractController
             'lastJourney' => $penultimateAnswers,
             'historyAnswered' => $journeyHistory
         ];
+        
 
-        $journeyHistoryEncode =  urlencode(json_encode($journeyHistoryAnswered));
+        $journeyHistoryAnsweredJson = json_encode($journeyHistoryAnswered);
+        $encrypt = new Encrypt($journeyHistoryAnsweredJson);
+        $journeyHistoryEncode =  urlencode($encrypt->getEncryptedString());
+
 
         if ($gPage< 1) {
             $model = new GuideMatchJourneyModel($api);

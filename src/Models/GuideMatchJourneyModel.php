@@ -5,11 +5,15 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\GuideMatchApi\GuideMatchJourneyApi;
+use App\Models\GuideMatchResponseType;
 use \Exception;
 
 class GuideMatchJourneyModel
 {
+
+
     private $journeyApi;
+    
     private $uuid;
 
     private $definedAnswers;
@@ -24,11 +28,13 @@ class GuideMatchJourneyModel
 
     private $journeyHistory;
 
-    private $lastJourneyQuestion;
-
     private $lastJourneyQuestionAnswers = [];
 
     private $lastJourneyAction = [];
+
+    private $apiResponseType;
+
+    private $agreementData;
 
     /**
      * Get Guide Match Api response
@@ -299,6 +305,28 @@ class GuideMatchJourneyModel
         return $answers;
     }
 
+    public function getApiResponseType(){
+        return  $this->apiResponseType;
+    }
+
+    public function setApiResponseType($responseType){
+
+        if ($responseType != 'question') {
+            $this->apiResponseType = GuideMatchResponseType::GuideMatchResponseAgreement;
+        }else{
+            $this->apiResponseType = GuideMatchResponseType::GuideMatchResponseQuestion;
+        }
+        
+    }
+
+    private function setAgreementData(array $agreementData){
+        $this->agreementData = $agreementData;
+    }
+
+    public function getAgreementData(){
+       return $this->agreementData;
+    }
+
     /**
      * Get next questions from Guide Match Api according to user response
      *
@@ -310,15 +338,18 @@ class GuideMatchJourneyModel
     public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
+
         if (empty($apiResponse)) {
             throw new Exception('Error API response');
         }
-     
-        if ($apiResponse['outcome']['outcomeType'] != 'question') {
-            dump($apiResponse);
-            die('Final Journey');
-        }
+
+        $this->setApiResponseType($apiResponse['outcome']['outcomeType']);
         $this->setJourneyHistory($apiResponse['journeyHistory']);
+       
+        if($this->apiResponseType != GuideMatchResponseType::GuideMatchResponseQuestion){
+          $this->setAgreementData($apiResponse['outcome']['data']);
+        }
+    
         $this->setLastJourneyAnswers();
         $this->handleApiResponse($apiResponse['outcome']['data']);
     }
