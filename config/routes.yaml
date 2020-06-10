@@ -42,4 +42,8 @@ back-to-previous:
   controller: App\Controller\GuideMatchBackToPreviousController::backToPrevious
   defaults:
     gPage: 0
+
+journey-result:
+  path: /guided-match/result/{journeyId}/{journeyInstanceId}/{journeyData}
+  controller: App\Controller\GuideMatchJourneyResultController::journeyResult
   
