@@ -46,7 +46,7 @@
 
                 <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy }}"
                       onsubmit="return validate()" name="question" method="post">
-                    <div class="govuk-form-group">
+                    <div class="govuk-form-group " id="form-layout">
                         <fieldset class="govuk-fieldset" aria-describedby="sign-in-hint">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 <h1 class="govuk-fieldset__heading">{{ text }}</h1>
@@ -54,6 +54,7 @@
                             {% if  hint is defined %}
                                 <span id="changed-name-hint" class="govuk-hint">{{- hint -}}</span>
                             {% endif %}
+                            {% include"/includes/question_error.html.twig" %}
                             {% include "/questions_types/#{type}.html.twig" %}
                         </fieldset>
                     </div>
@@ -73,6 +74,12 @@
             var return_value = false;
             for (var i = 0; i < document.question.uuid.length; i++) {
                 if (document.question.uuid[i].checked) return_value = true;
+            }
+            var formLayout = document.getElementById('form-layout');
+            var err = document.getElementById('changed-name-error');
+            if (return_value === false) {
+                formLayout.classList.add('govuk-form-group--error');
+                err.style.display = 'block';
             }
             return return_value;
         }
