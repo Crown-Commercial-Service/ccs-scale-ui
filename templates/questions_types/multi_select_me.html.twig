@@ -1,7 +1,7 @@
 <div class="govuk-checkboxes">
     {% for i in definedAnswers|length -1 %}
         <div class="govuk-checkboxes__item">
-            <input class="govuk-checkboxes__input" id="{{ i.uuid }}" name="uuid" type="checkbox" value="{{ i.uuid }}">
+            <input class="govuk-checkboxes__input v-selector" id="{{ i.uuid }}" name="uuid" type="checkbox" value="{{ i.uuid }}">
             <label class="govuk-label govuk-checkboxes__label" for="{{ i.uuid }}">
                 {{- i.text -}}
             </label>

@@ -54,6 +54,7 @@
                             {% if  hint is defined %}
                                 <span id="changed-name-hint" class="govuk-hint">{{- hint -}}</span>
                             {% endif %}
+
                             {% include"/includes/question_error.html.twig" %}
 
                             {% include "/questions_types/#{type}.html.twig" %}
@@ -73,9 +74,10 @@
     {{ parent() }}
     <script type="text/javascript">
         function validate() {
+            console.log(document.question);
             var return_value = false;
-            for (var i = 0; i < document.question.uuid.length; i++) {
-                if (document.question.uuid[i].checked) return_value = true;
+            for (var i = 0; i < document.getElementsByClassName('v-selector').length; i++) {
+                if (document.getElementsByClassName('v-selector')[i].checked) return_value = true;
             }
             var formLayout = document.getElementById('form-layout');
             var err = document.getElementById('changed-name-error');
@@ -84,12 +86,6 @@
                 err.style.display = 'block';
             }
             return return_value;
-        }
-        function SelectAll() {
-            var a = document.form, b = a.elements['uuid'], c = b.length, d, e = a.elements['CheckAll'];
-            for (d = 0; d < c; d++) {
-                b[d].checked = e.checked === true;
-            }
         }
     </script>
 {% endblock %}
