@@ -44,6 +44,6 @@ back-to-previous:
     gPage: 0
 
 journey-result:
-  path: /guided-match/result/{journeyId}/{journeyInstanceId}/{journeyData}
+  path: /guided-match/result/{journeyId}/{journeyInstanceId}/{searchBy}/{journeyData}
   controller: App\Controller\GuideMatchJourneyResultController::journeyResult
   

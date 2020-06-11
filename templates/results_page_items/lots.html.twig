@@ -1,0 +1,15 @@
+
+{% for lot in framework.lots %}
+    <h3 class="govuk-heading-m">{{lot.number}}: {{lot.name}}</h3>
+    
+    {% if  lotsData[framework.number][lot.number] is defined %}  
+    <p> {{lotsData[framework.number][lot.number].description}} </p>
+    {% else %}
+        
+        {% endif %}     
+    <div>
+        <button class="govuk-button" data-module="govuk-button">
+            Start Procurement
+        </button>
+    </div>
+{% endfor %}
