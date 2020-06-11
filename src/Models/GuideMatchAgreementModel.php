@@ -15,7 +15,7 @@ use \Exception;
 class GuideMatchAgreementModel{
 
     private $agreementApi;
-    private $agreements;
+    private $agreements=[];
     private $countLots = 0;
     private $lostNumbers = [];
     private $lotsData = [];

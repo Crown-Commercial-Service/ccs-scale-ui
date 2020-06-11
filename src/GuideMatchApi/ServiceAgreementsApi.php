@@ -36,6 +36,7 @@ class ServiceAgreementsApi
             $content = $response->getContent();
             $content = $response->toArray();
         } catch (Exception $e) {
+            return [];
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
        
