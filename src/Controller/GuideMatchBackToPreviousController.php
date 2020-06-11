@@ -57,7 +57,7 @@ class GuideMatchBackToPreviousController extends AbstractController
         $journeyHistoryAnsweredJson = json_encode($journeyHistoryAnswered);
         $encrypt = new Encrypt($journeyHistoryAnsweredJson);
         $journeyHistoryEncode =  urlencode($encrypt->getEncryptedString());
-
+    
 
         if ($gPage < 1) {
             $model = new GuideMatchJourneyModel($api);
@@ -66,11 +66,14 @@ class GuideMatchBackToPreviousController extends AbstractController
         $questionId =  $model->getUuid();
 
         $answers= [];
-        $showBackButton = true;
-        if (!empty($response['historyAnswered'])) {
-            $answers = $model->getQuestionAnswers($questionId, $response['historyAnswered']);
+
+        if (empty($response['historyAnswered'])) {
+            $historyAnswered = $response;
+        }else{
+            $historyAnswered = $response['historyAnswered'];
         }
-        $showBackButton = false;
+
+        $answers = $model->getQuestionAnswers($questionId, $historyAnswered);
 
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
@@ -84,7 +87,6 @@ class GuideMatchBackToPreviousController extends AbstractController
             'hint' => $model->getHint(),
             'lastQuestionId' =>  $lastQuestionId,
             'journeyHistory' => $journeyHistoryEncode,
-            'showBackButton' => $showBackButton,
             'gPage' => $nextPage,
             'lastPage' => --$gPage
         ]);
