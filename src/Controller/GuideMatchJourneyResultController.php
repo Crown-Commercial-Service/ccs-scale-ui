@@ -43,7 +43,8 @@ class GuideMatchJourneyResultController extends AbstractController
             'journeyId' => $journeyId,
             'journeyInstanceId' => $journeyInstanceId,
             'journeyHistory' => $journeyHistory,
-            'agreementsNames' => $agrementModel->getAgreementsNames()
+            'agreementsNames' => $agrementModel->getAgreementsNames(),
+            'countLots' => $agrementModel->getCountLots()
             
         ]);
     }

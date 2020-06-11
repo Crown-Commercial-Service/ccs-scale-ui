@@ -94,6 +94,10 @@ class GuideMatchAgreementModel{
     public function getAgreementsNames(){
         return $this->agreementsNames;
     }
+
+    public function getCountLots(){
+        return $this->countLots;
+    }
   
 }
 ?>
