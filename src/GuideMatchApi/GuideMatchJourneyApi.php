@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\GuideMatchApi;
 
-use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\CurlHttpClient;
 use \Exception;
 

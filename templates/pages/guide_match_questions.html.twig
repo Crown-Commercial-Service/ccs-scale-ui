@@ -26,7 +26,7 @@
             </ol>
         </div>
 
-        {% if  lastPage >=  0  and  journeyHistory is defined %}
+        {% if  lastPage >=  0  and  journeyHistory is defined and showBackButton %}
             <a href="{{ 
                 path( 
                     'back-to-previous',

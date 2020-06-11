@@ -12,6 +12,7 @@ use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use App\Models\Encrypt;
 use App\Models\Decrypt;
+use App\Models\UserAnswers;
 
 class GuideMatchBackToPreviousController extends AbstractController
 {
@@ -25,9 +26,12 @@ class GuideMatchBackToPreviousController extends AbstractController
         $anwers  =  !empty($response['lastJourney']) ? $response['lastJourney'] : [];
 
         if (empty($anwers)) {
-            throw new Exception('Last answers are missing');
-        }
 
+            $userAnswered = new UserAnswers([]);
+            //get answer from history
+            $anwers =  $userAnswered->getAnswersFromHistory($response,$gPage);
+       
+        }
 
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
@@ -55,13 +59,18 @@ class GuideMatchBackToPreviousController extends AbstractController
         $journeyHistoryEncode =  urlencode($encrypt->getEncryptedString());
 
 
-        if ($gPage< 1) {
+        if ($gPage < 1) {
             $model = new GuideMatchJourneyModel($api);
             $model->startJourney($journeyId, $searchBy);
         }
         $questionId =  $model->getUuid();
 
-        $answers = $model->getQuestionAnswers($questionId, $response['historyAnswered']);
+        $answers= [];
+        $showBackButton = true;
+        if (!empty($response['historyAnswered'])) {
+            $answers = $model->getQuestionAnswers($questionId, $response['historyAnswered']);
+        }
+        $showBackButton = false;
 
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
@@ -75,8 +84,10 @@ class GuideMatchBackToPreviousController extends AbstractController
             'hint' => $model->getHint(),
             'lastQuestionId' =>  $lastQuestionId,
             'journeyHistory' => $journeyHistoryEncode,
+            'showBackButton' => $showBackButton,
             'gPage' => $nextPage,
             'lastPage' => --$gPage
         ]);
     }
 }
+
