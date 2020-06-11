@@ -1,46 +1,36 @@
 <!doctype html>
-<html class="{% block htmlclass %}no-js{% endblock %}" lang="en">
-
+<html lang="en">
 <head>
     <meta charset="utf-8">
-
-    {#
-     # The minus is to remove whitespace
-     # https://twig.symfony.com/doc/2.x/templates.html#whitespace-control
-     #}
     <title>{%- block title %}
             {%- if page.head.title is not empty and page.head.title != page.title -%}
                 {{ page.head.title }}
             {%- else -%}
                 {{ page.title|raw }} - CCS
             {%- endif -%}
-        {% endblock -%}</title>
-
+        {% endblock -%}
+    </title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <script>(function (H) {
-            H.className = H.className.replace(/\bno-js\b/, 'js')
-        })(document.documentElement)</script>
     {% block head %}
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     {% endblock %}
 
     {% block pageMetaTags %}{{ (page is defined)? page.head.getAllMetaHtml()|raw : '' }}{% endblock %}
 
     {% if app.environment == "prod" %}
-        <link rel="stylesheet" href="{{ asset ('/assets/styles/styles.min.css?v=1.2.1') }} ">
+        <link rel="stylesheet" href="{{ asset ('assets/styles/styles.min.css') }} ">
     {% else %}
         {# To debug CSS in other environments (not live), change the below to
          # styles.css instead of styles.min.css
          #}
-        <link rel="stylesheet" href="{{ asset ('/assets/styles/styles.min.css?v=1.2.1') }} ">
+        <link rel="stylesheet" href="{{ asset ('assets/styles/styles.min.css') }} ">
     {% endif %}
-
-    {% block script %}{% endblock %}
 </head>
 
 <body class="govuk-template__body">
+<script>
+    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+</script>
 {% block header %}
     {% embed '/includes/header.html.twig' %}
     {% endembed %}
@@ -50,42 +40,10 @@
 
 {{ include('/includes/footer.html.twig') }}
 
-{% block nonblocking_javascript %}
-
-    {% if app.environment == "THIS WILL NEVER BE TRUE" %}
-        <script type="text/javascript">
-            (function () {
-                var s = document.createElement("script");
-                s.type = "text/javascript";
-                s.async = true;
-                s.src = "//api.usersnap.com/load/5c0d7b68-6a20-4882-8277-074dd8f65f37.js";
-                var x = document.getElementsByTagName("script")[0];
-                x.parentNode.insertBefore(s, x);
-            })();</script>
-    {% endif %}
-
+{% block script %}
+    <script src="{{ asset('assets/scripts/all.js') }}"></script>
+    <script>window.GOVUKFrontend.initAll()</script>
 {% endblock %}
 
-
-<script src="/assets/scripts/libraries/jquery-1.12.4.min.js"></script>
-<script src="/assets/scripts/libraries/objectFitPolyfill.min.js"></script>
-<script src="/assets/scripts/all.js"></script>
-<script src="/assets/scripts/app.js?v=1.1"></script>
-{#<script src="/assets/scripts/libraries/cookies-opt-in.js?v=2.0.0"></script>#}
-
-{# Usersnap code
-<script type="text/javascript">
-    (function() {
-        var s = document.createElement("script");
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = '//api.usersnap.com/load/c42d67c2-699b-4699-973f-78255aad58db.js';
-        var x = document.getElementsByTagName('script')[0];
-        x.parentNode.insertBefore(s, x);
-    })();
-</script>
-End Usersnap code #}
-
 </body>
-
 </html>

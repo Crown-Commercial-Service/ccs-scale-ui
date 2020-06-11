@@ -27,7 +27,12 @@ class GuideMatchJourneyController extends AbstractController
                 $response = !is_array($request->request->get('uuid')) ? [$request->request->get('uuid')] : $request->request->get('uuid');
             } else {
                 $response = [$request->attributes->get('questionUuid')];
-//                $this->redirect($request->server->get('HTTP_REFERER'));
+//                dd($request->server->get('HTTP_REFERER'));
+                $this->addFlash(
+                    'error',
+                    'Your changes were saved!'
+                );
+                return $this->redirect($request->server->get('HTTP_REFERER'));
             }
         }
 
