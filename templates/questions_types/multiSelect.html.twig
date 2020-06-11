@@ -1,18 +1,18 @@
- <div class="govuk-checkboxes">
-     {% for answer in definedAnswers %}
+<div class="govuk-checkboxes">
+    {% for answer in definedAnswers %}
 
         {% set checked = '' %}
         {% if answer.id  in answers|keys %}
             {% set checked = 'checked' %}
         {% endif %}
-        
-         <div class="govuk-checkboxes__item">
-             <input class="govuk-checkboxes__input" id="{{ answer.id }}" name="uuid[]" type="checkbox"
-                    value="{{ answer.id }} aria-describedby="{{- answer.hint -}}">
-             <label class="govuk-label govuk-checkboxes__label" for="{{ answer.id }}">{{- answer.text -}}</label>
-             {% if answer.hint is defined  and answer.hint is not empty %}
-                 <span class="govuk-hint govuk-checkboxes__hint">{{- answer.hint -}}</span>
-             {% endif %}
-         </div>
-     {% endfor %}
- </div>
+
+        <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input v-selector" id="{{ answer.id }}" name="uuid[]" type="checkbox"
+                   value="{{ answer.id }} aria-describedby="{{- answer.hint -}}">
+            <label class="govuk-label govuk-checkboxes__label" for="{{ answer.id }}">{{- answer.text -}}</label>
+            {% if answer.hint is defined  and answer.hint is not empty %}
+                <span class="govuk-hint govuk-checkboxes__hint">{{- answer.hint -}}</span>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>

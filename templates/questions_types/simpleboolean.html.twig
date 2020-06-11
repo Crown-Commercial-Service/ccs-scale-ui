@@ -1,7 +1,7 @@
 <div class="govuk-radios govuk-radios--inline">
     {% for answer in definedAnswers %}
         <div class="govuk-radios__item">
-            <input class="govuk-radios__input" id="{{ answer.id }}" name="uuid" type="radio" value="{{ answer.id }}">
+            <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio" value="{{ answer.id }}">
             <label class="govuk-label govuk-radios__label" for="{{ answer.uuid }}">
                 {{- answer.text -}}
             </label>
