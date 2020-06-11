@@ -53,6 +53,14 @@ class GuideMatchJourneyController extends AbstractController
             $encrypt = new Encrypt($journeyData);
             $journeyDataEncode =  urlencode($encrypt->getEncryptedString());
 
+          return  $this->redirectToRoute("journey-result",  [
+                'journeyId' => $journeyId,
+                'journeyInstanceId'=>$journeyInstanceId,
+                'searchBy' => $searchBy,
+                'journeyData' => $journeyDataEncode
+
+            ] );
+
             $this->redirectToRoute("journey-result/{$journeyId}/{$journeyInstanceId}/$journeyDataEncode");
         }
         return $this->questionResponse($model, $searchBy, $journeyId, $journeyInstanceId, $gPage, $journeyHistory);
