@@ -110,7 +110,6 @@ class GuideMatchJourneyController extends AbstractController
             'hint' => $model->getHint(),
             'lastQuestionId' =>  $lastQuestionId,
             'journeyHistory' => $journeyHistoryEncode,
-            'showBackButton' => true,
             'gPage' => $nextPage,
             'lastPage' =>  --$gPage
         ]);

@@ -7088,6 +7088,12 @@ img {
 .govuk-main-wrapper.questions-page {
   padding-top: 0; }
 
+.govuk-back-link {
+  margin-top: 50px; }
+
+.govuk-grid-row {
+  margin-left: -5px; }
+
 /*------------------------------------*\
   #Filters-Intro
 \*------------------------------------*/
