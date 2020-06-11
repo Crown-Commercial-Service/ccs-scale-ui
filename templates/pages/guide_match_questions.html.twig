@@ -54,12 +54,6 @@
                             {% if  hint is defined %}
                                 <span id="changed-name-hint" class="govuk-hint">{{- hint -}}</span>
                             {% endif %}
-
-{#                            {% for message in app.flashes('error') %}#}
-{#                                <span class="govuk-error-message">#}
-{#                                    <span>Error:</span> {{ message }}#}
-{#                                </span>#}
-{#                            {% endfor %}#}
                             {% include"/includes/question_error.html.twig" %}
 
                             {% include "/questions_types/#{type}.html.twig" %}
