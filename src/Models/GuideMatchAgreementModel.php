@@ -15,7 +15,7 @@ use \Exception;
 class GuideMatchAgreementModel{
 
     private $agreementApi;
-    private $agreements;
+    private $agreements=[];
     private $countLots = 0;
     private $lostNumbers = [];
     private $lotsData = [];
@@ -93,6 +93,10 @@ class GuideMatchAgreementModel{
 
     public function getAgreementsNames(){
         return $this->agreementsNames;
+    }
+
+    public function getCountLots(){
+        return $this->countLots;
     }
   
 }
