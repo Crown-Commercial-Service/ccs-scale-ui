@@ -11,6 +11,7 @@ use App\Models\GuideMatchResponseType;
 use App\GuideMatchApi\GuideMatchJourneyApi;
 use Symfony\Component\HttpFoundation\Request;
 use App\Models\Encrypt;
+use Symfony\Component\HttpFoundation\Response;
 
 class GuideMatchJourneyController extends AbstractController
 {
@@ -26,8 +27,12 @@ class GuideMatchJourneyController extends AbstractController
             if (!empty($request->request->get('uuid'))) {
                 $response = !is_array($request->request->get('uuid')) ? [$request->request->get('uuid')] : $request->request->get('uuid');
             } else {
-             
-                $this->redirect($request->server->get('HTTP_REFERER'));
+//                $response = [$request->attributes->get('questionUuid')];
+                $this->addFlash(
+                    'error',
+                    'You need to select something.'
+                );
+                return $this->redirect($request->server->get('HTTP_REFERER'));
             }
         }
 
@@ -38,25 +43,22 @@ class GuideMatchJourneyController extends AbstractController
         $journeyHistory = $model->getJourneyHistory();
 
         //redirect to journey result page
-        if($apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement){
-
+        if ($apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement) {
             $journeyData = json_encode([
                 'agreementData' => $model->getAgreementData(),
                 'historyAnswered' => $journeyHistory
             ]);
-            
+
 
             $encrypt = new Encrypt($journeyData);
             $journeyDataEncode =  urlencode($encrypt->getEncryptedString());
-           
+
 
             $this->redirectToRoute("journey-result/{$journeyId}/{$journeyInstanceId}/$journeyDataEncode");
-
         }
-        return $this->questionResponse($model, $searchBy, $journeyId, $journeyInstanceId,$gPage, $journeyHistory);
-       
+        return $this->questionResponse($model, $searchBy, $journeyId, $journeyInstanceId, $gPage, $journeyHistory);
     }
-    
+
     /**
      * hadle questions journey response
      *
@@ -64,19 +66,20 @@ class GuideMatchJourneyController extends AbstractController
      * @param string $searchBy
      * @param string $journeyId
      * @param string $journeyInstanceId
-     * @param integer $gPage
+     * @param string $gPage
      * @param array $journeyHistory
-     * @return void
+     * @return Response
      */
-    private function questionResponse(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId, string $gPage, array $journeyHistory){
+    private function questionResponse(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId, string $gPage, array $journeyHistory)
+    {
 
-        $nextPage  = $gPage+1;
-        $historyPage = $gPage-2 <= 0 ? 0 : $gPage-2 ;
-       
+        $nextPage  = $gPage + 1;
+        $historyPage = $gPage - 2 <= 0 ? 0 : $gPage - 2 ;
+
         $penultimateQuestion = $model->getHistoryQuestion($historyPage);
         $penultimateAnswers = $model->getHistoryAnswers($historyPage);
         $lastQuestionId = !empty($penultimateQuestion) ? $penultimateQuestion['id'] : '';
-        
+
 
         $journeyHistoryAnswered = [
             'lastJourney' => $penultimateAnswers,
@@ -103,10 +106,9 @@ class GuideMatchJourneyController extends AbstractController
             'gPage' => $nextPage,
             'lastPage' =>  --$gPage
         ]);
-
     }
 
-    private function agreementResponse(){
-
+    private function agreementResponse()
+    {
     }
 }
