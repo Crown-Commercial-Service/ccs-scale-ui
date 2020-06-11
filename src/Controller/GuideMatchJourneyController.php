@@ -116,7 +116,4 @@ class GuideMatchJourneyController extends AbstractController
         ]);
     }
 
-    private function agreementResponse()
-    {
-    }
 }
