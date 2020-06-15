@@ -24,10 +24,10 @@
                         'journeyHistory': journeyHistory, 
                         'gPage': index,
                     }
-                    )}}?q={{ searchBy }}"
+                    )}}?q={{ searchBy }}&changeAnswer=1"
                >Change</a>
             {% else %}
-             <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}">Change</a>
+             <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
             {% endif %}
             </dd>
         </div>

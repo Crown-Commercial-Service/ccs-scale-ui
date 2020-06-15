@@ -4,7 +4,7 @@
             
             {% set checked = '' %}
             {% if answer.id  in answers|keys %}
-                {% set checked = 'checked' %}
+                {% set checked = 'checked = checked' %}
             {% endif %}
 
             <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio"
