@@ -1,62 +1,52 @@
-<div class="govuk-accordion" data-module="govuk-accordion"
-     id="accordion-with-summary-sections">
+<div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
     <div class="govuk-accordion__section ">
         <div class="govuk-accordion__section-header">
             <h2 class="govuk-accordion__section-heading">
-                <span class="govuk-accordion__section-button"
-                      id="accordion-with-summary-sections-heading-1"
-                      style="color:black">
-                    <strong>
-                        {{ framework.name }}, {{ framework.lotsTitle }}
-                    </strong>
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
+                    {{ framework.name }}
                 </span>
             </h2>
-        </div>
-        <details class="govuk-details" data-module="govuk-details">
-            <summary class="govuk-details__summary">
-                <span class="govuk-details__summary-text">
-                    Details
-                </span>
-            </summary>
-            <div aria-labelledby="accordion-with-summary-sections-heading-1"
-                 id="accordion-with-summary-sections-content-1">
-                <p>
-                    <strong>Framework ID:</strong>
-                    {{ framework.number }}
-                    <strong>End Date:</strong>
-                    {{ framework.endDate|date("m/d/Y") }}
-                </p>
-                <p> {{ framework.description }}</p>
-                <div>
-                    {% if  framework.lots is defined %}
-                        {% include "/results_page_items/lots.html.twig" %}
-                    {% endif %}
-                </div>
-                <a class="download" href="">
-                    <svg height="32" viewBox="0 0 42 32" width="42"
-                         xmlns="http://www.w3.org/2000/svg">
-                        <g fill="none" fill-rule="evenodd">
-                            <path d="m0 0h32.9985352l9.0014648 8.97912598v23.02087402h-42z"
-                                  fill="#ae0c0c">
-                            </path>
-                            <text fill="#fff"
-                                  font-family="SourceSansPro-Semibold, Source Sans Pro"
-                                  font-size="15" font-weight="500">
-                                <tspan x="5.485" y="22">.PDF</tspan>
-                            </text>
-                            <path d="m33 0h9v9z" fill="#000"
-                                  opacity=".59654" transform="matrix(-1 0 0 -1 75 9)">
-                            </path>
-                        </g>
-                    </svg>
-                    Download customer guidance document</a>
-                <br><br>
-                <a style="font-size: 19px" target="_blank"
-                   href="https://www.crowncommercial.gov.uk/agreements/{{ framework.number }}">
-                    View framework details
-                </a>
-                <br><br>
+            <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-1">
+                {{ framework.lotsTitle }}
             </div>
-        </details>
+        </div>
+        <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-with-summary-sections-heading-1">
+            <p>
+                <strong>Framework ID:</strong>
+                {{ framework.number }}
+                <strong>End Date:</strong>
+                {{ framework.endDate|date("m/d/Y") }}
+            </p>
+            <p> {{ framework.description }}</p>
+            <div>
+                {% if  framework.lots is defined %}
+                    {% include "/results_page_items/lots.html.twig" %}
+                {% endif %}
+            </div>
+            <a class="download" href="">
+                <svg height="32" viewBox="0 0 42 32" width="42"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" fill-rule="evenodd">
+                        <path d="m0 0h32.9985352l9.0014648 8.97912598v23.02087402h-42z"
+                              fill="#ae0c0c">
+                        </path>
+                        <text fill="#fff"
+                              font-family="SourceSansPro-Semibold, Source Sans Pro"
+                              font-size="15" font-weight="500">
+                            <tspan x="5.485" y="22">.PDF</tspan>
+                        </text>
+                        <path d="m33 0h9v9z" fill="#000"
+                              opacity=".59654" transform="matrix(-1 0 0 -1 75 9)">
+                        </path>
+                    </g>
+                </svg>
+                Download customer guidance document</a>
+            <br><br>
+            <a style="font-size: 19px" target="_blank"
+               href="https://www.crowncommercial.gov.uk/agreements/{{ framework.number }}">
+                View framework details
+            </a>
+            <br><br>
+        </div>
     </div>
 </div>
