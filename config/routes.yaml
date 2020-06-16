@@ -46,4 +46,7 @@ back-to-previous:
 journey-result:
   path: /guided-match/result/{journeyId}/{journeyInstanceId}/{searchBy}/{journeyData}
   controller: App\Controller\GuideMatchJourneyResultController::journeyResult
-  
+
+test-wp:
+  path: /gm/test-wp
+  controller: App\Controller\TestWordPressController::index
