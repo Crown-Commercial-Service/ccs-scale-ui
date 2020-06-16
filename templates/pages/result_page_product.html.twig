@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Guided Match{% endblock %}
+
+{% block header %}
+    {% embed '/includes/header.html.twig' %}
+        {% block bannerarea %}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block body %}
+    <div class="--govuk-width-container">
+        <div class="govuk-width-container">
+            {{ include('includes/phase_banner.html.twig') }}
+            <div class="govuk-breadcrumbs">
+                <ol class="govuk-breadcrumbs__list">
+                    <li class="govuk-breadcrumbs__list-item">
+                        <a class="govuk-breadcrumbs__link" href="https://www.crowncommercial.gov.uk/">Home</a>
+                    </li>
+                    <li aria-current="Results" class="govuk-breadcrumbs__list-item"> Results</li>
+                </ol>
+            </div>
+            <main class="govuk-main-wrapper" id="main-content" role="main">
+             
+                    <div class="govuk-grid-row">
+                        <h1 class="govuk-heading-xl page-title govuk-!-margin-bottom-5">We need more information to help you</h1>
+                        <p class="govuk-body-l">Our customer service team can help you gather the right information to start procurement, even if you have complex needs.</p>
+                        <p><a class="govuk-link" href="https://www.crowncommercial.gov.uk/contact">Contact CCS</a> for further help.</p>
+                        <p>
+                            It can help to keep a record of your answers to share with us so we can understand what framework is best for you.
+                             Our customer service team can't see what you have answered here so print or download your answers before calling.
+                         </p>
+
+                           
+
+                            <h3 class="govuk-heading-l result-heading" id="answers">Your answers</h3>
+                            {% include "/results_page_items/answers.html.twig" with {'lotstTitle': '', 'changeAnswer':''} %}
+
+                        
+                    </div>
+             
+            </main>
+        </div>
+    </div>
+{% endblock %}

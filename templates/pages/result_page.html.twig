@@ -15,9 +15,9 @@
             <div class="govuk-breadcrumbs">
                 <ol class="govuk-breadcrumbs__list">
                     <li class="govuk-breadcrumbs__list-item">
-                        <a class="govuk-breadcrumbs__link" href="#">Home</a>
+                        <a class="govuk-breadcrumbs__link" href="https://www.crowncommercial.gov.uk/">Home</a>
                     </li>
-                    <li aria-current="page" class="govuk-breadcrumbs__list-item"> Results</li>
+                    <li aria-current="Results" class="govuk-breadcrumbs__list-item"> Results</li>
                 </ol>
             </div>
             <main class="govuk-main-wrapper" id="main-content" role="main">
@@ -26,7 +26,7 @@
                         <div>
                             <h2 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, there
                                 are </h2>
-                            <h2 class="govuk-heading-xl page-title"><strong>{{ countFrameworks }} frameworks that match
+                            <h1 class="govuk-heading-xl page-title"><strong>{{ countFrameworks }} frameworks that match
                                     your needs
                                     {% if  countLots > 0 %}
                                         and {{ countLots }}
@@ -38,23 +38,19 @@
 
                                     {% endif %}
 
-                                </strong></h2>
+                                </strong></h1>
                         </div>
-                        <div class="govuk-grid-column-one-quarter"><h4 class="govuk-heading-s">Contents:</h4>
-                            <ul class="govuk-list govuk-list--bullet">
-                                <li><a class="govuk-link" href="#recommendations">Recommendations</a></li>
-                                <li><a class="govuk-link" href="#options">What are your options</a></li>
-                                <li><a class="govuk-link" href="#definitions">Definitions</a></li>
-                                <li><a class="govuk-link" href="#answers">Your answers</a></li>
-                            </ul>
-                        </div>
+                       
+                        {{ include('results_page_items/section_anchors.html.twig') }}
 
                         <div class="govuk-grid-column-three-quarters">
                             <h2 class="govuk-heading-l" id="recommendations">Recommendations</h2>
                             {% set lotstTitle = '' %}
                             {% for framework in frameworks %}
-                                {% set lotstTitle = framework.lotsTitle %}
-                                {{ include('results_page_items/recommendations.html.twig') }}
+                                {% if  framework is not empty %}    
+                                    {% set lotstTitle = framework.lotsTitle %}
+                                    {{ include('results_page_items/recommendations.html.twig') }}
+                                {% endif %}
                             {% endfor %}
 
                             <h3 class="govuk-heading-l result-heading" id="options">What are your options?</h3>
@@ -78,7 +74,7 @@
                             {% include "/results_page_items/definitions.html.twig" %}
 
                             <h3 class="govuk-heading-l result-heading" id="answers">Your answers</h3>
-                            {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle} %}
+                            {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
 
                         </div>
                     </div>

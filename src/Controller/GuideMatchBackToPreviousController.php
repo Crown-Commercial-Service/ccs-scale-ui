@@ -19,6 +19,8 @@ class GuideMatchBackToPreviousController extends AbstractController
     public function backToPrevious(Request $request, $journeyId, $journeyInstanceId, $questionUuid, $journeyHistory, $gPage)
     {
         $searchBy = $request->query->get('q');
+        $changeAnswer = $request->query->get('changeAnswer');
+
 
         $decrypt = new Decrypt(urldecode($journeyHistory));
         $response = json_decode($decrypt->getDecryptedString(), true);
@@ -26,11 +28,9 @@ class GuideMatchBackToPreviousController extends AbstractController
         $anwers  =  !empty($response['lastJourney']) ? $response['lastJourney'] : [];
 
         if (empty($anwers)) {
-
             $userAnswered = new UserAnswers([]);
             //get answer from history
-            $anwers =  $userAnswered->getAnswersFromHistory($response,$gPage);
-       
+            $anwers =  $userAnswered->getAnswersFromHistory($response, $gPage);
         }
 
         $httpClient = HttpClient::create();
@@ -67,13 +67,15 @@ class GuideMatchBackToPreviousController extends AbstractController
 
         $answers= [];
 
+      
         if (empty($response['historyAnswered'])) {
             $historyAnswered = $response;
-        }else{
+        } else {
             $historyAnswered = $response['historyAnswered'];
         }
-
-        $answers = $model->getQuestionAnswers($questionId, $historyAnswered);
+        if (!$changeAnswer==1) {
+            $answers = $model->getQuestionAnswers($questionId, $historyAnswered);
+        }
 
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
@@ -92,4 +94,3 @@ class GuideMatchBackToPreviousController extends AbstractController
         ]);
     }
 }
-

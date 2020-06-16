@@ -53,13 +53,13 @@ class GuideMatchJourneyController extends AbstractController
             $encrypt = new Encrypt($journeyData);
             $journeyDataEncode =  urlencode($encrypt->getEncryptedString());
 
-          return  $this->redirectToRoute("journey-result",  [
+            return  $this->redirectToRoute("journey-result", [
                 'journeyId' => $journeyId,
                 'journeyInstanceId'=>$journeyInstanceId,
                 'searchBy' => $searchBy,
                 'journeyData' => $journeyDataEncode
 
-            ] );
+            ]);
 
             $this->redirectToRoute("journey-result/{$journeyId}/{$journeyInstanceId}/$journeyDataEncode");
         }
@@ -79,7 +79,6 @@ class GuideMatchJourneyController extends AbstractController
      */
     private function questionResponse(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId, string $gPage, array $journeyHistory)
     {
-
         $nextPage  = $gPage + 1;
         $historyPage = $gPage - 2 <= 0 ? 0 : $gPage - 2 ;
 
@@ -114,5 +113,4 @@ class GuideMatchJourneyController extends AbstractController
             'lastPage' =>  --$gPage
         ]);
     }
-
 }
