@@ -28,11 +28,9 @@ class GuideMatchBackToPreviousController extends AbstractController
         $anwers  =  !empty($response['lastJourney']) ? $response['lastJourney'] : [];
 
         if (empty($anwers)) {
-
             $userAnswered = new UserAnswers([]);
             //get answer from history
-            $anwers =  $userAnswered->getAnswersFromHistory($response,$gPage);
-       
+            $anwers =  $userAnswered->getAnswersFromHistory($response, $gPage);
         }
 
         $httpClient = HttpClient::create();
@@ -70,9 +68,9 @@ class GuideMatchBackToPreviousController extends AbstractController
         $answers= [];
 
       
-         if (empty($response['historyAnswered'])) {
+        if (empty($response['historyAnswered'])) {
             $historyAnswered = $response;
-        }else{
+        } else {
             $historyAnswered = $response['historyAnswered'];
         }
         if (!$changeAnswer==1) {
@@ -96,4 +94,3 @@ class GuideMatchBackToPreviousController extends AbstractController
         ]);
     }
 }
-

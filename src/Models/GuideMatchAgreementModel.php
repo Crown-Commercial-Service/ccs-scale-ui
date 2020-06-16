@@ -8,12 +8,8 @@ namespace App\Models;
 use App\Models\GuideMatchResponseType;
 use App\GuideMatchApi\ServiceAgreementsApi;
 
-
-use \Exception;
-
-
-class GuideMatchAgreementModel{
-
+class GuideMatchAgreementModel
+{
     private $agreementApi;
     private $agreements=[];
     private $countLots = 0;
@@ -29,20 +25,18 @@ class GuideMatchAgreementModel{
     }
 
 
-    public function getAgreements(){
-
+    public function getAgreements()
+    {
         return $this->agreements;
-
     }
 
 
-    private function setAgreements(array $agreementsIds){
-
-        foreach($agreementsIds as $agrementId){
-
+    private function setAgreements(array $agreementsIds)
+    {
+        foreach ($agreementsIds as $agrementId) {
             $response = $this->agreementApi->getServiceAgreement($agrementId['number']);
             
-            if(empty($response)){
+            if (empty($response)) {
                 continue;
             }
 
@@ -51,13 +45,11 @@ class GuideMatchAgreementModel{
             $this->countLots += !empty($response['lots']) ? count($response['lots']) : 0;
 
             $lotsTitle = '';
-            if(!empty($response['lots'])){
-                foreach($response['lots'] as $lot){
+            if (!empty($response['lots'])) {
+                foreach ($response['lots'] as $lot) {
                     $lotsTitle .= !empty($lotsTitle) ? ' or ' . $lot['number'] .': '.$lot['name'] : $lot['number'] .': '.$lot['name'];
                     $this->lostNumbers[$agrementId['number']][] = $lot['number'];
-
                 }
-
             }
 
             $this->agreementsNames[] = [
@@ -67,37 +59,36 @@ class GuideMatchAgreementModel{
                 ];
             $response['lotsTitle'] = $lotsTitle;
             $this->agreements[$agrementId['number']] =  $response;
-           }
+        }
     }
 
-    private function setLotsData(){
-
-        foreach($this->lostNumbers as $agreementId => $lots){
-
+    private function setLotsData()
+    {
+        foreach ($this->lostNumbers as $agreementId => $lots) {
             foreach ($lots as $lot) {
-
                 $response = $this->agreementApi->getLotDetails($agreementId, $lot);
 
-                if(empty($response))
+                if (empty($response)) {
                     continue;
+                }
 
-               $this->lotsData[$agreementId][$response['number']] =  $response;
+                $this->lotsData[$agreementId][$response['number']] =  $response;
             }
         }
-
     }
 
-    public function getLotsData(){
+    public function getLotsData()
+    {
         return $this->lotsData;
     }
 
-    public function getAgreementsNames(){
+    public function getAgreementsNames()
+    {
         return $this->agreementsNames;
     }
 
-    public function getCountLots(){
+    public function getCountLots()
+    {
         return $this->countLots;
     }
-  
 }
-?>

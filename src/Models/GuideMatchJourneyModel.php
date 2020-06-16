@@ -10,8 +10,6 @@ use Exception;
 
 class GuideMatchJourneyModel
 {
-
-
     private $journeyApi;
     
     private $uuid;
@@ -312,7 +310,6 @@ class GuideMatchJourneyModel
 
     public function setApiResponseType($responseType)
     {
-
         if ($responseType != 'question') {
             $this->apiResponseType = GuideMatchResponseType::GuideMatchResponseAgreement;
         } else {

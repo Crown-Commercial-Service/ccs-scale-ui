@@ -9,7 +9,6 @@ use \Exception;
 
 class ServiceAgreementsApi
 {
-
     private $httpClient;
     private $baseApiUrl;
 
@@ -65,8 +64,8 @@ class ServiceAgreementsApi
         return $content;
     }
 
-    public function getLotDetails($agreementId, $lot){
-
+    public function getLotDetails($agreementId, $lot)
+    {
         if (empty($agreementId) && empty($lot)) {
             throw new Exception('Invalid arguments of method');
         }
