@@ -3,28 +3,26 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-class UserAnswers{
-
+class UserAnswers
+{
     private $userAnswers;
 
-    function __construct(array $userAnswers)
+    public function __construct(array $userAnswers)
     {
         $this->userAnswers = $userAnswers;
     }
 
-    public  function formatForView(){
-       
+    public function formatForView()
+    {
         $answersFormart = [];
         $prevQuestionId = '';
-        foreach($this->userAnswers as $answers){
-           
+        foreach ($this->userAnswers as $answers) {
             $nrAnswers = count($answers['answers']);
             $counter = 1;
             $answerTxt = '';
            
 
-            foreach($answers['answers'] as $answer){
-                 
+            foreach ($answers['answers'] as $answer) {
                 $answerTxt .= $counter < $nrAnswers ? $answer['answerText'] . ', ' : $answer['answerText'];
                 $counter++;
             }
@@ -38,12 +36,11 @@ class UserAnswers{
             ];
             $prevQuestionId = $answers['question']['id'];
         }
-       return $answersFormart;
-        
+        return $answersFormart;
     }
 
-    public function getAnswersFromHistory($history, $step){
-     
+    public function getAnswersFromHistory($history, $step)
+    {
         $answersData = $history[$step-1];
         $answersToPreviousQuestion = [];
         foreach ($answersData['answers'] as $answer) {
@@ -52,6 +49,4 @@ class UserAnswers{
         
         return $answersToPreviousQuestion;
     }
-
 }
-?>

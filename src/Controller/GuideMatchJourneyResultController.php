@@ -12,20 +12,19 @@ use App\Models\Encrypt;
 
 use App\Models\UserAnswers;
 use App\Models\GuideMatchAgreementModel;
-use App\GuideMatchApi\ServiceAgreementsApi; 
+use App\GuideMatchApi\ServiceAgreementsApi;
 use Exception;
 
 class GuideMatchJourneyResultController extends AbstractController
 {
     public function journeyResult(Request $request, string $journeyId, string $journeyInstanceId, string $searchBy, string $journeyData)
     {
-       
         $decrypt = new Decrypt(urldecode($journeyData));
         $journeyDataDecrypt = json_decode($decrypt->getDecryptedString(), true);
-      //  dump($journeyDataDecrypt);die();
+        //  dump($journeyDataDecrypt);die();
         $userAnswered = new UserAnswers($journeyDataDecrypt['historyAnswered']);
 
-        if(empty($userAnswered)){
+        if (empty($userAnswered)) {
             throw new Exception('Wrong url data');
         }
 
@@ -47,7 +46,6 @@ class GuideMatchJourneyResultController extends AbstractController
                     'journeyHistory' => $journeyHistory,
                                     
                 ]);
-
             }
         }
 
@@ -57,7 +55,6 @@ class GuideMatchJourneyResultController extends AbstractController
         $frameworks = $agrementModel->getAgreements();
         $lots = $agrementModel->getLotsData();
 
-//dump($frameworks);die();
         return $this->render('pages/result_page.html.twig', [
             'searchBy' => $searchBy,
             'historyAnswered' => $userAnswered->formatForView(),
@@ -73,7 +70,4 @@ class GuideMatchJourneyResultController extends AbstractController
             
         ]);
     }
-
-
-
 }
