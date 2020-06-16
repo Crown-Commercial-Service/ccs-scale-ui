@@ -12,8 +12,8 @@ use App\Models\Encrypt;
 
 use App\Models\UserAnswers;
 use App\Models\GuideMatchAgreementModel;
-use App\GuideMatchApi\ServiceAgreementsApi;
-
+use App\GuideMatchApi\ServiceAgreementsApi; 
+use Exception;
 
 class GuideMatchJourneyResultController extends AbstractController
 {
@@ -22,7 +22,34 @@ class GuideMatchJourneyResultController extends AbstractController
        
         $decrypt = new Decrypt(urldecode($journeyData));
         $journeyDataDecrypt = json_decode($decrypt->getDecryptedString(), true);
+      //  dump($journeyDataDecrypt);die();
         $userAnswered = new UserAnswers($journeyDataDecrypt['historyAnswered']);
+
+        if(empty($userAnswered)){
+            throw new Exception('Wrong url data');
+        }
+
+        $encrypt = new Encrypt(json_encode($journeyDataDecrypt['historyAnswered']));
+       
+        $journeyHistory =  urlencode($encrypt->getEncryptedString());
+
+
+        $isProduct = false;
+        if (!empty($journeyDataDecrypt['historyAnswered'][0]['answers'][0]['answerText'])) {
+            if ($journeyDataDecrypt['historyAnswered'][0]['answers'][0]['answerText'] == 'Product') {
+                $isProduct = true;
+
+                return $this->render('pages/result_page_product.html.twig', [
+                    'searchBy' => $searchBy,
+                    'historyAnswered' => $userAnswered->formatForView(),
+                    'journeyId' => $journeyId,
+                    'journeyInstanceId' => $journeyInstanceId,
+                    'journeyHistory' => $journeyHistory,
+                                    
+                ]);
+
+            }
+        }
 
         $httpClient = HttpClient::create();
         $agreementsApi  = new ServiceAgreementsApi($httpClient, getenv('AGREEMENTS_SERVICE_ROOT_URL'));
@@ -30,10 +57,7 @@ class GuideMatchJourneyResultController extends AbstractController
         $frameworks = $agrementModel->getAgreements();
         $lots = $agrementModel->getLotsData();
 
-        $encrypt = new Encrypt(json_encode($journeyDataDecrypt['historyAnswered']));
-       
-        $journeyHistory =  urlencode($encrypt->getEncryptedString());
-
+//dump($frameworks);die();
         return $this->render('pages/result_page.html.twig', [
             'searchBy' => $searchBy,
             'historyAnswered' => $userAnswered->formatForView(),
@@ -44,7 +68,8 @@ class GuideMatchJourneyResultController extends AbstractController
             'journeyInstanceId' => $journeyInstanceId,
             'journeyHistory' => $journeyHistory,
             'agreementsNames' => $agrementModel->getAgreementsNames(),
-            'countLots' => $agrementModel->getCountLots()
+            'countLots' => $agrementModel->getCountLots(),
+            'isProduct' => $isProduct
             
         ]);
     }

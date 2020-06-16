@@ -13,28 +13,30 @@
             <dt class="govuk-summary-list__key"> {{answer.question}}</dt>
             <dd class="govuk-summary-list__value"> {{answer.answerTxt}}</dd>
             <dd class="govuk-summary-list__value">
-            {% if  index >  0 %}
-            <a href="{{ 
-                path( 
-                    'back-to-previous',
-                    {
-                        'journeyId': journeyId,
-                        'journeyInstanceId': journeyInstanceId,
-                        'questionUuid': answer.prevQuestionId,
-                        'journeyHistory': journeyHistory, 
-                        'gPage': index,
-                    }
-                    )}}?q={{ searchBy }}&changeAnswer=1"
-               >Change</a>
-            {% else %}
-             <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
-            {% endif %}
+            {% if changeAnswer == 1 %}
+                {% if  index >  0 %}
+                <a href="{{ 
+                    path( 
+                        'back-to-previous',
+                        {
+                            'journeyId': journeyId,
+                            'journeyInstanceId': journeyInstanceId,
+                            'questionUuid': answer.prevQuestionId,
+                            'journeyHistory': journeyHistory, 
+                            'gPage': index,
+                        }
+                        )}}?q={{ searchBy }}&changeAnswer=1"
+                >Change</a>
+                {% else %}
+                <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
+                {% endif %}
+            {% endif %}    
             </dd>
         </div>
         {% set index = index + 1 %}
         {% endfor %}
           
-       
+        {% if  agreement is defined %}
         <div class="govuk-summary-list__row">
             <dt class="govuk-summary-list__key"> Framework(s)/Lot(s) recommended</dt>         
             <dd class="govuk-summary-list__value">
@@ -44,6 +46,7 @@
             </dd>
             <dd class="govuk-summary-list__value"></dd>
         </div>
+         {% endif %}
     </dl>
     <div class="app-c-print-link">
         <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}"> Start over to change your answers</a>
