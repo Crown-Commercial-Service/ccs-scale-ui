@@ -3,20 +3,13 @@
 declare(strict_types=1);
 
 namespace App\GuideMatchApi;
+use App\GuideMatchApi\GuideMatchApi;
 
-use Symfony\Component\HttpClient\CurlHttpClient;
 use \Exception;
 
-class GuideMatchJourneyApi
+class GuideMatchJourneyApi extends GuideMatchApi
 {
-    private $httpClient;
-    private $baseApiUrl;
-
-    public function __construct(CurlHttpClient $httpClient, string $baseApiUrl)
-    {
-        $this->httpClient = $httpClient;
-        $this->baseApiUrl = $baseApiUrl;
-    }
+    
 
     /**Í
      * Start Guide Match Journey
@@ -138,17 +131,21 @@ class GuideMatchJourneyApi
        
         return $content;
     }
-    /**
-     * Get summary of Guide Match Journey
-     *
-     * @param string $$this->baseApiUrl
-     * @param $journey_uuid - Journey instance id
-     * @return array
-     */
+   
+   /**
+    * Returns the journey history (all questions and answers) for the specified journey-instance.
+    * Includes Question and Answer texts as displayed to the user
+    *
+    * @param string $journeyInstanceId
+    * @return array
+    */
+    public function getJourneyHistory(string $journeyUuid){
 
-    public function getJourneySummary($journeyUuid)
-    {
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/journey-summaries/{$journeyUuid}");
+        if (empty($journeyUuid)) {
+            throw new Exception('Invalid arguments of method');
+        }
+
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/journey-instances//{$journeyUuid}");
 
         try {
             $content = $response->getContent();
