@@ -1,3 +1,7 @@
+test-wp:
+  path: /wp
+  controller: App\Controller\TestWordpressController::index
+
 # GM PAGES
 landing_page:
   path: /guided-match/landing-page
@@ -46,7 +50,3 @@ back-to-previous:
 journey-result:
   path: /guided-match/result/{journeyId}/{journeyInstanceId}/{searchBy}/{journeyData}
   controller: App\Controller\GuideMatchJourneyResultController::journeyResult
-
-test-wp:
-  path: /gm/test-wp
-  controller: App\Controller\TestWordPressController::index
