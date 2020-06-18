@@ -2,6 +2,10 @@ test-wp:
   path: /wp
   controller: App\Controller\TestWordpressController::index
 
+test-wp-curl:
+  path: /wp-curl
+  controller: App\Controller\TestWordpressController::curl
+
 # GM PAGES
 landing_page:
   path: /guided-match/landing-page
