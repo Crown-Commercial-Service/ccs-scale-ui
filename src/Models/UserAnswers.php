@@ -17,11 +17,11 @@ class UserAnswers
         $answersFormart = [];
         $prevQuestionId = '';
         foreach ($this->userAnswers as $answers) {
+
             $nrAnswers = count($answers['answers']);
             $counter = 1;
             $answerTxt = '';
            
-
             foreach ($answers['answers'] as $answer) {
                 $answerTxt .= $counter < $nrAnswers ? $answer['answerText'] . ', ' : $answer['answerText'];
                 $counter++;
@@ -48,5 +48,5 @@ class UserAnswers
         }
         
         return $answersToPreviousQuestion;
-    }
+    } 
 }

@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\GuideMatchApi\GuideMatchJourneyApi;
 use App\Models\GuideMatchResponseType;
+use App\Models\UserAnswerApi;
 use Exception;
 
 class GuideMatchJourneyModel
@@ -69,8 +70,8 @@ class GuideMatchJourneyModel
             $this->setHint($apiResponse[0]['question']['hint']);
         }
 
-        if (!empty($apiResponse[0]['definedAnswers'])) {
-            $this->setDefinedAnswers($apiResponse[0]['definedAnswers']);
+        if (!empty($apiResponse[0]['answerDefinitions'])) {
+            $this->setDefinedAnswers($apiResponse[0]['answerDefinitions']);
         }
     }
 
@@ -338,6 +339,11 @@ class GuideMatchJourneyModel
      */
     public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
+
+        //TBD - temporary
+        $userAnswerApi =  new UserAnswerApi();   
+        $questionResponse = $userAnswerApi->formatAnswer($questionResponse);
+        
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
 
         if (empty($apiResponse)) {
