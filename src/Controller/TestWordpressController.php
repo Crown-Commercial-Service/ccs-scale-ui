@@ -21,7 +21,7 @@ class TestWordpressController extends AbstractController
             $api = new Wordpress($url);
             $id = 22;
             $menu = $api->getMenu($id);
-            return $this->json($menu);
+            dd($menu);
         }
 
         return new Response('AT LEAST IT SHOULD RETURN THIS CONTROLLER ');
@@ -30,16 +30,21 @@ class TestWordpressController extends AbstractController
 
     public function curl(Request $request)
     {
+
         $q = $request->query->get('q');
         if (!empty($q)) {
             $client = HttpClient::create();
-            $url = ($q == 1) ? 'https://webdev-cms.crowncommercial.gov.uk': 'https://webdev-cms.crowncommercial.gov.uk/wp-json/';
+            $url = ($q == 1) ? 'https://webdev-cms.crowncommercial.gov.uk': 'https://webdev-cms.crowncommercial.gov.uk/wp-json';
             $response = $client->request('GET', $url);
-            $this->json($response);
+            try {
+                $content = $response->getHeaders();
+                $status = $response->getStatusCode();
+                dd($content, $status);
+            } catch (\Exception $e) {
+                throw new \Exception('Invalid API response:'.$e->getMessage());
+            }
+
         }
-
-
         return new Response('AT LEAST IT SHOULD RETURN THIS CONTROLLER ');
-
     }
 }
