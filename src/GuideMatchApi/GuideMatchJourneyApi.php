@@ -3,37 +3,30 @@
 declare(strict_types=1);
 
 namespace App\GuideMatchApi;
+use App\GuideMatchApi\GuideMatchApi;
 
-use Symfony\Component\HttpClient\CurlHttpClient;
 use \Exception;
 
-class GuideMatchJourneyApi
+class GuideMatchJourneyApi extends GuideMatchApi
 {
-    private $httpClient;
-    private $baseApiUrl;
+    
 
-    public function __construct(CurlHttpClient $httpClient, string $baseApiUrl)
-    {
-        $this->httpClient = $httpClient;
-        $this->baseApiUrl = $baseApiUrl;
-    }
-
-    /**Í
+    /**
      * Start Guide Match Journey
      *
-     * @param strig  $search_by
+     * @param strig  $searchBy
      * @return array
      */
     
-    public function getJourneyUuid(string $search_by)
+    public function getJourneyUuid(string $searchBy)
     {
-        if (empty($search_by)) {
+        if (empty($searchBy)) {
             throw new Exception('Invalid arguments of method');
         }
      
         $response = $this->httpClient->request('GET', $this->baseApiUrl."/scale/decision-tree/journeys", [
             'query' => [
-                'q' => $search_by,
+                'q' => $searchBy,
             ]
         ]);
 
@@ -76,9 +69,9 @@ class GuideMatchJourneyApi
     /**
      * Get first set of Questions from Guide Match Journey
      *
-     * @param string $$this->baseApiUrl
-     * @param string $journey_uuid - Journey instance id
-     * @param string $question_uuid - Unique identifier of the question answered
+     * @param string $baseApiUrl
+     * @param string $journeyUuid - Journey instance id
+     * @param string $questionsUuid - Unique identifier of the question answered
      *
      * @return array
      */
@@ -103,10 +96,10 @@ class GuideMatchJourneyApi
      * Send to API endpoint the user answer and get the next questions or Comercial Agreements or a flag to call Suport
      * for further help
      *
-     * @param string $$this->baseApiUrl
-     * @param string $journey_uuid  - Journey instance id
-     * @param string $question_uuid - Unique identifier of the question answered in this response
-     * @param array $question_response_id - Uuid question answered by user
+     * @param string $baseApiUrl
+     * @param string $journeyUuid  - Journey instance id
+     * @param string $questionsUuid - Unique identifier of the question answered in this response
+     * @param array $questionResponse - Uuid question answered by user
      *
      * @return array
      */
@@ -123,9 +116,9 @@ class GuideMatchJourneyApi
        
         $data = [
             "id"=> $questionsUuid,
-            'answers' => $questionResponse
+            'answers' => [$questionResponse]
         ];
-        
+     
         $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}", [
             'json' => [$data]
         ]);
@@ -135,20 +128,23 @@ class GuideMatchJourneyApi
         } catch (Exception $e) {
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
-       
         return $content;
     }
-    /**
-     * Get summary of Guide Match Journey
-     *
-     * @param string $$this->baseApiUrl
-     * @param $journey_uuid - Journey instance id
-     * @return array
-     */
+   
+   /**
+    * Returns the journey history (all questions and answers) for the specified journey-instance.
+    * Includes Question and Answer texts as displayed to the user
+    *
+    * @param string $journeyUuid
+    * @return array
+    */
+    public function getJourneyHistory(string $journeyUuid){
 
-    public function getJourneySummary($journeyUuid)
-    {
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/journey-summaries/{$journeyUuid}");
+        if (empty($journeyUuid)) {
+            throw new Exception('Invalid arguments of method');
+        }
+
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/journey-instances//{$journeyUuid}");
 
         try {
             $content = $response->getContent();
