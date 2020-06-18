@@ -14,6 +14,7 @@ class TestWordpressController extends AbstractController
 
     public function index(Request $request)
     {
+        echo file_get_contents('https://api.ipify.org?format=json');
         $q = $request->query->get('q');
         if (!empty($q)) {
             $url = ($q == 1) ? 'https://webdev-cms.crowncommercial.gov.uk/wp-json': 'https://webdev-cms.crowncommercial.gov.uk';
@@ -30,7 +31,7 @@ class TestWordpressController extends AbstractController
 
     public function curl(Request $request)
     {
-
+        echo file_get_contents('https://api.ipify.org?format=json');
         $q = $request->query->get('q');
         if (!empty($q)) {
             $client = HttpClient::create();
