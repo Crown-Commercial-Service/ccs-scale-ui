@@ -1,7 +1,7 @@
 <div class="govuk-radios">
+    {{ dump() }}
     {% for answer in definedAnswers %}
         <div class="govuk-radios__item">
-            
             {% set checked = '' %}
             {% if answer.id  in answers|keys %}
                 {% set checked = 'checked = checked' %}
@@ -16,5 +16,15 @@
                 <span class="govuk-hint govuk-radios__hint">{{- answer.hint -}}</span>
             {% endif %}
         </div>
+        {% if answer.conditionalInput is defined %}
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-how-contacted-conditional">
+                <div class="govuk-form-group">
+                    <label class="govuk-label" for="contact-by-email">
+                        {{ answer.conditionalInput.text }}
+                    </label>
+                    <input class="govuk-input govuk-!-width-one-third" id="contact-by-email" name="contact-by-email" type="{{ answer.conditionalInput.type }}" spellcheck="false">
+                </div>
+            </div>
+        {% endif %}
     {% endfor %}
 </div>
