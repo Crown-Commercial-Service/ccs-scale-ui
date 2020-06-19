@@ -17,7 +17,7 @@
                     <li class="govuk-breadcrumbs__list-item">
                         <a class="govuk-breadcrumbs__link" href="https://www.crowncommercial.gov.uk/">Home</a>
                     </li>
-                    <li aria-current="Results" class="govuk-breadcrumbs__list-item"> Results</li>
+                        <li aria-current="page" class="govuk-breadcrumbs__list-item">Results</li>
                 </ol>
             </div>
             <main class="govuk-main-wrapper" id="main-content" role="main">
@@ -26,34 +26,28 @@
                         <div>
                             <h2 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, there
                                 are </h2>
-                            <h1 class="govuk-heading-xl page-title"><strong>{{ countFrameworks }} frameworks that match
-                                    your needs
+                            <h1 class="govuk-heading-xl page-title">
+                                <strong>{{ countFrameworks }} frameworks that match your needs
                                     {% if  countLots > 0 %}
-                                        and {{ countLots }}
-                                        {% if  countLots == 1 %}
-                                            lot
-                                        {% else %}
-                                            lots
-                                        {% endif %}
-
+                                        and {{ countLots }} {{  countLots == 1 ? 'lot':'lots' }}
                                     {% endif %}
-
-                                </strong></h1>
+                                </strong>
+                            </h1>
                         </div>
                        
                         {{ include('results_page_items/section_anchors.html.twig') }}
 
                         <div class="govuk-grid-column-three-quarters">
-                            <h2 class="govuk-heading-l" id="recommendations">Recommendations</h2>
+                            <h2 class="govuk-heading-l result-heading" id="recommendations">Recommendations</h2>
                             {% set lotstTitle = '' %}
                             {% for framework in frameworks %}
-                                {% if  framework is not empty %}    
+                                {% if  framework is not empty %}
                                     {% set lotstTitle = framework.lotsTitle %}
                                     {{ include('results_page_items/recommendations.html.twig') }}
                                 {% endif %}
                             {% endfor %}
 
-                            <h3 class="govuk-heading-l result-heading" id="options">What are your options?</h3>
+                            <h2 class="govuk-heading-l result-heading" id="options">What are your options?</h2>
                             <ul class="govuk-list govuk-list--bullet">
                                 <li>Read the framework documentation for
                                     {% for agreement in agreementsNames %}
@@ -70,10 +64,10 @@
                                 <li>Use the buttons to start online procurement for your chosen framework</li>
                             </ul>
 
-                            <h3 class="govuk-heading-l result-heading" id="definitions">Definitions</h3>
+                            <h2 class="govuk-heading-l result-heading" id="definitions">Definitions</h2>
                             {% include "/results_page_items/definitions.html.twig" %}
 
-                            <h3 class="govuk-heading-l result-heading" id="answers">Your answers</h3>
+                            <h2 class="govuk-heading-l result-heading" id="answers">Your answers</h2>
                             {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
 
                         </div>
