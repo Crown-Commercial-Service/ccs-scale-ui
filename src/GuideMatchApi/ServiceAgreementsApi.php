@@ -3,12 +3,20 @@
 declare(strict_types=1);
 
 namespace App\GuideMatchApi;
-use App\GuideMatchApi\GuideMatchApi;
+use Symfony\Component\HttpClient\CurlHttpClient;
 use \Exception;
 
-class ServiceAgreementsApi extends GuideMatchApi
+class ServiceAgreementsApi
 {
   
+    protected $httpClient;
+    protected $baseApiUrl;
+
+    public function __construct(CurlHttpClient $httpClient, string $baseApiUrl)
+    {
+        $this->httpClient = $httpClient;
+        $this->baseApiUrl = $baseApiUrl;
+    }
 
     /**
      * @param string $agreementId - Service Agreement ID

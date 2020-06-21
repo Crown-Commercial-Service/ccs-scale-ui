@@ -27,7 +27,7 @@ class GuideMatchJourneyModel
 
     private $journeyHistory;
 
-    private $lastJourneyQuestionAnswers = [];
+   // private $lastJourneyQuestionAnswers = [];
 
     private $lastJourneyAction = [];
 
@@ -96,7 +96,7 @@ class GuideMatchJourneyModel
     /**
      * setters for Journey Instance Id
      *
-     * @param [type] $journeyInstanceId
+     * @param string $journeyInstanceId
      * @return void
      */
     private function setJourneyInstanceId(string $journeyInstanceId)
@@ -328,6 +328,21 @@ class GuideMatchJourneyModel
         return $this->agreementData;
     }
 
+
+    /**
+     * Get question details from API
+     *
+     * @param string $journeyUuid 
+     * @param string $questionUuid
+     * @return void
+     */
+    public function getQuestionDetails(string $journeyUuid, string $questionUuid){
+
+        $apiResponse =  $this->journeyApi->getJourneyQuestion($journeyUuid, $questionUuid);
+        $this->handleApiResponse($apiResponse);
+    }
+
+
     /**
      * Get next questions from Guide Match Api according to user response
      *
@@ -340,9 +355,7 @@ class GuideMatchJourneyModel
     public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
 
-        //TBD - temporary
-        $userAnswerApi =  new UserAnswerApi();   
-        $questionResponse = $userAnswerApi->formatAnswer($questionResponse);
+        $questionResponse = $this->formatAnswerForApi($questionResponse);
         
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
 
@@ -360,4 +373,19 @@ class GuideMatchJourneyModel
         $this->setLastJourneyAnswers();
         $this->handleApiResponse($apiResponse['outcome']['data']);
     }
+
+    public function formatAnswerForApi($userAnswer){
+
+        $answers = [];
+        foreach($userAnswer as  $value) {
+            $answers = [
+                'id' => $value,
+                'value' =>  null
+            ];
+        }
+        return $answers;
+
+    }
+
+   
 }

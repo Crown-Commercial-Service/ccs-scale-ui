@@ -41,6 +41,9 @@ class UserAnswers
 
     public function getAnswersFromHistory($history, $step)
     {
+
+     
+
         $answersData = $history[$step-1];
         $answersToPreviousQuestion = [];
         foreach ($answersData['answers'] as $answer) {
