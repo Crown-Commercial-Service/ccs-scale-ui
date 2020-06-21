@@ -1,10 +1,7 @@
-<?php 
+<?php
 
 namespace App\Models;
 
-class UserAnswerApi{
-
-   
+class UserAnswerApi
+{
 }
-
-?>

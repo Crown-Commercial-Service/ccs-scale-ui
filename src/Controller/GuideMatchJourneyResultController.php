@@ -17,8 +17,7 @@ use Exception;
 
 
 use App\Models\GuideMatchJourneyHistoryModel;
-Use App\GuideMatchApi\GuideMatchJourneyApi;
-
+use App\GuideMatchApi\GuideMatchJourneyApi;
 
 class GuideMatchJourneyResultController extends AbstractController
 {
@@ -56,11 +55,12 @@ class GuideMatchJourneyResultController extends AbstractController
 
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
-         //get History
-         $historyModel =  new GuideMatchJourneyHistoryModel($api,$journeyInstanceId);
-         $history = $historyModel->getJourneyHistory();
- dump($history);die();
- die('x');
+        //get History
+        $historyModel =  new GuideMatchJourneyHistoryModel($api, $journeyInstanceId);
+        $history = $historyModel->getJourneyHistory();
+        dump($history);
+        die();
+        die('x');
         $httpClient = HttpClient::create();
 
 

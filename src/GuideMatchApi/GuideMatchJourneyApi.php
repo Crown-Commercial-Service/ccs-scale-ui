@@ -3,13 +3,13 @@
 declare(strict_types=1);
 
 namespace App\GuideMatchApi;
+
 use Symfony\Component\HttpClient\CurlHttpClient;
 
 use \Exception;
 
 class GuideMatchJourneyApi
 {
-    
     protected $httpClient;
     protected $baseApiUrl;
 
@@ -78,7 +78,7 @@ class GuideMatchJourneyApi
 
         $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}");
        
-       return $this->handleApiResponse($response);
+        return $this->handleApiResponse($response);
     }
     
     /**
@@ -115,15 +115,15 @@ class GuideMatchJourneyApi
         return $this->handleApiResponse($response);
     }
    
-   /**
-    * Returns the journey history (all questions and answers) for the specified journey-instance.
-    * Includes Question and Answer texts as displayed to the user
-    *
-    * @param string $journeyUuid
-    * @return array
-    */
-    public function getJourneyHistory(string $journeyUuid){
-
+    /**
+     * Returns the journey history (all questions and answers) for the specified journey-instance.
+     * Includes Question and Answer texts as displayed to the user
+     *
+     * @param string $journeyUuid
+     * @return array
+     */
+    public function getJourneyHistory(string $journeyUuid)
+    {
         if (empty($journeyUuid)) {
             throw new Exception('Invalid arguments of method');
         }
@@ -147,9 +147,8 @@ class GuideMatchJourneyApi
      * @param string $questionsUuid
      * @return array
      */
-    public function getJourneyQuestion(string $journeyUuid, string $questionsUuid){
-
-
+    public function getJourneyQuestion(string $journeyUuid, string $questionsUuid)
+    {
         if (
             empty($journeyUuid) &&
             empty($questionsUuid)
@@ -163,8 +162,8 @@ class GuideMatchJourneyApi
     }
 
 
-    private function handleApiResponse($response){
-
+    private function handleApiResponse($response)
+    {
         try {
             $content = $response->getContent();
             $content = $response->toArray();

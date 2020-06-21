@@ -25,7 +25,7 @@ class GuideMatchBackToPreviousController extends AbstractController
         //Decript journey history answers
         $decrypt = new Decrypt(urldecode($journeyHistory));
         $journeyHistoryData = json_decode($decrypt->getDecryptedString(), true);
-        $model->getQuestionDetails($journeyInstanceId,$questionUuid);
+        $model->getQuestionDetails($journeyInstanceId, $questionUuid);
 
         $lastPage = $gPage -1 > 1 ? $gPage -1 : 0;
         $nextPage = $gPage+1;

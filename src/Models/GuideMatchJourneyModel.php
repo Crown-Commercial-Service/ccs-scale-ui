@@ -27,7 +27,7 @@ class GuideMatchJourneyModel
 
     private $journeyHistory;
 
-   // private $lastJourneyQuestionAnswers = [];
+    // private $lastJourneyQuestionAnswers = [];
 
     private $lastJourneyAction = [];
 
@@ -216,6 +216,8 @@ class GuideMatchJourneyModel
      */
     public function getDefinedAnswers()
     {
+        //dump($this->definedAnswers);
+        // die();
         return $this->definedAnswers;
     }
 
@@ -332,12 +334,12 @@ class GuideMatchJourneyModel
     /**
      * Get question details from API
      *
-     * @param string $journeyUuid 
+     * @param string $journeyUuid
      * @param string $questionUuid
      * @return void
      */
-    public function getQuestionDetails(string $journeyUuid, string $questionUuid){
-
+    public function getQuestionDetails(string $journeyUuid, string $questionUuid)
+    {
         $apiResponse =  $this->journeyApi->getJourneyQuestion($journeyUuid, $questionUuid);
         $this->handleApiResponse($apiResponse);
     }
@@ -354,7 +356,6 @@ class GuideMatchJourneyModel
      */
     public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
-
         $questionResponse = $this->formatAnswerForApi($questionResponse);
         
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
@@ -374,18 +375,15 @@ class GuideMatchJourneyModel
         $this->handleApiResponse($apiResponse['outcome']['data']);
     }
 
-    public function formatAnswerForApi($userAnswer){
-
+    public function formatAnswerForApi($userAnswer)
+    {
         $answers = [];
-        foreach($userAnswer as  $value) {
+        foreach ($userAnswer as  $value) {
             $answers = [
                 'id' => $value,
                 'value' =>  null
             ];
         }
         return $answers;
-
     }
-
-   
 }

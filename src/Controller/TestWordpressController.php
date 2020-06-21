@@ -8,10 +8,8 @@ use Studio24\Frontend\Cms\Wordpress;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-
 class TestWordpressController extends AbstractController
 {
-
     public function index(Request $request)
     {
         echo file_get_contents('https://api.ipify.org?format=json');
@@ -26,7 +24,6 @@ class TestWordpressController extends AbstractController
         }
 
         return new Response('AT LEAST IT SHOULD RETURN THIS CONTROLLER ');
-
     }
 
     public function curl(Request $request)
@@ -44,7 +41,6 @@ class TestWordpressController extends AbstractController
             } catch (\Exception $e) {
                 throw new \Exception('Invalid API response:'.$e->getMessage());
             }
-
         }
         return new Response('AT LEAST IT SHOULD RETURN THIS CONTROLLER ');
     }

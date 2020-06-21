@@ -63,7 +63,7 @@ class GuideMatchJourneyController extends AbstractController
             ]);
         }
 
-        return $this->questionResponse($model, $searchBy, $journeyId, $journeyInstanceId ,$gPage, $journeyHistory);
+        return $this->questionResponse($model, $searchBy, $journeyId, $journeyInstanceId, $gPage, $journeyHistory);
     }
 
     /**
@@ -77,9 +77,8 @@ class GuideMatchJourneyController extends AbstractController
      * @param array $journeyHistory
      * @return Response
      */
-    private function questionResponse(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId ,string $gPage, array $journeyHistory)
+    private function questionResponse(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId, string $gPage, array $journeyHistory)
     {
-       
         $nextPage  = $gPage + 1;
         $lastPage = $gPage - 1;
 

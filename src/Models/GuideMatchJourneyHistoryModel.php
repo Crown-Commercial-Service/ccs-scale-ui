@@ -1,13 +1,12 @@
-<?php 
+<?php
 declare(strict_types=1);
 
 namespace App\Models;
 
 use App\GuideMatchApi\GuideMatchJourneyApi;
 
-
-class GuideMatchJourneyHistoryModel{
-
+class GuideMatchJourneyHistoryModel
+{
     private $journeyApi;
     private $journeyInstanceId;
     private $journeyHistory;
@@ -25,9 +24,9 @@ class GuideMatchJourneyHistoryModel{
      *
      * @return void
      */
-    private function setJourneyHistory(){
+    private function setJourneyHistory()
+    {
         $this->journeyHistory = $this->journeyApi->getJourneyHistory($this->journeyInstanceId);
-
     }
 
     /**
@@ -36,9 +35,8 @@ class GuideMatchJourneyHistoryModel{
      *
      * @return void
      */
-    public function getJourneyHistory(){
-
+    public function getJourneyHistory()
+    {
         return $this->journeyHistory;
-
     }
 }

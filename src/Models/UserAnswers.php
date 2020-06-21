@@ -17,7 +17,6 @@ class UserAnswers
         $answersFormart = [];
         $prevQuestionId = '';
         foreach ($this->userAnswers as $answers) {
-
             $nrAnswers = count($answers['answers']);
             $counter = 1;
             $answerTxt = '';
@@ -41,9 +40,6 @@ class UserAnswers
 
     public function getAnswersFromHistory($history, $step)
     {
-
-     
-
         $answersData = $history[$step-1];
         $answersToPreviousQuestion = [];
         foreach ($answersData['answers'] as $answer) {
@@ -51,5 +47,5 @@ class UserAnswers
         }
         
         return $answersToPreviousQuestion;
-    } 
+    }
 }
