@@ -24,11 +24,11 @@ class GuideMatchJourneyController extends AbstractController
         $userQuestionResponse = [];
 
         if ($request->isMethod('post')) {
-            if (!empty($request->request->get('uuid'))) {
-                $userQuestionResponse = !is_array($request->request->get('uuid')) ? [$request->request->get('uuid')] : $request->request->get('uuid');
-            } else {
-             
-                /*
+            $userQuestionResponse = $request->request->all();
+            //dump($userQuestionResponse);die();
+            if (empty($userQuestionResponse)) {
+
+                  /*
                 TBD - Add server Validation
                 $this->addFlash(
                     'error',

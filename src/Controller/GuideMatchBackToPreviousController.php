@@ -40,17 +40,17 @@ class GuideMatchBackToPreviousController extends AbstractController
             $model->startJourney($journeyId, $searchBy);
         }
 
-        $answers= [];
+        $userAnswers= [];
         if (!$changeAnswer==1) {
-            $answers = $model->getQuestionAnswers($questionId, $journeyHistoryData);
+            $userAnswers = $model->getQuestionAnswers($questionId, $journeyHistoryData);
         }
-
+        //dump($userAnswers);die();
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
             'journeyId' => $journeyId,
             'journeyInstanceId' => $journeyInstanceId,
             'definedAnswers' => $model->getDefinedAnswers(),
-            'answers' => $answers,
+            'userAnswers' => $userAnswers,
             'uuid' => $questionId,
             'text' => $model->getText(),
             'type' => $model->getType(),
