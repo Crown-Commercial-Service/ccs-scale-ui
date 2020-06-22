@@ -58,9 +58,7 @@ class GuideMatchJourneyResultController extends AbstractController
         //get History
         $historyModel =  new GuideMatchJourneyHistoryModel($api, $journeyInstanceId);
         $history = $historyModel->getJourneyHistory();
-        dump($history);
-        die();
-        die('x');
+       
         $httpClient = HttpClient::create();
 
 

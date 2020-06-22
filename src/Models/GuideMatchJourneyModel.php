@@ -9,6 +9,8 @@ use App\Models\GuideMatchResponseType;
 use App\Models\UserAnswerApi;
 use Exception;
 
+use function foo\func;
+
 class GuideMatchJourneyModel
 {
     private $journeyApi;
@@ -72,6 +74,7 @@ class GuideMatchJourneyModel
 
         if (!empty($apiResponse[0]['answerDefinitions'])) {
             $this->setDefinedAnswers($apiResponse[0]['answerDefinitions']);
+            $this->orderAnswerDefinitions();
         }
     }
 
@@ -216,8 +219,6 @@ class GuideMatchJourneyModel
      */
     public function getDefinedAnswers()
     {
-        //dump($this->definedAnswers);
-        // die();
         return $this->definedAnswers;
     }
 
@@ -286,6 +287,8 @@ class GuideMatchJourneyModel
      */
     public function getQuestionAnswers(string $questionId, array $historyAnswers)
     {
+
+       // dump($historyAnswers);die();
         if (
             empty($questionUuid) &&
             empty($historyAnswers)
@@ -298,7 +301,7 @@ class GuideMatchJourneyModel
         foreach ($historyAnswers as $questions) {
             if ($questions['question']['id'] === $questionId) {
                 foreach ($questions['answers'] as $answers) {
-                    $answers[$answers['answer']] = true;
+                    $answers[$answers['answerText']] = true;
                 }
             }
         }
@@ -357,7 +360,7 @@ class GuideMatchJourneyModel
     public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
         $questionResponse = $this->formatAnswerForApi($questionResponse);
-        
+
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
 
         if (empty($apiResponse)) {
@@ -375,15 +378,38 @@ class GuideMatchJourneyModel
         $this->handleApiResponse($apiResponse['outcome']['data']);
     }
 
+
+    private function orderAnswerDefinitions()
+    {
+        usort($this->definedAnswers, function ($a, $b) {
+            if ($a['order'] == $b['order']) {
+                return 0;
+            }
+            return ($a['order'] < $b['order']) ? -1 : 1;
+        });
+    }
+
     public function formatAnswerForApi($userAnswer)
     {
         $answers = [];
-        foreach ($userAnswer as  $value) {
-            $answers = [
-                'id' => $value,
-                'value' =>  null
+        foreach ($userAnswer as $key => $value) {
+            $id = '';
+            if ($key === 'uuid') {
+                $id = $value;
+            }
+
+            $answer = !empty($userAnswer[$id]) ? $userAnswer[$id] : null;
+
+            if (empty($id)) {
+                continue;
+            }
+            $answers[] = [
+                'id' => $id,
+                'value' => $answer
             ];
         }
+
+      
         return $answers;
     }
 }
