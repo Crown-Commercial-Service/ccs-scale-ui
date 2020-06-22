@@ -12,6 +12,11 @@ class UserAnswers
         $this->userAnswers = $userAnswers;
     }
 
+    /**
+     * Format user anwers to be display on the journey result page
+     *
+     * @return array
+     */
     public function formatForView()
     {
         $answersFormart = [];
@@ -38,7 +43,14 @@ class UserAnswers
         return $answersFormart;
     }
 
-    public function getAnswersFromHistory($history, $step)
+    /**
+     * Get the answers of user from a specific step of the journey history
+     *
+     * @param array $history
+     * @param int $step
+     * @return void
+     */
+    public function getAnswersFromHistory(array $history, int $step)
     {
         $answersData = $history[$step-1];
         $answersToPreviousQuestion = [];
