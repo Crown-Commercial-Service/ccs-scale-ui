@@ -3,13 +3,21 @@
 declare(strict_types=1);
 
 namespace App\GuideMatchApi;
-use App\GuideMatchApi\GuideMatchApi;
+
+use Symfony\Component\HttpClient\CurlHttpClient;
 
 use \Exception;
 
-class GuideMatchJourneyApi extends GuideMatchApi
+class GuideMatchJourneyApi
 {
-    
+    protected $httpClient;
+    protected $baseApiUrl;
+
+    public function __construct(CurlHttpClient $httpClient, string $baseApiUrl)
+    {
+        $this->httpClient = $httpClient;
+        $this->baseApiUrl = $baseApiUrl;
+    }
 
     /**
      * Start Guide Match Journey
@@ -30,14 +38,7 @@ class GuideMatchJourneyApi extends GuideMatchApi
             ]
         ]);
 
-        try {
-            $content = $response->getContent();
-            $content = $response->toArray();
-        } catch (Exception $e) {
-            throw new Exception('Invalid API response:'.$e->getMessage());
-        }
-       
-        return $content;
+        return $this->handleApiResponse($response);
     }
 
 
@@ -57,15 +58,9 @@ class GuideMatchJourneyApi extends GuideMatchApi
             'json' => ['searchTerm' => $searchBy]
         ]);
 
-        try {
-            $content = $response->getContent();
-            $content = $response->toArray();
-        } catch (Exception $e) {
-            throw new Exception('Invalid API response:'.$e->getMessage());
-        }
-       
-        return $content;
+        return $this->handleApiResponse($response);
     }
+
     /**
      * Get first set of Questions from Guide Match Journey
      *
@@ -83,13 +78,7 @@ class GuideMatchJourneyApi extends GuideMatchApi
 
         $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}");
        
-        try {
-            $content = $response->getContent();
-            $content = $response->toArray();
-        } catch (Exception $e) {
-            throw new Exception('Invalid API response:'.$e->getMessage());
-        }
-        return $content;
+        return $this->handleApiResponse($response);
     }
     
     /**
@@ -99,7 +88,7 @@ class GuideMatchJourneyApi extends GuideMatchApi
      * @param string $baseApiUrl
      * @param string $journeyUuid  - Journey instance id
      * @param string $questionsUuid - Unique identifier of the question answered in this response
-     * @param array $questionResponse - Uuid question answered by user
+     * @param array  $questionResponse - Uuid question answered by user
      *
      * @return array
      */
@@ -118,34 +107,63 @@ class GuideMatchJourneyApi extends GuideMatchApi
             "id"=> $questionsUuid,
             'answers' => [$questionResponse]
         ];
-     
+    
         $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}", [
             'json' => [$data]
         ]);
+
+        return $this->handleApiResponse($response);
+    }
+   
+    /**
+     * Returns the journey history (all questions and answers) for the specified journey-instance.
+     * Includes Question and Answer texts as displayed to the user
+     *
+     * @param string $journeyUuid
+     * @return array
+     */
+    public function getJourneyHistory(string $journeyUuid)
+    {
+        if (empty($journeyUuid)) {
+            throw new Exception('Invalid arguments of method');
+        }
+
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}");
+
         try {
             $content = $response->getContent();
             $content = $response->toArray();
         } catch (Exception $e) {
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
+
         return $content;
     }
-   
-   /**
-    * Returns the journey history (all questions and answers) for the specified journey-instance.
-    * Includes Question and Answer texts as displayed to the user
-    *
-    * @param string $journeyUuid
-    * @return array
-    */
-    public function getJourneyHistory(string $journeyUuid){
-
-        if (empty($journeyUuid)) {
+    
+    /**
+     * Get get details for sa specific questions from journey
+     *
+     * @param string $journeyUuid
+     * @param string $questionsUuid
+     * @return array
+     */
+    public function getJourneyQuestion(string $journeyUuid, string $questionsUuid)
+    {
+        if (
+            empty($journeyUuid) &&
+            empty($questionsUuid)
+            ) {
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/journey-instances//{$journeyUuid}");
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}");
 
+        return $this->handleApiResponse($response);
+    }
+
+
+    private function handleApiResponse($response)
+    {
         try {
             $content = $response->getContent();
             $content = $response->toArray();

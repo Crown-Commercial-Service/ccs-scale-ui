@@ -17,7 +17,6 @@ class UserAnswers
         $answersFormart = [];
         $prevQuestionId = '';
         foreach ($this->userAnswers as $answers) {
-
             $nrAnswers = count($answers['answers']);
             $counter = 1;
             $answerTxt = '';
@@ -48,5 +47,5 @@ class UserAnswers
         }
         
         return $answersToPreviousQuestion;
-    } 
+    }
 }

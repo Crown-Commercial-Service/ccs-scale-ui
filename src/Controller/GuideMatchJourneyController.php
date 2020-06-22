@@ -21,27 +21,28 @@ class GuideMatchJourneyController extends AbstractController
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
 
-        $response = [];
+        $userQuestionResponse = [];
 
         if ($request->isMethod('post')) {
             if (!empty($request->request->get('uuid'))) {
-                $response = !is_array($request->request->get('uuid')) ? [$request->request->get('uuid')] : $request->request->get('uuid');
+                $userQuestionResponse = !is_array($request->request->get('uuid')) ? [$request->request->get('uuid')] : $request->request->get('uuid');
             } else {
-//                $response = [$request->attributes->get('questionUuid')];
+             
+                /*
+                TBD - Add server Validation
                 $this->addFlash(
                     'error',
                     'You need to select something.'
                 );
-                return $this->redirect($request->server->get('HTTP_REFERER'));
+               // return $this->redirect($request->server->get('HTTP_REFERER'));
+               */
             }
         }
-
         $model = new GuideMatchJourneyModel($api);
-        $model->getDecisionTree($journeyInstanceId, $questionUuid, $response);
+        $model->getDecisionTree($journeyInstanceId, $questionUuid, $userQuestionResponse);
 
         $apiResponseType = $model->getApiResponseType();
         $journeyHistory = $model->getJourneyHistory();
-
         //redirect to journey result page
         if ($apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement) {
             $journeyData = json_encode([
@@ -60,9 +61,8 @@ class GuideMatchJourneyController extends AbstractController
                 'journeyData' => $journeyDataEncode
 
             ]);
-
-            $this->redirectToRoute("journey-result/{$journeyId}/{$journeyInstanceId}/$journeyDataEncode");
         }
+
         return $this->questionResponse($model, $searchBy, $journeyId, $journeyInstanceId, $gPage, $journeyHistory);
     }
 
@@ -80,23 +80,16 @@ class GuideMatchJourneyController extends AbstractController
     private function questionResponse(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId, string $gPage, array $journeyHistory)
     {
         $nextPage  = $gPage + 1;
-        $historyPage = $gPage - 2 <= 0 ? 0 : $gPage - 2 ;
+        $lastPage = $gPage - 1;
 
-        $penultimateQuestion = $model->getHistoryQuestion($historyPage);
-        $penultimateAnswers = $model->getHistoryAnswers($historyPage);
-        $lastQuestionId = !empty($penultimateQuestion) ? $penultimateQuestion['id'] : '';
+        $lastQuestion = $model->getHistoryQuestion($lastPage);
+        $lastQuestionId = !empty($lastQuestion) ? $lastQuestion['id'] : '';
 
-
-        $journeyHistoryAnswered = [
-            'lastJourney' => $penultimateAnswers,
-            'historyAnswered' => $journeyHistory
-        ];
-
-        $journeyHistoryAnsweredJson = json_encode($journeyHistoryAnswered);
+        $journeyHistoryAnsweredJson = json_encode($journeyHistory);
 
         $encrypt = new Encrypt($journeyHistoryAnsweredJson);
         $journeyHistoryEncode =  urlencode($encrypt->getEncryptedString());
-
+       
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
             'journeyId' => $journeyId,

@@ -15,6 +15,10 @@ use App\Models\GuideMatchAgreementModel;
 use App\GuideMatchApi\ServiceAgreementsApi;
 use Exception;
 
+
+use App\Models\GuideMatchJourneyHistoryModel;
+use App\GuideMatchApi\GuideMatchJourneyApi;
+
 class GuideMatchJourneyResultController extends AbstractController
 {
     public function journeyResult(Request $request, string $journeyId, string $journeyInstanceId, string $searchBy, string $journeyData)
@@ -50,6 +54,16 @@ class GuideMatchJourneyResultController extends AbstractController
         }
 
         $httpClient = HttpClient::create();
+        $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
+        //get History
+        $historyModel =  new GuideMatchJourneyHistoryModel($api, $journeyInstanceId);
+        $history = $historyModel->getJourneyHistory();
+        dump($history);
+        die();
+        die('x');
+        $httpClient = HttpClient::create();
+
+
         $agreementsApi  = new ServiceAgreementsApi($httpClient, getenv('AGREEMENTS_SERVICE_ROOT_URL'));
         $agrementModel = new GuideMatchAgreementModel($agreementsApi, $journeyDataDecrypt['agreementData']);
         $frameworks = $agrementModel->getAgreements();
