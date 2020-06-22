@@ -2,7 +2,7 @@
     {% for answer in definedAnswers %}
 
         {% set checked = '' %}
-        {% if answer.id  in answers|keys %}
+        {% if answer.id  in userAnswers|keys %}
             {% set checked = 'checked' %}
         {% endif %}
 
@@ -15,4 +15,5 @@
             {% endif %}
         </div>
     {% endfor %}
+     <input type='hidden' name='form-type' value='multiselect'>
 </div>

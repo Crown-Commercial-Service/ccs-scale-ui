@@ -12,6 +12,7 @@ use App\GuideMatchApi\GuideMatchJourneyApi;
 use Symfony\Component\HttpFoundation\Request;
 use App\Models\Encrypt;
 use Symfony\Component\HttpFoundation\Response;
+use App\Models\UserAnswersFormType\UserAnswerFormatFactory;
 
 class GuideMatchJourneyController extends AbstractController
 {
@@ -24,8 +25,12 @@ class GuideMatchJourneyController extends AbstractController
         $userQuestionResponse = [];
 
         if ($request->isMethod('post')) {
-            $userQuestionResponse = $request->request->all();
-            //dump($userQuestionResponse);die();
+            $postData = $request->request->all();
+            $formType = $postData['form-type'];
+            // $userAnswers = unset()
+            $formatAnswerObject = UserAnswerFormatFactory::getFormTypeObject($formType, $postData);
+            $userQuestionResponse = $formatAnswerObject->getAnswersFormated();
+            //  dump($userQuestionResponse);die();
             if (empty($userQuestionResponse)) {
 
                   /*
@@ -38,6 +43,7 @@ class GuideMatchJourneyController extends AbstractController
                */
             }
         }
+       
         $model = new GuideMatchJourneyModel($api);
         $model->getDecisionTree($journeyInstanceId, $questionUuid, $userQuestionResponse);
 
@@ -95,7 +101,7 @@ class GuideMatchJourneyController extends AbstractController
             'journeyId' => $journeyId,
             'journeyInstanceId' => $journeyInstanceId,
             'definedAnswers' => $model->getDefinedAnswers(),
-            'answers' => [],
+            'userAnswers' => [],
             'uuid' => $model->getUuid(),
             'text' => $model->getText(),
             'type' => $model->getType(),

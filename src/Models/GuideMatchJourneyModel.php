@@ -287,8 +287,6 @@ class GuideMatchJourneyModel
      */
     public function getQuestionAnswers(string $questionId, array $historyAnswers)
     {
-
-       // dump($historyAnswers);die();
         if (
             empty($questionUuid) &&
             empty($historyAnswers)
@@ -359,8 +357,6 @@ class GuideMatchJourneyModel
      */
     public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
-        $questionResponse = $this->formatAnswerForApi($questionResponse);
-
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
 
         if (empty($apiResponse)) {
@@ -387,29 +383,5 @@ class GuideMatchJourneyModel
             }
             return ($a['order'] < $b['order']) ? -1 : 1;
         });
-    }
-
-    public function formatAnswerForApi($userAnswer)
-    {
-        $answers = [];
-        foreach ($userAnswer as $key => $value) {
-            $id = '';
-            if ($key === 'uuid') {
-                $id = $value;
-            }
-
-            $answer = !empty($userAnswer[$id]) ? $userAnswer[$id] : null;
-
-            if (empty($id)) {
-                continue;
-            }
-            $answers[] = [
-                'id' => $id,
-                'value' => $answer
-            ];
-        }
-
-      
-        return $answers;
     }
 }

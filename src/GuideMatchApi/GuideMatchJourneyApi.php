@@ -107,8 +107,6 @@ class GuideMatchJourneyApi
             "id"=> $questionsUuid,
             'answers' => $questionResponse
         ];
-
-        // dump($data);die();
     
         $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}", [
             'json' => [$data]

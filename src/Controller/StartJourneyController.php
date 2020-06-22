@@ -31,7 +31,7 @@ class StartJourneyController extends AbstractController
             'type' => $model->getType(),
             'hint' => $model->getHint(),
             'searchBy' => $searchBy,
-            'answers' => [],
+            'userAnswers' => [],
             'gPage' => 1,
             'lastPage' => 0
         ]);
