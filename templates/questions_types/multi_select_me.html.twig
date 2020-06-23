@@ -1,5 +1,10 @@
 <div class="govuk-checkboxes">
-    {% for i in definedAnswers|length -1 %}
+    {% for i in definedAnswers|length %}
+
+        {% if answer.order == definedAnswers|last.order and answer.text == "Other" %}
+            <div class="govuk-radios__divider">or</div>
+        {% endif %}
+        {{ dump(answer) }}
         <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input v-selector" id="{{ i.uuid }}" name="uuid" type="checkbox" value="{{ i.uuid }}">
             <label class="govuk-label govuk-checkboxes__label" for="{{ i.uuid }}">
@@ -10,18 +15,4 @@
             {% endif %}
         </div>
     {% endfor %}
-
-    <div class="govuk-radios__divider">or</div>
-
-    {% set lastElement = definedAnswers|last %}
-    <div class="govuk-checkboxes__item">
-        <input class="govuk-checkboxes__input" id="{{ lastElement.uuid }}" name="uuid" type="checkbox"
-               value="{{ lastElement.uuid }}">
-        <label class="govuk-label govuk-checkboxes__label" for="{{ lastElement.uuid }}">
-            {{- lastElement.text -}}
-        </label>
-        {% if lastElement.hint is defined  and lastElement.hint is not empty %}
-            <span class="govuk-hint govuk-checkboxes__hint">{{- lastElement.hint -}}</span>
-        {% endif %}
-    </div>
 </div>
