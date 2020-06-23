@@ -6,12 +6,12 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use App\Models\GuideMatchJourneyModel;
 use App\Models\GuideMatchResponseType;
 use App\GuideMatchApi\GuideMatchJourneyApi;
-use Symfony\Component\HttpFoundation\Request;
 use App\Models\Encrypt;
-use Symfony\Component\HttpFoundation\Response;
 use App\Models\UserAnswersFormType\UserAnswerFormatFactory;
 
 class GuideMatchJourneyController extends AbstractController
@@ -24,52 +24,63 @@ class GuideMatchJourneyController extends AbstractController
 
         $userQuestionResponse = [];
 
-        if ($request->isMethod('post')) {
-            $postData = $request->request->all();
-            $formType = $postData['form-type'];
-            // $userAnswers = unset()
-            $formatAnswerObject = UserAnswerFormatFactory::getFormTypeObject($formType, $postData);
-            $userQuestionResponse = $formatAnswerObject->getAnswersFormated();
-            //  dump($userQuestionResponse);die();
-            if (empty($userQuestionResponse)) {
+        //get POST data
+        $postData = $request->request->all();
 
-                  /*
-                TBD - Add server Validation
-                $this->addFlash(
-                    'error',
-                    'You need to select something.'
-                );
-               // return $this->redirect($request->server->get('HTTP_REFERER'));
-               */
-            }
+        //get question form type to know, used to know how the answer will be handle to be send to API
+        $formType = $postData['form-type'];
+
+        $formatAnswerObject = UserAnswerFormatFactory::getFormTypeObject($formType, $postData);
+
+        //get the answer correctly formeted to be send to API
+        $userQuestionResponse = $formatAnswerObject->getAnswersFormated();
+
+        if (empty($userQuestionResponse)) {
+
+                /*
+            TBD - Add server Validation
+            $this->addFlash(
+                'error',
+                'You need to select something.'
+            );
+            // return $this->redirect($request->server->get('HTTP_REFERER'));
+            */
         }
+       
        
         $model = new GuideMatchJourneyModel($api);
         $model->getDecisionTree($journeyInstanceId, $questionUuid, $userQuestionResponse);
 
         $apiResponseType = $model->getApiResponseType();
         $journeyHistory = $model->getJourneyHistory();
+
         //redirect to journey result page
-        if ($apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement) {
-            $journeyData = json_encode([
-                'agreementData' => $model->getAgreementData(),
-                'historyAnswered' => $journeyHistory
-            ]);
-
-
-            $encrypt = new Encrypt($journeyData);
-            $journeyDataEncode =  urlencode($encrypt->getEncryptedString());
-
-            return  $this->redirectToRoute("journey-result", [
-                'journeyId' => $journeyId,
-                'journeyInstanceId'=>$journeyInstanceId,
-                'searchBy' => $searchBy,
-                'journeyData' => $journeyDataEncode
-
-            ]);
+        if (
+            $apiResponseType == GuideMatchResponseType::GuideMatchResponseSupport ||
+            $apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement
+        ) {
+            return $this->redirectToResultsPage($journeyId, $journeyInstanceId);
         }
 
-        return $this->questionResponse($model, $searchBy, $journeyId, $journeyInstanceId, $gPage, $journeyHistory);
+        // go to the next question of Journey
+        return $this->journeyNextQuestion($model, $searchBy, $journeyId, $journeyInstanceId, $gPage, $journeyHistory);
+    }
+
+
+    /**
+     *redirect to result page if we have reached to the end of journey
+     *
+     * @param string $journeyId
+     * @param string $journeyInstanceId
+     * @param GuideMatchJourneyModel $model
+     * @return void
+     */
+    private function redirectToResultsPage(string $journeyId, string $journeyInstanceId)
+    {
+        return  $this->redirectToRoute("journey-result", [
+            'journeyId' => $journeyId,
+            'journeyInstanceId'=>$journeyInstanceId,
+        ]);
     }
 
     /**
@@ -83,7 +94,7 @@ class GuideMatchJourneyController extends AbstractController
      * @param array $journeyHistory
      * @return Response
      */
-    private function questionResponse(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId, string $gPage, array $journeyHistory)
+    private function journeyNextQuestion(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId, string $gPage, array $journeyHistory)
     {
         $nextPage  = $gPage + 1;
         $lastPage = $gPage - 1;
@@ -109,7 +120,7 @@ class GuideMatchJourneyController extends AbstractController
             'lastQuestionId' =>  $lastQuestionId,
             'journeyHistory' => $journeyHistoryEncode,
             'gPage' => $nextPage,
-            'lastPage' =>  --$gPage
+            'lastPage' => $lastPage
         ]);
     }
 }

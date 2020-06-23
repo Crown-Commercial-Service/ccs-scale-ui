@@ -22,7 +22,7 @@ class GuideMatchBackToPreviousController extends AbstractController
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
         $model = new GuideMatchJourneyModel($api);
 
-        //Decript journey history answers
+        // Decript journey history answers
         $decrypt = new Decrypt(urldecode($journeyHistory));
         $journeyHistoryData = json_decode($decrypt->getDecryptedString(), true);
         $model->getQuestionDetails($journeyInstanceId, $questionUuid);
@@ -34,7 +34,7 @@ class GuideMatchBackToPreviousController extends AbstractController
 
         $questionId =  $model->getUuid();
 
-        //  go back to first page of journey
+        // Go back to first page of journey
         if ($gPage < 1) {
             $model = new GuideMatchJourneyModel($api);
             $model->startJourney($journeyId, $searchBy);
