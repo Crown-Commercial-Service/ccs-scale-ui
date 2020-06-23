@@ -6,17 +6,20 @@
             {% set checked = 'checked' %}
         {% endif %}
 
-        {% if answer.mutuallyExclusive == true %}
+        {% if answer.order == definedAnswers|last.order or answer.mutuallyExclusive == true %}
             <div class="govuk-radios__divider">or</div>
+        {% endif %}
+        
+        {% if answer.mutuallyExclusive == true %}
             <input type="hidden" name="mutuallyexclusive" value="{{answer.id}}">
         {% endif %}
 
         <div class="govuk-checkboxes__item">
-            
-            <input class="govuk-checkboxes__input {{ answer.mutuallyExclusive ? 'e-button':'v-selector' }}" 
-                   id="{{ answer.id }}" name="uuid[]" type="checkbox"
-                   value="{{ answer.id }}" aria-describedby="{{- answer.hint -}}" 
-                   onclick="{{ answer.mutuallyExclusive ? 'exclude()':'unExlcusive()' }}">
+
+            <input class="govuk-checkboxes__input v-selector {{ answer.mutuallyExclusive ? 'e-button':'all-options' }}" 
+            id="{{ answer.id }}" name="uuid[]" type="checkbox"
+            value="{{ answer.id }}" aria-describedby="{{- answer.hint -}}" 
+            onclick="{{ answer.mutuallyExclusive ? 'exclude()':'unExlcusive()' }}">
 
             <label class="govuk-label govuk-checkboxes__label" for="{{ answer.id }}">{{- answer.text -}}</label>
             {% if answer.hint is defined  and answer.hint is not empty %}
@@ -24,5 +27,12 @@
             {% endif %}
         </div>
     {% endfor %}
-     <input type='hidden' name='form-type' value='multiselect'>
+    <!-- Todo: this is question type 3 feature -->
+    <!-- <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input v-selector all-options" 
+        id="{{ definedAnswers|last.id }}a"  type="checkbox"
+        onclick="unExlcusive();toggle(this)">
+        <label class="govuk-label govuk-checkboxes__label" for="{{definedAnswers|last.id }}">check all</label>
+    </div> -->
+    <input type='hidden' name='form-type' value='multiselect'>
 </div>
