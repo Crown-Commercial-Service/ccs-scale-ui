@@ -2,7 +2,7 @@
     {% for answer in definedAnswers %}
 
         {% set checked = '' %}
-        {% if answer.id  in userAnswers|keys %}
+        {% if answer.text  in userAnswers|keys %}
             {% set checked = 'checked = checked' %}
         {% endif %}
 

@@ -27,9 +27,9 @@ class GuideMatchBackToPreviousController extends AbstractController
         $journeyHistoryData = json_decode($decrypt->getDecryptedString(), true);
         $model->getQuestionDetails($journeyInstanceId, $questionUuid);
 
-        $lastPage = $gPage -1 > 1 ? $gPage -1 : 0;
+        $lastPage = $gPage-1 > 0 ? $gPage-1 : 0;
         $nextPage = $gPage+1;
-
+       
         $lastQuestionId = $journeyHistoryData[$lastPage]['question']['id'];
 
         $questionId =  $model->getUuid();
@@ -44,7 +44,6 @@ class GuideMatchBackToPreviousController extends AbstractController
         if (!$changeAnswer==1) {
             $userAnswers = $model->getQuestionAnswers($questionId, $journeyHistoryData);
         }
-        //dump($userAnswers);die();
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
             'journeyId' => $journeyId,
@@ -58,7 +57,7 @@ class GuideMatchBackToPreviousController extends AbstractController
             'lastQuestionId' =>  $lastQuestionId,
             'journeyHistory' => $journeyHistory,
             'gPage' => $nextPage,
-            'lastPage' => --$gPage
+            'lastPage' => $lastPage
         ]);
     }
 }
