@@ -5,13 +5,15 @@
         {% if answer.text  in userAnswers|keys %}
             {% set checked = 'checked = checked' %}
         {% endif %}
+        
+        {% if answer.order == definedAnswers|last.order and answer.text == "Other" %}
+            <div class="govuk-radios__divider">or</div>
+        {% endif %}
 
         <div class="govuk-radios__item">
             <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio"
                    value="{{ answer.id }}" {{ checked }}>
             <label class="govuk-label govuk-radios__label govuk-label--s" for="{{ answer.id }}">
-
-
                 {{- answer.text -}}
             </label>
             {% if answer.hint is defined  and answer.hint is not empty %}
