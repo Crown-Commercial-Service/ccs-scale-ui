@@ -38,14 +38,15 @@
                         {{ include('results_page_items/section_anchors.html.twig') }}
 
                         <div class="govuk-grid-column-three-quarters">
-                            <h2 class="govuk-heading-l result-heading" id="recommendations">Recommendations</h2>
                             {% set lotstTitle = '' %}
                             {% for framework in frameworks %}
                                 {% if  framework is not empty %}
                                     {% set lotstTitle = framework.lotsTitle %}
-                                    {{ include('results_page_items/recommendations.html.twig') }}
                                 {% endif %}
                             {% endfor %}
+                            
+                            <h2 class="govuk-heading-l result-heading" id="recommendations">Recommendations</h2>
+                            {{ include('results_page_items/recommendations.html.twig') }}
 
                             <h2 class="govuk-heading-l result-heading" id="options">What are your options?</h2>
                             <ul class="govuk-list govuk-list--bullet">
