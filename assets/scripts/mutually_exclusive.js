@@ -1,5 +1,5 @@
 function exclude() {
-    var checkboxes = document.getElementsByClassName('v-selector');
+    var checkboxes = document.getElementsByClassName('all-options');
     // console.log(checkboxes);
     for(var checbox in checkboxes){
         checkboxes[checbox].checked = false;

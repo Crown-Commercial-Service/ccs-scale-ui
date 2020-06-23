@@ -12,8 +12,8 @@
         {% endif %}
 
         <div class="govuk-checkboxes__item">
-            
-            <input class="govuk-checkboxes__input {{ answer.mutuallyExclusive ? 'e-button':'v-selector' }}" 
+
+            <input class="govuk-checkboxes__input v-selector {{ answer.mutuallyExclusive ? 'e-button':'all-options' }}" 
                    id="{{ answer.id }}" name="uuid[]" type="checkbox"
                    value="{{ answer.id }}" aria-describedby="{{- answer.hint -}}" 
                    onclick="{{ answer.mutuallyExclusive ? 'exclude()':'unExlcusive()' }}">
