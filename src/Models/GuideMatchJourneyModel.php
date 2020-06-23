@@ -244,7 +244,11 @@ class GuideMatchJourneyModel
     }
 
 
-   
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function setLastJourneyAnswers()
     {
         if (!empty($this->lastJourneyAction['answers'])) {
@@ -307,25 +311,43 @@ class GuideMatchJourneyModel
         return $answers;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function getApiResponseType()
     {
         return  $this->apiResponseType;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param [type] $responseType
+     * @return void
+     */
     public function setApiResponseType($responseType)
     {
-        if ($responseType != 'question') {
-            $this->apiResponseType = GuideMatchResponseType::GuideMatchResponseAgreement;
-        } else {
-            $this->apiResponseType = GuideMatchResponseType::GuideMatchResponseQuestion;
-        }
+        $this->apiResponseType = $responseType;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param array $agreementData
+     * @return void
+     */
     private function setAgreementData(array $agreementData)
     {
         $this->agreementData = $agreementData;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function getAgreementData()
     {
         return $this->agreementData;
@@ -365,13 +387,15 @@ class GuideMatchJourneyModel
 
         $this->setApiResponseType($apiResponse['outcome']['outcomeType']);
         $this->setJourneyHistory($apiResponse['journeyHistory']);
-       
-        if ($this->apiResponseType != GuideMatchResponseType::GuideMatchResponseQuestion) {
-            $this->setAgreementData($apiResponse['outcome']['data']);
+
+        if ($this->apiResponseType != GuideMatchResponseType::GuideMatchResponseSupport) {
+            if (!empty($apiResponse['outcome']['data'])) {
+                $this->setAgreementData($apiResponse['outcome']['data']);
+                $this->handleApiResponse($apiResponse['outcome']['data']);
+            }
         }
     
         $this->setLastJourneyAnswers();
-        $this->handleApiResponse($apiResponse['outcome']['data']);
     }
 
 

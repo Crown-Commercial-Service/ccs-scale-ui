@@ -70,7 +70,7 @@ class ServiceAgreementsApi
         }
 
         $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lot}");
-
+       
         try {
             $content = $response->getContent();
             $content = $response->toArray();
@@ -78,6 +78,7 @@ class ServiceAgreementsApi
             return null;
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
+        //  dump($content);die('xx');
         return $content;
     }
 }

@@ -38,9 +38,6 @@ class GuideMatchAgreementModel
             if (empty($response)) {
                 continue;
             }
-
-            
-
             $this->countLots += !empty($response['lots']) ? count($response['lots']) : 0;
 
             $lotsTitle = '';

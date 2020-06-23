@@ -11,6 +11,7 @@ namespace App\Models;
 */
 class GuideMatchResponseType
 {
-    const GuideMatchResponseQuestion = 1 ;
-    const GuideMatchResponseAgreement = 2;
+    const GuideMatchResponseQuestion = 'question' ;
+    const GuideMatchResponseAgreement = 'agreement';
+    const GuideMatchResponseSupport = 'support';
 }
