@@ -5,42 +5,48 @@ namespace App\Models;
 
 class UserAnswers
 {
-    private $userAnswers;
-
-    public function __construct(array $userAnswers)
-    {
-        $this->userAnswers = $userAnswers;
-    }
-
+    
     /**
      * Format user anwers to be display on the journey result page
      *
      * @return array
      */
-    public function formatForView()
+    public function formatForView($userAnswers)
     {
+        // dump($userAnswers);die();
         $answersFormart = [];
-        $prevQuestionId = '';
-        foreach ($this->userAnswers as $answers) {
+        foreach ($userAnswers as $answers) {
             $nrAnswers = count($answers['answers']);
             $counter = 1;
             $answerTxt = '';
            
             foreach ($answers['answers'] as $answer) {
-                $answerTxt .= $counter < $nrAnswers ? $answer['answerText'] . ', ' : $answer['answerText'];
+                $answerTxt .= $counter < $nrAnswers ?
+                             $answer['answerText'] . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? "({$answer['answer']})" : ''). ', ' :
+                             $answer['answerText'].(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? "({$answer['answer']})":'');
                 $counter++;
             }
 
             $answersFormart[] = [
                 'question' => $answers['question']['text'],
                 'questionId' => $answers['question']['id'],
-                'prevQuestionId' => !empty($prevQuestionId) ? $prevQuestionId : $answers['question']['id'],
+                'prevQuestionId' =>  $answers['question']['id'],
                 'answerTxt' => $answerTxt,
                 'changeUrl' => '#'
             ];
-            $prevQuestionId = $answers['question']['id'];
         }
         return $answersFormart;
+    }
+
+    /**
+     * Check if an answer is an UUID
+     *
+     * @param [type] $answer
+     * @return void
+     */
+    private function checkIfTheAnswerIsId($answer)
+    {
+        return preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $answer);
     }
 
     /**
