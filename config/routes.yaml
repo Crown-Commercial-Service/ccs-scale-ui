@@ -14,7 +14,6 @@ landing_page:
 question_page:
   path: /guided-match/journey/{journeyId}/{journeyInstanceId}/{questionUuid}/{gPage}
   controller: App\Controller\GuideMatchJourneyController::journey
-  methods:  POST
   defaults:
     gPage: 0
 
