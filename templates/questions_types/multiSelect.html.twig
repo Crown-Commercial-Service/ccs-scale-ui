@@ -18,7 +18,7 @@
             <input class="govuk-checkboxes__input v-selector {{ answer.mutuallyExclusive ? 'e-button':'all-options' }}" 
             id="{{ answer.id }}" name="uuid[]" type="checkbox" {{checked}}
             value="{{ answer.id }}" aria-describedby="{{- answer.hint -}}" 
-            onclick="{{ answer.mutuallyExclusive ? 'exclude()':'unExlcusive()' }}">
+            onclick="{{ answer.mutuallyExclusive ? 'uncheckAll()':'uncheckMExclusive()' }}">
 
 
 
@@ -32,7 +32,7 @@
     <!-- <div class="govuk-checkboxes__item">
         <input class="govuk-checkboxes__input v-selector all-options" 
         id="{{ definedAnswers|last.id }}a"  type="checkbox"
-        onclick="unExlcusive();toggle(this)">
+        onclick="uncheckMExclusive();toggle(this)">
         <label class="govuk-label govuk-checkboxes__label" for="{{definedAnswers|last.id }}">check all</label>
     </div> -->
     <input type='hidden' name='form-type' value='multiselect'>

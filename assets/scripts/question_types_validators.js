@@ -1,3 +1,6 @@
+// Utilities
+// ==========
+
 // check if element has class
 function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
@@ -8,11 +11,37 @@ function isEmptyOrSpaces(str) {
     return str === null || str.match(/^ *$/) !== null;
 }
 
-// When no input is provided from the user this
-// blocks the continue button and displays errors 
+// Mutually exclusive checkbox  and select/unselect all checkbox logic
+// ====================================================================
+
+//checks and unchecks all checkboxes by presing checkbox x
+function toggle(x) {
+    var checkboxes = document.getElementsByClassName('all-options');
+    for(var checbox in checkboxes){
+        checkboxes[checbox].checked = x.checked;
+    }
+}
+
+//if you select the mutually exclusive checkbox all the other are unchecked
+function uncheckAll() {
+    var checkboxes = document.getElementsByClassName('all-options');
+    for(var checbox in checkboxes){
+        checkboxes[checbox].checked = false;
+    }
+}
+
+//if you select one of the inputs the mutually exclusive checkbox is unchecked
+function uncheckMExclusive() {
+    var checkbox = document.getElementsByClassName('e-button')[0];
+    checkbox.checked = false;
+}
+
+
+// When no input is provided from the user this function
+// blocks the continue button and displays errors.
 function validate() {
+
     // checkbox and radio buttons validation
-    // ======================================
     var isValid           = false;
     var formLayout        = document.getElementById('form-layout');
     var errorNoSelection  = document.getElementById('no-selection');
@@ -27,7 +56,6 @@ function validate() {
     }
 
     // conditional input validation logic
-    // ===================================
     var errorNoInput      = document.getElementById('no-input');
     var conditionalInputs = document.getElementsByClassName('conditional-input');
 
