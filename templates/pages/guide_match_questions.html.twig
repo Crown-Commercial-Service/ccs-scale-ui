@@ -46,7 +46,7 @@
 
                 <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy }}"
                       onsubmit="return validate()" name="question" method="post">
-                    <div class="govuk-form-group {{ (app.flashes('error')) ? 'govuk-form-group--error' }}" id="form-layout">
+                    <div class="govuk-form-group {{ errorMessage is defined ? 'govuk-form-group--error' }}" id="form-layout">
                         <fieldset class="govuk-fieldset">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 <h1 class="govuk-fieldset__heading">{{ text }}</h1>
@@ -60,6 +60,10 @@
                             {% include "/questions_types/#{type}.html.twig" %}
                         </fieldset>
                     </div>
+                    {% if  gPage >  1  and  journeyHistory is defined %}
+                        <input type='hidden' name='lastQuestionId' value="{{ lastQuestionId }}">
+                        <input type='hidden' name='journeyHistory' value="{{ journeyHistory }}">
+                    {% endif %}
                     <button class="govuk-button" data-module="govuk-button" type="submit">
                         Continue
                     </button>

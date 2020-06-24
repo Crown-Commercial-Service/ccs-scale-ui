@@ -62,8 +62,8 @@ class GuideMatchAgreementModel
     {
         foreach ($this->lostNumbers as $agreementId => $lots) {
             foreach ($lots as $lot) {
-                $response = $this->agreementApi->getLotDetails($agreementId, $lot);
 
+                $response = $this->agreementApi->getLotDetails($agreementId, $lot);
                 if (empty($response)) {
                     continue;
                 }
