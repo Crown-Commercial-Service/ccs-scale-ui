@@ -1,3 +1,6 @@
-<span id="changed-name-error" class="govuk-error-message" style="display: none">
-    <span class="govuk-visually-hidden">Error:</span> You need to select something.
+<span id="changed-name-error" class="govuk-error-message" style="display:{{ errorMessage is defined ? 'block' : 'none' }}">
+    <span class="govuk-visually-hidden">Error:</span>
+    {% if  errorMessage is defined %}
+        {{ errorMessage }}
+    {% endif %}
 </span>

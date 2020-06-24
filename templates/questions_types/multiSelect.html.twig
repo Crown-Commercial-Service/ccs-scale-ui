@@ -2,7 +2,7 @@
     {% for answer in definedAnswers %}
 
         {% set checked = '' %}
-        {% if answer.id  in userAnswers|keys %}
+        {% if answer.text  in userAnswers|keys %}
             {% set checked = 'checked' %}
         {% endif %}
 
@@ -14,7 +14,7 @@
         <div class="govuk-checkboxes__item">
             
             <input class="govuk-checkboxes__input {{ answer.mutuallyExclusive ? 'e-button':'v-selector' }}" 
-                   id="{{ answer.id }}" name="uuid[]" type="checkbox"
+                   id="{{ answer.id }}" name="uuid[]" type="checkbox" {{checked}}
                    value="{{ answer.id }}" aria-describedby="{{- answer.hint -}}" 
                    onclick="{{ answer.mutuallyExclusive ? 'exclude()':'unExlcusive()' }}">
 

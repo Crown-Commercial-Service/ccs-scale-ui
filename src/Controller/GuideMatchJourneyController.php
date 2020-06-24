@@ -13,42 +13,75 @@ use App\Models\GuideMatchResponseType;
 use App\GuideMatchApi\GuideMatchJourneyApi;
 use App\Models\Encrypt;
 use App\Models\UserAnswersFormType\UserAnswerFormatFactory;
+use App\Models\QuestionsValidators\ValidatorsFactory;
+use Exception;
 
 class GuideMatchJourneyController extends AbstractController
 {
     public function journey(Request $request, $journeyId, $journeyInstanceId, $questionUuid, $gPage)
     {
         $searchBy = $request->query->get('q');
+        $error = $request->query->get('error');
+
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
 
         $userQuestionResponse = [];
+        $model = new GuideMatchJourneyModel($api);
 
         //get POST data
         $postData = $request->request->all();
+        $formType = !empty($postData['form-type']) ? $postData['form-type'] : '';
+
+        if(empty($formType)){
+            throw new Exception('Form type is missing');
+        }
+
+        // validate user data
+        $validate = $this->validateUserAnswer($formType,$postData);
+
+ 
+        if (!$validate->isValid()) {
+        
+            $this->addFlash( 'error', '' );
+                
+            $lastQuestionId =  !empty($postData['lastQuestionId']) ? $postData['lastQuestionId'] : '' ;
+            $journeyHistory = !empty($postData['journeyHistory']) ? $postData['journeyHistory'] : '';
+
+            // get question
+            $model->getQuestionDetails($journeyInstanceId, $questionUuid);
+           
+            return $this->render('pages/guide_match_questions.html.twig', [
+                'searchBy' => $searchBy,
+                'journeyId' => $journeyId,
+                'journeyInstanceId' => $journeyInstanceId,
+                'definedAnswers' => $model->getDefinedAnswers(),
+                'userAnswers' => [],
+                'uuid' => $model->getUuid(),
+                'text' => $model->getText(),
+                'type' => $model->getType(),
+                'hint' => $model->getHint(),
+                'lastQuestionId' =>  $lastQuestionId,
+                'journeyHistory' => $journeyHistory,
+                'gPage' => $gPage,
+                'lastPage' => $gPage-1,
+                'errorMessage' => $validate->getErrorMessage()
+            ]);         
+          }
 
         //get question form type to know, used to know how the answer will be handle to be send to API
         $formType = $postData['form-type'];
+
+        if(empty($formType)){
+            throw new Exception('Invalid request');
+        }
 
         $formatAnswerObject = UserAnswerFormatFactory::getFormTypeObject($formType, $postData);
 
         //get the answer correctly formeted to be send to API
         $userQuestionResponse = $formatAnswerObject->getAnswersFormated();
-
-        if (empty($userQuestionResponse)) {
-
-                /*
-            TBD - Add server Validation
-            $this->addFlash(
-                'error',
-                'You need to select something.'
-            );
-            // return $this->redirect($request->server->get('HTTP_REFERER'));
-            */
-        }
        
        
-        $model = new GuideMatchJourneyModel($api);
         $model->getDecisionTree($journeyInstanceId, $questionUuid, $userQuestionResponse);
 
         $apiResponseType = $model->getApiResponseType();
@@ -122,5 +155,13 @@ class GuideMatchJourneyController extends AbstractController
             'gPage' => $nextPage,
             'lastPage' => $lastPage
         ]);
+    }
+
+    private function validateUserAnswer(string $formType, array $userAnswer){
+
+        return ValidatorsFactory::getValidator($formType,$userAnswer);
+
+        
+       
     }
 }
