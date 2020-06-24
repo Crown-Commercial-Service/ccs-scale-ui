@@ -1,4 +1,3 @@
-
 // check if element has class
 function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
@@ -9,36 +8,46 @@ function isEmptyOrSpaces(str) {
     return str === null || str.match(/^ *$/) !== null;
 }
 
+// When no input is provided from the user this
+// blocks the continue button and displays errors 
 function validate() {
-    var returnValue  = false;
-    var formLayout   = document.getElementById('form-layout');
-    var err          = document.getElementById('no-selection');
-    var errInput     = document.getElementById('no-input');
-    var inputs       = document.getElementsByClassName('conditional-input');
+    // checkbox and radio buttons validation
+    // ======================================
+    var isValid           = false;
+    var formLayout        = document.getElementById('form-layout');
+    var errorNoSelection  = document.getElementById('no-selection');
 
     for (var i = 0; i < document.getElementsByClassName('v-selector').length; i++) {
-        if (document.getElementsByClassName('v-selector')[i].checked) returnValue = true;
+        if (document.getElementsByClassName('v-selector')[i].checked) isValid = true;
     }
 
-    if (returnValue === false) {
+    if (isValid === false) {
         formLayout.classList.add('govuk-form-group--error');
-        err.style.display = 'block';
+        errorNoSelection.style.display = 'block';
     }
 
-    // I check all conditional inputs if one is not hidden
-    for(var i in inputs) {
+    // conditional input validation logic
+    // ===================================
+    var errorNoInput      = document.getElementById('no-input');
+    var conditionalInputs = document.getElementsByClassName('conditional-input');
+
+    // I check all conditional inputs,
+    // if one is not hidden we check if it has a value
+    for(var i in conditionalInputs) {
         if (Number.isInteger(Number(i)) == true) {
-            if (!hasClass(inputs[i], 'govuk-radios__conditional--hidden')) {
-                if (isEmptyOrSpaces(inputs[i].firstElementChild.childNodes[5].value)) {
-                    returnValue = false;
-                    inputs[i].firstElementChild.childNodes[5].classList.add('govuk-input--error');
+            if (!hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
+
+                // if it does not have a value we throw errors and block button
+                if (isEmptyOrSpaces(conditionalInputs[i].firstElementChild.childNodes[7].value)) {
+                    isValid = false;
+                    conditionalInputs[i].firstElementChild.childNodes[7].classList.add('govuk-input--error');
                     formLayout.classList.add('govuk-form-group--error');
-                    inputs[i].style.borderLeftColor ='#b10e1e';
-                    errInput.style.display = 'block';
+                    conditionalInputs[i].style.borderLeftColor ='#b10e1e';
+                    errorNoInput.style.display = 'block';
                 }
             }    
         }
     }
 
-    return returnValue;
+    return isValid;
 }

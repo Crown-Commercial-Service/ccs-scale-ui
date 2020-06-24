@@ -25,6 +25,9 @@
                     {% if answer.conditionalInput.hint is defined  and answer.conditionalInput.hint is not empty %}
                         <span class="govuk-hint govuk-radios__hint">{{- answer.conditionalInput.hint -}}</span>
                     {% endif %}
+                    <span id="no-input" class="govuk-error-message" style="display: none">
+                        <span class="govuk-visually-hidden">Error:</span> Please provide Input.
+                    </span>
                     <input class="govuk-input govuk-!-width-one-third" id="input-{{ answer.id }}"
                            name="{{ answer.id }}"
                            value = "{{ answerValue }}"
