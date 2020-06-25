@@ -92,7 +92,7 @@ class GuideMatchJourneyModel
         if (!empty($apiResponse['journeyInstanceId'])) {
             $this->setJourneyInstanceId($apiResponse['journeyInstanceId']);
         }
-        dump($apiResponse);die();
+      //  dump($apiResponse);die();
 
         $this->handleApiResponse($apiResponse['questions']);
     }
