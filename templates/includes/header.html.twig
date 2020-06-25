@@ -26,48 +26,57 @@
 
             {% block mainnavigation %}
                 <nav class="global-navigation" data-toggle="nav" data-app-uri="http://localhost:8001/guided-match/example" data-app-pathinfo="/guided-match/example" aria-hidden="false">
+                    {% if wordpress_api != '' %}
+                        {{ render(controller(
+                            'App\\Controller\\MenuController::menu',
+                            { 'id': 22, 'templatePath': 'menus/secondary-menu.html.twig' }
+                        )) }}
 
-                    <ul class="nav-list nav-list--secondary">
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/about-ccs/">About CCS</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/contact">Contact CCS</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/news">News</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/events">Events</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/help-and-support/">Help and support</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="tel:03454102222">Helpline: 0345 410 2222</a>
-                        </li>
-                    </ul>
-
-
-                    <ul class="nav-list nav-list--primary">
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/agreements">Search frameworks</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/suppliers">Search suppliers</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/agreements/upcoming">Upcoming deals</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/products-and-services/">Products and Services</a>
-                        </li>
-                        <li class="nav-list__item">
-                            <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/products-and-services/sectors">Sectors</a>
-                        </li>
-                    </ul>
+                        {{ render(controller(
+                            'App\\Controller\\MenuController::menu',
+                            { 'id': 21, 'templatePath': 'menus/primary-menu.html.twig' }
+                        )) }}
+                    {% else %}
+                        <ul class="nav-list nav-list--secondary">
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/about-ccs/">About CCS</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/contact">Contact CCS</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/news">News</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/events">Events</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/help-and-support/">Help and support</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="tel:03454102222">Helpline: 0345 410 2222</a>
+                            </li>
+                        </ul>
 
 
+                        <ul class="nav-list nav-list--primary">
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/agreements">Search frameworks</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/suppliers">Search suppliers</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/agreements/upcoming">Upcoming deals</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/products-and-services/">Products and Services</a>
+                            </li>
+                            <li class="nav-list__item">
+                                <a class="nav-list__link  " href="https://www.crowncommercial.gov.uk/products-and-services/sectors">Sectors</a>
+                            </li>
+                        </ul>
+                    {% endif %}
                 </nav>
 
             {% endblock %}

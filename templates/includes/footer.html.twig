@@ -24,116 +24,130 @@
             </div>
 
             <div class="govuk-footer__section">
-                <h2 class="govuk-footer__heading govuk-!-font-size-22">Sitemap</h2>
-                <ul class="govuk-list govuk-!-font-size-18">
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/agreements">Search frameworks</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/suppliers">Search suppliers</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/agreements/upcoming">Upcoming deals</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/help-and-support/how-to-buy/">Buy through CCS</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/help-and-support/">Help and support</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/about-ccs/">About CCS</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/contact">Contact us</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/news">News</a>
-                    </li>
-                </ul>
+                {% if true %}
+                    {{ render(controller(
+                        'App\\Controller\\MenuController::menu',
+                        { 'id': 23, 'templatePath': 'menus/footer-menu.html.twig' }
+                    )) }}
+                {% else %}
+                    <h2 class="govuk-footer__heading govuk-!-font-size-22">Sitemap</h2>
+                    <ul class="govuk-list govuk-!-font-size-18">
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/agreements">Search frameworks</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/suppliers">Search suppliers</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/agreements/upcoming">Upcoming deals</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/help-and-support/how-to-buy/">Buy through CCS</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/help-and-support/">Help and support</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/about-ccs/">About CCS</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/contact">Contact us</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/news">News</a>
+                        </li>
+                    </ul>
+                {% endif %}
             </div>
 
             <div class="govuk-footer__section">
-
-                <h2 class="govuk-footer__heading govuk-!-font-size-22">Quick links</h2>
-
-                <ul class="govuk-list govuk-!-font-size-18">
-                    <li>
-                        <a class="govuk-footer__link" href="https://purchasingplatform.crowncommercial.gov.uk/mp-welcome">Purchasing platform</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.digitalmarketplace.service.gov.uk/">Digital marketplace</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://buyers.procserveonline.com/admin/login/auth?marketplace=bootstrap-gem">eMarketplace</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://ccsheretohelp.uk/products-services/buildings/energy/">Energy</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://fleetportal.crowncommercial.gov.uk/login.mth">Fleet</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://travel.crowncommercial.gov.uk/">Travel</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.gov.uk/contracts-finder">Contracts Finder</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/esourcing-register">eSourcing</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/esourcing-training">Register for eSourcing training</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="http://ted.europa.eu/TED/main/HomePage.do">Tenders Electronic Daily (TED)</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.reportmi.crowncommercial.gov.uk/">Submit your MI returns</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://status.crowncommercial.gov.uk/">Service Status</a>
-                    </li>
-                </ul>
-
-
+                {% if true %}
+                    {{ render(controller(
+                        'App\\Controller\\MenuController::menu',
+                        { 'id': 24, 'templatePath': 'menus/footer-menu.html.twig' }
+                    )) }}
+                {% else %}
+                    <h2 class="govuk-footer__heading govuk-!-font-size-22">Quick links</h2>
+                    <ul class="govuk-list govuk-!-font-size-18">
+                        <li>
+                            <a class="govuk-footer__link" href="https://purchasingplatform.crowncommercial.gov.uk/mp-welcome">Purchasing platform</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.digitalmarketplace.service.gov.uk/">Digital marketplace</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://buyers.procserveonline.com/admin/login/auth?marketplace=bootstrap-gem">eMarketplace</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://ccsheretohelp.uk/products-services/buildings/energy/">Energy</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://fleetportal.crowncommercial.gov.uk/login.mth">Fleet</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://travel.crowncommercial.gov.uk/">Travel</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.gov.uk/contracts-finder">Contracts Finder</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/esourcing-register">eSourcing</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/esourcing-training">Register for eSourcing training</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="http://ted.europa.eu/TED/main/HomePage.do">Tenders Electronic Daily (TED)</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.reportmi.crowncommercial.gov.uk/">Submit your MI returns</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://status.crowncommercial.gov.uk/">Service Status</a>
+                        </li>
+                    </ul>
+                {% endif %}
             </div>
 
             <div class="govuk-footer__section">
+                {% if true %}
+                    {{ render(controller(
+                        'App\\Controller\\MenuController::menu',
+                        { 'id': 25, 'templatePath': 'menus/footer-menu.html.twig' }
+                    )) }}
+                {% else %}
+                    <h2 class="govuk-footer__heading govuk-!-font-size-22">About and contact</h2>
 
-                <h2 class="govuk-footer__heading govuk-!-font-size-22">About and contact</h2>
-
-                <ul class="govuk-list govuk-!-font-size-18">
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/about-ccs/">About CCS</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/contact">Contact CCS</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/make-a-complaint/">Make a complaint</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.gov.uk/government/organisations/crown-commercial-service/about/recruitment">Careers</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/terms-and-conditions/">Terms and conditions</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/cookie-policy/">Cookie policy</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.gov.uk/government/organisations/crown-commercial-service">Corporate information</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.gov.uk/government/publications/crown-commercial-service-privacy-notice">Privacy notice</a>
-                    </li>
-                    <li>
-                        <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/accessibility-statement">Accessibility</a>
-                    </li>
-                </ul>
-
-
+                    <ul class="govuk-list govuk-!-font-size-18">
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/about-ccs/">About CCS</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/contact">Contact CCS</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/make-a-complaint/">Make a complaint</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.gov.uk/government/organisations/crown-commercial-service/about/recruitment">Careers</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/terms-and-conditions/">Terms and conditions</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/cookie-policy/">Cookie policy</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.gov.uk/government/organisations/crown-commercial-service">Corporate information</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.gov.uk/government/publications/crown-commercial-service-privacy-notice">Privacy notice</a>
+                        </li>
+                        <li>
+                            <a class="govuk-footer__link" href="https://www.crowncommercial.gov.uk/accessibility-statement">Accessibility</a>
+                        </li>
+                    </ul>
+                {% endif %}
             </div>
 
         </div>
