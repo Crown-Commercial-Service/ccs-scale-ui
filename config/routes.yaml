@@ -6,6 +6,10 @@ test-wp-curl:
   path: /wp-curl
   controller: App\Controller\TestWordpressController::curl
 
+test-wp-url:
+  path: /wp-url
+  controller: App\Controller\TestWordpressController::testApiUrl
+  
 # GM PAGES
 landing_page:
   path: /guided-match/landing-page
