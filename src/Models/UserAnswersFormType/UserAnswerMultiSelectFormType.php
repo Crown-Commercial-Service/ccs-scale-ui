@@ -29,7 +29,7 @@ class UserAnswerMultiSelectFormType implements UserAnswerFormTypeInteface
                         $answer = !empty($userAnswer[$questionId]) ? $userAnswer[$questionId] : null;
                         $this->formatedAnswers[] = [
                             'id' => $questionId,
-                            'value' => $answer
+                            'value' => !empty($answer) ?  htmlentities($answer) : $answer
                         ];
                     }
                 }

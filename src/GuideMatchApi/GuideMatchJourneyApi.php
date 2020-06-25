@@ -33,6 +33,9 @@ class GuideMatchJourneyApi
         }
      
         $response = $this->httpClient->request('GET', $this->baseApiUrl."/scale/decision-tree/journeys", [
+            'headers' => [
+                'x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY'),
+            ],
             'query' => [
                 'q' => $searchBy,
             ]
@@ -53,8 +56,9 @@ class GuideMatchJourneyApi
         if (empty($searchBy)) {
             throw new Exception('Invalid arguments of method');
         }
-
+//dd(getenv('GUIDED_MATCH_SERVICE_API_KEY'));
         $response = $this->httpClient->request('POST', $this->baseApiUrl."/scale/guided-match-service/journeys/{$journeyId}", [
+            'headers' => ['x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY')],
             'json' => ['searchTerm' => $searchBy]
         ]);
 
@@ -76,7 +80,11 @@ class GuideMatchJourneyApi
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}");
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}",[
+            'headers' => [
+                'x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY'),
+            ],
+        ]);
        
         return $this->handleApiResponse($response);
     }
@@ -109,6 +117,9 @@ class GuideMatchJourneyApi
         ];
     
         $response = $this->httpClient->request('POST', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}", [
+            'headers' => [
+                'x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY'),
+            ],
             'json' => [$data]
         ]);
 
@@ -128,7 +139,11 @@ class GuideMatchJourneyApi
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}");
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}",[
+            'headers' => [
+                'x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY'),
+            ],
+        ]);
 
         try {
             $content = $response->getContent();
@@ -156,7 +171,11 @@ class GuideMatchJourneyApi
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}");
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}",[
+            'headers' => [
+                'x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY'),
+            ],
+        ]);
 
         return $this->handleApiResponse($response);
     }
