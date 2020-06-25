@@ -15,7 +15,7 @@ class TestWordpressController extends AbstractController
         echo file_get_contents('https://api.ipify.org?format=json');
         $q = $request->query->get('q');
         if (!empty($q)) {
-            $url = ($q == 1) ? 'https://webdev-cms.crowncommercial.gov.uk/wp-json': 'https://webdev-cms.crowncommercial.gov.uk';
+            $url = ($q == 1) ? 'https://webdev-cms.crowncommercial.gov.uk/wp-json/': 'https://webdev-cms.crowncommercial.gov.uk';
 
             $api = new Wordpress($url);
             $id = 22;

@@ -26,7 +26,7 @@
 
             {% block mainnavigation %}
                 <nav class="global-navigation" data-toggle="nav" data-app-uri="http://localhost:8001/guided-match/example" data-app-pathinfo="/guided-match/example" aria-hidden="false">
-                    {% if false %}
+                    {% if wordpress_api != '' %}
                         {{ render(controller(
                             'App\\Controller\\MenuController::menu',
                             { 'id': 22, 'templatePath': 'menus/secondary-menu.html.twig' }
