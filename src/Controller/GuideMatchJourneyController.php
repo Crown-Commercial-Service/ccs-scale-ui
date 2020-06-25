@@ -21,7 +21,6 @@ class GuideMatchJourneyController extends AbstractController
     public function journey(Request $request, $journeyId, $journeyInstanceId, $questionUuid, $gPage)
     {
         $searchBy = $request->query->get('q');
-        $error = $request->query->get('error');
 
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
@@ -92,7 +91,7 @@ class GuideMatchJourneyController extends AbstractController
             $apiResponseType == GuideMatchResponseType::GuideMatchResponseSupport ||
             $apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement
         ) {
-            return $this->redirectToResultsPage($journeyId, $journeyInstanceId);
+            return $this->redirectToResultsPage($model,$journeyId, $journeyInstanceId);
         }
 
         // go to the next question of Journey
@@ -108,11 +107,23 @@ class GuideMatchJourneyController extends AbstractController
      * @param GuideMatchJourneyModel $model
      * @return void
      */
-    private function redirectToResultsPage(string $journeyId, string $journeyInstanceId)
+    private function redirectToResultsPage(GuideMatchJourneyModel $model, string $journeyId, string $journeyInstanceId)
     {
+
+        $agreementData = $model->getAgreementData();
+       
+        if(!empty($agreementData)){
+            
+            $agreementDataJson = json_encode($agreementData);
+            $encrypt = new Encrypt($agreementDataJson);
+            $agreementDataEncoded =  urlencode($encrypt->getEncryptedString());
+
+        }
+
         return  $this->redirectToRoute("journey-result", [
             'journeyId' => $journeyId,
             'journeyInstanceId'=>$journeyInstanceId,
+            'agreements' => $agreementDataEncoded
         ]);
     }
 

@@ -53,5 +53,5 @@ back-to-previous:
     gPage: 0
 
 journey-result:
-  path: /guided-match/result/{journeyId}/{journeyInstanceId}
+  path: /guided-match/result/{journeyId}/{journeyInstanceId}/{agreements}
   controller: App\Controller\GuideMatchJourneyResultController::journeyResult

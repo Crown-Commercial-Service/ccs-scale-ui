@@ -16,11 +16,10 @@ class GuideMatchAgreementModel
     private $lotsData = [];
     private $agreementsNames = [];
 
-    public function __construct(ServiceAgreementsApi $agreementApi, array $agreementsIds)
+    public function __construct(ServiceAgreementsApi $agreementApi, array $agreementsData)
     {
         $this->agreementApi = $agreementApi;
-        $this->setAgreements($agreementsIds);
-        $this->setLotsData();
+        $this->setAgreements($agreementsData);
     }
 
 
@@ -30,48 +29,42 @@ class GuideMatchAgreementModel
     }
 
 
-    private function setAgreements(array $agreementsIds)
+    private function setAgreements(array $agreementsData)
     {
-        foreach ($agreementsIds as $agrementId) {
-            $response = $this->agreementApi->getServiceAgreement($agrementId['number']);
-            
-            if (empty($response)) {
+
+        dump($agreementsData);
+     //   dd($agreementsData);die;
+        foreach ($agreementsData as $agrement) {
+            $agreementDetail = $this->agreementApi->getServiceAgreement($agrement['number']);
+         
+            if (empty($agreementDetail)) {
                 continue;
             }
-            $this->countLots += !empty($response['lots']) ? count($response['lots']) : 0;
-
+            $this->countLots += !empty($agrement['lots']) ? count($agrement['lots']) : 0;
             $lotsTitle = '';
-            if (!empty($response['lots'])) {
-                foreach ($response['lots'] as $lot) {
-                    $lotsTitle .= !empty($lotsTitle) ? ' or ' . $lot['number'] .': '.$lot['name'] : $lot['number'] .': '.$lot['name'];
-                    $this->lostNumbers[$agrementId['number']][] = $lot['number'];
+           
+            if (!empty($agrement['lots'])) {
+                $nrAgreementSlots = count($agrement['lots']);
+                foreach ($agrement['lots'] as $lot) { 
+                   $lotIndex = $nrAgreementSlots > 1 ? $lot['number']-1 : 0;
+                    $lotNumber = !empty($agreementDetail['lots'][$lotIndex]['number']) ? $agreementDetail['lots'][$lotIndex]['number'] : null;
+                    $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], $lotNumber);
+                    $this->lotsData[$agrement['number']][$lotNumber] =  $lotDetails;                   
+                    $lotsTitle .= !empty($lotsTitle) ? ' or ' . $lotDetails['number'] .': '.$lotDetails['name'] : $lotDetails['number'] .': '.$lotDetails['name'];
                 }
             }
 
             $this->agreementsNames[] = [
-                'name' => $response['name'],
-                'number' => $agrementId['number'],
+                'name' => $agreementDetail['name'],
+                'number' => $agrement['number'],
                 'lotsTitle' => $lotsTitle
                 ];
-            $response['lotsTitle'] = $lotsTitle;
-            $this->agreements[$agrementId['number']] =  $response;
+            $agreementDetail['lotsTitle'] = $lotsTitle;
+            $this->agreements[$agrement['number']] =  $agreementDetail;
         }
     }
 
-    private function setLotsData()
-    {
-        foreach ($this->lostNumbers as $agreementId => $lots) {
-            foreach ($lots as $lot) {
-
-                $response = $this->agreementApi->getLotDetails($agreementId, $lot);
-                if (empty($response)) {
-                    continue;
-                }
-
-                $this->lotsData[$agreementId][$response['number']] =  $response;
-            }
-        }
-    }
+   
 
     public function getLotsData()
     {
