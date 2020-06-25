@@ -151,7 +151,7 @@ class GuideMatchJourneyApi
         } catch (Exception $e) {
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
-
+//dump($content);die();
         return $content;
     }
     
