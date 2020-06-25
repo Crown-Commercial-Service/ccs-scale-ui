@@ -37,7 +37,7 @@ class GuideMatchJourneyController extends AbstractController
             throw new Exception('Form type is missing');
         }
 
-        // validate user data
+        // Validate user data TBD: for the moment is validate only for empty response
         $validate = $this->validateUserAnswer($formType,$postData);
 
  

@@ -8,7 +8,7 @@ class ValidateMultipleCheckboxes extends AbstractValidators{
 
     
     /**
-     * validate user answer for a checkboxes list
+     * Validate user answer for a checkboxes list
      *
      * @return void
      */

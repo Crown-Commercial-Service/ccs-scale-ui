@@ -92,6 +92,7 @@ class GuideMatchJourneyModel
         if (!empty($apiResponse['journeyInstanceId'])) {
             $this->setJourneyInstanceId($apiResponse['journeyInstanceId']);
         }
+        dump($apiResponse);die();
 
         $this->handleApiResponse($apiResponse['questions']);
     }
@@ -384,7 +385,6 @@ class GuideMatchJourneyModel
         if (empty($apiResponse)) {
             throw new Exception('Error API response');
         }
-
         $this->setApiResponseType($apiResponse['outcome']['outcomeType']);
         $this->setJourneyHistory($apiResponse['journeyHistory']);
 
@@ -398,7 +398,11 @@ class GuideMatchJourneyModel
         $this->setLastJourneyAnswers();
     }
 
-
+    /**
+     * Order predefined answers 
+     *
+     * @return array
+     */
     private function orderAnswerDefinitions()
     {
         usort($this->definedAnswers, function ($a, $b) {
