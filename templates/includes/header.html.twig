@@ -25,9 +25,8 @@
             </button>
 
             {% block mainnavigation %}
-            {{dump(wordpress_api)}}
                 <nav class="global-navigation" data-toggle="nav" data-app-uri="http://localhost:8001/guided-match/example" data-app-pathinfo="/guided-match/example" aria-hidden="false">
-                    {% if wordpress_api != '' %}
+                    {% if false %}
                         {{ render(controller(
                             'App\\Controller\\MenuController::menu',
                             { 'id': 22, 'templatePath': 'menus/secondary-menu.html.twig' }
