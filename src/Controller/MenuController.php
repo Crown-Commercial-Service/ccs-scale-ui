@@ -37,7 +37,7 @@ class MenuController extends AbstractController
      * @param string $currentPath
      * @return Response
      */
-    public function menu(int $id, string $currentPath, string $templatePath = 'menus/default-menu.html.twig')
+    public function menu(int $id, string $templatePath = 'menus/default-menu.html.twig')
     {
         $id = (int) filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 
@@ -46,21 +46,9 @@ class MenuController extends AbstractController
         if (empty($menu)) {
             return new Response();
         }
-
-        $cmsBaseUrl = getenv('APP_CMS_BASE_URL');
-        $appBaseUrl = getenv('APP_BASE_URL');
-
-        if (empty($cmsBaseUrl) || empty($appBaseUrl)) {
-            throw new HttpException(500, 'You must set APP_CMS_BASE_URL and APP_BASE_URL environment variables in your .env or .env.local');
-        }
-
-        $menu->setBaseUrls(getenv('APP_CMS_BASE_URL'), getenv('APP_BASE_URL'));
-
-        $menu->setActiveItems($currentPath);
-
+        
         return $this->render($templatePath, [
             'menu' => $menu,
-            'currentPath' => $currentPath,
         ]);
     }
 }
