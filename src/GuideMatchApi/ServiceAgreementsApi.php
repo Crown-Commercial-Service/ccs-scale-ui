@@ -51,7 +51,11 @@ class ServiceAgreementsApi
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/updates");
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/updates",[
+            'headers' => [
+                'x-api-key' => getenv('AGREEMENTS_SERVICE_API_KEY'),
+            ],
+        ]);
 
         try {
             $content = $response->getContent();
@@ -69,7 +73,11 @@ class ServiceAgreementsApi
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lot}");
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lot}",[
+            'headers' => [
+                'x-api-key' => getenv('AGREEMENTS_SERVICE_API_KEY'),
+            ],
+        ]);
        
         try {
             $content = $response->getContent();
