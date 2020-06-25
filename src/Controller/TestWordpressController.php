@@ -32,7 +32,7 @@ class TestWordpressController extends AbstractController
         $q = $request->query->get('q');
         if (!empty($q)) {
             $client = HttpClient::create();
-            $url = ($q == 1) ? 'https://webdev-cms.crowncommercial.gov.uk': 'https://webdev-cms.crowncommercial.gov.uk/wp-json';
+            $url = ($q == 1) ? 'https://webdev-cms.crowncommercial.gov.uk/wp-json/wp-api-menus/v2/menus/22': 'https://webdev-cms.crowncommercial.gov.uk/wp-json';
             $response = $client->request('GET', $url);
             try {
                 $content = $response->getHeaders();
