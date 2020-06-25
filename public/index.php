@@ -32,6 +32,14 @@ if ('prod' === $env) {
 }
 
 if(!empty($_GET['debug'])){
+    echo 'AGREEMENTS_SERVICE_API_KEY';
+    echo '</br>';
+    var_dump(getenv('AGREEMENTS_SERVICE_API_KEY'));
+    echo 'GUIDED_MATCH_SERVICE_API_KEY';
+    echo '</br>';
+    var_dump(getenv('GUIDED_MATCH_SERVICE_API_KEY'));
+    echo 'GUIDED_MATCH_SERVICE_ROOT_URL';
+    echo '</br>';
     var_dump(getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
     dump($_SERVER);die();
 }

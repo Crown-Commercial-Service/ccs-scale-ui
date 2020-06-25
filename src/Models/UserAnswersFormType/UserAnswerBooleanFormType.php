@@ -36,7 +36,7 @@ class UserAnswerBooleanFormType implements UserAnswerFormTypeInteface
 
             $this->formatedAnswers[] = [
                 'id' => $id,
-                'value' => $answer
+                'value' =>!empty($answer) ? htmlentities($answer) : $answer
             ];
         }
     }
