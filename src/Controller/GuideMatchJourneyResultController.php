@@ -66,7 +66,7 @@ class GuideMatchJourneyResultController extends AbstractController
         $agrementModel = new GuideMatchAgreementModel($agreementsApi, $agreementsData);
         $frameworks = $agrementModel->getAgreements();
         $lots = $agrementModel->getLotsData();
-//dd($lots);die();
+        //dd($lots);die();
         return $this->render('pages/result_page.html.twig', [
             'searchBy' => $searchBy,
             'historyAnswered' => $userAnswersFormatedForView,

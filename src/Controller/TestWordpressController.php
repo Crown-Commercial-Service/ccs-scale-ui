@@ -47,6 +47,7 @@ class TestWordpressController extends AbstractController
 
     public function testApiUrl()
     {
-        echo getenv('APP_API_BASE_URL');die;
+        echo getenv('APP_API_BASE_URL');
+        die;
     }
 }

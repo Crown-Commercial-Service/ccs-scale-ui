@@ -397,7 +397,7 @@ class GuideMatchJourneyModel
     }
 
     /**
-     * Order predefined answers 
+     * Order predefined answers
      *
      * @return array
      */
