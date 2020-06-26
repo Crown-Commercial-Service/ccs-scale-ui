@@ -56,7 +56,6 @@ class GuideMatchJourneyApi
         if (empty($searchBy)) {
             throw new Exception('Invalid arguments of method');
         }
-//dd(getenv('GUIDED_MATCH_SERVICE_API_KEY'));
         $response = $this->httpClient->request('POST', $this->baseApiUrl."/scale/guided-match-service/journeys/{$journeyId}", [
             'headers' => ['x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY')],
             'json' => ['searchTerm' => $searchBy]
@@ -151,7 +150,6 @@ class GuideMatchJourneyApi
         } catch (Exception $e) {
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
-//dump($content);die();
         return $content;
     }
     

@@ -13,7 +13,6 @@ class UserAnswers
      */
     public function formatForView($userAnswers)
     {
-        // dump($userAnswers);die();
         $answersFormart = [];
         foreach ($userAnswers as $answers) {
             $nrAnswers = count($answers['answers']);
