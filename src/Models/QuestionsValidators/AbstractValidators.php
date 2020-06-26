@@ -1,10 +1,10 @@
-<?php 
+<?php
 declare(strict_types=1);
 
 namespace App\Models\QuestionsValidators;
 
-abstract class AbstractValidators{
-
+abstract class AbstractValidators
+{
     protected $userAnswer;
     protected $isValid;
     protected $errorMessage;
@@ -20,7 +20,8 @@ abstract class AbstractValidators{
      *
      * @return boolean
      */
-    public function isValid(){
+    public function isValid()
+    {
         return $this->isValid;
     }
 
@@ -29,11 +30,11 @@ abstract class AbstractValidators{
      *
      * @return string
      */
-    public function getErrorMessage(){
+    public function getErrorMessage()
+    {
         return $this->errorMessage;
-;
+        ;
     }
 
     abstract public function validate();
 }
-?>

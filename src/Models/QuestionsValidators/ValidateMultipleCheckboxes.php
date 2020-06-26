@@ -1,10 +1,12 @@
-<?php 
+<?php
 declare(strict_types=1);
 
 namespace App\Models\QuestionsValidators;
+
 use App\Models\QuestionsValidators\AbstractValidators;
 
-class ValidateMultipleCheckboxes extends AbstractValidators{
+class ValidateMultipleCheckboxes extends AbstractValidators
+{
 
     
     /**
@@ -13,18 +15,13 @@ class ValidateMultipleCheckboxes extends AbstractValidators{
      *
      * @return void
      */
-    public function validate(){
-        if(!empty($this->userAnswer['uuid'])){
-
+    public function validate()
+    {
+        if (!empty($this->userAnswer['uuid'])) {
             $this->isValid = true;
-
-        }else{
-
+        } else {
             $this->isValid = false;
             $this->errorMessage = ErrorMessages::EMPTY_USER_ANSWER;
         }
-        
     }
 }
-
-?>
