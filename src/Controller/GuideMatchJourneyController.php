@@ -109,6 +109,7 @@ class GuideMatchJourneyController extends AbstractController
     private function redirectToResultsPage(GuideMatchJourneyModel $model, string $journeyId, string $journeyInstanceId)
     {
         $agreementData = $model->getAgreementData();
+        $agreementDataEncoded = '';
        
         if (!empty($agreementData)) {
             $agreementDataJson = json_encode($agreementData);
