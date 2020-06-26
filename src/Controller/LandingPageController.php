@@ -13,7 +13,7 @@ class LandingPageController extends AbstractController
     public function landingPage(Request $request)
     {
         $q = $request->query->get('q');
-        
+      
        
         if ($q == 'linen') {
             $journeyId = 'b87a0636-654e-11ea-bc55-0242ac130003';

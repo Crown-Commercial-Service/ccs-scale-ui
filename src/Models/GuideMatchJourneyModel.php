@@ -29,8 +29,6 @@ class GuideMatchJourneyModel
 
     private $journeyHistory;
 
-    // private $lastJourneyQuestionAnswers = [];
-
     private $lastJourneyAction = [];
 
     private $apiResponseType;
@@ -292,7 +290,7 @@ class GuideMatchJourneyModel
     public function getQuestionAnswers(string $questionId, array $historyAnswers)
     {
         if (
-            empty($questionUuid) &&
+            empty($questionId) &&
             empty($historyAnswers)
         ) {
             throw new Exception('Invalid parameters');

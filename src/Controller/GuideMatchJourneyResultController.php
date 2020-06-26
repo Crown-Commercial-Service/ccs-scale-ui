@@ -18,7 +18,7 @@ use Exception;
 
 class GuideMatchJourneyResultController extends AbstractController
 {
-    public function journeyResult(string $journeyId, string $journeyInstanceId, string $agreements)
+    public function journeyResult(string $journeyId, string $journeyInstanceId,  $agreements=null)
     {
         
         // get journey History
@@ -49,13 +49,12 @@ class GuideMatchJourneyResultController extends AbstractController
             $isProduct = true;
 
             return $this->render('pages/result_page_product.html.twig', [
-                    'searchBy' => $searchBy,
-                    'historyAnswered' => $userAnswersFormatedForView,
-                    'journeyId' => $journeyId,
-                    'journeyInstanceId' => $journeyInstanceId,
-                    'journeyHistory' => $journeyHistory,
-                                    
-                ]);
+                'searchBy' => $searchBy,
+                'historyAnswered' => $userAnswersFormatedForView,
+                'journeyId' => $journeyId,
+                'journeyInstanceId' => $journeyInstanceId,
+                'journeyHistory' => $journeyHistory,                                    
+            ]);
         }
 
         $decrypt = new Decrypt(urldecode($agreements));
@@ -66,7 +65,7 @@ class GuideMatchJourneyResultController extends AbstractController
         $agrementModel = new GuideMatchAgreementModel($agreementsApi, $agreementsData);
         $frameworks = $agrementModel->getAgreements();
         $lots = $agrementModel->getLotsData();
-        //dd($lots);die();
+
         return $this->render('pages/result_page.html.twig', [
             'searchBy' => $searchBy,
             'historyAnswered' => $userAnswersFormatedForView,
