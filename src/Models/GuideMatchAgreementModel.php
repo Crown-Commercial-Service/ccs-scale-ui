@@ -12,10 +12,14 @@ class GuideMatchAgreementModel
     private $agreementApi;
     private $agreements=[];
     private $countLots = 0;
-    private $lostNumbers = [];
     private $lotsData = [];
     private $agreementsNames = [];
 
+    /**
+     *
+     * @param ServiceAgreementsApi $agreementApi
+     * @param array $agreementsData that was result from Guide Match Journey 
+     */
     public function __construct(ServiceAgreementsApi $agreementApi, array $agreementsData)
     {
         $this->agreementApi = $agreementApi;
@@ -28,12 +32,15 @@ class GuideMatchAgreementModel
         return $this->agreements;
     }
 
-
+    /**
+     * Parse aggrements and format them for view
+     *
+     * @param array $agreementsData
+     * @return void
+     */
     private function setAgreements(array $agreementsData)
     {
-
-        dump($agreementsData);
-     //   dd($agreementsData);die;
+    
         foreach ($agreementsData as $agrement) {
             $agreementDetail = $this->agreementApi->getServiceAgreement($agrement['number']);
          
@@ -59,6 +66,8 @@ class GuideMatchAgreementModel
                 'number' => $agrement['number'],
                 'lotsTitle' => $lotsTitle
                 ];
+
+
             $agreementDetail['lotsTitle'] = $lotsTitle;
             $this->agreements[$agrement['number']] =  $agreementDetail;
         }

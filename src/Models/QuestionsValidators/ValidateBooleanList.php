@@ -10,8 +10,9 @@ class ValidateBooleanList extends AbstractValidators{
 
    
     /**
-     * Validate user answer from a boolean list
-     *
+     * TBD: it's a partial validation until we receive validation criteria for each question from Guide Match API
+     * Validate user answer from a boolean list,  at this moment it validates only for empty
+     * 
      * @return void
      */
     public function validate(){

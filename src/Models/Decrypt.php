@@ -12,6 +12,12 @@ class Decrypt
         $this->decryptString($stringToDecrypt);
     }
 
+    /**
+     * Decrypt a string, crypted with 128 bytes length
+     *
+     * @param string $stringToDecrypt
+     * @return void
+     */
     private function decryptString(string $stringToDecrypt)
     {
         $this->decryptedString = openssl_decrypt(
@@ -23,6 +29,11 @@ class Decrypt
         );
     }
 
+    /**
+     * Getter method for decrypted string
+     *
+     * @return string
+     */
     public function getDecryptedString()
     {
         return $this->decryptedString;
