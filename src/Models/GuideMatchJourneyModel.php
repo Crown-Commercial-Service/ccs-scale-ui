@@ -29,8 +29,6 @@ class GuideMatchJourneyModel
 
     private $journeyHistory;
 
-    // private $lastJourneyQuestionAnswers = [];
-
     private $lastJourneyAction = [];
 
     private $apiResponseType;
@@ -92,7 +90,6 @@ class GuideMatchJourneyModel
         if (!empty($apiResponse['journeyInstanceId'])) {
             $this->setJourneyInstanceId($apiResponse['journeyInstanceId']);
         }
-      //  dump($apiResponse);die();
 
         $this->handleApiResponse($apiResponse['questions']);
     }
@@ -246,9 +243,9 @@ class GuideMatchJourneyModel
 
 
     /**
-     * Undocumented function
+     * Setter for last answers from journey
      *
-     * @return void
+     * @return array
      */
     private function setLastJourneyAnswers()
     {
@@ -293,7 +290,7 @@ class GuideMatchJourneyModel
     public function getQuestionAnswers(string $questionId, array $historyAnswers)
     {
         if (
-            empty($questionUuid) &&
+            empty($questionId) &&
             empty($historyAnswers)
         ) {
             throw new Exception('Invalid parameters');
@@ -313,7 +310,7 @@ class GuideMatchJourneyModel
     }
 
     /**
-     * Undocumented function
+     * Getter for API Response
      *
      * @return void
      */
@@ -323,18 +320,18 @@ class GuideMatchJourneyModel
     }
 
     /**
-     * Undocumented function
+     * Setter for API Response
      *
-     * @param [type] $responseType
+     * @param string $responseType
      * @return void
      */
-    public function setApiResponseType($responseType)
+    private function setApiResponseType(string $responseType)
     {
         $this->apiResponseType = $responseType;
     }
 
     /**
-     * Undocumented function
+     * Setter for API agreementData
      *
      * @param array $agreementData
      * @return void
@@ -345,9 +342,9 @@ class GuideMatchJourneyModel
     }
 
     /**
-     * Undocumented function
+     * Getter for API agreementData
      *
-     * @return void
+     * @return array
      */
     public function getAgreementData()
     {
@@ -381,7 +378,6 @@ class GuideMatchJourneyModel
     public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
-
         if (empty($apiResponse)) {
             throw new Exception('Error API response');
         }
@@ -399,7 +395,7 @@ class GuideMatchJourneyModel
     }
 
     /**
-     * Order predefined answers 
+     * Order predefined answers
      *
      * @return array
      */

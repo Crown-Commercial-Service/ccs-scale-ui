@@ -29,7 +29,7 @@ class ServiceAgreementsApi
             throw new Exception('Invalid arguments of method');
         }
         
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}",[
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}", [
             'headers' => ['x-api-key' => getenv('AGREEMENTS_SERVICE_API_KEY')],
         ]);
         try {
@@ -40,7 +40,6 @@ class ServiceAgreementsApi
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
        
-        
         return $content;
     }
 
@@ -53,7 +52,7 @@ class ServiceAgreementsApi
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/updates",[
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/updates", [
             'headers' => [
                 'x-api-key' => getenv('AGREEMENTS_SERVICE_API_KEY'),
             ],
@@ -75,7 +74,7 @@ class ServiceAgreementsApi
             throw new Exception('Invalid arguments of method');
         }
 
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lot}",[
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lot}", [
             'headers' => [
                 'x-api-key' => getenv('AGREEMENTS_SERVICE_API_KEY'),
             ],
@@ -88,7 +87,25 @@ class ServiceAgreementsApi
             return null;
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
-        //  dump($content);die('xx');
+
+        return $content;
+    }
+
+    public function getLotSupliers(string $agreementId, string $lotNumber)
+    {
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lotNumber}/suppliers", [
+        'headers' => [
+            'x-api-key' => getenv('AGREEMENTS_SERVICE_API_KEY'),
+        ],
+    ]);
+
+        try {
+            $content = $response->getContent();
+            $content = $response->toArray();
+        } catch (Exception $e) {
+            throw new Exception('Invalid API response:'.$e->getMessage());
+        }
+   
         return $content;
     }
 }

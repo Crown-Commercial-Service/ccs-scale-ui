@@ -6,40 +6,35 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Component\HttpFoundation\Request;
-use App\Models\Decrypt;
 use App\Models\Encrypt;
-
+use App\Models\Decrypt;
 use App\Models\UserAnswers;
 use App\Models\GuideMatchAgreementModel;
 use App\GuideMatchApi\ServiceAgreementsApi;
 use App\Models\GuideMatchResponseType;
-
-use Exception;
-
-
 use App\Models\GuideMatchJourneyHistoryModel;
 use App\GuideMatchApi\GuideMatchJourneyApi;
+use Exception;
 
 class GuideMatchJourneyResultController extends AbstractController
 {
-    public function journeyResult(string $journeyId, string $journeyInstanceId)
+    public function journeyResult(string $journeyId, string $journeyInstanceId,  $agreements=null)
     {
         
-        //get journey History
+        // get journey History
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
         $journeyHistoryModel = new GuideMatchJourneyHistoryModel($api, $journeyInstanceId);
 
+        // get history answers
         $historyUserAnswers =  $journeyHistoryModel->getJourneyHistoryAnswers();
        
-        
        
         if (empty($historyUserAnswers)) {
             throw new Exception('Wrong url data');
         }
 
-        
+        // format answers for view
         $userAnswers = new UserAnswers();
         $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers);
 
@@ -54,21 +49,20 @@ class GuideMatchJourneyResultController extends AbstractController
             $isProduct = true;
 
             return $this->render('pages/result_page_product.html.twig', [
-                    'searchBy' => $searchBy,
-                    'historyAnswered' => $userAnswersFormatedForView,
-                    'journeyId' => $journeyId,
-                    'journeyInstanceId' => $journeyInstanceId,
-                    'journeyHistory' => $journeyHistory,
-                                    
-                ]);
+                'searchBy' => $searchBy,
+                'historyAnswered' => $userAnswersFormatedForView,
+                'journeyId' => $journeyId,
+                'journeyInstanceId' => $journeyInstanceId,
+                'journeyHistory' => $journeyHistory,                                    
+            ]);
         }
 
+        $decrypt = new Decrypt(urldecode($agreements));
+        $agreementsData = json_decode($decrypt->getDecryptedString(), true);
        
         $httpClient = HttpClient::create();
-
-
         $agreementsApi  = new ServiceAgreementsApi($httpClient, getenv('AGREEMENTS_SERVICE_ROOT_URL'));
-        $agrementModel = new GuideMatchAgreementModel($agreementsApi, $journeyHistoryModel->getOutcomeData());
+        $agrementModel = new GuideMatchAgreementModel($agreementsApi, $agreementsData);
         $frameworks = $agrementModel->getAgreements();
         $lots = $agrementModel->getLotsData();
 

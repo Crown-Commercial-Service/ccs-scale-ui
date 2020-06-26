@@ -21,7 +21,6 @@ class GuideMatchJourneyController extends AbstractController
     public function journey(Request $request, $journeyId, $journeyInstanceId, $questionUuid, $gPage)
     {
         $searchBy = $request->query->get('q');
-        $error = $request->query->get('error');
 
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
@@ -33,17 +32,16 @@ class GuideMatchJourneyController extends AbstractController
         $postData = $request->request->all();
         $formType = !empty($postData['form-type']) ? $postData['form-type'] : '';
 
-        if(empty($formType)){
+        if (empty($formType)) {
             throw new Exception('Form type is missing');
         }
 
         // Validate user data TBD: for the moment is validate only for empty response
-        $validate = $this->validateUserAnswer($formType,$postData);
+        $validate = $this->validateUserAnswer($formType, $postData);
 
  
         if (!$validate->isValid()) {
-        
-            $this->addFlash( 'error', '' );
+            $this->addFlash('error', '');
                 
             $lastQuestionId =  !empty($postData['lastQuestionId']) ? $postData['lastQuestionId'] : '' ;
             $journeyHistory = !empty($postData['journeyHistory']) ? $postData['journeyHistory'] : '';
@@ -66,13 +64,13 @@ class GuideMatchJourneyController extends AbstractController
                 'gPage' => $gPage,
                 'lastPage' => $gPage-1,
                 'errorMessage' => $validate->getErrorMessage()
-            ]);         
-          }
+            ]);
+        }
 
         //get question form type to know, used to know how the answer will be handle to be send to API
         $formType = $postData['form-type'];
 
-        if(empty($formType)){
+        if (empty($formType)) {
             throw new Exception('Invalid request');
         }
 
@@ -92,7 +90,7 @@ class GuideMatchJourneyController extends AbstractController
             $apiResponseType == GuideMatchResponseType::GuideMatchResponseSupport ||
             $apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement
         ) {
-            return $this->redirectToResultsPage($journeyId, $journeyInstanceId);
+            return $this->redirectToResultsPage($model, $journeyId, $journeyInstanceId);
         }
 
         // go to the next question of Journey
@@ -108,11 +106,21 @@ class GuideMatchJourneyController extends AbstractController
      * @param GuideMatchJourneyModel $model
      * @return void
      */
-    private function redirectToResultsPage(string $journeyId, string $journeyInstanceId)
+    private function redirectToResultsPage(GuideMatchJourneyModel $model, string $journeyId, string $journeyInstanceId)
     {
+        $agreementData = $model->getAgreementData();
+        $agreementDataEncoded = '';
+       
+        if (!empty($agreementData)) {
+            $agreementDataJson = json_encode($agreementData);
+            $encrypt = new Encrypt($agreementDataJson);
+            $agreementDataEncoded =  urlencode($encrypt->getEncryptedString());
+        }
+
         return  $this->redirectToRoute("journey-result", [
             'journeyId' => $journeyId,
             'journeyInstanceId'=>$journeyInstanceId,
+            'agreements' => $agreementDataEncoded
         ]);
     }
 
@@ -157,11 +165,8 @@ class GuideMatchJourneyController extends AbstractController
         ]);
     }
 
-    private function validateUserAnswer(string $formType, array $userAnswer){
-
-        return ValidatorsFactory::getValidator($formType,$userAnswer);
-
-        
-       
+    private function validateUserAnswer(string $formType, array $userAnswer)
+    {
+        return ValidatorsFactory::getValidator($formType, $userAnswer);
     }
 }
