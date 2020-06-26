@@ -8,7 +8,8 @@ class ValidateMultipleCheckboxes extends AbstractValidators{
 
     
     /**
-     * Validate user answer for a checkboxes list
+     * TBD: it's a partial validation until we receive validation criteria for each question from Guide Match API
+     * Validate user answer for a checkboxes list, at this moment it validates only for empty
      *
      * @return void
      */

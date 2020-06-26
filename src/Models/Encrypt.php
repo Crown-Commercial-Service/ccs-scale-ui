@@ -12,6 +12,12 @@ class Encrypt
         $this->encryptString($stringToEncrypt);
     }
 
+    /**
+     * Encrypt a string on 128 bytes length
+     *
+     * @param string $stringToEncrypt
+     * @return void
+     */
     private function encryptString(string $stringToEncrypt)
     {
         $this->encryptedString = openssl_encrypt(
@@ -23,6 +29,11 @@ class Encrypt
         );
     }
 
+    /**
+     * Getter method for encrypted string
+     *
+     * @return void
+     */
     public function getEncryptedString()
     {
         return $this->encryptedString;
