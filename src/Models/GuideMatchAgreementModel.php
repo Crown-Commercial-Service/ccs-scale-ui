@@ -41,6 +41,7 @@ class GuideMatchAgreementModel
     private function setAgreements(array $agreementsData)
     {
         foreach ($agreementsData as $agrement) {
+
             $agreementDetail = $this->agreementApi->getServiceAgreement($agrement['number']);
          
             if (empty($agreementDetail)) {
@@ -65,7 +66,6 @@ class GuideMatchAgreementModel
                 'number' => $agrement['number'],
                 'lotsTitle' => $lotsTitle
                 ];
-
 
             $agreementDetail['lotsTitle'] = $lotsTitle;
             $this->agreements[$agrement['number']] =  $agreementDetail;

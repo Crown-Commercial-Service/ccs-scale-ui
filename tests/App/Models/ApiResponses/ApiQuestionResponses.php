@@ -98,5 +98,49 @@ namespace App\Tests\App\Models\ApiResponses;
         return json_encode($quesionResponse);
     }
 
+
+    public function lastJourneyResponse(){
+
+        $response =  [
+            "outcome" => [
+                "outcomeType" => "agreement",
+                "timestamp" => "2020-06-28T16:33:21.564179Z",
+                "data" => [
+                    0 => [
+                        "number" => "RM6154",
+                        "lots" =>[
+                            0 => [
+                                "number" => "3",
+                                "type" => "cat",
+                                "routeToMarket" => "fc",
+                                "url" => "",
+                                "scale" => true,
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "journeyHistory" => [
+                    0 => [
+                        "question" => [
+                        "id" => "ccb5a43a-75b5-11ea-bc55-0242ac130003",
+                        "text" => "Are you looking for a product, service or both?",
+                        "hint" => "Choose one option:",
+                        "type" => "list",
+                    ],
+                    "answers" =>[
+                        0 =>[
+                            "answerText" => "Service",
+                            "answer" => "b879fe0c-654e-11ea-bc55-0242ac130003",
+                        ]
+                    ],
+                    "variableName" => ""
+                ]
+            ]
+        ];
+
+        return json_encode($response);
+
+    }
  }
 ?>
