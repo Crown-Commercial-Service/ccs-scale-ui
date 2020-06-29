@@ -86,7 +86,7 @@ class GuideMatchJourneyHistoryModel
     /**
      * Getter function for journey user answers
      *
-     * @return void
+     * @return array
      */
     public function getJourneyHistoryAnswers()
     {

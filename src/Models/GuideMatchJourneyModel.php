@@ -385,7 +385,6 @@ class GuideMatchJourneyModel
         if (empty($apiResponse)) {
             throw new Exception('Error API response');
         }
-    //  dd($apiResponse);
         $this->setApiResponseType($apiResponse['outcome']['outcomeType']);
         $this->setJourneyHistory($apiResponse['journeyHistory']);
 
