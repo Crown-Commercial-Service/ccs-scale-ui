@@ -21,6 +21,7 @@ class StartJourneyController extends AbstractController
        
         $model = new GuideMatchJourneyModel($api);
         $model->startJourney($journeyUuid, $searchBy);
+        $questionText = $model->getText();
         
         return $this->render('pages/guide_match_questions.html.twig', [
             'journeyInstanceId' => $model->getJourneyInstanceId(),
@@ -33,7 +34,8 @@ class StartJourneyController extends AbstractController
             'searchBy' => $searchBy,
             'userAnswers' => [],
             'gPage' => 1,
-            'lastPage' => 0
+            'lastPage' => 0,
+            'pageTitle' => $questionText
         ]);
     }
 }

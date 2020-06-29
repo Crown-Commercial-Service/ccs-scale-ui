@@ -48,6 +48,7 @@ class GuideMatchJourneyController extends AbstractController
 
             // get question
             $model->getQuestionDetails($journeyInstanceId, $questionUuid);
+            $questionText = $model->getText();
            
             return $this->render('pages/guide_match_questions.html.twig', [
                 'searchBy' => $searchBy,
@@ -56,14 +57,15 @@ class GuideMatchJourneyController extends AbstractController
                 'definedAnswers' => $model->getDefinedAnswers(),
                 'userAnswers' => [],
                 'uuid' => $model->getUuid(),
-                'text' => $model->getText(),
+                'text' => $questionText,
                 'type' => $model->getType(),
                 'hint' => $model->getHint(),
                 'lastQuestionId' =>  $lastQuestionId,
                 'journeyHistory' => $journeyHistory,
                 'gPage' => $gPage,
                 'lastPage' => $gPage-1,
-                'errorMessage' => $validate->getErrorMessage()
+                'errorMessage' => $validate->getErrorMessage(),
+                'pageTitle' => $questionText
             ]);
         }
 
@@ -147,6 +149,7 @@ class GuideMatchJourneyController extends AbstractController
 
         $encrypt = new Encrypt($journeyHistoryAnsweredJson);
         $journeyHistoryEncode =  urlencode($encrypt->getEncryptedString());
+        $questionText = $model->getText();
        
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
@@ -155,13 +158,14 @@ class GuideMatchJourneyController extends AbstractController
             'definedAnswers' => $model->getDefinedAnswers(),
             'userAnswers' => [],
             'uuid' => $model->getUuid(),
-            'text' => $model->getText(),
+            'text' => $questionText,
             'type' => $model->getType(),
             'hint' => $model->getHint(),
             'lastQuestionId' =>  $lastQuestionId,
             'journeyHistory' => $journeyHistoryEncode,
             'gPage' => $nextPage,
-            'lastPage' => $lastPage
+            'lastPage' => $lastPage,
+            'pageTitle' => $questionText
         ]);
     }
 

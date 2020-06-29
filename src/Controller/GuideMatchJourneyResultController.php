@@ -53,7 +53,8 @@ class GuideMatchJourneyResultController extends AbstractController
                 'historyAnswered' => $userAnswersFormatedForView,
                 'journeyId' => $journeyId,
                 'journeyInstanceId' => $journeyInstanceId,
-                'journeyHistory' => $journeyHistory,                                    
+                'journeyHistory' => $journeyHistory,
+                'pageTitle' => 'Result Journey Page'                                    
             ]);
         }
 
@@ -77,7 +78,8 @@ class GuideMatchJourneyResultController extends AbstractController
             'journeyHistory' => $journeyHistory,
             'agreementsNames' => $agrementModel->getAgreementsNames(),
             'countLots' => $agrementModel->getCountLots(),
-            'isProduct' => $isProduct
+            'isProduct' => $isProduct,
+            'pageTitle' => 'Result Journey Page'    
             
         ]);
     }

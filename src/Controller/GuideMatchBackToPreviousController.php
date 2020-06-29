@@ -44,6 +44,7 @@ class GuideMatchBackToPreviousController extends AbstractController
         if (!$changeAnswer==1) {
             $userAnswers = $model->getQuestionAnswers($questionId, $journeyHistoryData);
         }
+        $questionText = $model->getText();
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
             'journeyId' => $journeyId,
@@ -51,13 +52,14 @@ class GuideMatchBackToPreviousController extends AbstractController
             'definedAnswers' => $model->getDefinedAnswers(),
             'userAnswers' => $userAnswers,
             'uuid' => $questionId,
-            'text' => $model->getText(),
+            'text' =>$questionText,
             'type' => $model->getType(),
             'hint' => $model->getHint(),
             'lastQuestionId' =>  $lastQuestionId,
             'journeyHistory' => $journeyHistory,
             'gPage' => $nextPage,
-            'lastPage' => $lastPage
+            'lastPage' => $lastPage,
+            'pageTitle' => $questionText
         ]);
     }
 }
