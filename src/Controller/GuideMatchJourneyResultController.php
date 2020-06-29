@@ -59,7 +59,7 @@ class GuideMatchJourneyResultController extends AbstractController
 
         $decrypt = new Decrypt(urldecode($agreements));
         $agreementsData = json_decode($decrypt->getDecryptedString(), true);
-//       dump($agreementsData);
+
         $httpClient = HttpClient::create();
         $agreementsApi  = new ServiceAgreementsApi($httpClient, getenv('AGREEMENTS_SERVICE_ROOT_URL'));
         $agrementModel = new GuideMatchAgreementModel($agreementsApi, $agreementsData);
