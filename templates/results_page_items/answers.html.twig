@@ -41,7 +41,7 @@
             <dt class="govuk-summary-list__key"> Framework(s)/Lot(s) recommended</dt>         
             <dd class="govuk-summary-list__value">
             {% for agreement in agreementsNames %}
-                {{agreement.name}}({{agreement.number}}), {{agreement.lotsTitle}}
+                {{agreement.name}}({{agreement.number}}){{ agreement.lotsTitle is empty  ? '' : ', ' ~  agreement.lotsTitle }}
             {% endfor %}
             </dd>
             <dd class="govuk-summary-list__value"></dd>

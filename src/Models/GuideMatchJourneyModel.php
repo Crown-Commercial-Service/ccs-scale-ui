@@ -381,7 +381,6 @@ class GuideMatchJourneyModel
     public function getDecisionTree(string $journeyUuid, string $questionUuid, array $questionResponse)
     {
         $apiResponse = $this->journeyApi->getDecisionTree($journeyUuid, $questionUuid, $questionResponse);
-
         if (empty($apiResponse)) {
             throw new Exception('Error API response');
         }

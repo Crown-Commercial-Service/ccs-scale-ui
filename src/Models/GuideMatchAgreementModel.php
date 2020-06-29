@@ -43,7 +43,6 @@ class GuideMatchAgreementModel
         foreach ($agreementsData as $agrement) {
 
             $agreementDetail = $this->agreementApi->getServiceAgreement($agrement['number']);
-         
             if (empty($agreementDetail)) {
                 continue;
             }
@@ -51,11 +50,11 @@ class GuideMatchAgreementModel
             $lotsTitle = '';
            
             if (!empty($agrement['lots'])) {
-                $nrAgreementSlots = count($agrement['lots']);
+               
                 foreach ($agrement['lots'] as $lot) {
-                    $lotIndex = $nrAgreementSlots > 1 ? $lot['number']-1 : 0;
-                    $lotNumber = !empty($agreementDetail['lots'][$lotIndex]['number']) ? $agreementDetail['lots'][$lotIndex]['number'] : null;
-                    $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], $lotNumber);
+                    
+                    $lotNumber = 'Lot '. $lot['number'];
+                    $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], 'Lot '. $lot['number']);
                     $this->lotsData[$agrement['number']][$lotNumber] =  $lotDetails;
                     $lotsTitle .= !empty($lotsTitle) ? ' or ' . $lotDetails['number'] .': '.$lotDetails['name'] : $lotDetails['number'] .': '.$lotDetails['name'];
                 }
