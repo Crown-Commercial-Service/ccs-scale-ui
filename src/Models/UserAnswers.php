@@ -11,7 +11,7 @@ class UserAnswers
      *
      * @return array
      */
-    public function formatForView($userAnswers)
+    public function formatForView(array $userAnswers)
     {
         $answersFormart = [];
         foreach ($userAnswers as $answers) {
@@ -40,10 +40,10 @@ class UserAnswers
     /**
      * Check if an answer is an UUID
      *
-     * @param [type] $answer
-     * @return void
+     * @param string $answer
+     * @return boolean
      */
-    private function checkIfTheAnswerIsId($answer)
+    private function checkIfTheAnswerIsId(string $answer)
     {
         return preg_match('/^[a-f\d]{8}(-[a-f\d]{4}){4}[a-f\d]{8}$/i', $answer);
     }

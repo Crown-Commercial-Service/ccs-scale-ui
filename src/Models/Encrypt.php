@@ -32,7 +32,7 @@ class Encrypt
     /**
      * Getter method for encrypted string
      *
-     * @return void
+     * @return string
      */
     public function getEncryptedString()
     {

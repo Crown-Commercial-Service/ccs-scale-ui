@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\GuideMatchApi;
 
-use Symfony\Component\HttpClient\CurlHttpClient;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 use \Exception;
 
 class ServiceAgreementsApi
@@ -12,7 +12,7 @@ class ServiceAgreementsApi
     protected $httpClient;
     protected $baseApiUrl;
 
-    public function __construct(CurlHttpClient $httpClient, string $baseApiUrl)
+    public function __construct(HttpClientInterface $httpClient, string $baseApiUrl)
     {
         $this->httpClient = $httpClient;
         $this->baseApiUrl = $baseApiUrl;
