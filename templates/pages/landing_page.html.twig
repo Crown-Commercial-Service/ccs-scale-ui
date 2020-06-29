@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Guided Match{% endblock %}
+{% block title %}Guide Match - {{pageTitle}}{% endblock %}
 
 {% block header %}
     {% embed '/includes/header.html.twig' %}
@@ -22,7 +22,7 @@
                     <a class="govuk-breadcrumbs__link" href="{{ path( 'back_to_search') }}?q={{ searchBy }}">Search
                         framework</a>
                 </li>
-                <li class="govuk-breadcrumbs__list-item" aria-current="Guided match">Guided match</li>
+                <li class="govuk-breadcrumbs__list-item" aria-current="true">Guided match</li>
             </ol>
         </div>
 
