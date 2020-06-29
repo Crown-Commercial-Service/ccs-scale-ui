@@ -45,9 +45,8 @@ class TestWordpressController extends AbstractController
         return new Response('AT LEAST IT SHOULD RETURN THIS CONTROLLER ');
     }
 
-    public function testApiUrl()
+    public function testApiUrl(Request $request)
     {
-        echo getenv('APP_API_BASE_URL');
-        die;
+        dd($request->server);
     }
 }
