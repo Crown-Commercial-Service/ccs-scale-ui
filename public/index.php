@@ -34,6 +34,9 @@ if ('prod' === $env) {
 if(!empty($_GET['debug'])){
     echo 'AGREEMENTS_SERVICE_API_KEY';
     echo '</br>';
+    var_dump(getenv('WEBCMS_ROOT_URL'));
+    echo 'AGREEMENTS_SERVICE_API_KEY';
+    echo '</br>';
     var_dump(getenv('AGREEMENTS_SERVICE_API_KEY'));
     echo 'GUIDED_MATCH_SERVICE_API_KEY';
     echo '</br>';
