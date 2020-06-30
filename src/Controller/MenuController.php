@@ -22,7 +22,7 @@ class MenuController extends AbstractController
     public function __construct(CacheInterface $cache)
     {
         $this->api = new Wordpress(
-            getenv('WEBCMS_ROOT_URL')
+            getenv('WEBCMS_ROOT_URL').'/wp-json/'
         );
         $this->api->setCache($cache);
         $this->api->setCacheLifetime(900);
