@@ -2,10 +2,11 @@
 
 namespace App\Tests\App\Models\ApiResponses;
 
- class ApiQuestionResponses{
-
-    public function startJourneyApiResponse(){
-        $apiResponse = [
+ class ApiQuestionResponses
+ {
+     public function startJourneyApiResponse()
+     {
+         $apiResponse = [
             "journeyInstanceId" => "b31e1dae-14da-4a17-9a85-9c8cf64822bb",
             "questions" => [
                 0 => [
@@ -35,14 +36,13 @@ namespace App\Tests\App\Models\ApiResponses;
             ]
         ];
 
-        return json_encode($apiResponse);
+         return json_encode($apiResponse);
+     }
 
-    }
 
-
-    public function questionResponseMock(){
-     
-        $quesionResponse =    [
+     public function questionResponseMock()
+     {
+         $quesionResponse =    [
             "outcome" => [
                 "outcomeType" => "question",
                 "timestamp" => "2020-06-28T14:52:13.948492Z",
@@ -95,13 +95,13 @@ namespace App\Tests\App\Models\ApiResponses;
             ]
         ];
         
-        return json_encode($quesionResponse);
-    }
+         return json_encode($quesionResponse);
+     }
 
 
-    public function lastJourneyResponse(){
-
-        $response =  [
+     public function lastJourneyResponse()
+     {
+         $response =  [
             "outcome" => [
                 "outcomeType" => "agreement",
                 "timestamp" => "2020-06-28T16:33:21.564179Z",
@@ -139,8 +139,6 @@ namespace App\Tests\App\Models\ApiResponses;
             ]
         ];
 
-        return json_encode($response);
-
-    }
+         return json_encode($response);
+     }
  }
-?>

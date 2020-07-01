@@ -18,7 +18,7 @@ use Exception;
 
 class GuideMatchJourneyResultController extends AbstractController
 {
-    public function journeyResult(string $journeyId, string $journeyInstanceId,  $agreements=null)
+    public function journeyResult(string $journeyId, string $journeyInstanceId, $agreements=null)
     {
         
         // get journey History
@@ -54,7 +54,7 @@ class GuideMatchJourneyResultController extends AbstractController
                 'journeyId' => $journeyId,
                 'journeyInstanceId' => $journeyInstanceId,
                 'journeyHistory' => $journeyHistory,
-                'pageTitle' => 'Result Journey Page'                                    
+                'pageTitle' => 'Result Journey Page'
             ]);
         }
 
@@ -79,7 +79,7 @@ class GuideMatchJourneyResultController extends AbstractController
             'agreementsNames' => $agrementModel->getAgreementsNames(),
             'countLots' => $agrementModel->getCountLots(),
             'isProduct' => $isProduct,
-            'pageTitle' => 'Result Journey Page'    
+            'pageTitle' => 'Result Journey Page'
             
         ]);
     }

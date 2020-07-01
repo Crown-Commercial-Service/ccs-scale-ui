@@ -35,8 +35,8 @@ class UserAnswerBooleanFormType implements UserAnswerFormTypeInteface
             $answer = !empty($userAnswer[$id]) ? $userAnswer[$id] : null;
 
             $this->formatedAnswers[] = [
-                'id' =>filter_var($id,FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-                'value' =>!empty($answer) ? filter_var($answer,FILTER_SANITIZE_FULL_SPECIAL_CHARS) : $answer
+                'id' =>filter_var($id, FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                'value' =>!empty($answer) ? filter_var($answer, FILTER_SANITIZE_FULL_SPECIAL_CHARS) : $answer
             ];
         }
     }

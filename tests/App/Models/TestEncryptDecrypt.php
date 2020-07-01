@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Tests\App\Models;
+
 use PHPUnit\Framework\TestCase;
 use App\Models\Encrypt;
 use App\Models\Decrypt;
 
-
-class TestEncryptDecrypt extends TestCase{
-
+class TestEncryptDecrypt extends TestCase
+{
     private $dataToBeDecripted;
     
-    private function arrayToBeEncrypted(){
-
+    private function arrayToBeEncrypted()
+    {
         $this->dataToBeDecripted = [
             0 => [
                 "question" => [
@@ -31,9 +31,8 @@ class TestEncryptDecrypt extends TestCase{
         ];
     }
     
-    public function testEcryptString(){
-
-     
+    public function testEcryptString()
+    {
         $this->arrayToBeEncrypted();
         $string = json_encode($this->dataToBeDecripted);
         $encrypt = new Encrypt($string);
@@ -47,10 +46,10 @@ class TestEncryptDecrypt extends TestCase{
     /**
      * @depends testEcryptString
      *
-     * 
+     *
      */
-    public function testDecryptedString($stringToBeDecripted){
-
+    public function testDecryptedString($stringToBeDecripted)
+    {
         $this->arrayToBeEncrypted();
         $decrypt = new Decrypt($stringToBeDecripted);
         $decriptedString = $decrypt->getDecryptedString();
@@ -58,8 +57,5 @@ class TestEncryptDecrypt extends TestCase{
         $this->assertTrue(is_string($decriptedString));
         $this->assertTrue(is_array(json_decode($decriptedString)));
         $this->assertTrue(json_encode($this->dataToBeDecripted) === $decriptedString);
-
-        
-
     }
 }

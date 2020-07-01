@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class FrameworkCategoriesTest extends TestCase
 {
-
     public function testFind()
     {
         $cat = FrameworkCategories::find('People');

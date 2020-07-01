@@ -2,10 +2,11 @@
 
 namespace App\Tests\App\GuideMatchyApi\ApiResponses;
 
- class ApiQuestionResponses{
-
-    public function startJourneyApiResponse(){
-        $apiResponse = [
+ class ApiQuestionResponses
+ {
+     public function startJourneyApiResponse()
+     {
+         $apiResponse = [
             "journeyInstanceId" => "b31e1dae-14da-4a17-9a85-9c8cf64822bb",
             "questions" => [
                 0 => [
@@ -35,8 +36,6 @@ namespace App\Tests\App\GuideMatchyApi\ApiResponses;
             ]
         ];
 
-        return json_encode($apiResponse);
-
-    }
+         return json_encode($apiResponse);
+     }
  }
-?>
