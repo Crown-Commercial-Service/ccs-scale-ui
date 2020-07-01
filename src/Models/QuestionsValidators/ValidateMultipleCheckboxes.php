@@ -17,7 +17,6 @@ class ValidateMultipleCheckboxes extends AbstractValidators
      */
     public function validate()
     {
-
         $this->isValid = true;
         if (empty($this->userAnswer['uuid'])) {
             $this->isValid = false;

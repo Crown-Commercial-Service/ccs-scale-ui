@@ -92,7 +92,7 @@ class GuideMatchJourneyModel
         if (!empty($apiResponse['journeyInstanceId'])) {
             $this->setJourneyInstanceId($apiResponse['journeyInstanceId']);
         }
-       // dump($apiResponse);die();
+        // dump($apiResponse);die();
 
         $this->handleApiResponse($apiResponse['questions']);
     }
@@ -389,8 +389,7 @@ class GuideMatchJourneyModel
 
         if ($this->apiResponseType != GuideMatchResponseType::GuideMatchResponseSupport) {
             if (!empty($apiResponse['outcome']['data'])) {
-               
-                if($this->apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement){
+                if ($this->apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement) {
                     $this->setAgreementData($apiResponse['outcome']['data']);
                 }
                 
@@ -402,7 +401,7 @@ class GuideMatchJourneyModel
     }
 
     /**
-     * Order predefined answers 
+     * Order predefined answers
      *
      * @return array
      */

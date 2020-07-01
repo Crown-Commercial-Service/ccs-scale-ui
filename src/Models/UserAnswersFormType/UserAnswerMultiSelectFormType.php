@@ -28,8 +28,8 @@ class UserAnswerMultiSelectFormType implements UserAnswerFormTypeInteface
                     foreach ($value as $questionId) {
                         $answer = !empty($userAnswer[$questionId]) ? $userAnswer[$questionId] : null;
                         $this->formatedAnswers[] = [
-                            'id' => filter_var($questionId,FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-                            'value' => !empty($answer) ? filter_var($answer,FILTER_SANITIZE_FULL_SPECIAL_CHARS): $answer
+                            'id' => filter_var($questionId, FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+                            'value' => !empty($answer) ? filter_var($answer, FILTER_SANITIZE_FULL_SPECIAL_CHARS): $answer
                         ];
                     }
                 }

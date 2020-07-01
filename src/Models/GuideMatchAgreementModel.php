@@ -41,7 +41,6 @@ class GuideMatchAgreementModel
     private function setAgreements(array $agreementsData)
     {
         foreach ($agreementsData as $agrement) {
-
             $agreementDetail = $this->agreementApi->getServiceAgreement($agrement['number']);
             if (empty($agreementDetail)) {
                 continue;
@@ -50,9 +49,7 @@ class GuideMatchAgreementModel
             $lotsTitle = '';
            
             if (!empty($agrement['lots'])) {
-               
                 foreach ($agrement['lots'] as $lot) {
-                    
                     $lotNumber = 'Lot '. $lot['number'];
                     $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], 'Lot '. $lot['number']);
                     $this->lotsData[$agrement['number']][$lotNumber] =  $lotDetails;

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Tests\App\Models;
+
 use PHPUnit\Framework\TestCase;
 use App\Models\GuideMatchJourneyModel;
 use App\GuideMatchApi\GuideMatchJourneyApi;
@@ -9,19 +10,17 @@ use Symfony\Component\HttpClient\MockHttpClient;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use App\Tests\App\Models\ApiResponses\ApiQuestionResponses;
 
-
-
-class GuideMatchJourneyModelTest extends TestCase{
-
+class GuideMatchJourneyModelTest extends TestCase
+{
     private $apiQuestionResponses;
 
     private function setApiResponseMocks()
     {
-         $this->apiQuestionResponses = new ApiQuestionResponses();
+        $this->apiQuestionResponses = new ApiQuestionResponses();
     }
     
-    public function testStartJourney(){
-
+    public function testStartJourney()
+    {
         $this->setApiResponseMocks();
         $searchBy = 'linen';
         $journeyUuid = 'b87a0636-654e-11ea-bc55-0242ac130003';
@@ -29,7 +28,7 @@ class GuideMatchJourneyModelTest extends TestCase{
         $response =  new MockResponse($this->apiQuestionResponses ->startJourneyApiResponse());
         $client = new MockHttpClient($response);
         $api = new GuideMatchJourneyApi($client, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
-        $model = new GuideMatchJourneyModel($api); 
+        $model = new GuideMatchJourneyModel($api);
 
         $model->startJourney($journeyUuid, $searchBy);
         $this->assertTrue(empty($model->getApiResponseType()));
@@ -42,13 +41,11 @@ class GuideMatchJourneyModelTest extends TestCase{
         $this->assertTrue(empty($model->getHistoryQuestion(0)));
         $this->assertTrue(empty($model->getApiResponseType()));
         $this->assertTrue(empty($model->getAgreementData()));
-        
-
-    } 
+    }
     
     
-    public function testQuestionResponse(){
-
+    public function testQuestionResponse()
+    {
         $this->setApiResponseMocks();
         $journeyInstanceId = '9d54f22a-4927-4d63-8b0d-d190ea644ee8';
         $questionUuid = 'ccb5a43a-75b5-11ea-bc55-0242ac130003';
@@ -63,7 +60,7 @@ class GuideMatchJourneyModelTest extends TestCase{
         $response =  new MockResponse($this->apiQuestionResponses->questionResponseMock());
         $client = new MockHttpClient($response);
         $api = new GuideMatchJourneyApi($client, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
-        $model = new GuideMatchJourneyModel($api); 
+        $model = new GuideMatchJourneyModel($api);
 
         $model->getDecisionTree($journeyInstanceId, $questionUuid, $userQuestionResponse);
 
@@ -79,13 +76,10 @@ class GuideMatchJourneyModelTest extends TestCase{
         $this->assertTrue(is_array($model->getHistoryQuestion(0)));
         $this->assertTrue(!empty($model->getApiResponseType()));
         $this->assertTrue(empty($model->getAgreementData()));
-        
-    
-
     }
 
-    public function testLastAnswerResponse(){
-
+    public function testLastAnswerResponse()
+    {
         $this->setApiResponseMocks();
         $journeyInstanceId = '9d54f22a-4927-4d63-8b0d-d190ea644ee8';
         $questionUuid = 'ccb5a43a-75b5-11ea-bc55-0242ac130003';
@@ -100,7 +94,7 @@ class GuideMatchJourneyModelTest extends TestCase{
         $response =  new MockResponse($this->apiQuestionResponses->lastJourneyResponse());
         $client = new MockHttpClient($response);
         $api = new GuideMatchJourneyApi($client, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
-        $model = new GuideMatchJourneyModel($api); 
+        $model = new GuideMatchJourneyModel($api);
         $model->getDecisionTree($journeyInstanceId, $questionUuid, $userQuestionResponse);
         $this->assertTrue($model->getApiResponseType() === 'agreement');
         $this->assertTrue(empty($model->getHint()));
