@@ -14,6 +14,7 @@ class GuideMatchAgreementModel
     private $countLots = 0;
     private $lotsData = [];
     private $agreementsNames = [];
+    private $scale = true;
 
     /**
      *
@@ -40,6 +41,7 @@ class GuideMatchAgreementModel
      */
     private function setAgreements(array $agreementsData)
     {
+       // dd($agreementsData);
         foreach ($agreementsData as $agrement) {
             $agreementDetail = $this->agreementApi->getServiceAgreement($agrement['number']);
             if (empty($agreementDetail)) {
@@ -54,6 +56,7 @@ class GuideMatchAgreementModel
                     $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], 'Lot '. $lot['number']);
                     $this->lotsData[$agrement['number']][$lotNumber] =  $lotDetails;
                     $lotsTitle .= !empty($lotsTitle) ? ' or ' . $lotDetails['number'] .': '.$lotDetails['name'] : $lotDetails['number'] .': '.$lotDetails['name'];
+                    $this->scale = isset($lot['scale']) && !$lot['scale'] ? $lot['scale'] : $this->scale;
                 }
             }
 
@@ -83,5 +86,15 @@ class GuideMatchAgreementModel
     public function getCountLots()
     {
         return $this->countLots;
+    }
+
+    /**
+     * Getter method for scale
+     *
+     * @return bolean
+     */
+    public function getScale(){
+       // dd($this->scale);
+        return $this->scale;
     }
 }
