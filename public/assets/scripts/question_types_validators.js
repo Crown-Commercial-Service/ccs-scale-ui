@@ -53,6 +53,7 @@ function validate() {
     if (isValid === false) {
         formLayout.classList.add('govuk-form-group--error');
         errorNoSelection.style.display = 'block';
+        errorNoSelection.textContent = "You need to select something.";
     }
 
     // conditional input validation logic
@@ -64,7 +65,7 @@ function validate() {
     for(var i in conditionalInputs) {
         if (Number.isInteger(Number(i)) == true) {
             if (!hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
-
+                
                 // if it does not have a value we throw errors and block button
                 if (isEmptyOrSpaces(conditionalInputs[i].firstElementChild.childNodes[7].value)) {
                     isValid = false;
@@ -72,6 +73,7 @@ function validate() {
                     formLayout.classList.add('govuk-form-group--error');
                     conditionalInputs[i].style.borderLeftColor ='#b10e1e';
                     errorNoInput.style.display = 'block';
+                    errorNoSelection.style.display = 'none';
                 }
             }    
         }
