@@ -3,11 +3,11 @@
         <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input v-selector" id="{{ answer.uuid }}" name="uuid" type="checkbox"
                    value="{{ answer.uuid }}">
-            <label class="govuk-label govuk-checkboxes__label" for="{{ answer.uuid }}">
+            <label class="govuk-label govuk-checkboxes__label" for="{{ answer.uuid }}" id="label-{{ answer.uuid }}">
                 {{- answer.text -}}
             </label>
             {% if answer.hint is defined  and answer.hint is not empty %}
-                <span class="govuk-hint govuk-checkboxes__hint">{{- answer.hint -}}</span>
+                <span class="govuk-hint govuk-checkboxes__hint" id="hint-{{ answer.uuid }}">{{- answer.hint -}}</span>
             {% endif %}
         </div>
     {% endfor %}
@@ -16,7 +16,7 @@
 
     <div class="govuk-checkboxes__item">
         <input class="govuk-checkboxes__input" id="all" type="checkbox" onclick="SelectAll()" name="CheckAll">
-        <label class="govuk-label govuk-checkboxes__label" for="all">
+        <label class="govuk-label govuk-checkboxes__label" for="all" id="select-all">
             Sellect all
         </label>
     </div>
