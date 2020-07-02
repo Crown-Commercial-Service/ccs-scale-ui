@@ -8,7 +8,7 @@ function hasClass(element, className) {
 
 // check if string is empty or null or empty space
 function isEmptyOrSpaces(str) {
-    return str === null || str.match(/^ *$/) !== null;
+    return str === null || str.match(/^ *$/) !== null || str == 0;
 }
 
 // Mutually exclusive checkbox  and select/unselect all checkbox logic
@@ -74,6 +74,9 @@ function validate() {
                     conditionalInputs[i].style.borderLeftColor ='#b10e1e';
                     errorNoInput.style.display = 'block';
                     errorNoSelection.style.display = 'none';
+                    if (conditionalInputs[i].firstElementChild.childNodes[7].value == 0) {
+                        errorNoInput.textContent = "Enter a value greater than Zero.";
+                    }
                 }
             }    
         }
