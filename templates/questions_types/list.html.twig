@@ -17,7 +17,7 @@
                 {{- answer.text -}}
             </label>
             {% if answer.hint is defined  and answer.hint is not empty %}
-                <span id="sign-in-item-hint" class="govuk-hint govuk-radios__hint">{{- answer.hint -}}</span>
+                <span id="sign-in-item-hint-{{answer.id}}" class="govuk-hint govuk-radios__hint">{{- answer.hint -}}</span>
             {% endif %}
         </div>
     {% endfor %}
