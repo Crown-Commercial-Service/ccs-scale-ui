@@ -3,9 +3,12 @@
         <h3 class="govuk-heading-m">{{lot.number}}: {{lot.name}}</h3>
         <p> {{lotsData[framework.number][lot.number].description}} </p>
         <div>
+         {% if  isScale == true %}  
             <button class="govuk-button" data-module="govuk-button">
                 Start Procurement
             </button>
+        {% endif %}  
+
         </div>
     
     {% endfor %}
