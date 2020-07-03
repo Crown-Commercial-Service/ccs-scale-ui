@@ -8,7 +8,7 @@
                 {% set answerValue = userAnswers.answer %}
             {% endif %}
             <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio" value="{{ answer.id }}"
-                   c="conditional-{{ answer.id }}" {{ checked }}>
+                   data-aria-controls="conditional-{{ answer.id }}" {{ checked }}>
             <label class="govuk-label govuk-radios__label" for="{{ answer.id }}" id="label-{{answer.id}}">
                 {{- answer.text -}}
             </label>
