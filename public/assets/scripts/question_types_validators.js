@@ -6,11 +6,6 @@ function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
 }
 
-// check if string is empty or null or empty space
-function isEmptyOrSpaces(str) {
-    return str === null || str.match(/^ *$/) !== null || str <= 0;
-}
-
 // Mutually exclusive checkbox  and select/unselect all checkbox logic
 // ====================================================================
 
@@ -65,19 +60,17 @@ function validate() {
     for(var i in conditionalInputs) {
         if (Number.isInteger(Number(i)) == true) {
             if (!hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
-                
+                var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
                 // if it does not have a value we throw errors and block button
-                if (isEmptyOrSpaces(conditionalInputs[i].firstElementChild.childNodes[7].value)) {
+                if (!inputElement.value.trim() || parseFloat(inputElement.value.trim()) <= 0) {
                     isValid = false;
-                    var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
                     inputElement.classList.add('govuk-input--error');
                     formLayout.classList.add('govuk-form-group--error');
                     conditionalInputs[i].style.borderLeftColor ='#b10e1e';
                     errorNoInput.style.display = 'block';
                     errorNoSelection.style.display = 'none';
                     errorNoInput.textContent = "Please provide input.";
-                    console.log(inputElement.value < 0, inputElement.value == "0");
-                    if (inputElement.value < 0 || inputElement.value === "0") {
+                    if (parseFloat(inputElement.value.trim()) <= 0) {
                         errorNoInput.textContent = "Enter a value greater than zero.";
                     }
                 }
