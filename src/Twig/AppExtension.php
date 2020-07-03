@@ -13,17 +13,27 @@ class AppExtension extends AbstractExtension
         ];
     }
 
-    public function modifyUrl($string)
+    /**
+     * This is a Twig filter that looks for every url from the header and footer and if one has bad domain it replaces it with a good one,
+     * also it adds the live domain for the relative paths
+     */
+    public function modifyUrl(string $cmsUrl) :string
     {
-        // This is a temporaly fix untill links from wordpress are corectly rendered
-        if (strpos($string, 'https://webdev-cms.crowncommercial.gov.uk')) {
-            return str_replace('https://webdev-cms', 'https://www', $string);
+        $url = '';
+        $badDomains  = [
+            'webdev-cms.crowncommercial.gov.uk'
+        ];
+
+        foreach ($badDomains as $badDomain) {
+            if ($badDomain == parse_url($cmsUrl, PHP_URL_HOST)) {
+                $url = str_replace($badDomain, 'www.crowncommercial.gov.uk', $cmsUrl);
+            }
         }
 
-        if ($string[0] == '/') {
-            return "https://www.crowncommercial.gov.uk" . $string;
+        if ($cmsUrl[0] == '/') {
+            $url = "https://www.crowncommercial.gov.uk" . $cmsUrl;
         }
-        
-        return $string;
+
+        return $url? $url : $cmsUrl;
     }
 }
