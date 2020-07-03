@@ -3,9 +3,9 @@
         <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input v-selector" id="{{ answer.uuid }}" name="uuid" type="checkbox"
                    value="{{ answer.uuid }}">
-            <label class="govuk-label govuk-checkboxes__label" for="{{ answer.uuid }}">{{- answer.text -}}</label>
+            <label class="govuk-label govuk-checkboxes__label" for="{{ answer.uuid }}" id="label-{{answer.uuid}}">{{- answer.text -}}</label>
             {% if answer.hint is defined  and answer.hint is not empty %}
-                <span class="govuk-hint govuk-checkboxes__hint">{{- answer.hint -}}</span>
+                <span class="govuk-hint govuk-checkboxes__hint" id="hint-{{answer.uuid}}>{{- answer.hint -}}</span>
             {% endif %}
         </div>
     {% endfor %}

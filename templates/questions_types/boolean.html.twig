@@ -9,7 +9,7 @@
             {% endif %}
             <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio" value="{{ answer.id }}"
                    data-aria-controls="conditional-{{ answer.id }}" {{ checked }}>
-            <label class="govuk-label govuk-radios__label" for="{{ answer.id }}">
+            <label class="govuk-label govuk-radios__label" for="{{ answer.id }}" id="label-{{answer.id}}">
                 {{- answer.text -}}
             </label>
             {% if answer.hint is defined  and answer.hint is not empty %}
@@ -19,7 +19,7 @@
         {% if answer.conditionalInput is defined %}
             <div class="govuk-radios__conditional govuk-radios__conditional--hidden conditional-input" id="conditional-{{ answer.id }}">
                 <div class="govuk-form-group">
-                    <label class="govuk-label" for="input-{{ answer.id }}">
+                    <label class="govuk-label" for="input-{{ answer.id }} id="label-{{answer.id}}">
                         {{ answer.conditionalInput.text }}
                     </label>
                     {% if answer.conditionalInput.hint is defined  and answer.conditionalInput.hint is not empty %}
