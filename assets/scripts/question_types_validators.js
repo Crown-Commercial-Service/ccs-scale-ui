@@ -8,7 +8,7 @@ function hasClass(element, className) {
 
 // check if string is empty or null or empty space
 function isEmptyOrSpaces(str) {
-    return str === null || str.match(/^ *$/) !== null || str == 0;
+    return str === null || str.match(/^ *$/) !== null || str <= 0;
 }
 
 // Mutually exclusive checkbox  and select/unselect all checkbox logic
@@ -69,13 +69,15 @@ function validate() {
                 // if it does not have a value we throw errors and block button
                 if (isEmptyOrSpaces(conditionalInputs[i].firstElementChild.childNodes[7].value)) {
                     isValid = false;
-                    conditionalInputs[i].firstElementChild.childNodes[7].classList.add('govuk-input--error');
+                    var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
+                    inputElement.classList.add('govuk-input--error');
                     formLayout.classList.add('govuk-form-group--error');
                     conditionalInputs[i].style.borderLeftColor ='#b10e1e';
                     errorNoInput.style.display = 'block';
                     errorNoSelection.style.display = 'none';
-                    if (conditionalInputs[i].firstElementChild.childNodes[7].value == 0) {
-                        errorNoInput.textContent = "Enter a value greater than Zero.";
+                    errorNoInput.textContent = "Please provide input.";
+                    if (inputElement.value < 0 || inputElement.value === "0") {
+                        errorNoInput.textContent = "Enter a value greater than zero.";
                     }
                 }
             }    
