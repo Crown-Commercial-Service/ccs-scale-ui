@@ -13,18 +13,7 @@
     <div class="govuk-width-container">
         {% include "/includes/phase_banner.html.twig" %}
         
-        <div class="govuk-breadcrumbs">
-            <ol class="govuk-breadcrumbs__list">
-                <li class="govuk-breadcrumbs__list-item">
-                    <a class="govuk-breadcrumbs__link" href="https://www.crowncommercial.gov.uk/">Home</a>
-                </li>
-                <li class="govuk-breadcrumbs__list-item">
-                    <a class="govuk-breadcrumbs__link" href="{{ path( 'back_to_search') }}?q={{ searchBy }}">Search
-                        framework</a>
-                </li>
-                <li class="govuk-breadcrumbs__list-item" aria-current="page">Guided match</li>
-            </ol>
-        </div>
+        {% include "/includes/breadcrumb_journey.html.twig" %}
 
         {% if  gPage >  1  and  journeyHistory is defined %}
             <a href="{{ 
@@ -41,7 +30,7 @@
                 class="govuk-back-link">Back</a>
         {% endif %}
         <!-- required wrapper 2 -->
-        <main class="govuk-main-wrapper questions-page" id="main-content" role="main">
+        <main class="govuk-main-wrapper questions-page" id="main-content">
             <div class="govuk-grid-row">
 
                 <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy }}"
@@ -61,8 +50,8 @@
                         </fieldset>
                     </div>
                     {% if  gPage >  1  and  journeyHistory is defined %}
-                        <input type='hidden' name='lastQuestionId' value="{{ lastQuestionId }}">
-                        <input type='hidden' name='journeyHistory' value="{{ journeyHistory }}">
+                        <input type='hidden' id='lastQuestionId' name='lastQuestionId' value="{{ lastQuestionId }}">
+                        <input type='hidden' id='journeyHistory' name='journeyHistory' value="{{ journeyHistory }}">
                     {% endif %}
                     <button class="govuk-button" data-module="govuk-button" type="submit">
                         Continue
