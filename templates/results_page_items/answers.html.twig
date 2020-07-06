@@ -11,8 +11,6 @@
         {% set index = 0 %}
 
         {% for answer in historyAnswered %}
-            <span class='hidden_msgs' id="change-answer-{{answer.questionId}}">answer for guestion: {{answer.answerTxt}}</span>
-
             <div class="govuk-summary-list__row">
              <dl class="govuk-summary-list">
                 <dt class="govuk-summary-list__key"> {{answer.question}}</dt>
@@ -20,7 +18,7 @@
                 <dd class="govuk-summary-list__value">
                     {% if changeAnswer == 1 %}
                         {% if  index >  0 %}
-                        <a  aria-describedby="change-answer-{{answer.questionId}}"
+                        <a  aria-describedby="change-answer-{{index}}"
                          href="{{ 
                             path( 
                                 'back-to-previous',
@@ -40,6 +38,7 @@
                 </dd>
                 </dl>
         </div>
+         <span class='hidden_msgs' id="change-answer-{{index}}">answer for guestion: {{answer.answerTxt}}</span>
         {% set index = index + 1 %}
         {% endfor %}
           
