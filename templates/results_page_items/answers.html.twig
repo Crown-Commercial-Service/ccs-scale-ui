@@ -32,7 +32,7 @@
                                 )}}?q={{ searchBy }}&changeAnswer=1"
                         >Change</a>
                         {% else %}
-                        <a aria-describedby="change-answer-{{answer.index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
+                        <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
                         {% endif %}
                     {% endif %}    
                 </dd>
