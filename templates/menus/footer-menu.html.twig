@@ -2,7 +2,7 @@
 
 <ul class="govuk-list govuk-!-font-size-18">
     {% for menu_item in menu.children %}
-        <li>
+        <li id='menu-item-footer-{{ loop.index }}>
             <a class="govuk-footer__link" href="{{ menu_item.url|modify_url  }}">{{ menu_item.label }}</a>
         </li>
     {% endfor %}
