@@ -20,9 +20,9 @@
             value="{{ answer.id }}" aria-describedby="{{- answer.hint -}}" 
             onclick="{{ answer.mutuallyExclusive ? 'uncheckAll()':'uncheckMExclusive()' }}">
 
-            <label class="govuk-label govuk-checkboxes__label" for="{{ answer.id }}" id="label-{{ answer.id }}" >{{- answer.text -}}</label>
+            <label class="govuk-label govuk-checkboxes__label" for="{{ answer.id }}" >{{- answer.text -}}</label>
             {% if answer.hint is defined  and answer.hint is not empty %}
-                <span class="govuk-hint govuk-checkboxes__hint" id="hint-{{ answer.id }}">{{- answer.hint -}}</span>
+                <span class="govuk-hint govuk-checkboxes__hint">{{- answer.hint -}}</span>
             {% endif %}
         </div>
     {% endfor %}
