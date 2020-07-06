@@ -31,7 +31,8 @@
                     <input class="govuk-input govuk-!-width-one-third"
                            name="{{ answer.id }}"
                            value = "{{ answerValue }}"
-                           type="{{ answer.conditionalInput.type }}" spellcheck="false">
+                           type="{{ answer.conditionalInput.type }}" spellcheck="false"
+                           id="input-{{ answer.id }}">
                 </div>
             </div>
         {% endif %}
