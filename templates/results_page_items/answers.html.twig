@@ -11,6 +11,8 @@
         {% set index = 0 %}
 
         {% for answer in historyAnswered %}
+            <span class='hidden_msgs' id="change-answer-{{answer.questionId}}">answer for guestion: {answer.answerTxt}}</span>
+
             <div class="govuk-summary-list__row">
              <dl class="govuk-summary-list">
                 <dt class="govuk-summary-list__key"> {{answer.question}}</dt>
@@ -18,7 +20,8 @@
                 <dd class="govuk-summary-list__value">
                     {% if changeAnswer == 1 %}
                         {% if  index >  0 %}
-                        <a href="{{ 
+                        <a  aria-describedby="change-answer-{{answer.questionId}}"
+                         href="{{ 
                             path( 
                                 'back-to-previous',
                                 {
@@ -31,7 +34,7 @@
                                 )}}?q={{ searchBy }}&changeAnswer=1"
                         >Change</a>
                         {% else %}
-                        <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
+                        <a aria-describedby="change-answer-{{answer.questionId}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
                         {% endif %}
                     {% endif %}    
                 </dd>
@@ -50,10 +53,9 @@
                 {% endfor %}
             </dd>
             <dd class="govuk-summary-list__value"></dd>
-            </dl>
+        </dl>
         </div>
          {% endif %}
-    </dl>
     <div class="app-c-print-link">
         <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}"> Start over to change your answers</a>  
     </div>

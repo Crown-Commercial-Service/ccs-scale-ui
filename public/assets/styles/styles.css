@@ -6956,6 +6956,9 @@ img {
     .page-introduction {
       padding-bottom: 1.25rem; } }
 
+.hidden_msgs {
+  display: none; }
+
 /*------------------------------------*\
   #News
 \*------------------------------------*/

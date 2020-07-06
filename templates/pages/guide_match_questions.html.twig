@@ -16,6 +16,7 @@
         {% include "/includes/breadcrumb_journey.html.twig" %}
 
         {% if  gPage >  1  and  journeyHistory is defined %}
+            <span class='hidden_msgs' id='new-window-0'>to previous question</span>
             <a href="{{ 
                 path( 
                     'back-to-previous',
