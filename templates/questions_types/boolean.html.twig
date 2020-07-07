@@ -32,7 +32,8 @@
                            name="{{ answer.id }}"
                            value = "{{ answerValue }}"
                            type="{{ answer.conditionalInput.type }}" spellcheck="false"
-                           id="input-{{ answer.id }}">
+                           id="input-{{ answer.id }}"
+                           type="{{ answer.conditionalInput.type }}" min="1" step="0.01" pellcheck="false">
                 </div>
             </div>
         {% endif %}
