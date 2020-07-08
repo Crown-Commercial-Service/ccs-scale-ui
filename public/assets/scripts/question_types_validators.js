@@ -80,3 +80,13 @@ function validate() {
 
     return isValid;
 }
+
+function resetErrors(radio) {
+    document.getElementById('no-selection').style.display = 'none';
+    document.getElementById('no-input').style.display = 'none';
+    document.getElementById('form-layout').classList.remove('govuk-form-group--error');
+    console.log(radio.value);
+    document.getElementById('conditional-'.concat(radio.value)).style.borderLeftColor ='#bfc1c3';
+    document.getElementById('input-'.concat(radio.value)).classList.remove('govuk-input--error')
+
+}
