@@ -1,6 +1,8 @@
-<span id="no-selection" class="govuk-error-message" style="display:{{ errorMessage is defined ? 'block' : 'none' }}">
-    <span class="govuk-visually-hidden">Error:</span>
-    {% if  errorMessage is defined %}
-        {{ errorMessage }}
-    {% endif %}
-</span>
+<div role='alert'>
+    <span id="no-selection" class="govuk-error-message" style="display:{{ errorMessage is defined ? 'block' : 'none' }}">
+        <span class="govuk-visually-hidden">Error:</span>
+        {% if  errorMessage is defined %}
+            {{ errorMessage }}
+        {% endif %}
+    </span>
+</div>

@@ -12,7 +12,7 @@
 
         <div class="govuk-radios__item">
             <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio"
-                   value="{{ answer.id }}" {{ checked }}>
+                   value="{{ answer.id }}" {{ checked }} aria-describedby="no-selection">
             <label class="govuk-label govuk-radios__label govuk-label--s" for="{{ answer.id }}">
                 {{- answer.text -}}
             </label>
