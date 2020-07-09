@@ -1,0 +1,10 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+
+    # Salesforce Web-to-case form variables
+    globals:
+        site_url: ''
+        ccs_domain: '%env(CCS_DOMAIN)%'
+        wordpress_api: '%env(WEBCMS_ROOT_URL)%'
