@@ -7319,6 +7319,9 @@ a.skip-main:focus, a.skip-main:active {
 .govuk-summary-list {
   margin: 0; }
 
+.view-framework-details-ulr {
+  font-size: 19px; }
+
 /*------------------------------------*\
   #Filters-Intro
 \*------------------------------------*/
