@@ -16,6 +16,7 @@
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "^4.4.0",
         "symfony/http-client": "4.4.*",
+        "symfony/security-csrf": "^4.4",
         "symfony/twig-bundle": "^4.4.0",
         "symfony/yaml": "^4.4.0"
     },
