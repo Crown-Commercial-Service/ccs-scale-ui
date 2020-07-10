@@ -9,12 +9,22 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpClient\HttpClient;
 use App\Models\GuideMatchJourneyModel;
 use App\GuideMatchApi\GuideMatchJourneyApi;
+use Exception;
+
 
 class StartJourneyController extends AbstractController
 {
     public function startJourney(Request $request, $journeyUuid)
     {
         $searchBy = $request->query->get('q');
+
+
+        if ($request->getMethod() == 'POST') {
+            $csfrToken = $request->request->get('token');
+            if (!$this->isCsrfTokenValid('save-answers', $csfrToken)) {
+                throw new Exception('Invalid request');
+            }
+        }
 
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));

@@ -56,6 +56,8 @@
                         <input type='hidden' id='lastQuestionId' name='lastQuestionId' value="{{ lastQuestionId }}">
                         <input type='hidden' id='journeyHistory' name='journeyHistory' value="{{ journeyHistory }}">
                     {% endif %}
+                        <input type="hidden" name="token" value="{{ csrf_token('save-answers') }}"/>
+
                     <button class="govuk-button" data-module="govuk-button" type="submit">
                         Continue
                     </button>

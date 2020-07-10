@@ -245,6 +245,12 @@
             "ref": "5374e24d508ba8fd6ba9eb15170255fdb778316a"
         }
     },
+    "symfony/security-core": {
+        "version": "v4.4.10"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.4.10"
+    },
     "symfony/service-contracts": {
         "version": "v2.0.1"
     },

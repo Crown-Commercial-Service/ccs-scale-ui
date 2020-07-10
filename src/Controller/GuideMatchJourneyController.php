@@ -21,6 +21,11 @@ class GuideMatchJourneyController extends AbstractController
     public function journey(Request $request, $journeyId, $journeyInstanceId, $questionUuid, $gPage)
     {
         $searchBy = $request->query->get('q');
+        $csfrToken = $request->request->get('token');
+
+        if(empty($searchBy) && !$this->isCsrfTokenValid('save-answers', $csfrToken)){
+            throw new Exception('Invalid request');
+        }
 
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
