@@ -14,6 +14,7 @@ use App\GuideMatchApi\GuideMatchJourneyApi;
 use App\Models\Encrypt;
 use App\Models\UserAnswersFormType\UserAnswerFormatFactory;
 use App\Models\QuestionsValidators\ValidatorsFactory;
+use App\Models\UserAnswers;
 use Exception;
 
 class GuideMatchJourneyController extends AbstractController
@@ -41,26 +42,30 @@ class GuideMatchJourneyController extends AbstractController
             throw new Exception('Form type is missing');
         }
 
-        // Validate user data TBD: for the moment is validate only for empty response
         $validate = $this->validateUserAnswer($formType, $postData);
 
  
         if (!$validate->isValid()) {
             $this->addFlash('error', '');
                 
-            $lastQuestionId =  !empty($postData['lastQuestionId']) ? $postData['lastQuestionId'] : '' ;
+            $lastQuestionId =  !empty($postData['lastQuestionId']) ? $postData['lastQuestionId'] : '';
             $journeyHistory = !empty($postData['journeyHistory']) ? $postData['journeyHistory'] : '';
-
-            // get question
-            $model->getQuestionDetails($journeyInstanceId, $questionUuid);
-            $questionText = $model->getText();
            
+            // get question
+            $model->setQuestionDetails($journeyInstanceId, $questionUuid);
+
+            $definedAnwers = $model->getDefinedAnswers();
+
+            $userAnswer =  new UserAnswers();
+            $formatAnswers = $userAnswer->getFormatUserAnswers($postData,$definedAnwers);
+            $questionText = $model->getText();
+       
             return $this->render('pages/guide_match_questions.html.twig', [
                 'searchBy' => $searchBy,
                 'journeyId' => $journeyId,
                 'journeyInstanceId' => $journeyInstanceId,
-                'definedAnswers' => $model->getDefinedAnswers(),
-                'userAnswers' => [],
+                'definedAnswers' => $definedAnwers,
+                'userAnswers' => $formatAnswers,
                 'uuid' => $model->getUuid(),
                 'text' => $questionText,
                 'type' => $model->getType(),

@@ -14,7 +14,10 @@ class LandingPageController extends AbstractController
     {
         $q = $request->query->get('q');
       
-       
+        if (empty($q)) {
+            throw new Exception('You need to provide a word for Guide Match Journey');
+        }
+        
         if ($q == 'linen') {
             $journeyId = 'b87a0636-654e-11ea-bc55-0242ac130003';
         } elseif ($q == 'legal') {
@@ -26,9 +29,7 @@ class LandingPageController extends AbstractController
             die('We have mockups API just for linen and legal.');
         }
 
-        if (empty($q)) {
-            throw new Exception('You need to provide a word for Guide Match Journey');
-        }
+        
 
         return $this->render('pages/landing_page.html.twig', [
             'journeyUuid' => $journeyId,

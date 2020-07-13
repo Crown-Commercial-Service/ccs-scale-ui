@@ -65,4 +65,31 @@ class UserAnswers
         
         return $answersToPreviousQuestion;
     }
+
+    /**
+     * Format user answers to be displayed if answers are invalid :  for conditional input field
+     *
+     * @param array $postData
+     * @param array $preDefinedAnwers
+     * @return array
+     */
+    public function getFormatUserAnswers(array $postData, array $preDefinedAnwers){
+
+        $answers = [];
+
+        foreach($preDefinedAnwers as $answer){
+
+            if (!empty($answer['conditionalInput'])) {
+                if (in_array($answer['id'], $postData)) {
+                    $answers = [
+                        'answerText' => $answer['text'],
+                        'answer'=> $postData[$answer['id']],
+                        $answer['text'] => true
+
+                ];
+                }
+            }
+        }
+        return $answers;
+    }
 }
