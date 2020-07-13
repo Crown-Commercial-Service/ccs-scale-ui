@@ -24,7 +24,7 @@ class GuideMatchJourneyController extends AbstractController
         $searchBy = $request->query->get('q');
         $csfrToken = $request->request->get('token');
 
-        if(empty($searchBy) && !$this->isCsrfTokenValid('save-answers', $csfrToken)){
+        if (empty($searchBy) && !$this->isCsrfTokenValid('save-answers', $csfrToken)) {
             throw new Exception('Invalid request');
         }
 
@@ -57,7 +57,7 @@ class GuideMatchJourneyController extends AbstractController
             $definedAnwers = $model->getDefinedAnswers();
 
             $userAnswer =  new UserAnswers();
-            $formatAnswers = $userAnswer->getFormatUserAnswers($postData,$definedAnwers);
+            $formatAnswers = $userAnswer->getFormatUserAnswers($postData, $definedAnwers);
             $questionText = $model->getText();
        
             return $this->render('pages/guide_match_questions.html.twig', [

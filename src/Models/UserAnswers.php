@@ -73,12 +73,11 @@ class UserAnswers
      * @param array $preDefinedAnwers
      * @return array
      */
-    public function getFormatUserAnswers(array $postData, array $preDefinedAnwers){
-
+    public function getFormatUserAnswers(array $postData, array $preDefinedAnwers)
+    {
         $answers = [];
 
-        foreach($preDefinedAnwers as $answer){
-
+        foreach ($preDefinedAnwers as $answer) {
             if (!empty($answer['conditionalInput'])) {
                 if (in_array($answer['id'], $postData)) {
                     $answers = [

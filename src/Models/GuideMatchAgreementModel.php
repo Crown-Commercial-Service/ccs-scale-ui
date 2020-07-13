@@ -92,7 +92,8 @@ class GuideMatchAgreementModel
      *
      * @return bolean
      */
-    public function getScale(){
+    public function getScale()
+    {
         return $this->scale;
     }
 }

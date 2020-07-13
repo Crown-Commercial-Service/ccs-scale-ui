@@ -11,7 +11,6 @@ use App\Models\GuideMatchJourneyModel;
 use App\GuideMatchApi\GuideMatchJourneyApi;
 use Exception;
 
-
 class StartJourneyController extends AbstractController
 {
     public function startJourney(Request $request, $journeyUuid)
