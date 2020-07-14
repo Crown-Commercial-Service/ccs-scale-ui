@@ -160,13 +160,20 @@ class GuideMatchJourneyController extends AbstractController
         $encrypt = new Encrypt($journeyHistoryAnsweredJson);
         $journeyHistoryEncode =  urlencode($encrypt->getEncryptedString());
         $questionText = $model->getText();
+
+        $uuid = $model->getUuid();
+        $userAnswers = [];
+
+        if ($lastQuestionId === $uuid) {
+            $userAnswers = $model->getQuestionAnswers($lastQuestionId, $journeyHistory);
+        }
        
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
             'journeyId' => $journeyId,
             'journeyInstanceId' => $journeyInstanceId,
             'definedAnswers' => $model->getDefinedAnswers(),
-            'userAnswers' => [],
+            'userAnswers' => $userAnswers,
             'uuid' => $model->getUuid(),
             'text' => $questionText,
             'type' => $model->getType(),
