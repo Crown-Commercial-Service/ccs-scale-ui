@@ -41,7 +41,6 @@ class GuideMatchAgreementModel
      */
     private function setAgreements(array $agreementsData)
     {
-       // dd($agreementsData);
         foreach ($agreementsData as $agrement) {
             $agreementDetail = $this->agreementApi->getServiceAgreement($agrement['number']);
             if (empty($agreementDetail)) {
@@ -93,8 +92,8 @@ class GuideMatchAgreementModel
      *
      * @return bolean
      */
-    public function getScale(){
-       // dd($this->scale);
+    public function getScale()
+    {
         return $this->scale;
     }
 }

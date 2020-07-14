@@ -362,7 +362,7 @@ class GuideMatchJourneyModel
      * @param string $questionUuid
      * @return void
      */
-    public function getQuestionDetails(string $journeyUuid, string $questionUuid)
+    public function setQuestionDetails(string $journeyUuid, string $questionUuid)
     {
         $apiResponse =  $this->journeyApi->getJourneyQuestion($journeyUuid, $questionUuid);
         $this->handleApiResponse($apiResponse);

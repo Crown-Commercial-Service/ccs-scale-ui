@@ -37,6 +37,10 @@
                            type="{{ answer.conditionalInput.type }}" min="1" step="0.01"
                            aria-describedby="no-input"
                            >
+                    <input type='hidden'
+                           name="inputType-{{ answer.id }}"
+                           value = "{{ answer.conditionalInput.type }}"
+                           >
                 </div>
             </div>
         {% endif %}

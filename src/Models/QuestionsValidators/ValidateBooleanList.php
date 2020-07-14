@@ -27,6 +27,20 @@ class ValidateBooleanList extends AbstractValidators
                     $this->errorMessage = ErrorMessages::EMPTY_INPUT;
                 }
             }
+
+            if (!empty($this->userAnswer['inputType-'.$this->userAnswer['uuid']])) {
+                if ($this->userAnswer['inputType-'.$this->userAnswer['uuid']] == 'number') {
+                    if (!is_numeric($this->userAnswer[$this->userAnswer['uuid']])) {
+                        $this->isValid = false;
+                        $this->errorMessage = ErrorMessages::SHOULD_BE_NUMBER;
+                    } else {
+                        if ($this->userAnswer[$this->userAnswer['uuid']] <= 0) {
+                            $this->isValid = false;
+                            $this->errorMessage = ErrorMessages::SHOUD_BE_A_POZITIVE_NUMBER;
+                        }
+                    }
+                }
+            }
         } else {
             $this->isValid = false;
             $this->errorMessage = ErrorMessages::EMPTY_USER_ANSWER;
