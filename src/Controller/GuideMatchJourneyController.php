@@ -174,7 +174,7 @@ class GuideMatchJourneyController extends AbstractController
             'journeyInstanceId' => $journeyInstanceId,
             'definedAnswers' => $model->getDefinedAnswers(),
             'userAnswers' => $userAnswers,
-            'uuid' => $model->getUuid(),
+            'uuid' => $uuid,
             'text' => $questionText,
             'type' => $model->getType(),
             'hint' => $model->getHint(),
