@@ -57,7 +57,7 @@ function validate() {
     // I check all conditional inputs,
     // if one is not hidden we check if it has a value
     for(var i in conditionalInputs) {
-        if (Number.isInteger(Number(i)) == true) {
+        if (Number(i)) {
             if (!hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
                 var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
                 // if it does not have a value we throw errors and block button
@@ -92,14 +92,12 @@ function resetErrors(radio) {
 setTimeout(function(){
     var conditionalInputs = document.getElementsByClassName('conditional-input');
     for(var i in conditionalInputs) {
-        if (Number.isInteger(Number(i)) == true) {
-            if (hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
-                var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
-                // if it does not have a value we throw errors and block button
-                if (inputElement.value) {
-                    conditionalInputs[i].classList.remove("govuk-radios__conditional--hidden");
-                }
-            }    
-        }
+        if (hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
+            var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
+            if (inputElement.value) {
+                conditionalInputs[i].classList.remove("govuk-radios__conditional--hidden");
+            }
+        }    
+        
     }
 }, 500);
