@@ -13,8 +13,10 @@
     <div class="govuk-width-container">
         {% include "/includes/phase_banner.html.twig" %}
 
-        {% include "/includes/breadcrumb_journey.html.twig" %}
-
+        <span class='hidden_msgs' id="back-to_prev"> to search result page</span>
+        <a class="govuk-back-link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch">Back</a>
+        
+            
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper " id="main-content">
             <div class="govuk-grid-row">
