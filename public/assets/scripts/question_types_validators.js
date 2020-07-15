@@ -35,7 +35,6 @@ function uncheckMExclusive() {
 // When no input is provided from the user this function
 // blocks the continue button and displays errors.
 function validate() {
-
     // checkbox and radio buttons validation
     var isValid           = false;
     var formLayout        = document.getElementById('form-layout');
@@ -58,7 +57,7 @@ function validate() {
     // I check all conditional inputs,
     // if one is not hidden we check if it has a value
     for(var i in conditionalInputs) {
-        if (Number.isInteger(Number(i)) == true) {
+        if (Number(i)) {
             if (!hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
                 var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
                 // if it does not have a value we throw errors and block button
@@ -89,3 +88,31 @@ function resetErrors(radio) {
     document.getElementById('conditional-'.concat(radio.value)).style.borderLeftColor ='#bfc1c3';
     document.getElementById('input-'.concat(radio.value)).classList.remove('govuk-input--error')
 }
+
+setTimeout(function(){
+    var conditionalInputs = document.getElementsByClassName('conditional-input');
+    for(var i in conditionalInputs) {
+        if (hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
+            var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
+            if (inputElement.value) {
+                conditionalInputs[i].classList.remove("govuk-radios__conditional--hidden");
+            }
+        }    
+        
+    }
+}, 500);
+
+window.onload = function(){
+    setTimeout(function(){
+    var conditionalInputs = document.getElementsByClassName('conditional-input');
+    for(var i in conditionalInputs) {
+        if (hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
+            var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
+            if (inputElement.value) {
+                conditionalInputs[i].classList.remove("govuk-radios__conditional--hidden");
+            }
+        }    
+        
+    }
+}, 200);
+};
