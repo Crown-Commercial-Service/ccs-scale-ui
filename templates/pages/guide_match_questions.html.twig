@@ -12,8 +12,6 @@
     <!-- required wrapper 1 -->
     <div class="govuk-width-container">
         {% include "/includes/phase_banner.html.twig" %}
-        
-        {% include "/includes/breadcrumb_journey.html.twig" %}
 
         {% if  gPage >  1  and  journeyHistory is defined %}
             <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
@@ -31,6 +29,9 @@
                     }
                     )}}?q={{ searchBy }}"
                 class="govuk-back-link">Back</a>
+        {% else %}
+            <span class='hidden_msgs' id="back-to-landing-page"> to landing page</span>
+            <a aria-describedby="back-to-landing-page" href="{{ path('landing_page')}}?q={{ searchBy }}"class="govuk-back-link">Back</a>
         {% endif %}
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper questions-page" id="main-content">
