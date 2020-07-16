@@ -36,5 +36,5 @@ journey-result:
 
 
 contact-ccs-page:
-  path: /guided-match/contact-css/{journeyId}/{journeyInstanceId}/{journeyHistory}
+  path: /guided-match/contact-css/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchContactCssController::contactCss
