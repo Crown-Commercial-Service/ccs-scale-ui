@@ -20,9 +20,17 @@ class UserAnswers
             $answerTxt = '';
            
             foreach ($answers['answers'] as $answer) {
+
+                $unit = '';
+                if(!empty($answer['unit'])){
+                    $unit = $answer['unit'] === 'currency' ? '&#163;' : $answer['unit'];
+                }
+
                 $answerTxt .= $counter < $nrAnswers ?
-                             $answer['answerText'] . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? "({$answer['answer']})" : ''). ', ' :
-                             $answer['answerText'].(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? "({$answer['answer']})":'');
+                             $answer['answerText'] . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? "( ".($answer['unit'] === "currency" ? $unit :"")."  {$answer['answer']}".($answer['unit'] !== "currency" ? $unit :"").")" : ''). ', ' :
+                             $answer['answerText'].(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? "(".($answer['unit'] === "currency" ? $unit :"")."{$answer['answer']} ".($answer['unit'] !== "currency" ? $unit :"")." )":'');
+
+                        
                 $counter++;
             }
 

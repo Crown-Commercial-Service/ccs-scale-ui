@@ -28,7 +28,6 @@ class GuideMatchJourneyResultController extends AbstractController
 
         // get history answers
         $historyUserAnswers =  $journeyHistoryModel->getJourneyHistoryAnswers();
-      // dd($historyUserAnswers);
        
         if (empty($historyUserAnswers)) {
             throw new Exception('Wrong url data');
@@ -45,7 +44,6 @@ class GuideMatchJourneyResultController extends AbstractController
        
         $journeyHistory =  urlencode($encrypt->getEncryptedString());
         $searchBy = $journeyHistoryModel->getSearchTerm();
-
 
         $isProduct = false;
         if ($journeyHistoryModel->getOutcomeType()  === GuideMatchResponseType::GuideMatchResponseSupport) {
