@@ -25,6 +25,16 @@ if ($trustedHosts = $_SERVER['TRUSTED_HOSTS'] ?? $_ENV['TRUSTED_HOSTS'] ?? false
 
 $kernel = new Kernel($env, $debug);
 
+if(!empty($_GET['debug'])){
+
+    dump(getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
+    dump(getenv('GUIDED_MATCH_SERVICE_API_KEY'));
+    dump(getenv('AGREEMENTS_SERVICE_ROOT_URL'));
+    dump(getenv('AGREEMENTS_SERVICE_API_KEY'));
+ die();
+
+}
+
 // Enable HTTP Cache for prod
 // @see https://symfony.com/doc/current/http_cache.html
 if ('prod' === $env) {
