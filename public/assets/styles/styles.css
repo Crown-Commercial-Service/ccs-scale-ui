@@ -12,8 +12,9 @@
  * `node_modules/settings` folder.
  * Please note; You need to define the variables before importing GOV.UK Frontend
  */
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700");
 .govuk-link, a {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
   @media print {
@@ -24,7 +25,7 @@
     outline-offset: 0;
     background-color: #ffbf47; }
   .govuk-link:link, a:link {
-    color: #005ea5; }
+    color: #007194; }
   .govuk-link:visited, a:visited {
     color: #4c2c92; }
   .govuk-link:hover, a:hover {
@@ -52,10 +53,10 @@
       color: #000000; } }
 
 .govuk-link--no-visited-state:link {
-  color: #005ea5; }
+  color: #007194; }
 
 .govuk-link--no-visited-state:visited {
-  color: #005ea5; }
+  color: #007194; }
 
 .govuk-link--no-visited-state:hover {
   color: #2b8cc4; }
@@ -67,7 +68,7 @@
   color: #0b0c0c; }
 
 .govuk-list, .wysiwyg-content ul, .wysiwyg-content ol {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -130,10 +131,10 @@
 
 .govuk-heading-xl {
   color: #0b0c0c;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 32px;
   font-size: 2rem;
   line-height: 1.09375;
@@ -161,10 +162,10 @@
 
 .govuk-heading-l, .wysiwyg-content h2 {
   color: #0b0c0c;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 24px;
   font-size: 1.5rem;
   line-height: 1.04167;
@@ -192,10 +193,10 @@
 
 .govuk-heading-m, .wysiwyg-content h3 {
   color: #0b0c0c;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.11111;
@@ -223,10 +224,10 @@
 
 .govuk-heading-s {
   color: #0b0c0c;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.25;
@@ -253,7 +254,7 @@
       margin-bottom: 20px; } }
 
 .govuk-caption-xl {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -277,7 +278,7 @@
       line-height: 1.15; } }
 
 .govuk-caption-l {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -304,7 +305,7 @@
       margin-bottom: 0; } }
 
 .govuk-caption-m {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -328,7 +329,7 @@
 
 .govuk-body-l, .govuk-body-lead {
   color: #0b0c0c;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -358,7 +359,7 @@
 
 .govuk-body-m, .govuk-body, .wp-caption-text, p {
   color: #0b0c0c;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -388,7 +389,7 @@
 
 .govuk-body-s {
   color: #0b0c0c;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -418,7 +419,7 @@
 
 .govuk-body-xs {
   color: #0b0c0c;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -718,10 +719,10 @@ p + .govuk-heading-s,
   margin-bottom: 0; }
 
 .govuk-accordion__section-button {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.11111;
@@ -770,19 +771,19 @@ p + .govuk-heading-s,
   display: block; }
 
 .js-enabled .govuk-accordion__open-all {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 1.14286;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline;
   border-width: 0;
-  color: #005ea5;
+  color: #007194;
   background: none;
   cursor: pointer; }
   @media print {
@@ -823,7 +824,7 @@ p + .govuk-heading-s,
   outline-offset: 0; }
 
 .js-enabled .govuk-accordion__section-button {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
@@ -834,7 +835,7 @@ p + .govuk-heading-s,
   padding-bottom: 0;
   padding-left: 0;
   border-width: 0;
-  color: #005ea5;
+  color: #007194;
   background: none;
   text-align: left;
   cursor: pointer; }
@@ -897,7 +898,7 @@ p + .govuk-heading-s,
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 1.14286;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
@@ -950,7 +951,7 @@ p + .govuk-heading-s,
   bottom: 1px; }
 
 .govuk-breadcrumbs {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1014,7 +1015,7 @@ p + .govuk-heading-s,
       display: none; }
 
 .govuk-breadcrumbs__link {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
   @media print {
@@ -1031,7 +1032,7 @@ p + .govuk-heading-s,
         color: #000000; } }
 
 .govuk-button {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1119,7 +1120,7 @@ p + .govuk-heading-s,
     box-shadow: 0 2px 0 #003618; }
 
 .govuk-button--start {
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1;
@@ -1154,10 +1155,10 @@ p + .govuk-heading-s,
   padding-bottom: 6px; }
 
 .govuk-error-message {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.25;
@@ -1188,7 +1189,7 @@ p + .govuk-heading-s,
     clear: both; }
 
 .govuk-fieldset__legend {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1220,10 +1221,10 @@ p + .govuk-heading-s,
       color: #000000; } }
 
 .govuk-fieldset__legend--xl {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 32px;
   font-size: 2rem;
   line-height: 1.09375;
@@ -1242,10 +1243,10 @@ p + .govuk-heading-s,
       line-height: 1.15; } }
 
 .govuk-fieldset__legend--l {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 24px;
   font-size: 1.5rem;
   line-height: 1.04167;
@@ -1264,10 +1265,10 @@ p + .govuk-heading-s,
       line-height: 1.05; } }
 
 .govuk-fieldset__legend--m {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.11111;
@@ -1286,10 +1287,10 @@ p + .govuk-heading-s,
       line-height: 1.15; } }
 
 .govuk-fieldset__legend--s {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.25; }
@@ -1312,7 +1313,7 @@ p + .govuk-heading-s,
   font-weight: inherit; }
 
 .govuk-hint {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1346,7 +1347,7 @@ p + .govuk-heading-s,
   margin-top: -5px; }
 
 .govuk-label {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1373,10 +1374,10 @@ p + .govuk-heading-s,
       color: #000000; } }
 
 .govuk-label--xl {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 32px;
   font-size: 2rem;
   line-height: 1.09375;
@@ -1395,10 +1396,10 @@ p + .govuk-heading-s,
       line-height: 1.15; } }
 
 .govuk-label--l {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 24px;
   font-size: 1.5rem;
   line-height: 1.04167;
@@ -1417,10 +1418,10 @@ p + .govuk-heading-s,
       line-height: 1.05; } }
 
 .govuk-label--m {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.11111;
@@ -1439,10 +1440,10 @@ p + .govuk-heading-s,
       line-height: 1.15; } }
 
 .govuk-label--s {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.25; }
@@ -1463,7 +1464,7 @@ p + .govuk-heading-s,
   margin: 0; }
 
 .govuk-checkboxes__item {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1589,7 +1590,7 @@ p + .govuk-heading-s,
   visibility: hidden; }
 
 .govuk-summary-list {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1659,7 +1660,7 @@ p + .govuk-heading-s,
 
 .govuk-summary-list__key {
   margin-bottom: 5px;
-  font-weight: 600;
+  font-weight: 700;
   word-break: break-word; }
   @media (min-width: 40.0625em) {
     .govuk-summary-list__key {
@@ -1700,7 +1701,7 @@ p + .govuk-heading-s,
   border: 0; }
 
 .govuk-input {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1784,7 +1785,7 @@ p + .govuk-heading-s,
   margin-bottom: 0; }
 
 .govuk-details {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1818,7 +1819,7 @@ p + .govuk-heading-s,
   position: relative;
   margin-bottom: 5px;
   padding-left: 25px;
-  color: #005ea5;
+  color: #007194;
   cursor: pointer; }
 
 .govuk-details__summary-text {
@@ -1897,10 +1898,10 @@ p + .govuk-heading-s,
       border: 5px solid #b10e1e; } }
 
 .govuk-error-summary__title {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.11111;
@@ -1923,7 +1924,7 @@ p + .govuk-heading-s,
       margin-bottom: 20px; } }
 
 .govuk-error-summary__body {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1954,7 +1955,7 @@ p + .govuk-heading-s,
   margin-bottom: 0; }
 
 .govuk-error-summary__list a {
-  font-weight: 600; }
+  font-weight: 700; }
   .govuk-error-summary__list a:focus {
     outline: 3px solid #ffbf47;
     outline-offset: 0;
@@ -1965,7 +1966,7 @@ p + .govuk-heading-s,
     color: #0b0c0c; }
 
 .govuk-file-upload {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -1996,7 +1997,7 @@ p + .govuk-heading-s,
   border: 4px solid #b10e1e; }
 
 .govuk-footer {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2175,7 +2176,7 @@ p + .govuk-heading-s,
   margin-bottom: 0; }
 
 .govuk-header {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2229,7 +2230,7 @@ p + .govuk-heading-s,
   vertical-align: middle; }
 
 .govuk-header__product-name {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2265,10 +2266,10 @@ p + .govuk-heading-s,
     color: #0b0c0c; }
 
 .govuk-header__link--homepage {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   display: inline-block;
   font-size: 30px;
   line-height: 30px; }
@@ -2284,10 +2285,10 @@ p + .govuk-heading-s,
 .govuk-header__link--service-name {
   display: inline-block;
   margin-bottom: 10px;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.11111; }
@@ -2328,7 +2329,7 @@ p + .govuk-heading-s,
     float: left; } }
 
 .govuk-header__menu-button {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2432,10 +2433,10 @@ p + .govuk-heading-s,
       padding: 5px 0;
       border: 0; } }
   .govuk-header__navigation-item a {
-    font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 14px;
     font-size: 0.875rem;
     line-height: 1.14286;
@@ -2483,7 +2484,7 @@ p + .govuk-heading-s,
   padding-top: 3px; }
 
 .govuk-inset-text {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2524,7 +2525,7 @@ p + .govuk-heading-s,
     margin-bottom: 0; }
 
 .govuk-panel {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2559,10 +2560,10 @@ p + .govuk-heading-s,
 .govuk-panel__title {
   margin-top: 0;
   margin-bottom: 30px;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 32px;
   font-size: 2rem;
   line-height: 1.09375; }
@@ -2583,7 +2584,7 @@ p + .govuk-heading-s,
   margin-bottom: 0; }
 
 .govuk-panel__body {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2604,10 +2605,10 @@ p + .govuk-heading-s,
       line-height: 1.05; } }
 
 .govuk-tag {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 1.25;
@@ -2643,7 +2644,7 @@ p + .govuk-heading-s,
   border-bottom: 1px solid #bfc1c3; }
 
 .govuk-phase-banner__content {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2677,7 +2678,7 @@ p + .govuk-heading-s,
   vertical-align: baseline; }
 
 .govuk-tabs {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2710,7 +2711,7 @@ p + .govuk-heading-s,
       margin-bottom: 30px; } }
 
 .govuk-tabs__title {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2750,10 +2751,10 @@ p + .govuk-heading-s,
     padding-right: 5px; }
 
 .govuk-tabs__tab {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2771,7 +2772,7 @@ p + .govuk-heading-s,
     outline-offset: 0;
     background-color: #ffbf47; }
   .govuk-tabs__tab:link {
-    color: #005ea5; }
+    color: #007194; }
   .govuk-tabs__tab:visited {
     color: #4c2c92; }
   .govuk-tabs__tab:hover {
@@ -2856,7 +2857,7 @@ p + .govuk-heading-s,
       margin-bottom: 0; } }
 
 .govuk-radios__item {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -2964,7 +2965,7 @@ p + .govuk-heading-s,
   float: none; }
 
 .govuk-radios__divider {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -3005,7 +3006,7 @@ p + .govuk-heading-s,
     margin-bottom: 0; }
 
 .govuk-select {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -3052,7 +3053,7 @@ p + .govuk-heading-s,
   -webkit-clip-path: inset(50%) !important;
   clip-path: inset(50%) !important;
   white-space: nowrap !important;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
@@ -3093,7 +3094,7 @@ p + .govuk-heading-s,
       line-height: 1.2; } }
 
 .govuk-table, .wysiwyg-content table {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -3125,7 +3126,7 @@ p + .govuk-heading-s,
       margin-bottom: 30px; } }
 
 .govuk-table__header {
-  font-weight: 600; }
+  font-weight: 700; }
 
 .govuk-table__header,
 .govuk-table__cell {
@@ -3151,12 +3152,12 @@ p + .govuk-heading-s,
   padding-right: 0; }
 
 .govuk-table__caption {
-  font-weight: 600;
+  font-weight: 700;
   display: table-caption;
   text-align: left; }
 
 .govuk-textarea {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -3196,7 +3197,7 @@ p + .govuk-heading-s,
   border: 4px solid #b10e1e; }
 
 .govuk-warning-text {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -3240,10 +3241,10 @@ p + .govuk-heading-s,
   white-space: nowrap !important; }
 
 .govuk-warning-text__icon {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   display: inline-block;
   position: absolute;
   top: 50%;
@@ -4133,7 +4134,7 @@ p + .govuk-heading-s,
   font-weight: 400 !important; }
 
 .govuk-\!-font-weight-bold {
-  font-weight: 600 !important; }
+  font-weight: 700 !important; }
 
 .govuk-\!-width-full {
   width: 100% !important; }
@@ -4407,7 +4408,7 @@ p + .govuk-heading-s,
  */
 .page-title-prepend {
   color: #6F777B;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 1.6875rem;
   font-weight: 300;
   line-height: 2.125rem;
@@ -4582,6 +4583,87 @@ p + .govuk-heading-s,
   right: 0.75rem;
   bottom: 0.75rem; }
 
+.govuk-button {
+  border-radius: 3px;
+  color: #ffffff;
+  background-color: #007E8A;
+  font-weight: 600;
+  box-shadow: 0 3px 0 #00383e;
+  min-width: 115px;
+  padding-top: 9px;
+  padding-bottom: 8px; }
+  .govuk-button:link, .govuk-button:visited, .govuk-button:active, .govuk-button:hover {
+    color: #ffffff; }
+  .govuk-button:focus {
+    border-color: #ffdd00;
+    outline: 3px solid rgba(0, 0, 0, 0);
+    box-shadow: inset 0 0 0 1px #ffdd00; }
+  .govuk-button:hover {
+    background-color: #006771; }
+  .govuk-button:active:focus:not(:hover) {
+    background-color: #007E8A; }
+  .govuk-button:focus:not(:active):not(:hover) {
+    border-color: #ffdd00;
+    color: #0b0c0c;
+    background-color: #ffdd00;
+    box-shadow: 0 2px 0 #0b0c0c; }
+  @media (min-width: 280px) and (max-width: 640px) {
+    .govuk-button {
+      max-width: 90%; } }
+
+.govuk-button--disabled,
+.govuk-button[disabled="disabled"],
+.govuk-button[disabled] {
+  background: #007E8A; }
+  .govuk-button--disabled:hover,
+  .govuk-button[disabled="disabled"]:hover,
+  .govuk-button[disabled]:hover {
+    background-color: #007E8A; }
+  .govuk-button--disabled:active,
+  .govuk-button[disabled="disabled"]:active,
+  .govuk-button[disabled]:active {
+    top: 0;
+    box-shadow: 0 3px 0 #00383e; }
+
+.govuk-button--start {
+  background-image: image-url("icon-pointer.png");
+  background-repeat: no-repeat;
+  background-size: 30px 19px;
+  background-position: 100% 56%;
+  padding-top: 9px;
+  padding-bottom: 8px;
+  padding-right: 40px; }
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    .govuk-button--start {
+      background-image: image-url("icon-pointer-2x.png");
+      background-size: 29px 18px; } }
+
+.govuk-button--warning {
+  background-color: #b10e1e;
+  box-shadow: 0 2px 0 #47060c;
+  color: #ffffff; }
+  .govuk-button--warning:link, .govuk-button--warning:visited, .govuk-button--warning:active, .govuk-button--warning:hover {
+    color: #ffffff; }
+  .govuk-button--warning:hover, .govuk-button--warning:focus {
+    background-color: #8e0b18; }
+  .govuk-button--warning:active:focus:not(:hover) {
+    background-color: #b10e1e; }
+  .govuk-button--warning:hover[disabled], .govuk-button--warning:focus[disabled] {
+    background-color: #b10e1e; }
+
+.govuk-button--secondary {
+  background-color: #f3f2f1;
+  box-shadow: 0 2px 0 #929191;
+  color: #0b0c0c; }
+  .govuk-button--secondary:link, .govuk-button--secondary:visited, .govuk-button--secondary:active, .govuk-button--secondary:hover {
+    color: #0b0c0c; }
+  .govuk-button--secondary:hover, .govuk-button--secondary:focus {
+    background-color: #dbdad9; }
+  .govuk-button--secondary:active:focus:not(:hover) {
+    background-color: #f3f2f1; }
+  .govuk-button--secondary:hover[disabled] {
+    background-color: #f3f2f1; }
+
 /*------------------------------------*\
   #Intro and description
 \*------------------------------------*/
@@ -4701,7 +4783,7 @@ p + .govuk-heading-s,
   #Accordion
 \*------------------------------------*/
 .govuk-accordion__section-button {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -4788,7 +4870,7 @@ address span {
   #Aside
 \*------------------------------------*/
 .aside {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -4815,10 +4897,10 @@ address span {
 .aside__heading {
   margin-top: 0;
   margin-bottom: 0.625rem;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.11111; }
@@ -4854,7 +4936,7 @@ address span {
 \*------------------------------------*/
 .ccs-filters-summary {
   border-bottom: 1px solid #E1E1E1;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 1.125rem;
   margin: 0 0 1.25rem 0;
   padding: 0.125rem 0 1.25rem 0; }
@@ -5091,7 +5173,7 @@ html {
 
 .apollo-card__inner {
   border: 1px solid #E7E7E7;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   position: relative; }
 
 .apollo-card__heading {
@@ -5139,10 +5221,10 @@ html {
 
 .apollo-list--definition--card.apollo-list--definition--card dt {
   margin-bottom: 5px;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 1.14286;
@@ -5167,7 +5249,7 @@ html {
   margin: 0;
   margin-bottom: 10px;
   padding-bottom: 10px;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -5194,7 +5276,7 @@ html {
     padding-bottom: 0; }
 
 .apollo-list--definition--card.apollo-list--definition--card .govuk-list, .apollo-list--definition--card.apollo-list--definition--card .wysiwyg-content ul, .wysiwyg-content .apollo-list--definition--card.apollo-list--definition--card ul, .apollo-list--definition--card.apollo-list--definition--card .wysiwyg-content ol, .wysiwyg-content .apollo-list--definition--card.apollo-list--definition--card ol {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -5670,7 +5752,7 @@ html {
  */
 .page-title-prepend {
   color: #6F777B;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 1.6875rem;
   font-weight: 300;
   line-height: 2.125rem;
@@ -5835,7 +5917,7 @@ img {
     display: block; }
 
 .apollo-list--definition {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -5911,7 +5993,7 @@ img {
   margin-right: 0.375rem; }
 
 .ccs-search-loading {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   font-size: 1.125rem;
   padding: 0.375rem 0 1.375rem 0; }
 
@@ -5920,7 +6002,7 @@ img {
 
 .govuk-accordion .ccs-link-filter-list {
   background: #fff;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   list-style: none;
   margin: 0 -0.75rem -1.125rem -0.75rem;
   padding: 0.5rem 0.75rem; }
@@ -6047,10 +6129,10 @@ img {
 
 /* a */
 .nav-list--primary .nav-list__link {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 20px;
   font-size: 1.25rem;
   line-height: 1.05; }
@@ -6069,7 +6151,7 @@ img {
 
 /* a */
 .nav-list--secondary .nav-list__link {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -6117,7 +6199,7 @@ img {
   position: absolute;
   right: 0.9375rem;
   top: 2.5625rem;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -6199,14 +6281,14 @@ img {
 \*------------------------------------*/
 .app-c-print-link__link {
   border: 0;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.25;
-  color: #005ea5;
+  color: #007194;
   text-decoration: underline; }
   @media print {
     .app-c-print-link__link {
@@ -6299,10 +6381,10 @@ img {
   #Tag
 \*------------------------------------*/
 .govuk-tag {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 17px;
   font-size: 1.0625rem;
   line-height: 1.41176;
@@ -6391,10 +6473,10 @@ img {
   padding-left: 20px; }
 
 .wysiwyg-content h4 {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 20px;
   font-size: 1.25rem;
   line-height: 1.05; }
@@ -6905,10 +6987,10 @@ a.skip-main:focus, a.skip-main:active {
       padding: 30px 25px 30px 25px; } }
 
 .news-listing-title {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 20px;
   font-size: 1.25rem;
   line-height: 1.1;
@@ -6929,7 +7011,7 @@ a.skip-main:focus, a.skip-main:active {
     text-decoration: none; }
 
 .news-listing-summary {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -6952,7 +7034,7 @@ a.skip-main:focus, a.skip-main:active {
 .news-listing-summary--featured {
   color: white;
   margin: 10px 0;
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -6975,10 +7057,10 @@ a.skip-main:focus, a.skip-main:active {
     text-decoration: none; }
 
 .news-listing-meta--featured {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   font-size: 1rem;
   line-height: 1.25;
@@ -6997,10 +7079,10 @@ a.skip-main:focus, a.skip-main:active {
       line-height: 1.15; } }
 
 .news-listing-meta {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 15px;
   font-size: 0.9375rem;
   line-height: 1.26667; }
@@ -7018,7 +7100,7 @@ a.skip-main:focus, a.skip-main:active {
       line-height: 1.2; } }
 
 .news-listing-body {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -7039,7 +7121,7 @@ a.skip-main:focus, a.skip-main:active {
       line-height: 1.2; } }
 
 .news-listing--compact .news-listing-meta {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
@@ -7060,7 +7142,7 @@ a.skip-main:focus, a.skip-main:active {
       line-height: 1.2; } }
 
 .news-listing--compact .news-listing-title {
-  font-family: "Source Sans Pro", "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+  font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;

@@ -21,8 +21,8 @@
             <div class="govuk-grid-row">
 
                 <div class="govuk-grid-column-full restrict-width">
-                    <h1 class="govuk-heading-l">Find a commercial agreement</h1>
-                    <p class="govuk-body">Use this service to find out which frameworks could meet your
+                    <h1 class="govuk-heading-xl page-title">Find a commercial agreement</h1>
+                    <p class="govuk-body page-intro">Use this service to find out which frameworks could meet your
                         requirements.</p>
                     <h2 class="govuk-heading-m">Before you start</h2>
                     <p class="govuk-body">It may be helpful to know the following information:</p>
@@ -35,14 +35,9 @@
                         </li>
                     </ul>
 
-                    <a href="{{ path('start-journey', {'journeyUuid': journeyUuid})}}?q={{searchBy}}" role="button" draggable="false" 
-                        class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8 govuk-button--start" data-module="govuk-button">
-                        Start now
-                        <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5"
-                             height="19" viewBox="0 0 33 40" aria-hidden="true" focusable="false">
-                            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"/>
-                        </svg>
-                    </a>
+                    <a href="{{ path('start-journey', {'journeyUuid': journeyUuid})}}?q={{searchBy}}" role="button" name="start now"
+                    class="govuk-button govuk-button--start govuk-!-margin-top-6 govuk-!-margin-bottom-9" 
+                    data-module="govuk-button">Start now</a>
                 </div>
 
             </div>
