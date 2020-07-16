@@ -33,3 +33,8 @@ back-to-previous:
 journey-result:
   path: /guided-match/result/{journeyId}/{journeyInstanceId}/{agreements?}
   controller: App\Controller\GuideMatchJourneyResultController::journeyResult
+
+
+contact-ccs-page:
+  path: /guided-match/contact-css/{journeyId}/{journeyInstanceId}/{journeyHistory}
+  controller: App\Controller\GuideMatchContactCssController::contactCss

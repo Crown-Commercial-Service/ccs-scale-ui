@@ -36,6 +36,7 @@ class StartJourneyController extends AbstractController
             'journeyInstanceId' => $model->getJourneyInstanceId(),
             'journeyId' => $journeyUuid,
             'definedAnswers' => $model->getDefinedAnswers(),
+            'journeyHistory' => '',
             'uuid' => $model->getUuid(),
             'text' => $model->getText(),
             'type' => $model->getType(),
