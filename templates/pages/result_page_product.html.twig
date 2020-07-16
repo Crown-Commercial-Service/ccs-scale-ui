@@ -12,7 +12,21 @@
     <div class="--govuk-width-container">
         <div class="govuk-width-container">
             {{ include('includes/phase_banner.html.twig') }}
-            {{ include('includes/breadcrumb_result_page.html.twig') }}
+             <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
+            <a 
+            aria-describedby="back-to_prev"
+            href="{{ 
+                path( 
+                    'back-to-previous',
+                    {
+                        'journeyId': journeyId,
+                        'journeyInstanceId': journeyInstanceId,
+                        'questionUuid': lastQuestionId,
+                        'journeyHistory': journeyHistory, 
+                        'gPage': lastPage,
+                    }
+                    )}}?q={{ searchBy }}"
+                class="govuk-back-link">Back</a>
 
             <main class="govuk-main-wrapper" id="main-content">
              

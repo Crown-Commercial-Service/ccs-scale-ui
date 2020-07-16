@@ -28,12 +28,15 @@ class GuideMatchJourneyResultController extends AbstractController
 
         // get history answers
         $historyUserAnswers =  $journeyHistoryModel->getJourneyHistoryAnswers();
-       
+      // dd($historyUserAnswers);
        
         if (empty($historyUserAnswers)) {
             throw new Exception('Wrong url data');
         }
 
+        $lastQuestion = end($historyUserAnswers);
+        $lastQuestionId = $lastQuestion['question']['id'];
+        $lastPage = count($historyUserAnswers) - 1;
         // format answers for view
         $userAnswers = new UserAnswers();
         $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers);
@@ -46,6 +49,7 @@ class GuideMatchJourneyResultController extends AbstractController
 
         $isProduct = false;
         if ($journeyHistoryModel->getOutcomeType()  === GuideMatchResponseType::GuideMatchResponseSupport) {
+           
             $isProduct = true;
 
             return $this->render('pages/result_page_product.html.twig', [
@@ -54,6 +58,8 @@ class GuideMatchJourneyResultController extends AbstractController
                 'journeyId' => $journeyId,
                 'journeyInstanceId' => $journeyInstanceId,
                 'journeyHistory' => $journeyHistory,
+                'lastPage' => $lastPage,
+                'lastQuestionId' => $lastQuestionId,
                 'pageTitle' => 'Result Journey Page'
             ]);
         }
@@ -75,11 +81,13 @@ class GuideMatchJourneyResultController extends AbstractController
             'journeyId' => $journeyId,
             'journeyInstanceId' => $journeyInstanceId,
             'journeyHistory' => $journeyHistory,
+            'lastQuestionId' => $lastQuestionId,
             'agreementsNames' => $agrementModel->getAgreementsNames(),
             'countLots' => $agrementModel->getCountLots(),
             'isProduct' => $isProduct,
             'isScale' => $agrementModel->getScale(),
-            'pageTitle' => 'Result Journey Page'
+            'lastPage' => $lastPage,
+            'pageTitle' => 'Result Journey Page',
         ]);
     }
 }
