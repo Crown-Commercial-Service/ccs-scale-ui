@@ -26,9 +26,11 @@ class UserAnswers
                     $unit = $answer['unit'] === 'currency' ? '&#163;' : $answer['unit'];
                 }
 
+                $userAnswer = is_numeric($answer['answer']) ? number_format((float)$answer['answer']) : $answer['answer'];
+
                 $answerTxt .= $counter < $nrAnswers ?
-                             $answer['answerText'] . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? "( ".($answer['unit'] === "currency" ? $unit :"")."  {$answer['answer']}".($answer['unit'] !== "currency" ? $unit :"").")" : ''). ', ' :
-                             $answer['answerText'].(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? "(".($answer['unit'] === "currency" ? $unit :"")."{$answer['answer']} ".($answer['unit'] !== "currency" ? $unit :"")." )":'');
+                             $answer['answerText'] . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " (".($answer['unit'] === "currency" ? $unit :"").  $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"").")" : ''). ', ' :
+                             $answer['answerText'].(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " (".($answer['unit'] === "currency" ? $unit :""). $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"")." )":'');
 
                         
                 $counter++;
