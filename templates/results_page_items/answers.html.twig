@@ -14,7 +14,7 @@
             <div class="govuk-summary-list__row">
              <dl class="govuk-summary-list">
                 <dt class="govuk-summary-list__key"> {{answer.question}}</dt>
-                <dd class="govuk-summary-list__value"> {{answer.answerTxt}}</dd>
+                <dd class="govuk-summary-list__value"> {{answer.answerTxt|raw}}</dd>
                 <dd class="govuk-summary-list__value">
                     {% if changeAnswer == 1 %}
                         {% if  index >  0 %}
