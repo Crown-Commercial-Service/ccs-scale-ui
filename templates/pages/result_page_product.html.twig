@@ -40,6 +40,9 @@
                          </p>  
                         {% include "/results_page_items/answers.html.twig" with {'lotstTitle': '', 'changeAnswer':''} %}
                     </div>
+                    <div class="app-c-print-link">
+                            <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}"> Start over to change your answers</a>  
+                    </div>
              
             </main>
         </div>

@@ -75,7 +75,8 @@ class GuideMatchJourneyController extends AbstractController
                 'gPage' => $gPage,
                 'lastPage' => $gPage-1,
                 'errorMessage' => $validate->getErrorMessage(),
-                'pageTitle' => $questionText
+                'pageTitle' => $questionText,
+                'currentPage' => $gPage
             ]);
         }
 
@@ -167,7 +168,7 @@ class GuideMatchJourneyController extends AbstractController
         if ($lastQuestionId === $uuid) {
             $userAnswers = $model->getQuestionAnswers($lastQuestionId, $journeyHistory);
         }
-       
+
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
             'journeyId' => $journeyId,
@@ -182,7 +183,8 @@ class GuideMatchJourneyController extends AbstractController
             'journeyHistory' => $journeyHistoryEncode,
             'gPage' => $nextPage,
             'lastPage' => $lastPage,
-            'pageTitle' => $questionText
+            'pageTitle' => $questionText,
+            'currentPage' => $gPage
         ]);
     }
 
