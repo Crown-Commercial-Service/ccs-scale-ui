@@ -31,7 +31,7 @@
 
             <main class="govuk-main-wrapper" id="main-content">
                 <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-full restrict-width">
+                    <div class="govuk-grid-column-full">
                         <div>
                             <h2 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, there
                                 are </h2>
@@ -46,7 +46,7 @@
                        
                         {{ include('results_page_items/section_anchors.html.twig') }}
 
-                        <div class="govuk-grid-column-three-quarters">
+                        <div class="govuk-grid-column-three-quarters restrict-width">
                             {% set lotstTitle = '' %}
                             {% for framework in frameworks %}
                                 {% if  framework is not empty %}
