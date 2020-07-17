@@ -17,12 +17,13 @@ class GuideMatchContactCssController extends AbstractController
     {
 
         $searchBy = $request->query->get('q');
-        $decrypt = new Decrypt(urldecode($journeyHistory));
-        $historyUserAnswers = json_decode($decrypt->getDecryptedString(), true);
-        $userAnswers = new UserAnswers();
-        $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers,false);
-     
-
+        $userAnswersFormatedForView = [];
+        if ($journeyHistory != '0') {
+            $decrypt = new Decrypt(urldecode($journeyHistory));
+            $historyUserAnswers = json_decode($decrypt->getDecryptedString(), true);
+            $userAnswers = new UserAnswers();
+            $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers, false);
+        }
         return $this->render('pages/contact_css.html.twig', [
            
             'searchBy' => $searchBy,

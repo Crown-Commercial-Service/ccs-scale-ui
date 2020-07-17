@@ -32,7 +32,7 @@ class GuideMatchBackToPreviousController extends AbstractController
        
         $lastQuestionId = $journeyHistoryData[$lastPage]['question']['id'];
 
-        $questionId =  $model->getUuid();
+        $questionId = $model->getUuid();
 
         // Go back to the first page of journey
         if ($gPage < 1) {
@@ -59,7 +59,8 @@ class GuideMatchBackToPreviousController extends AbstractController
             'journeyHistory' => $journeyHistory,
             'gPage' => $nextPage,
             'lastPage' => $lastPage,
-            'pageTitle' => $questionText
+            'pageTitle' => $questionText,
+            'currentPage' => $gPage
         ]);
     }
 }

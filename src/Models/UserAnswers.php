@@ -39,7 +39,7 @@ class UserAnswers
                     $answerTxt .= $counter < $nrAnswers ?
                         ( !empty($this->checkIfTheAnswerIsId($answer['answer']))  ? $answer['answerText'] : '') . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " ".($answer['unit'] === "currency" ? $unit :"").  $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"").")
                             " : ''). ', ' :
-                        ( !empty($this->checkIfTheAnswerIsId($answer['answer']))  ? $answer['answerText'] .'X' : '').(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " ".($answer['unit'] === "currency" ? $unit :""). $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"")." ":'');
+                        ( !empty($this->checkIfTheAnswerIsId($answer['answer']))  ? $answer['answerText'] : '').(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " ".($answer['unit'] === "currency" ? $unit :""). $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"")." ":'');
                 }
                         
                 $counter++;

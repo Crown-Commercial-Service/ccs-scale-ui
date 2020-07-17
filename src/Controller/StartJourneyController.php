@@ -36,7 +36,7 @@ class StartJourneyController extends AbstractController
             'journeyInstanceId' => $model->getJourneyInstanceId(),
             'journeyId' => $journeyUuid,
             'definedAnswers' => $model->getDefinedAnswers(),
-            'journeyHistory' => '',
+            'journeyHistory' => '0',
             'uuid' => $model->getUuid(),
             'text' => $model->getText(),
             'type' => $model->getType(),
@@ -45,7 +45,8 @@ class StartJourneyController extends AbstractController
             'userAnswers' => [],
             'gPage' => 1,
             'lastPage' => 0,
-            'pageTitle' => $questionText
+            'pageTitle' => $questionText,
+            'currentPage'=>1
         ]);
     }
 }
