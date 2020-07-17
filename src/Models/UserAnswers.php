@@ -11,8 +11,9 @@ class UserAnswers
      *
      * @return array
      */
-    public function formatForView(array $userAnswers)
+    public function formatForView(array $userAnswers, $showFullResponse = true)
     {
+        //dd($userAnswers);
         $answersFormart = [];
         foreach ($userAnswers as $answers) {
             $nrAnswers = count($answers['answers']);
@@ -28,10 +29,18 @@ class UserAnswers
 
                 $userAnswer = is_numeric($answer['answer']) ? number_format((float)$answer['answer']) : $answer['answer'];
 
-                $answerTxt .= $counter < $nrAnswers ?
-                             $answer['answerText'].(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " (".($answer['unit'] === "currency" ? $unit :""). $userAnswer.($answer['unit'] !== "currency" ? $unit :"").")" : ''). ', ' :
-                             $answer['answerText'].(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " (".($answer['unit'] === "currency" ? $unit :""). $userAnswer.($answer['unit'] !== "currency" ? $unit :"").")":'');
 
+                if ($showFullResponse) {
+                    $answerTxt .= $counter < $nrAnswers ?
+                             $answer['answerText'] . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " (".($answer['unit'] === "currency" ? $unit :"").  $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"").")" : ''). ', ' :
+                             $answer['answerText'].(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " (".($answer['unit'] === "currency" ? $unit :""). $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"")." )":'');
+                } else {
+
+                    $answerTxt .= $counter < $nrAnswers ?
+                        ( !empty($this->checkIfTheAnswerIsId($answer['answer']))  ? $answer['answerText'] : '') . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " ".($answer['unit'] === "currency" ? $unit :"").  $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"").")
+                            " : ''). ', ' :
+                        ( !empty($this->checkIfTheAnswerIsId($answer['answer']))  ? $answer['answerText'] .'X' : '').(empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " ".($answer['unit'] === "currency" ? $unit :""). $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"")." ":'');
+                }
                         
                 $counter++;
             }
