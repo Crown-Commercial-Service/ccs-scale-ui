@@ -9,6 +9,12 @@ function hasClass(element, className) {
 // Mutually exclusive checkbox  and select/unselect all checkbox logic
 // ====================================================================
 
+function twoDecimalLimit(element) {
+  var t = element.value;
+  element.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
+}
+
+
 //checks and unchecks all checkboxes by presing checkbox x
 function toggle(x) {
     var checkboxes = document.getElementsByClassName('all-options');

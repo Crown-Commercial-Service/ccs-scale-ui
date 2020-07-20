@@ -1,49 +1,54 @@
 <div class="govuk-radios govuk-radios--conditional" data-module="govuk-radios">
     {% for answer in definedAnswers %}
-        <div class="govuk-radios__item">
-            {% set checked = '' %}
-            {% set answerValue = '' %}
-            {% if answer.text  in userAnswers|keys %}
-                {% set checked = 'checked = checked' %}
-                {% set answerValue = userAnswers.answer %}
-            {% endif %}
-            <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio" value="{{ answer.id }}"
-                    onchange="resetErrors(this)" data-aria-controls="conditional-{{ answer.id }}" {{ checked }}  aria-describedby="no-selection">
-            <label class="govuk-label govuk-radios__label" for="{{ answer.id }}">
-                {{- answer.text -}}
-            </label>
-            {% if answer.hint is defined  and answer.hint is not empty %}
-                <span class="govuk-hint govuk-radios__hint">{{- answer.hint -}}</span>
-            {% endif %}
-        </div>
-        {% if answer.conditionalInput is defined %}
-            <div class="govuk-radios__conditional govuk-radios__conditional--hidden conditional-input" id="conditional-{{ answer.id }}">
-                <div class="govuk-form-group">
-                    <label class="govuk-label" for="input-{{ answer.id }}">
-                        {{ answer.conditionalInput.text }}
-                    </label>
-                    {% if answer.conditionalInput.hint is defined  and answer.conditionalInput.hint is not empty %}
-                        <span class="govuk-hint govuk-radios__hint">{{- answer.conditionalInput.hint -}}</span>
-                    {% endif %}
-                    <div role='alert'>
-                        <span id="no-input" class="govuk-error-message" style="display: none">
-                            <span class="govuk-visually-hidden">Error:</span> Please provide Input.
-                        </span>
-                    </div>
-                    <input class="govuk-input govuk-!-width-one-third"
-                           name="{{ answer.id }}"
-                           value = "{{ answerValue }}"
-                           id="input-{{ answer.id }}"
-                           type="{{ answer.conditionalInput.type }}" min="1" step="0.01"
-                           aria-describedby="no-input"
-                           >
-                    <input type='hidden'
-                           name="inputType-{{ answer.id }}"
-                           value = "{{ answer.conditionalInput.type }}"
-                           >
-                </div>
-            </div>
+    <div class="govuk-radios__item">
+        {% set checked = '' %}
+        {% set answerValue = '' %}
+        {% if answer.text  in userAnswers|keys %}
+        {% set checked = 'checked = checked' %}
+        {% set answerValue = userAnswers.answer %}
         {% endif %}
+        <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio" value="{{ answer.id }}"
+        onchange="resetErrors(this)" data-aria-controls="conditional-{{ answer.id }}" {{ checked }}  aria-describedby="no-selection">
+        <label class="govuk-label govuk-radios__label" for="{{ answer.id }}">
+            {{- answer.text -}}
+        </label>
+        {% if answer.hint is defined  and answer.hint is not empty %}
+        <span class="govuk-hint govuk-radios__hint">{{- answer.hint -}}</span>
+        {% endif %}
+    </div>
+    {% if answer.conditionalInput is defined %}
+    <div class="govuk-radios__conditional govuk-radios__conditional--hidden conditional-input" id="conditional-{{ answer.id }}">
+        <div class="govuk-form-group">
+            <label class="govuk-label" for="input-{{ answer.id }}">
+                {{ answer.conditionalInput.text }}
+            </label>
+            {% if answer.conditionalInput.hint is defined  and answer.conditionalInput.hint is not empty %}
+            <span class="govuk-hint govuk-radios__hint">{{- answer.conditionalInput.hint -}}</span>
+            {% endif %}
+            <div role='alert'>
+                <span id="no-input" class="govuk-error-message" style="display: none">
+                    <span class="govuk-visually-hidden">Error:</span> Please provide Input.
+                </span>
+            </div>
+            <span class="input-type input-type--{% if answer.conditionalInput.unit == "currency" %}prefix{% else %}sufix{% endif %}">
+                <span class="input-type__inner">
+                    {% if answer.conditionalInput.unit == "currency" %}
+                        <abbr class="input-type__type" aria-hidden="true" title="Pounds (GBP)">£</abbr>
+                    {% endif %}
+                    <input class="govuk-input govuk-!-width-one-third" name="{{ answer.id }}" 
+                    value = "{{ answerValue }}" id="input-{{ answer.id }}" 
+                    aria-describedby="no-input" oninput="twoDecimalLimit(this)">
+                    {% if answer.conditionalInput.unit == "months" %}
+                        <abbr class="input-type__type" aria-hidden="true" title="months">months</abbr>
+                    {% endif %}
+                </span>
+            </span>
+            <input type='hidden'
+            name="inputType-{{ answer.id }}"
+            value = "{{ answer.conditionalInput.type }}">
+        </div>
+    </div>
+    {% endif %}
     {% endfor %}
-     <input type='hidden' name='form-type' value='boolean'>
+    <input type='hidden' name='form-type' value='boolean'>
 </div>
