@@ -33,13 +33,14 @@
                 <div class="govuk-grid-row">
                     <div class="govuk-grid-column-full">
                         <div>
-                            <h2 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, there
-                                are </h2>
+                            <h2 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, we think there 
+                                {{countFrameworks > 1 ? 'are':'is'}} </h2>
                             <h1 class="govuk-heading-xl page-title">
-                                <strong>{{ countFrameworks }} frameworks that match your needs
+                                <strong>{{ countFrameworks }} framework{{countFrameworks > 1 ? 's'}}
                                     {% if  countLots > 0 %}
                                         and {{ countLots }} {{  countLots == 1 ? 'lot':'lots' }}
                                     {% endif %}
+                                    that match your needs
                                 </strong>
                             </h1>
                         </div>
@@ -73,15 +74,15 @@
                                 <li>Use the buttons to start online procurement for your chosen framework</li>
                             </ul>
 
+                            {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
+
                             <h2 class="govuk-heading-l result-heading" id="definitions">Definitions</h2>
                             {% include "/results_page_items/definitions.html.twig" %}
 
-                           
-                            {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
-                             <div class="app-c-print-link">
-                                    <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}"> Start over to change your answers</a>  
-                             </div>
-
+                             
+                            <a class="govuk-button govuk-button--secondary" data-module="govuk-button" 
+                            href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}">
+                            Start again to change your answers</a>
                         </div>
                     </div>
                 </div>
