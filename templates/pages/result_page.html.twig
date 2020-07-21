@@ -3,56 +3,56 @@
 {% block title %} Guided Match Journey - searched for {{searchBy}}  - {{pageTitle}}{% endblock %}
 
 {% block header %}
-    {% embed '/includes/header.html.twig' %}
-        {% block bannerarea %}{% endblock %}
-    {% endembed %}
+{% embed '/includes/header.html.twig' %}
+{% block bannerarea %}{% endblock %}
+{% endembed %}
 {% endblock %}
 
 
 {% block body %}
-    <div class="--govuk-width-container">
-        <div class="govuk-width-container">
-            {{ include('includes/phase_banner.html.twig') }}
-             <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
-            <a 
-            aria-describedby="back-to_prev"
-            href="{{ 
-                path( 
-                    'back-to-previous',
-                    {
-                        'journeyId': journeyId,
-                        'journeyInstanceId': journeyInstanceId,
-                        'questionUuid': lastQuestionId,
-                        'journeyHistory': journeyHistory, 
-                        'gPage': lastPage,
-                    }
-                    )}}?q={{ searchBy }}"
-                class="govuk-back-link">Back</a>
+<div class="--govuk-width-container">
+    <div class="govuk-width-container">
+        {{ include('includes/phase_banner.html.twig') }}
+        <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
+        <a 
+        aria-describedby="back-to_prev"
+        href="{{ 
+        path( 
+        'back-to-previous',
+        {
+            'journeyId': journeyId,
+            'journeyInstanceId': journeyInstanceId,
+            'questionUuid': lastQuestionId,
+            'journeyHistory': journeyHistory, 
+            'gPage': lastPage,
+        }
+        )}}?q={{ searchBy }}"
+        class="govuk-back-link">Back</a>
 
-            <main class="govuk-main-wrapper" id="main-content">
-                <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-full">
-                        <div>
-                            <h2 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, we think there 
-                                {{countFrameworks > 1 ? 'are':'is'}} </h2>
+        <main class="govuk-main-wrapper" id="main-content">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-full">
+                    <div>
+                        <h2 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, we think there 
+                            {{countFrameworks > 1 ? 'are':'is'}} </h2>
                             <h1 class="govuk-heading-xl page-title">
                                 <strong>{{ countFrameworks }} framework{{countFrameworks > 1 ? 's'}}
                                     {% if  countLots > 0 %}
-                                        and {{ countLots }} {{  countLots == 1 ? 'lot':'lots' }}
+                                    and {{ countLots }} {{  countLots == 1 ? 'lot':'lots' }}
                                     {% endif %}
                                     that match your needs
                                 </strong>
                             </h1>
                         </div>
-                       
+
                         {{ include('results_page_items/section_anchors.html.twig') }}
 
                         <div class="govuk-grid-column-three-quarters restrict-width">
                             {% set lotstTitle = '' %}
                             {% for framework in frameworks %}
-                                {% if  framework is not empty %}
-                                    {% set lotstTitle = framework.lotsTitle %}
-                                {% endif %}
+                            {% if  framework is not empty %}
+                            {% set lotstTitle = framework.lotsTitle %}
+                            {% endif %}
                             {% endfor %}
                             
                             <h2 class="govuk-heading-l result-heading" id="recommendations">Recommendations</h2>
@@ -62,13 +62,23 @@
                             <ul class="govuk-list govuk-list--bullet">
                                 <li>Read the framework documentation for
                                     {% for agreement in agreementsNames %}
-                                        <a class='govuk-link' href="https://www.crowncommercial.gov.uk/agreements/{{ agreement.number }}"> {{ agreement.name }}</a>
+                                    <a class='govuk-link' href="https://www.crowncommercial.gov.uk/agreements/{{ agreement.number }}"> {{ agreement.name }}</a>
                                     {% endfor %}
                                     to understand what's available
                                 </li>
                                 <li>
-                                    <a class="govuk-link" href="https://www.crowncommercial.gov.uk/contact">Contact
-                                        CCS</a>
+                                    <a href="{{ 
+                                    path( 
+                                    'contact-ccs-page',
+                                    {
+                                        'journeyId': journeyId,
+                                        'journeyInstanceId': journeyInstanceId,
+                                        'questionUuid': lastQuestionId,
+                                        'journeyHistory': journeyHistory, 
+                                        'gPage': lastPage,
+
+                                    }
+                                    )}}?q={{ searchBy }}">Contact CCS</a>
                                     to get more information, or to start the buying process
                                 </li>
                                 <li>Use the buttons to start online procurement for your chosen framework</li>
@@ -79,14 +89,14 @@
                             <h2 class="govuk-heading-l result-heading" id="definitions">Definitions</h2>
                             {% include "/results_page_items/definitions.html.twig" %}
 
-                             
+
                             <a class="govuk-button govuk-button--secondary" data-module="govuk-button" 
                             href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}">
-                            Start again to change your answers</a>
-                        </div>
+                        Start again to change your answers</a>
                     </div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </main>
     </div>
+</div>
 {% endblock %}
