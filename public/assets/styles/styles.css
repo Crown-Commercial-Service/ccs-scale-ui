@@ -5881,6 +5881,12 @@ img {
 .ccs-heading-link--inline a {
   display: inline; }
 
+.print-link {
+  background: url(/assets/images/icon-print.png) no-repeat 10px 50%;
+  margin-left: -10px;
+  padding: .5em .5em .5em 38px;
+  cursor: pointer; }
+
 /*------------------------------------*\
   #Lists
 \*------------------------------------*/
@@ -6885,6 +6891,13 @@ a.skip-main:focus, a.skip-main:active {
   position: -webkit-sticky;
   position: sticky;
   top: 0; }
+
+/* Don't print link hrefs */
+@media print {
+  a[href]:after {
+    content: none; }
+  .no-print, .no-print * {
+    display: none !important; } }
 
 /*------------------------------------*\
   #News
