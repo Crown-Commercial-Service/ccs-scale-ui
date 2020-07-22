@@ -13,7 +13,7 @@
             {{- answer.text -}}
         </label>
         {% if answer.hint is defined  and answer.hint is not empty %}
-        <span class="govuk-hint govuk-radios__hint">{{- answer.hint -}}</span>
+        <span class="govuk-hint govuk-radios__hint">{{- answer.hint|raw -}}</span>
         {% endif %}
     </div>
     {% if answer.conditionalInput is defined %}
@@ -23,7 +23,7 @@
                 {{ answer.conditionalInput.text }}
             </label>
             {% if answer.conditionalInput.hint is defined  and answer.conditionalInput.hint is not empty %}
-            <span class="govuk-hint govuk-radios__hint">{{- answer.conditionalInput.hint -}}</span>
+            <span class="govuk-hint govuk-radios__hint">{{- answer.conditionalInput.hint|raw -}}</span>
             {% endif %}
             <div role='alert'>
                 <span id="no-input" class="govuk-error-message" style="display: none">
