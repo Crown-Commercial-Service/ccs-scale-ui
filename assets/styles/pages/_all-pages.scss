@@ -72,3 +72,15 @@ a.skip-main:focus, a.skip-main:active {
     position: sticky;
     top: 0;
 }
+
+//removes links from printing page
+/* Don't print link hrefs */
+@media print {
+  a[href]:after {
+    content: none
+  }
+  .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
