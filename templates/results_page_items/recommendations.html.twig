@@ -1,58 +1,37 @@
 <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
     {% for framework in frameworks %}
-        {% if  framework is not empty %}
-            <div class="govuk-accordion__section ">
-                <div class="govuk-accordion__section-header">
-                    <h2 class="govuk-accordion__section-heading">
-                        <span class="govuk-accordion__section-button" id="accordion-default-heading-{{ loop.index }}">
-                            <strong>{{ framework.name }}</strong>
-                        </span>
-                    </h2>
-                    <div class="govuk-accordion__section-summary govuk-body" id="accordion-with-summary-sections-summary-{{ loop.index }}">
-                        {{ framework.lotsTitle }}
-                    </div>
-                </div>
-                <div id="accordion-with-summary-sections-content-{{ loop.index }}" class="govuk-accordion__section-content">
-                    <p>
-                        <strong>Framework ID:</strong>
-                        {{ framework.number }}
-                        <strong>End Date:</strong>
-                        {{ framework.endDate|date("m/d/Y") }}
-                    </p>
-                    <p> {{ framework.description }}</p>
-                    <div>
-                        {% if  framework.lots is defined %}
-                            {% include "/results_page_items/lots.html.twig" %}
-                        {% endif %}
-                    </div>
-                    <a class="download" href="">
-                        <svg height="32" viewBox="0 0 42 32" width="42"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <g fill="none" fill-rule="evenodd">
-                                <path d="m0 0h32.9985352l9.0014648 8.97912598v23.02087402h-42z"
-                                      fill="#ae0c0c">
-                                </path>
-                                <text fill="#fff"
-                                      font-family="SourceSansPro-Semibold, Source Sans Pro"
-                                      font-size="15" font-weight="500">
-                                    <tspan x="5.485" y="22">.PDF</tspan>
-                                </text>
-                                <path d="m33 0h9v9z" fill="#000"
-                                      opacity=".59654" transform="matrix(-1 0 0 -1 75 9)">
-                                </path>
-                            </g>
-                        </svg>
-                        Download customer guidance document</a>
-                    <br><br>
-                    <span class='hidden_msgs' id="new-window-{{ loop.index }}">{{ framework.name }} Open in a new tab</span>
-                    <a  target="_blank" class='view-framework-details-ulr'
-                    aria-describedby="new-window-{{ loop.index }}"
-                       href="https://www.crowncommercial.gov.uk/agreements/{{ framework.number }}">
-                        View framework details
-                    </a>
-                    <br><br>
-                </div>
+    {% if  framework is not empty %}
+    <div class="govuk-accordion__section ">
+        <div class="govuk-accordion__section-header">
+            <h2 class="govuk-accordion__section-heading">
+                <span class="govuk-accordion__section-button" id="accordion-default-heading-{{ loop.index }}">
+                    <h3 class="govuk-heading-m">{{ framework.name }}</h3>
+                </span>
+            </h2>
+        </div>
+        <div id="accordion-with-summary-sections-content-{{ loop.index }}" class="govuk-accordion__section-content">
+            <p>
+                <strong>Framework ID:</strong>
+                {{ framework.number }}
+                <strong>End Date:</strong>
+                {{ framework.endDate|date("m/d/Y") }}
+            </p>
+            <p> {{ framework.description }}</p>
+            <div>
+                {% if  framework.lots is defined %}
+                {% include "/results_page_items/lots.html.twig" %}
+                {% endif %}
             </div>
-       {% endif %}
-    {% endfor %}
+            <br>
+            <span class='hidden_msgs' id="new-window-{{ loop.index }}">{{ framework.name }} Open in a new tab</span>
+            <a  target="_blank" class='view-framework-details-ulr govuk-button govuk-button--secondary'
+            aria-describedby="new-window-{{ loop.index }}" data-module="govuk-button"
+            href="https://www.crowncommercial.gov.uk/agreements/{{ framework.number }}">
+            View framework details
+        </a>
+        
+    </div>
+</div>
+{% endif %}
+{% endfor %}
 </div>
