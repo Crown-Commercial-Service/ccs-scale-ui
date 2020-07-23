@@ -2,7 +2,7 @@
     <h2 class="govuk-heading-l result-heading" id="answers">Your answers</h2>
         <div class="govuk-summary-list__row">
          <dl class="govuk-summary-list">
-            <dt class="govuk-summary-list__key"> Your initial search phrase</dt>
+            <dt class="govuk-summary-list__key"> Your initial search term</dt>
             <dd class="govuk-summary-list__value"> {{searchBy}}</dd>
             <dd class="govuk-summary-list__value no-print"><a class="govuk-breadcrumbs__link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch">Change</a></dd>
             </dl>
@@ -44,7 +44,7 @@
         {% if  agreementsNames is defined %}
         <div class="govuk-summary-list__row">
          <dl class="govuk-summary-list">
-            <dt class="govuk-summary-list__key"> Framework(s)/Lot(s) recommended</dt>         
+            <dt class="govuk-summary-list__key"> Framework(s)/Lot(s) recommendations</dt>         
             <dd class="govuk-summary-list__value">
                 {% for agreement in agreementsNames %}
                     {{agreement.name}}({{agreement.number}}){{ agreement.lotsTitle is empty  ? '' : ', ' ~  agreement.lotsTitle }}
