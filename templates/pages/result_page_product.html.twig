@@ -28,21 +28,29 @@
                     )}}?q={{ searchBy }}"
                 class="govuk-back-link">Back</a>
 
-            <main class="govuk-main-wrapper" id="main-content">
+            <main class="govuk-main-wrapper restrict-width" id="main-content">
              
-                    <div class="govuk-grid-row">
+                    <div class="govuk-grid-row ">
                         <h1 class="govuk-heading-xl page-title govuk-!-margin-bottom-5">We need more information to help you</h1>
                         <p class="govuk-body-l">Our customer service team can help you gather the right information to start procurement, even if you have complex needs.</p>
-                        <p><a class="govuk-link" href="https://www.crowncommercial.gov.uk/contact">Contact CCS</a> for further help.</p>
+
+                        <a href="https://www.crowncommercial.gov.uk/contact" role="button" 
+                        class="govuk-button  govuk-!-margin-bottom-4" data-module="govuk-button">Contact CCS</a>
+
                         <p>
                             It can help to keep a record of your answers to share with us so we can understand what framework is best for you.
                              Our customer service team can't see what you have answered here so print or download your answers before calling.
                          </p>  
                         {% include "/results_page_items/answers.html.twig" with {'lotstTitle': '', 'changeAnswer':''} %}
                     </div>
-                    <div class="app-c-print-link">
-                            <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}"> Start over to change your answers</a>  
+                    
+                    <div style="margin-bottom: 2em; margin-top: 2em" class="no-print">
+                        <a class="print-link govuk-link" rel="alternate" onclick="window.print();return false;">Print this page</a>
                     </div>
+
+                    <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                    href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}">
+                    Start again to change your answers</a>
              
             </main>
         </div>
