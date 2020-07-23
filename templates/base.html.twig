@@ -16,7 +16,7 @@
     {% endblock %}
 
     {% block pageMetaTags %}{{ (page is defined)? page.head.getAllMetaHtml()|raw : '' }}{% endblock %}
-    <link rel="stylesheet" type="text/css" href="https://cdn.ons.gov.uk/sdc/design-system/19.3.0/css/main.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.ons.gov.uk/sdc/design-system/19.3.0/css/main.css"> -->
     {% if app.environment == "prod" %}
         <link rel="stylesheet" href="{{ asset ('assets/styles/styles.min.css') }} ">
     {% else %}
