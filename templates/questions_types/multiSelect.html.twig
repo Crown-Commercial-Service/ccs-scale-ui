@@ -6,8 +6,9 @@
             {% set checked = 'checked' %}
         {% endif %}
 
-        {% if answer.order == definedAnswers|last.order or answer.mutuallyExclusive == true %}
+        {% if answer.mutuallyExclusive == true and firstOcurence is not defined %}
             <div class="govuk-radios__divider">or</div>
+            {% set firstOcurence = true %}
         {% endif %}
         
         {% if answer.mutuallyExclusive == true %}
