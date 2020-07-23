@@ -9,14 +9,13 @@
         </div>
 
         {% set index = 0 %}
-
         {% for answer in historyAnswered %}
             <div class="govuk-summary-list__row">
              <dl class="govuk-summary-list">
                 <dt class="govuk-summary-list__key"> {{answer.question}}</dt>
                 <dd class="govuk-summary-list__value"> {{answer.answerTxt|raw}}</dd>
                 <dd class="govuk-summary-list__value no-print">
-                    {% if changeAnswer == 1 %}
+                    {#{% if changeAnswer == 1 %}#}
                         {% if  index >  0 %}
                         <a  aria-describedby="change-answer-{{index}}"
                          href="{{ 
@@ -34,7 +33,7 @@
                         {% else %}
                         <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
                         {% endif %}
-                    {% endif %}    
+                    {#{% endif %}#}    
                 </dd>
                 </dl>
         </div>
