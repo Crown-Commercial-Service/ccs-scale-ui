@@ -67,12 +67,6 @@ a.skip-main:focus, a.skip-main:active {
     max-width: 700px;
 }
 
-.app-sticky-element {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-}
-
 //removes links from printing page
 /* Don't print link hrefs */
 @media print {

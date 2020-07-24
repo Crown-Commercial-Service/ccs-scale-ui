@@ -55,54 +55,61 @@
                             {% endif %}
                             {% endfor %}
                             
-                            <h2 class="govuk-heading-l result-heading" id="recommendations">Recommendations</h2>
-                            {{ include('results_page_items/recommendations.html.twig') }}
+                            <section id="recommendations">
+                                <h2 class="govuk-heading-l result-heading">Recommendations agreements</h2>
+                                {{ include('results_page_items/recommendations.html.twig') }}
+                            </section>
 
-                            <h2 class="govuk-heading-l result-heading" id="options">What are your options?</h2>
-                            <ul class="govuk-list govuk-list--bullet">
-                                <li>Read the framework documentation for
-                                    {% for agreement in agreementsNames %}
-                                    <a class='govuk-link' href="https://www.crowncommercial.gov.uk/agreements/{{ agreement.number }}"> {{ agreement.name }}</a>
-                                    {% endfor %}
-                                    to understand what's available
-                                </li>
-                                <li>
-                                    <a href="{{ 
-                                    path( 
-                                    'contact-ccs-page',
-                                    {
-                                        'journeyId': journeyId,
-                                        'journeyInstanceId': journeyInstanceId,
-                                        'questionUuid': lastQuestionId,
-                                        'journeyHistory': journeyHistory, 
-                                        'gPage': lastPage,
+                            <section id="options">
+                                <h2 class="govuk-heading-l result-heading">Your next steps</h2>
+                                <ul class="govuk-list govuk-list--bullet">
+                                    <li>Read the framework documentation for
+                                        {% for agreement in agreementsNames %}
+                                        <a class='govuk-link' href="https://www.crowncommercial.gov.uk/agreements/{{ agreement.number }}"> {{ agreement.name }}</a>
+                                        {% endfor %}
+                                        to understand what's available
+                                    </li>
+                                    <li>
+                                        <a href="{{ 
+                                        path( 
+                                        'contact-ccs-page',
+                                        {
+                                            'journeyId': journeyId,
+                                            'journeyInstanceId': journeyInstanceId,
+                                            'questionUuid': lastQuestionId,
+                                            'journeyHistory': journeyHistory, 
+                                            'gPage': lastPage,
 
-                                    }
-                                    )}}?q={{ searchBy }}">Contact CCS</a>
-                                    to get more information, or to start the buying process
-                                </li>
-                                <li>Use the buttons to start online procurement for your chosen framework</li>
-                            </ul>
+                                        }
+                                        )}}?q={{ searchBy }}">Contact CCS</a>
+                                        to get more information, or to start the buying process
+                                    </li>
+                                    <li>Use the buttons to start online procurement for your chosen framework</li>
+                                </ul>
+                            </section>
+                            <section id="answers">
+                                {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
 
-                            {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
+                                <div style="margin-bottom: 2em; margin-top: 2em" class="no-print">
+                                    <a class="print-link govuk-link" rel="alternate" onclick="window.print();return false;">Print this page</a>
+                                </div>
+                            </section>
 
-                            <div style="margin-bottom: 2em; margin-top: 2em" class="no-print">
-                                <a class="print-link govuk-link" rel="alternate" onclick="window.print();return false;">Print this page</a>
+                            <section id="definitions">
+
+                                <h2 class="govuk-heading-l result-heading">Definitions</h2>
+                                {% include "/results_page_items/definitions.html.twig" %}
+
+
+                                <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                                href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}">
+                            Start again to change your answers</a>
+
+                            <div style="background-color: #f3f2f1; padding: 0.5em">
+                                <h3>Tell us what you think</h3>
+                                <p><a href="https://www.smartsurvey.co.uk/s/QWDZX/">Provide feedback</a> to help us improve this service. The survey takes about 1 minute to complete. There are 4 questions and they are all optional.</p>
                             </div>
-
-                            <h2 class="govuk-heading-l result-heading" id="definitions">Definitions</h2>
-                            {% include "/results_page_items/definitions.html.twig" %}
-
-
-                            <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                            href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}">
-                        Start again to change your answers</a>
-
-                        <div style="background-color: #f3f2f1; padding: 0.5em">
-                            <h3>Tell us what you think</h3>
-                            <p><a href="https://www.smartsurvey.co.uk/s/QWDZX/">Provide feedback</a> to help us improve this service. The survey takes about 1 minute to complete. There are 4 questions and they are all optional.</p>
-                        </div>
-
+                        </section>
                     </div>
                 </div>
             </div>
