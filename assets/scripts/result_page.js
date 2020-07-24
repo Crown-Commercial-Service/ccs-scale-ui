@@ -10,10 +10,14 @@ window.addEventListener('DOMContentLoaded', () => {
 		});
 	});
 
-	// Track all sections that have an `id` applied
+//call function only for screens la
+if (window.matchMedia("(min-width: 601px)").matches){
+		// Track all sections that have an `id` applied
 	document.querySelectorAll('section[id]').forEach((section) => {
 		observer.observe(section);
 	});
+}
+
 	
 });
 

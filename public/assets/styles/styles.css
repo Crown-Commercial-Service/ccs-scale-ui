@@ -6890,6 +6890,10 @@ html {
   letter-spacing: 0;
   font-weight: bold; }
 
+@media (max-width: 600px) {
+  .app-sticky-element {
+    position: relative; } }
+
 /*------------------------------------*\
   #All pages
 \*------------------------------------*/
