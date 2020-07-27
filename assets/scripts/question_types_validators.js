@@ -95,39 +95,7 @@ function resetErrors(radio) {
     document.getElementById('input-'.concat(radio.value)).classList.remove('govuk-input--error')
 }
 
-function toggleAccordionControll(controllerElement) {
-    if (controllerElement.textContent == "Show Details") {
-        controllerElement.textContent = "Hide Details";
-    } else {
-        controllerElement.textContent = "Show Details";
-    }
-
-}
-
 window.onload = function(){
-    //transforms govuk accordeon in custom  designed one
-    var accordionElements = document.getElementsByClassName('govuk-accordion__section-button');
-    var accordionIcons = document.getElementsByClassName("govuk-accordion__icon");
-    var accordionOpenAll = document.getElementsByClassName("govuk-accordion__open-all")[0];
-    for (var i = accordionElements.length - 1; i >= 0; i--) {
-        var isExtended = accordionElements[i].getAttribute('aria-expanded');
-        var elementRoot = accordionElements[i].parentElement.parentElement;
-        var controller = document.createElement("a");
-        controller.classList.add("govuk-link");
-        controller.href="";
-        if (isExtended == "true") {
-            controller.textContent = "Hide Details";
-        } else {
-            controller.textContent = "Show Details";
-        }
-        elementRoot.appendChild(controller);
-
-        accordionElements[i].addEventListener("click", toggleAccordionControll.bind(this, accordionElements[i].parentElement.parentElement.children[1]));
-    }
-    for (var i = accordionIcons.length - 1; i >= 0; i--) {
-        accordionIcons[i].parentNode.removeChild(accordionIcons[i]);
-    }
-    accordionOpenAll.parentNode.removeChild(accordionOpenAll);
     //shows conditional button when using back button from browser
     setTimeout(function(){
     var conditionalInputs = document.getElementsByClassName('conditional-input');
