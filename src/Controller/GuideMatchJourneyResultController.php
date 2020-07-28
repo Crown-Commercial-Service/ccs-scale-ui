@@ -38,7 +38,7 @@ class GuideMatchJourneyResultController extends AbstractController
         $lastPage = count($historyUserAnswers) - 1;
         // format answers for view
         $userAnswers = new UserAnswers();
-        $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers);
+        $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers, false);
 
         $encrypt = new Encrypt(json_encode($historyUserAnswers));
        
