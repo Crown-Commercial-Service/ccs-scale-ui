@@ -15,6 +15,9 @@ class GuideMatchContactCssController extends AbstractController
     {
 
         $searchBy = $request->query->get('q');
+        $resultPage = $request->query->get('resultPage');
+        $agreements = $request->query->get('agreements');
+
         $userAnswersFormatedForView = [];
         if ($journeyHistory != '0') {
             $decrypt = new Decrypt(urldecode($journeyHistory));
@@ -31,7 +34,9 @@ class GuideMatchContactCssController extends AbstractController
             'lastPage' => $gPage,
             'lastQuestionId' => $questionUuid,
             'pageTitle' => 'Contact CCS',
-            'historyAnswered' => $userAnswersFormatedForView
+            'historyAnswered' => $userAnswersFormatedForView,
+            'redirectToResultPage' => $resultPage,
+            'agreements' => !empty($agreements) ? urlencode($agreements) : ''
         ]);
         
     }
