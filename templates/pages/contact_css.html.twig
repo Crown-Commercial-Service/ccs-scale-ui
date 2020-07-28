@@ -13,7 +13,21 @@
             {{ include('includes/phase_banner.html.twig') }}
 
             <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
-            {% if  journeyHistory|length < 2 %}
+            {% if redirectToResultPage %}
+             <a 
+                aria-describedby="back-to_prev"
+                href="{{ 
+                    path( 
+                        'journey-result',
+                        {
+                            'journeyId': journeyId,
+                            'journeyInstanceId': journeyInstanceId,
+                            'agreements' : agreements
+                        }
+                        )}}?q={{ searchBy }}"
+                    class="govuk-back-link">Back</a>
+
+            {% elseif  journeyHistory|length < 2 %}
                 <a 
                 aria-describedby="back-to_prev"
                 href="{{ 
