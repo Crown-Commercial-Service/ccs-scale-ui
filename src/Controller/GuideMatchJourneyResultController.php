@@ -20,7 +20,6 @@ class GuideMatchJourneyResultController extends AbstractController
 {
     public function journeyResult(string $journeyId, string $journeyInstanceId, $agreements=null)
     {
-        
         // get journey History
         $httpClient = HttpClient::create();
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
@@ -64,12 +63,12 @@ class GuideMatchJourneyResultController extends AbstractController
 
         $decrypt = new Decrypt(urldecode($agreements));
         $agreementsData = json_decode($decrypt->getDecryptedString(), true);
-
         $httpClient = HttpClient::create();
         $agreementsApi  = new ServiceAgreementsApi($httpClient, getenv('AGREEMENTS_SERVICE_ROOT_URL'));
         $agrementModel = new GuideMatchAgreementModel($agreementsApi, $agreementsData);
         $frameworks = $agrementModel->getAgreements();
         $lots = $agrementModel->getLotsData();
+
         return $this->render('pages/result_page.html.twig', [
             'searchBy' => $searchBy,
             'historyAnswered' => $userAnswersFormatedForView,
@@ -85,6 +84,7 @@ class GuideMatchJourneyResultController extends AbstractController
             'isProduct' => $isProduct,
             'isScale' => $agrementModel->getScale(),
             'lastPage' => $lastPage,
+            'agreements' => $agreements,
             'pageTitle' => 'Result Journey Page',
         ]);
     }

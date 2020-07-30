@@ -38,3 +38,7 @@ journey-result:
 contact-ccs-page:
   path: /guided-match/contact-css/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchContactCssController::contactCss
+
+delete-cache-files:
+  path: /delete-cache-files
+  controller: App\Controller\TestRemoveCacheController::deleteCacheFiles 
