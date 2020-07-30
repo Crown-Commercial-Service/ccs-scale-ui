@@ -16,7 +16,7 @@
                 <strong>End Date:</strong>
                 {{ framework.endDate|date("m/d/Y") }}
             </p>
-            <p> {{ framework.description }}</p>
+            <p> {{ framework.description|raw }}</p>
             <div>
                 {% if  framework.lots is defined %}
                 {% include "/results_page_items/lots.html.twig" %}
