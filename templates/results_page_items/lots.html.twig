@@ -1,7 +1,7 @@
  {% if  lotsData[framework.number] is defined %}  
     {% for lot in  lotsData[framework.number] %}
         <h3 class="govuk-heading-m">{{lot.number}}: {{lot.name}}</h3>
-        <p> {{lotsData[framework.number][lot.number].description}} </p>
+        <p> {{lotsData[framework.number][lot.number].description|raw}} </p>
         <div>
          {% if  isScale == true %}  
             <a  href="" class="govuk-link">
