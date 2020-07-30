@@ -35,7 +35,8 @@
                     {% if answer.conditionalInput.unit == "currency" %}
                         <abbr class="input-type__type" aria-hidden="true" title="Pounds (GBP)">£</abbr>
                     {% endif %}
-                    <input class="govuk-input govuk-!-width-one-third" name="{{ answer.id }}" 
+                    <input class="govuk-input govuk-!-width-one-third custom-input 
+                    {% if answer.conditionalInput.unit == "currency" %}width-pound{% else %}width-month{% endif %}" name="{{ answer.id }}" 
                     value = "{{ answerValue }}" id="input-{{ answer.id }}" 
                     aria-describedby="no-input" oninput="twoDecimalLimit(this)">
                     {% if answer.conditionalInput.unit == "months" %}
