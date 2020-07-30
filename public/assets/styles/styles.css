@@ -4592,10 +4592,21 @@ p + .govuk-heading-s,
   display: inline-flex;
   position: relative; }
 
+.custom-input {
+  border: 1px solid;
+  outline: none !important; }
+
+.width-month {
+  width: 125px !important; }
+
+.width-pound {
+  width: 175px !important; }
+
 .input-type--prefix .input-type__type[title] {
   -webkit-box-ordinal-group: 1;
   border-right: 0;
-  border-radius: 3px 0 0 3px; }
+  border: 1px solid #0b0c0c;
+  border-right: 0px; }
 
 .input-type__type[title] {
   display: block;
@@ -4615,7 +4626,8 @@ p + .govuk-heading-s,
 
 .input-type:not(.input-type--prefix) .input-type__type[title] {
   border-left: 0;
-  border-radius: 0 3px 3px 0; }
+  border: 1px solid #0b0c0c;
+  border-left: 0px; }
 
 abbr[title] {
   border-bottom: none;
