@@ -117,3 +117,7 @@
     </div>
 </div>
 {% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset('assets/scripts/result_page.js') }}" ></script>
+{% endblock %}

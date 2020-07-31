@@ -95,18 +95,17 @@ function resetErrors(radio) {
     document.getElementById('input-'.concat(radio.value)).classList.remove('govuk-input--error')
 }
 
-window.onload = function(){
-    //shows conditional button when using back button from browser
+
+window.addEventListener('load', function() {
     setTimeout(function(){
-    var conditionalInputs = document.getElementsByClassName('conditional-input');
-    for(var i in conditionalInputs) {
-        if (hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
-            var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
-            if (inputElement.value) {
-                conditionalInputs[i].classList.remove("govuk-radios__conditional--hidden");
-            }
-        }    
-        
-    }
-}, 200);
-};
+        var conditionalInputs = document.getElementsByClassName('conditional-input');
+        for(var i in conditionalInputs) {
+            if (hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
+                var inputElement = conditionalInputs[i].firstElementChild.childNodes[7].firstElementChild;
+                if (inputElement.firstElementChild.value || inputElement.lastElementChild.value) {
+                    conditionalInputs[i].classList.remove("govuk-radios__conditional--hidden");
+                }
+            }    
+        }
+    }, 200);
+}, false);
