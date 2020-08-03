@@ -1,19 +1,19 @@
 <div class="govuk-body journey-answers">
     <h2 class="govuk-heading-l result-heading">Your answers</h2>
-        <div class="govuk-summary-list__row">
-         <dl class="govuk-summary-list">
+    <div class="govuk-summary-list__row">
+        <dl class="govuk-summary-list">
             <dt class="govuk-summary-list__key"> Your initial search term</dt>
             <dd class="govuk-summary-list__value"> {{searchBy}}</dd>
             <dd class="govuk-summary-list__value no-print">
                 <span class='hidden_msgs' id="change-search-term"> Change your initial search term {{searchBy}} </span>
                 <a  aria-describedby="change-search-term" class="govuk-breadcrumbs__link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch">Change</a></dd>
-            </dl>
-        </div>
+        </dl>
+    </div>
 
-        {% set index = 0 %}
-        {% for answer in historyAnswered %}
-            <div class="govuk-summary-list__row">
-             <dl class="govuk-summary-list">
+    {% set index = 0 %}
+    {% for answer in historyAnswered %}
+        <div class="govuk-summary-list__row">
+            <dl class="govuk-summary-list">
                 <dt class="govuk-summary-list__key"> {{answer.question}}</dt>
                 <dd class="govuk-summary-list__value"> {{answer.answerTxt|raw}}</dd>
                 <dd class="govuk-summary-list__value no-print">
@@ -37,15 +37,15 @@
                         {% endif %}
                     {#{% endif %}#}    
                 </dd>
-                </dl>
+            </dl>
         </div>
-         <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
+        <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
         {% set index = index + 1 %}
-        {% endfor %}
-          
-        {% if  agreementsNames is defined %}
+    {% endfor %}
+        
+    {% if  agreementsNames is defined %}
         <div class="govuk-summary-list__row">
-         <dl class="govuk-summary-list">
+        <dl class="govuk-summary-list">
             <dt class="govuk-summary-list__key"> Framework(s)/Lot(s) recommendations</dt>         
             <dd class="govuk-summary-list__value">
                 {% for agreement in agreementsNames %}
@@ -55,6 +55,5 @@
             <dd class="govuk-summary-list__value"></dd>
         </dl>
         </div>
-         {% endif %}
-   
+    {% endif %}
 </div>
