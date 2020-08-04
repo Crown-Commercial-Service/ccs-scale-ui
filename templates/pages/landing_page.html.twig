@@ -18,29 +18,29 @@
 
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper " id="main-content">
-            <div class="govuk-grid-row">
+        <section>
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full restrict-width">
+                        <h1 class="govuk-heading-xl page-title">Find a commercial agreement</h1>
+                        <p class="govuk-body page-intro">Use this service to find out which frameworks could meet your
+                            requirements.</p>
+                        <h2 class="govuk-heading-m">Before you start</h2>
+                        <p class="govuk-body">It may be helpful to know the following information:</p>
+                        <ul class="govuk-list govuk-list--bullet">
+                            <li>The product or service you need</li>
+                            <li>your estimated budget</li>
+                            <li>the sector and organisation you're buying for</li>
+                            <li>if you're buying a service, an estimated length of contract and location of where the work
+                                needs to take place
+                            </li>
+                        </ul>
 
-                <div class="govuk-grid-column-full restrict-width">
-                    <h1 class="govuk-heading-xl page-title">Find a commercial agreement</h1>
-                    <p class="govuk-body page-intro">Use this service to find out which frameworks could meet your
-                        requirements.</p>
-                    <h2 class="govuk-heading-m">Before you start</h2>
-                    <p class="govuk-body">It may be helpful to know the following information:</p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>The product or service you need</li>
-                        <li>your estimated budget</li>
-                        <li>the sector and organisation you're buying for</li>
-                        <li>if you're buying a service, an estimated length of contract and location of where the work
-                            needs to take place
-                        </li>
-                    </ul>
-
-                    <a href="{{ path('start-journey', {'journeyUuid': journeyUuid})}}?q={{searchBy}}" role="button" name="start now"
-                    class="govuk-button govuk-button--start govuk-!-margin-top-6 govuk-!-margin-bottom-9" 
-                    data-module="govuk-button">Start now</a>
+                        <a href="{{ path('start-journey', {'journeyUuid': journeyUuid})}}?q={{searchBy}}" role="button" name="start now"
+                        class="govuk-button govuk-button--start govuk-!-margin-top-6 govuk-!-margin-bottom-9" 
+                        data-module="govuk-button">Start now</a>
+                    </div>
                 </div>
-
-            </div>
+            </section>
         </main>
     </div>
 {% endblock %}
