@@ -63,8 +63,12 @@
                         Continue
                     </button>
                 </form>
-                <p class="govuk-body">Need help with this service? <a 
-            href="{{ 
+                <span class='hidden_msgs' id="contact-ccs-intermediar-page">Contact CCS - intermediar page</span>
+
+                <p class="govuk-body">Need help with this service? 
+                <a 
+                 aria-describedby="contact-ccs-intermediar-page"
+                href="{{ 
                 path( 
                     'contact-ccs-page',
                     {
