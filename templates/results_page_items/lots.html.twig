@@ -2,7 +2,7 @@
     {% for lot in  lotsData[framework.number] %}
         <div class ='gm-lots-containers'>
         <h3 class="govuk-heading-m">{{lot.number}}: {{lot.name}}</h3>
-        <p> {{lotsData[framework.number][lot.number].description|raw}} </p>
+        <div> {{lotsData[framework.number][lot.number].description|raw}} </div>
         <div>
          {% if  isScale == true %}  
             Start Procurement on {{lot.number}}
