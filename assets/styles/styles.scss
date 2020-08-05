@@ -14,7 +14,7 @@
 @import "essentials/variable-scopes";
 
 
-@import "typography/font-face";
+//s@import "typography/font-face";
 @import "typography/typography";
 
 @import "tools/mixins";
@@ -38,11 +38,11 @@
 @import "components/aside";
 @import "components/filters-intro";
 @import "components/filters-summary";
-@import "components/flourishes";
+//@import "components/flourishes";
 @import "components/breadcrumbs";
-@import "components/call-to-action";
-@import "components/card";
-@import "components/card-list";
+//@import "components/call-to-action";
+//@import "components/card";
+//@import "components/card-list";
 @import "components/download-icons";
 @import "components/cookie-message";
 @import "components/enclosure";
@@ -58,27 +58,27 @@
 @import "components/links";
 @import "components/lists";
 @import "components/navigation";
-@import "components/pagination";
+//@import "components/pagination";
 @import "components/phase-banner";
 @import "components/print";
-@import "components/sidebar";
-@import "components/tables";
+//@import "components/sidebar";
+//@import "components/tables";
 @import "components/tags";
-@import "components/video";
+//@import "components/video";
 @import "components/warning-text";
-@import "components/wysiwyg";
-@import "components/search";
-@import "components/subcategories";
-@import "components/free-text";
+//@import "components/wysiwyg";
+//@import "components/search";
+//@import "components/subcategories";
+//@import "components/free-text";
 @import "components/quote-and-image";
-@import "components/achievement-and-image";
-@import "components/talk-to-us-text-box";
+//@import "components/achievement-and-image";
+//@import "components/talk-to-us-text-box";
 
-@import "pages/homepage";
-@import "pages/result-page";
+//@import "pages/homepage";
+//@import "pages/result-page";
 @import "pages/all-pages";
-@import "pages/news";
-@import "pages/how-to-buy";
+//@import "pages/news";
+//@import "pages/how-to-buy";
 @import "pages/question-page";
 @import "pages/journey-result-page.scss";
 @import "pages/contact-ccs-page";
