@@ -10,6 +10,9 @@ class TestRemoveCacheController extends AbstractController
 {
     public function deleteCacheFiles()
     {
+
+        echo 'Delete caching <br/>';
+
         $path = './../var/cache/dev/profiler';
         $poolsPath = './../var/cache/dev/pools';
 
