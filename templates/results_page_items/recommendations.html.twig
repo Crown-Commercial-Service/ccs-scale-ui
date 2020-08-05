@@ -3,20 +3,20 @@
     {% if  framework is not empty %}
     <div class="govuk-accordion__section ">
         <div class="govuk-accordion__section-header">
-            <h2 class="govuk-accordion__section-heading">
-                <span class="govuk-accordion__section-button" id="accordion-default-heading-{{ loop.index }}">
+            <div class="govuk-accordion__section-heading">
+                <div class="govuk-accordion__section-button" id="accordion-default-heading-{{ loop.index }}">
                     <h3 class="govuk-heading-m">{{ framework.name }}</h3>
-                </span>
-            </h2>
+                </div>
+            </div>
         </div>
         <div id="accordion-with-summary-sections-content-{{ loop.index }}" class="govuk-accordion__section-content">
             <p>
                 <strong>Framework ID:</strong>
                 {{ framework.number }}
                 <strong>End Date:</strong>
-                {{ framework.endDate|date("m/d/Y") }}
+                {{ framework.endDate|date("d/m/Y") }}
             </p>
-            <p> {{ framework.description|raw }}</p>
+            <div> {{ framework.description|raw }}</div>
             <div>
                 {% if  framework.lots is defined %}
                 {% include "/results_page_items/lots.html.twig" %}
