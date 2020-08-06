@@ -29,7 +29,9 @@ class SpeedRaportController extends AbstractController
     public function clearReport(){
 
         $file = '../public/speedTest.log';
-
+        
+        echo 'Clear report speed';
+        
         $f = @fopen($file, "r+");
         if ($f !== false) {
             ftruncate($f, 0);
