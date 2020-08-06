@@ -54,6 +54,8 @@ RUN npm install
 # restart apache
 RUN service apache2 restart
 
+RUN chmod 777 ./public/speedTest.log
+
 VOLUME /var/www/html/ccs
 
 #set container port

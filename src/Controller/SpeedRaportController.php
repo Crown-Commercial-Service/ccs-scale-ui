@@ -29,20 +29,15 @@ class SpeedRaportController extends AbstractController
     public function clearReport(){
 
         $file = '../public/speedTest.log';
-        chmod($file,777);
 
-       if( unlink($file)){
-           echo  'Speed Log file was deleted <br>';
-       }else{
-           echo "Speed log file wasn't removed";
-       }
+        $f = @fopen($file, "r+");
+        if ($f !== false) {
+            ftruncate($f, 0);
+            fclose($f);
+        }
        
-       if(fopen($file, "w")){
-        echo  'Speed Log file was created <br>';
-       }else{
-           echo "Speed log file wasn't created";
-       }
-        chmod($file,777);
+
+      
         die('x');
     
 
