@@ -39,10 +39,11 @@ class SpeedRaportController extends AbstractController
        if(fopen($file, "w")){
         echo  'Speed Log file was created <br>';
        }else{
-        echo "Speed log file wasn't created";
-
+           echo "Speed log file wasn't created";
+       }
+        chmod($file,777);
         die('x');
-    }
+    
 
 
     }
