@@ -28,7 +28,7 @@
 
      <script>
 
-            window.readCookie = function (name) {
+            {# window.readCookie = function (name) {
                 var nameEQ = name + "=";
                 var ca = document.cookie.split(';');
                 for (var i = 0; i < ca.length; i++) {
@@ -45,7 +45,7 @@
 
             var cookiePreferences = JSON.parse(readCookie('cookie_preferences'));
             if (cookiePreferences !== null) {
-                if (cookiePreferences.usage === true) {
+                if (cookiePreferences.usage === true) { #}
 
                     (function (w, d, s, l, i) {
                         w[l] = w[l] || [];
@@ -62,8 +62,8 @@
                         f.parentNode.insertBefore(j, f);
                     })(window, document, 'script', 'dataLayer', 'GTM-5NQGRQN');
 
-                }
-            }
+//                }
+//           }
         </script>
 </head>
 
