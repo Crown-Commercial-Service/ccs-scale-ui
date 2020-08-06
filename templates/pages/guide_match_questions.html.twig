@@ -40,18 +40,20 @@
                 <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy }}"
                       onsubmit="return validate()" name="question" method="post">
                     <div class="govuk-form-group {{ errorMessage is defined ? 'govuk-form-group--error' }}" id="form-layout">
-                        <fieldset class="govuk-fieldset  restrict-width">
+                        <div class="govuk-fieldset  restrict-width">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 <h1 class="govuk-fieldset__heading">{{ text }}</h1>
                             </legend>
                             {% if  hint is defined %}
+                            <div role="complementary">
                                 <span id="changed-name-hint" class="govuk-hint">{{- hint|raw -}}</span>
+                            </div>
                             {% endif %}
 
                             {% include"/includes/question_error.html.twig" %}
 
                             {% include "/questions_types/#{type}.html.twig" %}
-                        </fieldset>
+                        </div>
                     </div>
                     {% if  gPage >  1  and  journeyHistory is defined %}
                         <input type='hidden' id='lastQuestionId' name='lastQuestionId' value="{{ lastQuestionId }}">
