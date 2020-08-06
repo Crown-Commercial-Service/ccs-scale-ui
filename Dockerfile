@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:7.4.4-apache
 
 ENV PORT 9030
 
@@ -33,6 +33,9 @@ RUN echo "ServerName localhost:$PORT" >> /etc/apache2/apache2.conf
 
 # increase memory limit to 2GB
 RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+RUN echo 'opcache.preload=/var/www/html/ccs/var/cache/prod/srcApp_KernelProdContainer.preload.php' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+RUN echo 'opcache.memory_consumption=256' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+RUN echo 'opcache.max_accelerated_files=20000' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 
 #copy project into container
 COPY ./ ./
@@ -46,6 +49,7 @@ RUN composer update
 #install javascript modules
 RUN npm install
 
+#COPY ./custom.ini /usr/local/etc/php/conf.d
 
 # restart apache
 RUN service apache2 restart
