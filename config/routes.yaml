@@ -42,3 +42,11 @@ contact-ccs-page:
 delete-cache-files:
   path: /delete-cache-files
   controller: App\Controller\TestRemoveCacheController::deleteCacheFiles 
+
+dwn-speed-raport:
+  path: /dwn-speed-raport
+  controller: App\Controller\SpeedRaportController:downloadLog
+
+clear-speed-raport:
+  path: /clear-speed-raport
+  controller: App\Controller\SpeedRaportController:clearReport

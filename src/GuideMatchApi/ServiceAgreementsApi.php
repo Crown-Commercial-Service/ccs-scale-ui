@@ -25,6 +25,13 @@ class ServiceAgreementsApi
 
     public function getServiceAgreement($agreementId)
     {
+
+
+        $uri = "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}";
+        $time_start = microtime(true); 
+
+
+
         if (empty($agreementId)) {
             throw new Exception('Invalid arguments of method');
         }
@@ -39,6 +46,10 @@ class ServiceAgreementsApi
             return [];
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
+
+        $time_end = microtime(true); 
+        $duration = $time_end - $time_start; 
+        error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
        
         return $content;
     }
@@ -70,6 +81,10 @@ class ServiceAgreementsApi
 
     public function getLotDetails($agreementId, $lot)
     {
+
+        $uri = "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lot}";
+        $time_start = microtime(true); 
+
         if (empty($agreementId) && empty($lot)) {
             throw new Exception('Invalid arguments of method');
         }
@@ -88,11 +103,18 @@ class ServiceAgreementsApi
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
 
+        $time_end = microtime(true); 
+        $duration = $time_end - $time_start; 
+        error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
         return $content;
     }
 
     public function getLotSupliers(string $agreementId, string $lotNumber)
     {
+        $uri = "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lotNumber}/suppliers";
+        $time_start = microtime(true); 
+
+
         $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/agreements-service/agreements/{$agreementId}/lots/{$lotNumber}/suppliers", [
         'headers' => [
             'x-api-key' => getenv('AGREEMENTS_SERVICE_API_KEY'),
@@ -106,6 +128,10 @@ class ServiceAgreementsApi
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
    
+        $time_end = microtime(true); 
+        $duration = $time_end - $time_start; 
+        error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
+
         return $content;
     }
 }
