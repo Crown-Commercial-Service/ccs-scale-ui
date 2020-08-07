@@ -23,8 +23,9 @@ class GuideMatchContactCssController extends AbstractController
             $decrypt = new Decrypt(urldecode($journeyHistory));
             $historyUserAnswers = json_decode($decrypt->getDecryptedString(), true);
             $userAnswers = new UserAnswers();
-            $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers, false);
+            $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers, $questionUuid);
         }
+
         return $this->render('pages/contact_css.html.twig', [
            
             'searchBy' => $searchBy,
