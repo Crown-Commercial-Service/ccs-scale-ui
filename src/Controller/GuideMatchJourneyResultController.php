@@ -37,7 +37,7 @@ class GuideMatchJourneyResultController extends AbstractController
         $lastPage = count($historyUserAnswers) - 1;
         // format answers for view
         $userAnswers = new UserAnswers();
-        $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers, false);
+        $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers);
 
         $encrypt = new Encrypt(json_encode($historyUserAnswers));
        
@@ -48,7 +48,6 @@ class GuideMatchJourneyResultController extends AbstractController
         if ($journeyHistoryModel->getOutcomeType()  === GuideMatchResponseType::GuideMatchResponseSupport) {
            
             $isProduct = true;
-
             return $this->render('pages/result_page_product.html.twig', [
                 'searchBy' => $searchBy,
                 'historyAnswered' => $userAnswersFormatedForView,
