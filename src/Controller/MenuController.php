@@ -19,8 +19,12 @@ class MenuController extends AbstractController
      */
     protected $api;
 
+    private $start_time;
+    private $end_time;
+
     public function __construct(CacheInterface $cache)
     {
+        $this->start_time =  microtime(true); 
         $this->api = new Wordpress(
             getenv('WEBCMS_ROOT_URL').'/wp-json/'
         );
@@ -47,6 +51,10 @@ class MenuController extends AbstractController
             return new Response();
         }
         
+        $this->end_time =  microtime(true); 
+        $duration = $this->end_time  -  $this->start_time; 
+        error_log("Speed Test WP-API :::: $duration \n", 3,'../public/speedTest.log');
+
         return $this->render($templatePath, [
             'menu' => $menu,
         ]);

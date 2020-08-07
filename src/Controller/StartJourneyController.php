@@ -17,7 +17,6 @@ class StartJourneyController extends AbstractController
     {
         $searchBy = $request->query->get('q');
 
-
         if ($request->getMethod() === 'POST') {
             $csfrToken = $request->request->get('token');
             if (!$this->isCsrfTokenValid('save-answers', $csfrToken)) {
