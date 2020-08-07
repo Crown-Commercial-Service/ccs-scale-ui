@@ -53,8 +53,8 @@ class GuideMatchJourneyApi
      */
     public function startJourney(string $searchBy, string $journeyId)
     {
-        $uri = $this->baseApiUrl."/scale/guided-match-service/journeys/{$journeyId}";
-        $time_start = microtime(true); 
+        //$uri = $this->baseApiUrl."/scale/guided-match-service/journeys/{$journeyId}";
+        //$time_start = microtime(true); 
 
         if (empty($searchBy)) {
             throw new Exception('Invalid arguments of method');
@@ -64,9 +64,9 @@ class GuideMatchJourneyApi
             'json' => ['searchTerm' => $searchBy]
         ]);
 
-        $time_end = microtime(true); 
-        $duration = $time_end - $time_start; 
-        error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
+        //$time_end = microtime(true); 
+        //$duration = $time_end - $time_start; 
+        //error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
 
         return $this->handleApiResponse($response);
 
@@ -87,8 +87,8 @@ class GuideMatchJourneyApi
     public function getQuestions($journeyUuid, $questionsUuid)
     {
 
-        $uri =  "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}";
-        $time_start = microtime(true); 
+        //$uri =  "{$this->baseApiUrl}/scale/decision-tree/journeys/{$journeyUuid}/questions/{$questionsUuid}";
+        //$time_start = microtime(true); 
 
         if (empty($journeyUuid) && empty($questionsUuid)) {
             throw new Exception('Invalid arguments of method');
@@ -100,9 +100,9 @@ class GuideMatchJourneyApi
             ],
         ]);
 
-        $time_end = microtime(true); 
-        $duration = $time_end - $time_start; 
-        error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
+        //$time_end = microtime(true); 
+        //$duration = $time_end - $time_start; 
+        //error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
        
         return $this->handleApiResponse($response);
     }
@@ -122,8 +122,8 @@ class GuideMatchJourneyApi
     public function getDecisionTree(string $journeyUuid, string $questionsUuid, array $questionResponse)
     {
 
-        $uri = "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}";
-        $time_start = microtime(true); 
+        //$uri = "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}";
+        //$time_start = microtime(true); 
 
 
         if (
@@ -146,9 +146,9 @@ class GuideMatchJourneyApi
             'json' => [$data]
         ]);
 
-        $time_end = microtime(true); 
-        $duration = $time_end - $time_start; 
-        error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
+        //$time_end = microtime(true); 
+        //$duration = $time_end - $time_start; 
+        //error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
 
         return $this->handleApiResponse($response);
     }
@@ -165,8 +165,8 @@ class GuideMatchJourneyApi
 
        
 
-        $uri = "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}";
-        $time_start = microtime(true); 
+        //$uri = "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}";
+        //$time_start = microtime(true); 
 
 
         if (empty($journeyUuid)) {
@@ -186,9 +186,9 @@ class GuideMatchJourneyApi
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
 
-        $time_end = microtime(true); 
-        $duration = $time_end - $time_start; 
-        error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
+        //$time_end = microtime(true); 
+        //$duration = $time_end - $time_start; 
+        //error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
 
 
         return $content;
@@ -204,8 +204,8 @@ class GuideMatchJourneyApi
     public function getJourneyQuestion(string $journeyUuid, string $questionsUuid)
     {
 
-        $uri = "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}";
-        $time_start = microtime(true); 
+        //$uri = "{$this->baseApiUrl}/scale/guided-match-service/journey-instances/{$journeyUuid}/questions/{$questionsUuid}";
+        //$time_start = microtime(true); 
 
         if (
             empty($journeyUuid) &&
@@ -220,9 +220,9 @@ class GuideMatchJourneyApi
             ],
         ]);
 
-        $time_end = microtime(true); 
-        $duration = $time_end - $time_start; 
-        error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
+        //$time_end = microtime(true); 
+        //$duration = $time_end - $time_start; 
+        //error_log("Speed Test GM-API: $uri :::: $duration \n", 3,'../public/speedTest.log');
 
         return $this->handleApiResponse($response);
     }

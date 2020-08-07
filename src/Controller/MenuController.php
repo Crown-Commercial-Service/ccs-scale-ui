@@ -8,7 +8,6 @@ use Psr\SimpleCache\CacheInterface;
 use Studio24\Frontend\Cms\Wordpress;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class MenuController extends AbstractController
 {
@@ -19,17 +18,17 @@ class MenuController extends AbstractController
      */
     protected $api;
 
-    private $start_time;
-    private $end_time;
+    //private $start_time;
+    //private $end_time;
 
     public function __construct(CacheInterface $cache)
     {
-        $this->start_time =  microtime(true); 
+        //$this->start_time =  microtime(true); 
         $this->api = new Wordpress(
             getenv('WEBCMS_ROOT_URL').'/wp-json/'
         );
         $this->api->setCache($cache);
-        $this->api->setCacheLifetime(900);
+        $this->api->setCacheLifetime(9000);
     }
 
 
@@ -51,9 +50,9 @@ class MenuController extends AbstractController
             return new Response();
         }
         
-        $this->end_time =  microtime(true); 
-        $duration = $this->end_time  -  $this->start_time; 
-        error_log("Speed Test WP-API :::: $duration \n", 3,'../public/speedTest.log');
+        //$this->end_time =  microtime(true); 
+        //$duration = $this->end_time  -  $this->start_time; 
+        //error_log("Speed Test WP-API :::: $duration \n", 3,'../public/speedTest.log');
 
         return $this->render($templatePath, [
             'menu' => $menu,
