@@ -62,34 +62,14 @@
 
                             <section id="options">
                                 <h2 class="govuk-heading-l result-heading">Your next steps</h2>
-                                <ul class="govuk-list govuk-list--bullet">
-                                    <li>Read the framework documentation for
+                                <ul class="govuk-list govuk-list">
+                                    <li>1. Read the framework documents  for
                                         {% for agreement in agreementsNames %}
                                         <a class='govuk-link' href="https://www.crowncommercial.gov.uk/agreements/{{ agreement.number }}"> {{ agreement.name }}</a>
                                         {% endfor %}
                                         to understand what's available
                                     </li>
-                                    <li>
-
-                                        <span class='hidden_msgs' id="contact-css-int-page"> to get more information, or to start the buying process</span>
-                                        <a 
-                                            aria-describedby="contact-css-int-page"
-                                            href="{{ 
-                                            path( 
-                                            'contact-ccs-page',
-                                            {
-                                                'journeyId': journeyId,
-                                                'journeyInstanceId': journeyInstanceId,
-                                                'questionUuid': lastQuestionId,
-                                                'journeyHistory': journeyHistory, 
-                                                'gPage': lastPage,
-
-                                            }
-                                            )}}?q={{ searchBy }}&resultPage=1&agreements={{ agreements }}">Contact CCS
-                                            </a>
-                                        to get more information, or to start the buying process
-                                    </li>
-                                    <li>Use the buttons to start online procurement for your chosen framework</li>
+                                    <li>2. Start the online procurement for your chosen lot</li>
                                 </ul>
                             </section>
                             <section id="answers">

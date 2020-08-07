@@ -21,7 +21,7 @@
                 {% include "/results_page_items/lots.html.twig" %}
             {% endif %}
             </div>
-            <div> {{ framework.description|raw }}</div>
+            <div class="framework-description"> {{ framework.description|raw }}</div>
            
             <br>
             <span class='hidden_msgs' id="new-window-{{ loop.index }}">{{ framework.name }} Open in a new tab</span>
