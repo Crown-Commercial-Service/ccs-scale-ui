@@ -13,9 +13,9 @@
 <div class="--govuk-width-container">
     <div class="govuk-width-container">
         {{ include('includes/phase_banner.html.twig') }}
-        <span class='hidden_msgs' id="back-to_prev" tabindex="-1"> to previous question</span>
+        <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
         <a 
-        aria-describedby="back-to_prev"
+        aria-describedby="back-to_prev" tabindex="-1"
         href="{{ 
         path( 
         'back-to-previous',
