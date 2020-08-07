@@ -16,12 +16,13 @@
                 <strong>End Date:</strong>
                 {{ framework.endDate|date("d/m/Y") }}
             </p>
-            <div> {{ framework.description|raw }}</div>
-            <div>
-                {% if  framework.lots is defined %}
+             <div>
+            {% if  framework.lots is defined %}
                 {% include "/results_page_items/lots.html.twig" %}
-                {% endif %}
+            {% endif %}
             </div>
+            <div> {{ framework.description|raw }}</div>
+           
             <br>
             <span class='hidden_msgs' id="new-window-{{ loop.index }}">{{ framework.name }} Open in a new tab</span>
             <a  target="_blank" class='view-framework-details-ulr govuk-button govuk-button--secondary'
