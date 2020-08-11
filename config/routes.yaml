@@ -43,6 +43,11 @@ guided-match-journeys:
   path: /guidedmatch
   controller: App\Controller\GuidedMatchJourneysController:searchJourneys
 
+guided-match-health-check:
+  path: /guided-match/health-check
+  controller: App\Controller\GuidedMatchHealthCheckController:testHealth
+  
+
 delete-cache-files:
   path: /delete-cache-files
   controller: App\Controller\TestRemoveCacheController::deleteCacheFiles 
