@@ -25,7 +25,7 @@
                         'journeyHistory': journeyHistory, 
                         'gPage': lastPage,
                     }
-                    )}}?q={{ searchBy }}"
+                    )}}?q={{ searchByEncoded }}"
                 class="govuk-back-link">Back</a>
 
             <main class="govuk-main-wrapper restrict-width" id="main-content">
@@ -49,7 +49,7 @@
                     </div>
 
                     <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                    href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}">
+                    href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}">
                     Start again to change your answers</a>
              
             </main>

@@ -6,7 +6,7 @@
             <dd class="govuk-summary-list__value"> {{searchBy}}</dd>
             <dd class="govuk-summary-list__value no-print">
                 <span class='hidden_msgs' id="change-search-term"> Change your initial search term {{searchBy}} </span>
-                <a  aria-describedby="change-search-term" class="govuk-breadcrumbs__link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch">Change</a></dd>
+                <a  aria-describedby="change-search-term" class="govuk-breadcrumbs__link" href="{{ ccs_domain }}/agreements/search?q={{ searchByEncoded }}&feature=guidedmatch">Change</a></dd>
         </dl>
     </div>
 
@@ -30,10 +30,10 @@
                                         'journeyHistory': journeyHistory, 
                                         'gPage': index,
                                     }
-                                    )}}?q={{ searchBy }}&changeAnswer=1"
+                                    )}}?q={{ searchByEncoded }}&changeAnswer=1"
                             >Change</a>
                         {% else %}
-                            <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchBy}}&changeAnswer=1">Change</a>
+                            <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}&changeAnswer=1">Change</a>
                         {% endif %}
                     {#{% endif %}#}    
                 </dd>

@@ -70,6 +70,7 @@ class GuideMatchJourneyResultController extends AbstractController
 
         return $this->render('pages/result_page.html.twig', [
             'searchBy' => $searchBy,
+            'searchByEncoded' => rawurlencode($searchBy),
             'historyAnswered' => $userAnswersFormatedForView,
             'frameworks' => $frameworks,
             'countFrameworks' => count($frameworks),
