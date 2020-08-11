@@ -13,7 +13,7 @@
             </div>
         {% endblock %}
 
-        <div class="nav-wrapper">
+        <div class="nav-wrapper" role="navigation banner">
 
             <a href="/" class="logo"><img src="/assets/images/CCS_WHITE_SML_AW.png" alt="Go to the CCS homepage">
             </a>
@@ -25,7 +25,7 @@
             </button>
 
             {% block mainnavigation %}
-                <nav class="global-navigation" data-toggle="nav" data-app-uri="http://localhost:8001/guided-match/example" data-app-pathinfo="/guided-match/example" aria-hidden="false">
+                <nav class="global-navigation" role="navigation" data-toggle="nav" data-app-uri="http://localhost:8001/guided-match/example" data-app-pathinfo="/guided-match/example" aria-hidden="false">
                     {% if wordpress_api != '' %}
                         {{ render(controller(
                             'App\\Controller\\MenuController::menu',
