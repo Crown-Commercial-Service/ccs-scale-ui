@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Guided Match Journey - searched for {{searchBy}}  - {{pageTitle}}{% endblock %}
+
+{% block header %}
+    {% embed '/includes/header.html.twig' %}
+        {% block bannerarea %}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block body %}
+    <!-- required wrapper 1 -->
+    <div class="govuk-width-container">
+        {% include "/includes/phase_banner.html.twig" %}
+
+        
+        <span class='hidden_msgs' id="back-to-search-result" tabindex="-1"> to search result</span>
+        <a aria-describedby="back-to-search-result" class="govuk-back-link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch" tabindex="-1">Back</a>
+
+        <!-- required wrapper 2 -->
+        <main class="govuk-main-wrapper questions-page" id="main-content">
+            <div class="govuk-grid-row">
+
+                <form action="#" onsubmit="return validate()" name="question" method="post">
+                    <div class="govuk-form-group {{ errorMessage is defined ? 'govuk-form-group--error' }}" id="form-layout">
+                        <div class="govuk-fieldset  restrict-width">
+                            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+                                <h1 class="govuk-fieldset__heading">What type of {{ searchBy }} do you need</h1>
+                            </legend>
+                           
+                            {% include "/includes/question_error.html.twig" %}                           
+
+                                <div class="govuk-radios">
+                                    {% for journey in journeys %}
+
+                                    <div class="govuk-radios__item">
+                                        <input class="govuk-radios__input v-selector" id="{{ journey.journeyId }}" name="uuid" type="radio"
+                                            value="{{ journey.journeyId }}" aria-describedby="sign-in-item-hint-{{journey.journeyId}} no-selection">
+                                        <label class="govuk-label govuk-radios__label govuk-label--s" for="{{journey.journeyId  }}">
+                                            {{- journey.selectionText -}}
+                                        </label>
+                                        {% if journey.selectionDescription is defined  and journey.selectionDescription  is not empty %}
+                                            <span id="sign-in-item-hint-{{journey.journeyId}}" class="govuk-hint govuk-radios__hint">{{- journey.selectionDescription|raw -}}</span>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                                    <input type='hidden' name='form-type' value='boolean'>
+                                    <input type='hidden' name='searchBy' value='{{ searchBy }}'>
+                                </div>
+                        </div>
+                    </div>
+                 
+                    <input type="hidden" name="token" value="{{ csrf_token('save-answers') }}"/>
+
+                    <button class="govuk-button" data-module="govuk-button" type="submit">
+                        Continue
+                    </button>
+                </form>
+               
+            </div>
+        </main>
+    </div>
+{% endblock %}

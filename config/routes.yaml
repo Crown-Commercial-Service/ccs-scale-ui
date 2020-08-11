@@ -1,7 +1,7 @@
 
 # GM PAGES
 landing_page:
-  path: /guided-match/landing-page
+  path: /guided-match/{journeyId}/landing-page
   controller: App\Controller\LandingPageController::landingPage 
 
 question_page:
@@ -38,6 +38,10 @@ journey-result:
 contact-ccs-page:
   path: /guided-match/contact-css/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchContactCssController::contactCss
+
+guided-match-journeys:
+  path: /guidedmatch
+  controller: App\Controller\GuidedMatchJourneysController:searchJourneys
 
 delete-cache-files:
   path: /delete-cache-files
