@@ -15,8 +15,8 @@
 
 
         {% if nrOfJourneys > 1 %}
-            <span class='hidden_msgs' id="back-to_prev"> to select journey page</span>
-            <a aria-describedby="back-to-landing-page" href="{{ path('guided-match-journeys')}}?q={{ searchBy }}"class="govuk-back-link">Back</a>
+            <span class='hidden_msgs' id="back-to-select-journey"> to select journey page</span>
+            <a aria-describedby="back-to-select-journey" href="{{ path('guided-match-journeys')}}?q={{ searchBy|url_encode }}" class="govuk-back-link">Back</a>
         {% else %}
             <span class='hidden_msgs' id="back-to-search-result" tabindex="-1"> to search result</span>
             <a aria-describedby="back-to-search-result" class="govuk-back-link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch" tabindex="-1">Back</a>
@@ -40,7 +40,7 @@
                             </li>
                         </ul>
 
-                        <a href="{{ path('start-journey', {'journeyUuid': journeyUuid})}}?q={{searchBy}}" role="button" name="start now"
+                        <a href="{{ path('start-journey', {'journeyUuid': journeyUuid})}}?q={{searchBy|url_encode}}" role="button" 
                         class="govuk-button govuk-button--start govuk-!-margin-top-6 govuk-!-margin-bottom-9" 
                         data-module="govuk-button">Start now</a>
                     </div>

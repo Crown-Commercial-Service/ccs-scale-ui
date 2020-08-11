@@ -15,7 +15,7 @@
 
         
         <span class='hidden_msgs' id="back-to-search-result" tabindex="-1"> to search result</span>
-        <a aria-describedby="back-to-search-result" class="govuk-back-link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch" tabindex="-1">Back</a>
+        <a aria-describedby="back-to-search-result" class="govuk-back-link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy|url_encode }}&feature=guidedmatch" tabindex="-1">Back</a>
 
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper questions-page" id="main-content">
@@ -23,7 +23,7 @@
 
                 <form action="#" onsubmit="return validate()" name="question" method="post">
                     <div class="govuk-form-group {{ errorMessage is defined ? 'govuk-form-group--error' }}" id="form-layout">
-                        <div class="govuk-fieldset  restrict-width">
+                        <fieldset class="govuk-fieldset  restrict-width">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 <h1 class="govuk-fieldset__heading">What type of {{ searchBy }} do you need</h1>
                             </legend>
@@ -47,7 +47,7 @@
                                     <input type='hidden' name='form-type' value='boolean'>
                                     <input type='hidden' name='searchBy' value='{{ searchBy }}'>
                                 </div>
-                        </div>
+                        </fieldset>
                     </div>
                  
                     <input type="hidden" name="token" value="{{ csrf_token('save-answers') }}"/>

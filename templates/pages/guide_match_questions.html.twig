@@ -27,20 +27,20 @@
                         'journeyHistory': journeyHistory, 
                         'gPage': lastPage,
                     }
-                    )}}?q={{ searchBy }}"
+                    )}}?q={{ searchBy|url_encode }}"
                 class="govuk-back-link">Back</a>
         {% else %}
             <span class='hidden_msgs' id="back-to-landing-page" tabindex="-1"> to landing page</span>
-            <a aria-describedby="back-to-landing-page" href="{{ path('landing_page',{  'journeyId': journeyId})}}?q={{ searchBy }}"class="govuk-back-link">Back</a>
+            <a aria-describedby="back-to-landing-page" href="{{ path('landing_page',{  'journeyId': journeyId})}}?q={{ searchBy|url_encode }}" class="govuk-back-link">Back</a>
         {% endif %}
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper questions-page" id="main-content">
             <div class="govuk-grid-row">
 
-                <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy }}"
+                <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy|url_encode}}"
                       onsubmit="return validate()" name="question" method="post">
                     <div class="govuk-form-group {{ errorMessage is defined ? 'govuk-form-group--error' }}" id="form-layout">
-                        <div class="govuk-fieldset  restrict-width">
+                        <fieldset class="govuk-fieldset  restrict-width">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 <h1 class="govuk-fieldset__heading">{{ text }}</h1>
                             </legend>
@@ -53,7 +53,7 @@
                             {% include"/includes/question_error.html.twig" %}
 
                             {% include "/questions_types/#{type}.html.twig" %}
-                        </div>
+                        </fieldset>
                     </div>
                     {% if  gPage >  1  and  journeyHistory is defined %}
                         <input type='hidden' id='lastQuestionId' name='lastQuestionId' value="{{ lastQuestionId }}">
@@ -81,7 +81,7 @@
                         'gPage': currentPage,
 
                     }
-                    )}}?q={{ searchBy }}"
+                    )}}?q={{ searchBy|url_encode }}"
                >Contact CCS</a></p>
             </div>
         </main>

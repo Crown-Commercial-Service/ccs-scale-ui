@@ -29,6 +29,7 @@ class GuideMatchContactCssController extends AbstractController
         return $this->render('pages/contact_css.html.twig', [
            
             'searchBy' => $searchBy,
+            'searchByEncoded' => rawurlencode($searchBy),
             'journeyId' => $journeyId,
             'journeyInstanceId' => $journeyInstanceId,
             'journeyHistory' => $journeyHistory,

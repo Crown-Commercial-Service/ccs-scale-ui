@@ -52,7 +52,7 @@ class GuidedMatchJourneysController extends AbstractController{
         }
 
         return $this->render('pages/guide_match_journeys.html.twig', [
-            'searchBy' => $searchBy,
+            'searchBy' => rawurldecode($searchBy),
             'journeys' => $journeys,
             'pageTitle' => 'Select a Journey',
         ]);
