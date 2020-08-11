@@ -13,9 +13,14 @@
     <div class="govuk-width-container">
         {% include "/includes/phase_banner.html.twig" %}
 
-        <span class='hidden_msgs' id="back-to_prev"> to search result page</span>
-        <a class="govuk-back-link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch" tabindex="-1">Back</a>
 
+        {% if nrOfJourneys > 1 %}
+            <span class='hidden_msgs' id="back-to_prev"> to select journey page</span>
+            <a aria-describedby="back-to-landing-page" href="{{ path('guided-match-journeys')}}?q={{ searchBy }}"class="govuk-back-link">Back</a>
+        {% else %}
+            <span class='hidden_msgs' id="back-to-search-result" tabindex="-1"> to search result</span>
+            <a aria-describedby="back-to-search-result" class="govuk-back-link" href="{{ ccs_domain }}/agreements/search?q={{ searchBy }}&feature=guidedmatch" tabindex="-1">Back</a>
+        {% endif %}
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper " id="main-content">
         <section>
