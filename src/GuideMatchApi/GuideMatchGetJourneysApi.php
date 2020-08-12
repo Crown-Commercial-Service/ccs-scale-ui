@@ -23,23 +23,27 @@ class GuideMatchGetJourneysApi
      * @return array
      */
 
-    public function searchJourneys( string $search_by)
+    public function searchJourneys( string $searchBy)
     {
 
-        if (empty($search_by)) {
+        if (empty($searchBy)) {
             throw new Exception('Invalid arguments of method');
         }
         
-        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/search-journeys/{$search_by}", [
-            'headers' => ['x-api-key' => getenv('AGREEMENTS_SERVICE_API_KEY')],
+        $searchBy =  rawurlencode($searchBy);
+       
+        $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/search-journeys/{$searchBy}", [
+            'headers' => ['x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY')],
         ]);
         try {
             $content = $response->getContent();
             $content = $response->toArray();
         } catch (Exception $e) {
-            return [];
+          
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
+
+        dd($content);die();
         return $content;
     }
 
