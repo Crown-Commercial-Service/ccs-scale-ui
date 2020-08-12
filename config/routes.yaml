@@ -1,46 +1,46 @@
 
 # GM PAGES
 landing_page:
-  path: /guided-match/{journeyId}/landing-page
+  path: /find-a-commercial-agreement
   controller: App\Controller\LandingPageController::landingPage 
 
 question_page:
-  path: /guided-match/journey/{journeyId}/{journeyInstanceId}/{questionUuid}/{gPage}
+  path: /find-a-commercial-agreement/journey/{journeyId}/{journeyInstanceId}/{questionUuid}/{gPage}
   controller: App\Controller\GuideMatchJourneyController::journey
   defaults:
     gPage: 0
 
 result_page:
-  path: /guided-match/result-page
+  path: /find-a-commercial-agreement/result-page
   controller: App\Controller\ResultPageController::resultPage
 
 
 # Tactical back to search
 back_to_search:
-  path: /guided-match/back-to-search-results/
+  path: /find-a-commercial-agreement/back-to-search-results/
   controller: App\Controller\TacticalSerchResultController:backToSearch
 
 start-journey:
-  path: /guided-match/start-journey/{journeyUuid}
+  path: /find-a-commercial-agreement/start-journey/{journeyUuid}
   controller: App\Controller\StartJourneyController:startJourney
 
 back-to-previous:
-  path: /guided-match/journey-back/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
+  path: /find-a-commercial-agreement/journey-back/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchBackToPreviousController::backToPrevious
   defaults:
     gPage: 0
 
 journey-result:
-  path: /guided-match/result/{journeyId}/{journeyInstanceId}/{agreements?}
+  path: /find-a-commercial-agreement/result/{journeyId}/{journeyInstanceId}/{agreements?}
   controller: App\Controller\GuideMatchJourneyResultController::journeyResult
 
 
 contact-ccs-page:
-  path: /guided-match/contact-css/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
+  path: /find-a-commercial-agreement/contact-css/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchContactCssController::contactCss
 
 guided-match-journeys:
-  path: /guidedmatch
+  path: /find-a-commercial-agreement/guidedmatch
   controller: App\Controller\GuidedMatchJourneysController:searchJourneys
 
 delete-cache-files:

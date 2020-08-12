@@ -14,7 +14,7 @@ use \Exception;
 
 class LandingPageController extends AbstractController
 {
-    public function landingPage(Request $request, $journeyId)
+    public function landingPage(Request $request)
     {
         $q = $request->query->get('q');
       
@@ -22,18 +22,9 @@ class LandingPageController extends AbstractController
             throw new Exception('You need to provide a word for Guide Match Journey');
         }
 
-        $httpClient = HttpClient::create();
-        $api = new GuideMatchGetJourneysApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
-
-
-        $journeysModel = new JourneysModel($api,$q);
-        $nrOfJourneys = $journeysModel->getNumberOfJourneys();
-        
 
         return $this->render('pages/landing_page.html.twig', [
-            'journeyUuid' => $journeyId,
             'searchBy' => $q,
-            'nrOfJourneys'=>$nrOfJourneys,
             'pageTitle'=>'Landing Page'
         ]);
     }
