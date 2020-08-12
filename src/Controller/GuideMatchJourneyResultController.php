@@ -50,6 +50,7 @@ class GuideMatchJourneyResultController extends AbstractController
             $isProduct = true;
             return $this->render('pages/result_page_product.html.twig', [
                 'searchBy' => $searchBy,
+                'searchByEncoded' => rawurlencode($searchBy),
                 'historyAnswered' => $userAnswersFormatedForView,
                 'journeyId' => $journeyId,
                 'journeyInstanceId' => $journeyInstanceId,
