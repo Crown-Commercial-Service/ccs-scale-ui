@@ -29,7 +29,7 @@ class GuideMatchGetJourneysApi
         if (empty($searchBy)) {
             throw new Exception('Invalid arguments of method');
         }
-        
+
         $searchBy =  rawurlencode($searchBy);
        
         $response = $this->httpClient->request('GET', "{$this->baseApiUrl}/scale/guided-match-service/search-journeys/{$searchBy}", [
@@ -43,7 +43,6 @@ class GuideMatchGetJourneysApi
             throw new Exception('Invalid API response:'.$e->getMessage());
         }
 
-        dd($content);die();
         return $content;
     }
 
