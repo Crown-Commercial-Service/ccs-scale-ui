@@ -1,6 +1,6 @@
 <h2 class="govuk-footer__heading govuk-!-font-size-22">{{ menu.name }}</h2>
 
-<ul class="govuk-list govuk-!-font-size-18">
+<ul class="govuk-list govuk-!-font-size-18" role="navigation">
     {% for menu_item in menu.children %}
         <li>
             <a class="govuk-footer__link" href="{{ menu_item.url|modify_url  }}">{{ menu_item.label }}</a>
