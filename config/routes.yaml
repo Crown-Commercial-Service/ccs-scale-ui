@@ -39,6 +39,10 @@ contact-ccs-page:
   path: /find-a-commercial-agreement/contact-css/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchContactCssController::contactCss
 
+contact-ccs-page-journeys:
+  path: /find-a-commercial-agreement/contact-css-journeys/
+  controller: App\Controller\GuideMatchContactCssJourneysController::contactCss
+
 guided-match-journeys:
   path: /find-a-commercial-agreement/guidedmatch
   controller: App\Controller\GuidedMatchJourneysController:searchJourneys

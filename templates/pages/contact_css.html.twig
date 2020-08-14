@@ -13,7 +13,13 @@
         {{ include('includes/phase_banner.html.twig') }}
 
         <span class='hidden_msgs' id="back-to_prev" tabindex="-1"> to previous question</span>
-        {% if redirectToResultPage %}
+        {% if journeysPage is defined %}
+            <a 
+            aria-describedby="back-to_prev"
+            href="{{ 
+                path('guided-match-journeys')}}?q={{ searchByEncoded }}"
+                class="govuk-back-link">Back</a>
+        {% elseif redirectToResultPage %}
             <a 
             aria-describedby="back-to_prev"
             href="{{ 
@@ -75,10 +81,17 @@
                     </div>
 
                     <div class="contact-ccs-btn">
+                     {% if journeysPage is defined %}
+                        <a href="{{ path('guided-match-journeys')}}?q={{ searchByEncoded }}" role="button" class="govuk-button govuk-button--secondary">
+                            Start again to change your answers
+                        </a>
+                    {% else %}
                         <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}" role="button" class="govuk-button govuk-button--secondary" >  
                             Start again to change your answers
                         </a>  
+                    {% endif %} 
                     </div>
+                    
                 </div>
             </div>
         </main>
