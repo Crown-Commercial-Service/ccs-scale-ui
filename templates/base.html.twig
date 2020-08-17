@@ -18,12 +18,12 @@
     {% block pageMetaTags %}{{ (page is defined)? page.head.getAllMetaHtml()|raw : '' }}{% endblock %}
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.ons.gov.uk/sdc/design-system/19.3.0/css/main.css"> -->
     {% if app.environment == "prod" %}
-        <link rel="stylesheet" href="{{ asset ('assets/styles/styles.min.css') }} ">
+        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css') }} ">
     {% else %}
         {# To debug CSS in other environments (not live), change the below to
          # styles.css instead of styles.min.css
          #}
-        <link rel="stylesheet" href="{{ asset ('assets/styles/styles.min.css') }} ">
+        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css') }} ">
     {% endif %}
 
      <script>
@@ -88,10 +88,10 @@
 {{ include('/includes/footer.html.twig') }}
 
 {% block script %}
-    <script src="{{ asset('assets/scripts/all.js') }}"></script>
-    <script src="{{ asset('assets/scripts/app.js') }}"></script>
+    <script src="{{ asset('find-a-commercial-agreement/scripts/all.js') }}"></script>
+    <script src="{{ asset('find-a-commercial-agreement/scripts/app.js') }}"></script>
     <script>window.GOVUKFrontend.initAll();</script>
-    <script src="{{ asset('assets/scripts/question_types_validators.js') }}"></script>
+    <script src="{{ asset('find-a-commercial-agreement/scripts/question_types_validators.js') }}"></script>
 {% endblock %}
 
 </body>
