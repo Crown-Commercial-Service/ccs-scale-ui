@@ -4,12 +4,19 @@
         <div class="govuk-radios__item">
             {% set checked = '' %}
             {% set answerValue = '' %}
+            {% set ariaDescribedby = '' %}
+            
             {% if answer.text  in userAnswers|keys %}
-            {% set checked = 'checked = checked' %}
-            {% set answerValue = userAnswers.answer %}
+                {% set checked = 'checked = checked' %}
+                {% set answerValue = userAnswers.answer %}
             {% endif %}
+
+                    {% if answer.conditionalInput  is not defined %}
+                      {% set  ariaDescribedby =  'aria-describedby="hint-"'~ answer.id  %}
+                    {% endif %}
+
             <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio" value="{{ answer.id }}"
-            onchange="resetErrors(this)" data-aria-controls="conditional-{{ answer.id }}" {{ checked }}  ">
+            onchange="resetErrors(this)" data-aria-controls="conditional-{{ answer.id }}" {{ checked }} {{ ariaDescribedby }} ">
             <label class="govuk-label govuk-radios__label" for="{{ answer.id }}">
                 {{- answer.text -}}
             </label>
