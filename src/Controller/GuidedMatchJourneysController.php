@@ -12,7 +12,6 @@ use App\Models\JourneysModel;
 use Exception;
 
 
-
 class GuidedMatchJourneysController extends AbstractController{
 
 
@@ -23,7 +22,6 @@ class GuidedMatchJourneysController extends AbstractController{
             throw new Exception('Invalid request');
             
         }
-
 
         if($request->getMethod() === "POST"){
 
@@ -45,6 +43,13 @@ class GuidedMatchJourneysController extends AbstractController{
         $journeysModel = new JourneysModel($api,$searchBy);
         $journeys = $journeysModel->getJourneys();
         if(count($journeys) === 1){
+
+            $redirect = $request->query->get('r');
+            if(!empty($redirect)){
+                return $this->redirect("/find-a-commercial-agreement?q={$searchBy}");
+
+            }
+          
             $journeyId = $journeys[0]["journeyId"];
             return $this->redirect(" /find-a-commercial-agreement/start-journey/{$journeyId}?q={$searchBy}");
         }
