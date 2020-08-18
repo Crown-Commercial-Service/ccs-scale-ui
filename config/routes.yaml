@@ -1,7 +1,7 @@
 
 # GM PAGES
 landing_page:
-  path: /find-a-commercial-agreement
+  path: /find-a-commercial-agreement/landing-page
   controller: App\Controller\LandingPageController::landingPage 
 
 question_page:
