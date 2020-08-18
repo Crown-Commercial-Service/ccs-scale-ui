@@ -41,14 +41,14 @@
                     <span class="input-type input-type--{% if answer.conditionalInput.unit == "currency" %}prefix{% else %}sufix{% endif %}">
                         <span class="input-type__inner">
                             {% if answer.conditionalInput.unit == "currency" %}
-                                <abbr class="input-type__type" aria-hidden="true" title="Pounds (GBP)">£</abbr>
+                                <abbr class="input-type__type" title="Pounds (GBP)">£</abbr>
                             {% endif %}
                             <input class="govuk-input govuk-!-width-one-third custom-input 
                             {% if answer.conditionalInput.unit == "currency" %}width-pound{% else %}width-month{% endif %}" name="{{ answer.id }}" 
                             value = "{{ answerValue }}" id="input-{{ answer.id }}" 
                             aria-describedby=" hint-{{answer.id}} no-input" oninput="twoDecimalLimit(this)">
                             {% if answer.conditionalInput.unit == "months" %}
-                                <abbr class="input-type__type" aria-hidden="true" title="months">months</abbr>
+                                <abbr class="input-type__type" title="months">months</abbr>
                             {% endif %}
                         </span>
                     </span>
