@@ -46,7 +46,7 @@ class GuidedMatchJourneysController extends AbstractController{
 
             $redirect = $request->query->get('r');
             if(!empty($redirect)){
-                return $this->redirect("/find-a-commercial-agreement?q={$searchBy}");
+                return $this->redirect("/find-a-commercial-agreement/landing-page?q={$searchBy}");
 
             }
           
