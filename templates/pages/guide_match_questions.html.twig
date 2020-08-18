@@ -16,7 +16,7 @@
         {% if  gPage >  1  and  journeyHistory is defined %}
             <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
             <a 
-            aria-describedby="back-to_prev" tabindex="-1"
+            aria-describedby="back-to_prev" 
             href="{{ 
                 path( 
                     'back-to-previous',
@@ -30,7 +30,7 @@
                     )}}?q={{ searchBy|url_encode }}"
                 class="govuk-back-link">Back</a>
         {% else %}
-            <span class='hidden_msgs' id="back-to-landing-page" tabindex="-1"> to start journey page</span>
+            <span class='hidden_msgs' id="back-to-landing-page"> to start journey page</span>
             <a aria-describedby="back-to-landing-page" href="{{ path('guided-match-journeys')}}?q={{ searchBy|url_encode }}" class="govuk-back-link">Back</a>
         {% endif %}
         <!-- required wrapper 2 -->
