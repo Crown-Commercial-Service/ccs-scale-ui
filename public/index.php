@@ -1,6 +1,4 @@
 <?php
- //$uri = $_SERVER['REQUEST_URI'];
- //$time_start = microtime(true); 
 
 use App\CacheKernel;
 use App\Kernel;
@@ -38,6 +36,4 @@ $request = Request::createFromGlobals();
 $response = $kernel->handle($request);
 $response->send();
 $kernel->terminate($request, $response);
-//$time_end = microtime(true); 
-//$duration = $time_end - $time_start; 
-//error_log("Page: $uri :::: $duration \n", 3,'../public/speedTest.log');
+

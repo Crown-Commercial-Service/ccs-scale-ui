@@ -13,19 +13,19 @@
             </div>
         {% endblock %}
 
-        <div class="nav-wrapper" role="navigation banner">
+        <div class="nav-wrapper">
 
-            <a href="/" role="banner" class="logo"><img src="/assets/images/CCS_WHITE_SML_AW.png" alt="Go to the CCS homepage">
+            <a href="/"  class="logo"><img src="/find-a-commercial-agreement/images/CCS_WHITE_SML_AW.png" alt="Go to the CCS homepage">
             </a>
 
-            <button class="global-navigation__toggler" data-toggler="nav" role="navigation">
+            <button class="global-navigation__toggler" data-toggler="nav">
                 <span>Menu</span> <span class="icon">
 <svg width="16" height="13" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="square"><path d="M14.5 1.12H1.464M14.5 6.12H1.464M14.5 11.24H1.464"/></g></svg>
         </span>
             </button>
 
             {% block mainnavigation %}
-                <nav class="global-navigation" role="navigation" data-toggle="nav" data-app-uri="http://localhost:8001/guided-match/example" data-app-pathinfo="/guided-match/example" aria-hidden="false">
+                <nav class="global-navigation"  data-toggle="nav" data-app-uri="http://localhost:8001/guided-match/example" data-app-pathinfo="/guided-match/example" aria-hidden="false">
                     {% if wordpress_api != '' %}
                         {{ render(controller(
                             'App\\Controller\\MenuController::menu',

@@ -15,7 +15,7 @@
         {{ include('includes/phase_banner.html.twig') }}
         <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
         <a 
-        aria-describedby="back-to_prev" tabindex="-1"
+        aria-describedby="back-to_prev"
         href="{{ 
         path( 
         'back-to-previous',
@@ -103,5 +103,5 @@
 {% endblock %}
 {% block script %}
     {{ parent() }}
-    <script src="{{ asset('assets/scripts/result_page.js') }}" ></script>
+    <script src="{{ asset('find-a-commercial-agreement/scripts/result_page.js') }}" ></script>
 {% endblock %}
