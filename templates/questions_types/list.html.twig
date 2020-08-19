@@ -1,24 +1,28 @@
 <div class="govuk-radios">
     {% for answer in definedAnswers %}
 
+        {% set ariaDescribedby = '' %}
         {% set checked = '' %}
         {% if answer.text  in userAnswers|keys %}
             {% set checked = 'checked = checked' %}
+        {% endif %}
+
+         {% if answer.hint is defined  and answer.hint is not empty %}
+            {% set  ariaDescribedby = 'aria-describedby=sign-in-item-hint-'~ answer.id ~ '' %}
         {% endif %}
         
         {% if answer.mutuallyExclusive == true and firstOcurence is not defined %}
             <div class="govuk-radios__divider">or</div>
             {% set firstOcurence = true %}
         {% endif %}
-
         <div class="govuk-radios__item">
             <input class="govuk-radios__input v-selector" id="{{ answer.id }}" name="uuid" type="radio"
-                   value="{{ answer.id }}" {{ checked }} aria-describedby="sign-in-item-hint-{{answer.id}}">
+                   value="{{ answer.id }}" {{ checked }} {{ ariaDescribedby }}>
             <label class="govuk-label govuk-radios__label govuk-label--s" for="{{ answer.id }}">
                 {{- answer.text -}}
             </label>
             {% if answer.hint is defined  and answer.hint is not empty %}
-                <span id="sign-in-item-hint-{{answer.id}}" class="govuk-hint govuk-radios__hint">{{- answer.hint|raw -}}</span>
+                <div id="sign-in-item-hint-{{answer.id}}" class="govuk-hint govuk-radios__hint">{{- answer.hint|raw -}}</div>
             {% endif %}
         </div>
     {% endfor %}
