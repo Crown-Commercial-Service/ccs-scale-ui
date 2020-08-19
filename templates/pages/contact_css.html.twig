@@ -72,9 +72,7 @@
                     {% include "/results_page_items/answers.html.twig" with {'lotstTitle': '', 'changeAnswer':1,'redirectToSearch':1} %}
             
                     <div class="contact-ccs-btn app-c-print-link">
-                        <button onclick="window.print();" type="button" class="app-c-print-link__link" rel="alternate">
-                            Print this page
-                        </button>
+                        <a class="print-link govuk-link" rel="alternate" onclick="window.print();return false;">Print this page</a>  
                     </div>
                     <div class="contact-ccs-btn">
                         <a href="https://www.crowncommercial.gov.uk/contact" role="button"  class="govuk-button"> Contact CCS </a>

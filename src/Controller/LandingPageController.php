@@ -6,9 +6,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpClient\HttpClient;
-use App\GuideMatchApi\GuideMatchGetJourneysApi;
-use App\Models\JourneysModel;
 
 use \Exception;
 
