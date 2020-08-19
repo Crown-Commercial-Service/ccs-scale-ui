@@ -46,7 +46,7 @@
                             <input class="govuk-input govuk-!-width-one-third custom-input 
                             {% if answer.conditionalInput.unit == "currency" %}width-pound{% else %}width-month{% endif %}" name="{{ answer.id }}" 
                             value = "{{ answerValue }}" id="input-{{ answer.id }}" 
-                            aria-describedby=" hint-{{answer.id}} no-input" oninput="twoDecimalLimit(this)">
+                            aria-describedby=" hint-{{answer.id}}" oninput="twoDecimalLimit(this)">
                             {% if answer.conditionalInput.unit == "months" %}
                                 <abbr class="input-type__type" title="months">months</abbr>
                             {% endif %}
