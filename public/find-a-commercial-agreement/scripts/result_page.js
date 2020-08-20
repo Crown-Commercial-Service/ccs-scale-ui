@@ -38,7 +38,9 @@ window.onload = function(){
     for (var i = accordionElements.length - 1; i >= 0; i--) {
         var isExtended = accordionElements[i].getAttribute('aria-expanded');
         var elementRoot = accordionElements[i].parentElement.parentElement;
-        var controller = document.createElement("a");
+        var controller = document.createElement("p");
+        controller.style.textDecoration = "underline";
+        controller.style.color = "#007194";
         controller.classList.add("govuk-link");
         controller.href="";
         if (isExtended == "true") {
