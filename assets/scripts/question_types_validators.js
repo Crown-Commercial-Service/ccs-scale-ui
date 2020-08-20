@@ -45,6 +45,8 @@ function validate() {
     var isValid           = false;
     var formLayout        = document.getElementById('form-layout');
     var errorNoSelection  = document.getElementById('no-selection');
+    errorNoSelection.style.display = "none";
+
 
     for (var i = 0; i < document.getElementsByClassName('v-selector').length; i++) {
         if (document.getElementsByClassName('v-selector')[i].checked) isValid = true;
@@ -54,6 +56,23 @@ function validate() {
         formLayout.classList.add('govuk-form-group--error');
         errorNoSelection.style.display = 'block';
         errorNoSelection.textContent = "You need to select something.";
+        var Forminputs = document.getElementsByClassName("govuk-radios__input");
+        
+        setTimeout(function(){
+            
+            var isSelected = false;
+           
+            for(var i in Forminputs){
+                if(Forminputs[i].checked){
+                    isSelected = true;
+                }
+            }
+
+            if(!isSelected){
+                Forminputs[0].focus();
+            }
+        }, 2000);
+
     }
 
     // conditional input validation logic
