@@ -44,6 +44,8 @@ class GuideMatchBackToPreviousController extends AbstractController
         if (!$changeAnswer==1) {
             $userAnswers = $model->getQuestionAnswers($questionId, $journeyHistoryData);
         }
+//dump($model->getDefinedAnswers());
+ //       dd($userAnswers);
         $questionText = $model->getText();
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,

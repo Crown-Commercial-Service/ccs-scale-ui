@@ -48,9 +48,15 @@
                         <a href="#" class="print-link govuk-link" rel="alternate" onclick="window.print();return false;">Print this page</a>
                     </div>
 
-                    <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                    href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}">
-                    Start again to change your answers</a>
+                    {% if journeysPage is defined and  journeysPage is not empty %}
+                        <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                        href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}">
+                        Start again to change your answers</a>
+                    {% else %}
+                        <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                        href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}">
+                        Start again to change your answers</a>
+                    {% endif %} 
              
             </main>
         </div>

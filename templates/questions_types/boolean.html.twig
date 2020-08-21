@@ -8,7 +8,9 @@
             
             {% if answer.text  in userAnswers|keys %}
                 {% set checked = 'checked = checked' %}
-                {% set answerValue = userAnswers.answer %}
+                {% if userAnswers[answer.text].answer is defined %}
+                    {% set answerValue = userAnswers[answer.text].answer %}
+                 {% endif %}
             {% endif %}
 
             {% if answer.conditionalInput  is not defined  and  answer.hint is defined  and answer.hint is not empty %}
