@@ -36,7 +36,7 @@
                         <h1 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, we think there 
                             {{countFrameworks > 1 ? 'are':'is'}} </h2>
                             <h2 class="govuk-heading-xl page-title">
-                                <strong>{{ countFrameworks }} framework{{countFrameworks > 1 ? 's'}}
+                                <strong>{{ countFrameworks }} agreement{{countFrameworks > 1 ? 's'}}
                                     {% if  countLots > 0 %}
                                     and {{ countLots }} {{  countLots == 1 ? 'lot':'lots' }}
                                     {% endif %}
@@ -56,7 +56,7 @@
                             {% endfor %}
                             
                             <section id="recommendations">
-                                <h2 class="govuk-heading-l result-heading">Recommendations agreements</h2>
+                                <h2 class="govuk-heading-l result-heading">Recommended agreements</h2>
                                 {{ include('results_page_items/recommendations.html.twig') }}
                             </section>
 
