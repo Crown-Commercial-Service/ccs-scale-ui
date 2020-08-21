@@ -3,11 +3,6 @@
          <div class ='gm-lots-containers'>
             <h3 class="govuk-heading-m">{{lot.number}}: {{lot.name}}</h3>
             <div> {{lotsData[framework.number][lot.number].description|raw}} </div>
-            <div>
-               {% if  isScale == true %}  
-                    <a class="govuk-link" href="#recommendations">Start Procurement on {{lot.number}}</a>
-               {% endif %}  
-           </div>
         </div>
     {% endfor %}
 {% endif %}  
