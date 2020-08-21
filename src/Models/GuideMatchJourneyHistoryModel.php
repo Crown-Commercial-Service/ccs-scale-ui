@@ -65,7 +65,7 @@ class GuideMatchJourneyHistoryModel
     /**
      * Getter function for search term of journey
      *
-     * @return void
+     * @return string
      */
     public function getSearchTerm()
     {

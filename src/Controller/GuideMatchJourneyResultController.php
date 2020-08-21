@@ -14,6 +14,10 @@ use App\GuideMatchApi\ServiceAgreementsApi;
 use App\Models\GuideMatchResponseType;
 use App\Models\GuideMatchJourneyHistoryModel;
 use App\GuideMatchApi\GuideMatchJourneyApi;
+use App\GuideMatchApi\GuideMatchGetJourneysApi;
+use App\Models\JourneysModel;
+
+
 use Exception;
 
 class GuideMatchJourneyResultController extends AbstractController
@@ -43,6 +47,18 @@ class GuideMatchJourneyResultController extends AbstractController
        
         $journeyHistory =  urlencode($encrypt->getEncryptedString());
         $searchBy = $journeyHistoryModel->getSearchTerm();
+
+        $httpClient = HttpClient::create();
+        $api = new GuideMatchGetJourneysApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
+//dd($searchBy);
+        $journeysModel = new JourneysModel($api, $searchBy);
+        $journeys = $journeysModel->getJourneys();
+
+        if (count($journeys) > 1) {
+                
+            $selectedJourney =  $userAnswers->addSelectedJourneyToUserAnswers($searchBy,$journeyId,$journeys);
+            array_unshift($userAnswersFormatedForView,$selectedJourney);
+        }
 
         $isProduct = false;
         if ($journeyHistoryModel->getOutcomeType()  === GuideMatchResponseType::GuideMatchResponseSupport) {

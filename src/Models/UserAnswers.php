@@ -111,4 +111,41 @@ class UserAnswers
         }
         return $answers;
     }
+
+
+    public function addSelectedJourneyToUserAnswers( string $searchBy, string $journeyId, array $journeys){
+
+        if(
+            empty($journeyId) &&
+            empty($journeys) &&
+            empty($searchBy)
+        ){
+            return [];
+        }
+
+        $formatedJourneys = $this->groupJourneyByIds($journeys);
+        $selectedJourneys =  $formatedJourneys[$journeyId];
+
+        $selectJourneyQuestion = "What type of $searchBy do you need";
+
+        $selectedJourneyAnswer = [
+            'question' => $selectJourneyQuestion,
+            'answerTxt' => $selectedJourneys['selectionText'],
+            'changeUrl' => '#',
+            'seletectJourney' => true
+        ];
+
+       return $selectedJourneyAnswer;
+    }
+
+    private function groupJourneyByIds(array $journeys)
+    {
+
+        $formatedJourneys = [];
+        foreach($journeys as $journey){
+            $formatedJourneys[$journey['journeyId']] = $journey;
+        }
+        return $formatedJourneys;
+    }
+
 }

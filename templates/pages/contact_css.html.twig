@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="contact-ccs-btn">
-                     {% if journeysPage is defined %}
+                     {% if journeysPage is defined  and journeysPage is not empty %}
                         <a href="{{ path('guided-match-journeys')}}?q={{ searchByEncoded }}" role="button" class="govuk-button govuk-button--secondary">
                             Start again to change your answers
                         </a>
