@@ -299,8 +299,6 @@ class GuideMatchJourneyModel
             throw new Exception('Invalid parameters');
         }
 
-     //   $userAnswers = [];
-//dd($historyAnswers);
         foreach ($historyAnswers as $questions) {
             if ($questions['question']['id'] === $questionId) {
              
@@ -311,7 +309,6 @@ class GuideMatchJourneyModel
                 }
             }
         }
-      //  dd($userAnswers);
         return $userAnswers;
     }
 
