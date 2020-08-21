@@ -50,14 +50,15 @@ class GuideMatchJourneyResultController extends AbstractController
 
         $httpClient = HttpClient::create();
         $api = new GuideMatchGetJourneysApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
-//dd($searchBy);
         $journeysModel = new JourneysModel($api, $searchBy);
         $journeys = $journeysModel->getJourneys();
 
+        $journeysPage =  false;
         if (count($journeys) > 1) {
                 
             $selectedJourney =  $userAnswers->addSelectedJourneyToUserAnswers($searchBy,$journeyId,$journeys);
             array_unshift($userAnswersFormatedForView,$selectedJourney);
+            $journeysPage =  true;
         }
 
         $isProduct = false;
@@ -73,7 +74,8 @@ class GuideMatchJourneyResultController extends AbstractController
                 'journeyHistory' => $journeyHistory,
                 'lastPage' => $lastPage,
                 'lastQuestionId' => $lastQuestionId,
-                'pageTitle' => 'Result Journey Page'
+                'pageTitle' => 'Result Journey Page',
+                'journeysPage' => $journeysPage
             ]);
         }
 
@@ -103,6 +105,7 @@ class GuideMatchJourneyResultController extends AbstractController
             'lastPage' => $lastPage,
             'agreements' => $agreements,
             'pageTitle' => 'Result Journey Page',
+            'journeysPage' => $journeysPage
         ]);
     }
 }

@@ -84,10 +84,15 @@
                                 <h2 class="govuk-heading-l result-heading">Routes to market definitions</h2>
                                 {% include "/results_page_items/definitions.html.twig" %}
 
-
-                                <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                                href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}">
-                                Start again to change your answers</a>
+                                {% if journeysPage is defined and  journeysPage is not empty %}
+                                    <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                                    href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}">
+                                    Start again to change your answers</a>
+                                {% else %}
+                                    <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                                    href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}">
+                                    Start again to change your answers</a>
+                                {% endif %} 
 
                                 <div style="background-color: #f3f2f1; padding: 0.5em">
                                     <h3 class="govuk-heading-s">Tell us what you think</h3>

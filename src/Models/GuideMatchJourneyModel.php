@@ -299,17 +299,16 @@ class GuideMatchJourneyModel
             throw new Exception('Invalid parameters');
         }
 
-        $userAnswers = [];
-
         foreach ($historyAnswers as $questions) {
             if ($questions['question']['id'] === $questionId) {
-              
+             
                 foreach ($questions['answers'] as $answers) {
-                    $userAnswers[$answers['answerText']] = true;
+               
+                    $userAnswers[$answers['answerText']]['selected'] = true;
+                    $userAnswers[$answers['answerText']]['answer'] = $answers['answer'];
                 }
             }
         }
-
         return $userAnswers;
     }
 
