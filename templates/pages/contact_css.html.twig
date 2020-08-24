@@ -72,22 +72,15 @@
                     {% include "/results_page_items/answers.html.twig" with {'lotstTitle': '', 'changeAnswer':1,'redirectToSearch':1} %}
             
                     <div class="contact-ccs-btn app-c-print-link">
-                        <a class="print-link govuk-link" rel="alternate" href="#" onclick="window.print();return false;">Print this page</a>  
+                         {% include "/includes/print-page.html.twig" %}
                     </div>
+
                     <div class="contact-ccs-btn">
                         <a href="https://www.crowncommercial.gov.uk/contact" role="button"  class="govuk-button"> Contact CCS </a>
                     </div>
 
                     <div class="contact-ccs-btn">
-                     {% if journeysPage is defined  and journeysPage is not empty %}
-                        <a href="{{ path('guided-match-journeys')}}?q={{ searchByEncoded }}" role="button" class="govuk-button govuk-button--secondary">
-                            Start again to change your answers
-                        </a>
-                    {% else %}
-                        <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}" role="button" class="govuk-button govuk-button--secondary" >  
-                            Start again to change your answers
-                        </a>  
-                    {% endif %} 
+                         {% include "/includes/start_change_answers_btn.html.twig" %}
                     </div>
                     
                 </div>

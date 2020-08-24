@@ -1,0 +1,9 @@
+ {% if journeysPage is defined  and journeysPage is not empty %}
+    <a href="{{ path('guided-match-journeys')}}?q={{ searchByEncoded }}" role="button" class="govuk-button govuk-button--secondary">
+        Start again to change your answers
+    </a>
+{% else %}
+    <a href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}" role="button" class="govuk-button govuk-button--secondary" >  
+        Start again to change your answers
+    </a>  
+{% endif %} 

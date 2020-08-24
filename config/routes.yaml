@@ -36,11 +36,11 @@ journey-result:
 
 
 contact-ccs-page:
-  path: /find-a-commercial-agreement/contact-css/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
+  path: /find-a-commercial-agreement/contact-ccs/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchContactCssController::contactCss
 
 contact-ccs-page-journeys:
-  path: /find-a-commercial-agreement/contact-css-journeys/
+  path: /find-a-commercial-agreement/contact-ccs-journeys/
   controller: App\Controller\GuideMatchContactCssJourneysController::contactCss
 
 guided-match-journeys:

@@ -43,20 +43,28 @@
                          </p>  
                         {% include "/results_page_items/answers.html.twig" with {'lotstTitle': '', 'changeAnswer':''} %}
                     </div>
-                    
-                    <div style="margin-bottom: 2em; margin-top: 2em" class="no-print">
-                        <a href="#" class="print-link govuk-link" rel="alternate" onclick="window.print();return false;">Print this page</a>
-                    </div>
 
-                    {% if journeysPage is defined and  journeysPage is not empty %}
-                        <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                        href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}">
-                        Start again to change your answers</a>
-                    {% else %}
-                        <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                        href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}">
-                        Start again to change your answers</a>
-                    {% endif %} 
+                     {% include "/includes/print-page.html.twig" %}
+
+                    <p class="govuk-body">Need help with this service? 
+                        <a 
+                        aria-describedby="contact-ccs-intermediar-page"
+                        href="{{ 
+                        path( 
+                            'contact-ccs-page',
+                            {
+                                'journeyId': journeyId,
+                                'journeyInstanceId': journeyInstanceId,
+                                'questionUuid': 0,
+                                'journeyHistory': journeyHistory, 
+                                'gPage': lastPage,
+
+                            }
+                            )}}?q={{ searchBy|url_encode }}"
+                        >Contact CCS</a></p>
+
+
+                     {% include "/includes/start_change_answers_btn.html.twig" %}
              
             </main>
         </div>
