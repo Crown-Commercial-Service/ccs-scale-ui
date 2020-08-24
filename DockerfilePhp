@@ -1,0 +1,37 @@
+FROM php:7.4-fpm
+
+RUN apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd
+WORKDIR  /var/www/html/ccs
+
+
+RUN apt-get install -y  git unzip zip curl
+
+# increase memory limit to 2GB
+RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+RUN echo 'opcache.preload=/var/www/html/ccs/var/cache/prod/srcApp_KernelProdContainer.preload.php' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+RUN echo 'opcache.memory_consumption=256' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+RUN echo 'opcache.max_accelerated_files=20000' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+
+
+
+# install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+COPY ./ ./
+
+# run composer update
+RUN composer update
+
+
+# install node/npm
+RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+RUN apt-get -y install nodejs
+
+#install javascript modules
+RUN npm install
+
