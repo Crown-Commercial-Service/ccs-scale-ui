@@ -15,6 +15,7 @@ class UserAnswers
     {
         $answersFormart = [];
         foreach ($userAnswers as $answers) {
+          
             $nrAnswers = count($answers['answers']);
             $counter = 1;
             $answerTxt = '';
@@ -24,7 +25,13 @@ class UserAnswers
                     break;
                 }
             }
-           
+
+            if ( count($answers['answers']) > 1) {
+                usort($answers['answers'], function ($a, $b) {
+                    return strnatcmp($a['answerText'], $b['answerText']);
+                });
+            }
+
             foreach ($answers['answers'] as $answer) {
 
                 $unit = '';
@@ -34,8 +41,6 @@ class UserAnswers
 
                 $userAnswer = is_numeric($answer['answer']) ? number_format((float)$answer['answer']) : $answer['answer'];
 
-
-            
 
                     $answerTxt .= $counter < $nrAnswers ?
                         ( !empty($this->checkIfTheAnswerIsId($answer['answer']))  ? $answer['answerText'] : '') . (empty($this->checkIfTheAnswerIsId($answer['answer'])) ? " ".($answer['unit'] === "currency" ? $unit :"").  $userAnswer .' ' .($answer['unit'] !== "currency" ? $unit :"").")
@@ -55,6 +60,10 @@ class UserAnswers
             ];
         }
         return $answersFormart;
+    }
+
+    private function orderAnswersAlfabetically(){
+
     }
 
     /**
