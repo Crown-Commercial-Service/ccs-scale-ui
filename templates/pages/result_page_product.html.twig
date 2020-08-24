@@ -43,10 +43,8 @@
                          </p>  
                         {% include "/results_page_items/answers.html.twig" with {'lotstTitle': '', 'changeAnswer':''} %}
                     </div>
-                    
-                    <div style="margin-bottom: 2em; margin-top: 2em" class="no-print">
-                        <a href="#" class="print-link govuk-link" rel="alternate" onclick="window.print();return false;">Print this page</a>
-                    </div>
+
+                     {% include "/includes/print-page.html.twig" %}
 
                     <p class="govuk-body">Need help with this service? 
                         <a 
@@ -66,15 +64,7 @@
                         >Contact CCS</a></p>
 
 
-                    {% if journeysPage is defined and  journeysPage is not empty %}
-                        <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                        href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}">
-                        Start again to change your answers</a>
-                    {% else %}
-                        <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                        href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}">
-                        Start again to change your answers</a>
-                    {% endif %} 
+                     {% include "/includes/start_change_answers_btn.html.twig" %}
              
             </main>
         </div>

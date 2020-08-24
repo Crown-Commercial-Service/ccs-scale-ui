@@ -82,10 +82,8 @@
 
                                 {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
 
-                                <div style="margin-bottom: 2em; margin-top: 2em" class="no-print">
-                                    <a class="print-link govuk-link" href="#" rel="alternate" onclick="window.print();return false;">Print this page</a>
-                                </div>
-
+                                {% include "/includes/print-page.html.twig" %}
+                                
                                 <p class="govuk-body">Need help with this service? 
                                     <a 
                                     aria-describedby="contact-ccs-intermediar-page"
@@ -116,7 +114,7 @@
                                 <div style="background-color: #f3f2f1; padding: 0.5em">
                                     <h3 class="govuk-heading-s">Tell us what you think</h3>
                                     <p class="govuk-body"><a href="https://www.smartsurvey.co.uk/s/QWDZX/"  target="_blank">Provide feedback
-                                    </a> to help us improve this service. The survey takes about 1 minute to complete. There are 4 questions and they are all optional.</p>
+                                    </a> to help us improve this service. The survey takes about 1 minute to complete. There are 6 questions and they are all optional.</p>
                                 </div>
                             </section>
                             
