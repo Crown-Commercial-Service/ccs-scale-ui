@@ -18,7 +18,7 @@
                 <dd class="govuk-summary-list__value"> {{answer.answerTxt|raw}}</dd>
                 <dd class="govuk-summary-list__value no-print">
                     {#{% if changeAnswer == 1 %}#}
-                        {% if  index >  1 %}
+                        {% if  index >  0 %}
                             <a  aria-describedby="change-answer-{{index}}"
                             href="{{ 
                                 path( 
