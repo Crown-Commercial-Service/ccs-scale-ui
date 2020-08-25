@@ -18,7 +18,7 @@
                 <dd class="govuk-summary-list__value"> {{answer.answerTxt|raw}}</dd>
                 <dd class="govuk-summary-list__value no-print">
                     {#{% if changeAnswer == 1 %}#}
-                        {% if  index >  0 %}
+                        {% if  index >  1 %}
                             <a  aria-describedby="change-answer-{{index}}"
                             href="{{ 
                                 path( 
@@ -46,7 +46,9 @@
             </dl>
         </div>
         <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
-        {% set index = index + 1 %}
+        {% if answer.seletectJourney is defined %}
+            {% set index = index + 1 %}
+        {% endif %}
     {% endfor %}
         
     {% if  agreementsNames is defined %}
