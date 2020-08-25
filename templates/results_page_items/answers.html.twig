@@ -46,7 +46,9 @@
             </dl>
         </div>
         <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
-        {% set index = index + 1 %}
+        {% if answer.seletectJourney is defined %}
+            {% set index = index + 1 %}
+        {% endif %}
     {% endfor %}
         
     {% if  agreementsNames is defined %}
