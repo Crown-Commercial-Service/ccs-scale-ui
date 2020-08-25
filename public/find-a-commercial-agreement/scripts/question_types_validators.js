@@ -6,17 +6,18 @@ function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
 }
 
-// Mutually exclusive checkbox  and select/unselect all checkbox logic
-// ====================================================================
 
 function twoDecimalLimit(element) {
   var t = element.value;
   element.value = (t.indexOf(".") >= 0) ? (t.substr(0, t.indexOf(".")) + t.substr(t.indexOf("."), 3)) : t;
 }
 
+// Mutually exclusive checkbox  and select/unselect all checkbox logic
+// ====================================================================
+
 
 //checks and unchecks all checkboxes by presing checkbox x
-function toggle(x) {
+function toggle() {
     var checkboxes = document.getElementsByClassName('all-options');
     for(var checbox in checkboxes){
         checkboxes[checbox].checked = x.checked;
@@ -24,17 +25,20 @@ function toggle(x) {
 }
 
 //if you select the mutually exclusive checkbox all the other are unchecked
-function uncheckAll() {
-    var checkboxes = document.getElementsByClassName('all-options');
+function uncheckAll(target) {
+    var checkboxes = document.getElementsByClassName('govuk-checkboxes__input');
     for(var checbox in checkboxes){
         checkboxes[checbox].checked = false;
     }
+    target.checked = true;
 }
 
 //if you select one of the inputs the mutually exclusive checkbox is unchecked
 function uncheckMExclusive() {
-    var checkbox = document.getElementsByClassName('e-button')[0];
-    checkbox.checked = false;
+    var checkbox = document.getElementsByClassName('e-button');
+    for (var i = checkbox.length - 1; i >= 0; i--) {
+        checkbox[i].checked = false;
+    }
 }
 
 
