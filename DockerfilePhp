@@ -1,3 +1,7 @@
+#FROM composer as composer
+#COPY . /app
+#RUN composer install --ignore-platform-reqs --no-scripts
+
 FROM php:7.4-fpm
 
 RUN apt-get update && apt-get install -y \
@@ -19,7 +23,6 @@ RUN echo 'opcache.memory_consumption=256' >> /usr/local/etc/php/conf.d/docker-ph
 RUN echo 'opcache.max_accelerated_files=20000' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 
 
-
 # install composer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
 && curl -o /tmp/composer-setup.sig https://composer.github.io/installer.sig \
@@ -32,14 +35,12 @@ RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
 COPY ./ ./
 
 # install node/npm
-RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+#RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
 RUN apt-get -y install nodejs
 
 #install javascript modules
-RUN npm install
+#RUN npm install
 
 
 # run composer update
-RUN composer install
-
-
+RUN composer update
