@@ -18,6 +18,8 @@ class GuidedMatchJourneysController extends AbstractController{
     public function searchJourneys(Request $request){
 
         $searchBy = $request->query->get('q');
+        $journeyId = $request->query->get('journeyId');
+        
         if(empty($searchBy)){
             throw new Exception('Invalid request');
             
@@ -57,6 +59,7 @@ class GuidedMatchJourneysController extends AbstractController{
         return $this->render('pages/guide_match_journeys.html.twig', [
             'searchBy' => rawurldecode($searchBy),
             'journeys' => $journeys,
+            'journeyId' => !empty($journeyId) ? $journeyId : null,
             'pageTitle' => 'Select a Journey',
         ]);
     }

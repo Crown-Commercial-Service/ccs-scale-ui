@@ -32,7 +32,7 @@
         {% else %}
 
           <span class='hidden_msgs' id="back-to-landing-page"> to start journey page</span>
-          <a aria-describedby="back-to-landing-page" href="{{ path('guided-match-journeys')}}?q={{ searchBy|url_encode }}&r=back" class="govuk-back-link">Back</a>
+          <a aria-describedby="back-to-landing-page" href="{{ path('guided-match-journeys')}}?q={{ searchBy|url_encode }}&journeyId={{journeyId}}&r=back" class="govuk-back-link">Back</a>
         {% endif %}
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper questions-page" id="main-content">
