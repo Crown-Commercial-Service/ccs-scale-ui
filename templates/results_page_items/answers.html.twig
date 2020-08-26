@@ -17,38 +17,36 @@
                 <dt class="govuk-summary-list__key"> {{answer.question}}</dt>
                 <dd class="govuk-summary-list__value"> {{answer.answerTxt|raw}}</dd>
                 <dd class="govuk-summary-list__value no-print">
-                    {#{% if changeAnswer == 1 %}#}
-                        {% if  index >  0 %}
-                            <a  aria-describedby="change-answer-{{index}}"
-                            href="{{ 
-                                path( 
-                                    'back-to-previous',
-                                    {
-                                        'journeyId': journeyId,
-                                        'journeyInstanceId': journeyInstanceId,
-                                        'questionUuid': answer.prevQuestionId,
-                                        'journeyHistory': journeyHistory, 
-                                        'gPage': index,
-                                    }
-                                    )}}?q={{ searchByEncoded }}&changeAnswer=1"
-                            >Change</a>
+                    {% if  index >  0 %}
+                        <a  aria-describedby="change-answer-{{index}}"
+                        href="{{ 
+                            path( 
+                                'back-to-previous',
+                                {
+                                    'journeyId': journeyId,
+                                    'journeyInstanceId': journeyInstanceId,
+                                    'questionUuid': answer.prevQuestionId,
+                                    'journeyHistory': journeyHistory, 
+                                    'gPage': index,
+                                }
+                                )}}?q={{ searchByEncoded }}&changeAnswer=1"
+                        >Change</a>
 
+                    {% else %}
+                        {% if answer.seletectJourney is defined %}
+                            <a aria-describedby="change-answer-{{index}}" href="{{path('guided-match-journeys')}}?q={{searchByEncoded}}">Change</a>
                         {% else %}
-                            {% if answer.seletectJourney is defined %}
-                                <a aria-describedby="change-answer-{{index}}" href="{{path('guided-match-journeys')}}?q={{searchByEncoded}}">Change</a>
-
-                            {% else %}
-                                <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}&changeAnswer=1">Change</a>
-                            {% endif %}
+                            <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}&changeAnswer=1">Change</a>
                         {% endif %}
-                    {#{% endif %}#}    
+                    {% endif %}
                 </dd>
             </dl>
         </div>
-        <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
+       
         {% if answer.seletectJourney is not defined %}
             {% set index = index + 1 %}
         {% endif %}
+         <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
     {% endfor %}
         
     {% if  agreementsNames is defined %}

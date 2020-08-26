@@ -34,7 +34,7 @@
                 <div class="govuk-grid-column-full">
                     <div>
                         <h1 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, we think there 
-                            {{countFrameworks > 1 ? 'are':'is'}} </h2>
+                            {{countFrameworks > 1 ? 'are':'is'}} </h1>
                             <h2 class="govuk-heading-xl page-title">
                                 <strong>{{ countFrameworks }} agreement{{countFrameworks > 1 ? 's'}}
                                     {% if  countLots > 0 %}
@@ -42,7 +42,7 @@
                                     {% endif %}
                                     that match your needs
                                 </strong>
-                            </h1>
+                            </h2>
                         </div>
 
                         {{ include('results_page_items/section_anchors.html.twig') }}
@@ -84,6 +84,8 @@
 
                                 {% include "/includes/print-page.html.twig" %}
                                 
+                                <span class='hidden_msgs' id="contact-ccs-intermediar-page">Contact CCS - intermediar page</span>
+
                                 <p class="govuk-body">Need help with this service? 
                                     <a 
                                     aria-describedby="contact-ccs-intermediar-page"
