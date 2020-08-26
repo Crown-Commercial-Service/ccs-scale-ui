@@ -34,7 +34,7 @@
 
                     {% else %}
                         {% if answer.seletectJourney is defined %}
-                            <a aria-describedby="change-answer-{{index}}" href="{{path('guided-match-journeys')}}?q={{searchByEncoded}}">Change</a>
+                            <a aria-describedby="change-answer-journey" href="{{path('guided-match-journeys')}}?q={{searchByEncoded}}">Change</a>
                         {% else %}
                             <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}&changeAnswer=1">Change</a>
                         {% endif %}
@@ -42,11 +42,16 @@
                 </dd>
             </dl>
         </div>
-       
+        
+      
+
         {% if answer.seletectJourney is not defined %}
+          <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
             {% set index = index + 1 %}
+        {% else %}
+        <span class='hidden_msgs' id="change-answer-journey">answer for question: {{answer.question}}</span>
+
         {% endif %}
-         <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
     {% endfor %}
         
     {% if  agreementsNames is defined %}
