@@ -1,7 +1,3 @@
-#FROM composer as composer
-#COPY . /app
-#RUN composer install --ignore-platform-reqs --no-scripts
-
 FROM php:7.4-fpm
 
 RUN apt-get update && apt-get install -y \
@@ -36,7 +32,7 @@ COPY ./ ./
 
 # install node/npm
 #RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
-RUN apt-get -y install nodejs
+#RUN apt-get -y install nodejs
 
 #install javascript modules
 #RUN npm install
