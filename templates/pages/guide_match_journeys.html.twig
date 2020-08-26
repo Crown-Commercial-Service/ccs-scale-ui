@@ -33,17 +33,23 @@
                                 <div class="govuk-radios">
                                     {% for journey in journeys %}
 
-                                    <div class="govuk-radios__item">
-                                        <input class="govuk-radios__input v-selector" id="{{ journey.journeyId }}" name="uuid" type="radio"
-                                            value="{{ journey.journeyId }}" aria-describedby="sign-in-item-hint-{{journey.journeyId}}">
-                                        <label class="govuk-label govuk-radios__label govuk-label--s" for="{{journey.journeyId  }}">
-                                            {{- journey.selectionText -}}
-                                        </label>
-                                        {% if journey.selectionDescription is defined  and journey.selectionDescription  is not empty %}
-                                            <span id="sign-in-item-hint-{{journey.journeyId}}" class="govuk-hint govuk-radios__hint">{{- journey.selectionDescription|raw -}}</span>
-                                        {% endif %}
-                                    </div>
-                                {% endfor %}
+                                        {% set checked = '' %}
+                                      
+                                          {% if journeyId == journey.journeyId  %}
+                                            {% set checked = 'checked = checked' %}
+                                          {% endif %}
+
+                                        <div class="govuk-radios__item">
+                                            <input class="govuk-radios__input v-selector" id="{{ journey.journeyId }}" name="uuid" type="radio"
+                                                value="{{ journey.journeyId }}" aria-describedby="sign-in-item-hint-{{journey.journeyId}}" >
+                                            <label class="govuk-label govuk-radios__label govuk-label--s" for="{{journey.journeyId  }}">
+                                                {{- journey.selectionText -}}
+                                            </label>
+                                            {% if journey.selectionDescription is defined  and journey.selectionDescription  is not empty %}
+                                                <span id="sign-in-item-hint-{{journey.journeyId}}" class="govuk-hint govuk-radios__hint">{{- journey.selectionDescription|raw -}}</span>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
                                     <input type='hidden' name='form-type' value='boolean'>
                                     <input type='hidden' name='searchBy' value='{{ searchBy }}'>
                                 </div>
