@@ -40,13 +40,13 @@
                                           {% endif %}
 
                                         <div class="govuk-radios__item">
-                                            <input class="govuk-radios__input v-selector" id="{{ journey.journeyId }}" name="uuid" type="radio"
-                                                value="{{ journey.journeyId }}" aria-describedby="sign-in-item-hint-{{journey.journeyId}}" >
-                                            <label class="govuk-label govuk-radios__label govuk-label--s" for="{{journey.journeyId  }}">
+                                            <input class="govuk-radios__input v-selector" id="{{ journey.journeyId }}-{{loop.index}}" name="uuid" type="radio"
+                                                value="{{ journey.journeyId }}" aria-describedby="sign-in-item-hint-{{journey.journeyId}}-{{loop.index}}" >
+                                            <label class="govuk-label govuk-radios__label govuk-label--s" for="{{journey.journeyId }}-{{loop.index}}">
                                                 {{- journey.selectionText -}}
                                             </label>
                                             {% if journey.selectionDescription is defined  and journey.selectionDescription  is not empty %}
-                                                <span id="sign-in-item-hint-{{journey.journeyId}}" class="govuk-hint govuk-radios__hint">{{- journey.selectionDescription|raw -}}</span>
+                                                <span id="sign-in-item-hint-{{journey.journeyId}}-{{loop.index}}" class="govuk-hint govuk-radios__hint">{{- journey.selectionDescription|raw -}}</span>
                                             {% endif %}
                                         </div>
                                     {% endfor %}
