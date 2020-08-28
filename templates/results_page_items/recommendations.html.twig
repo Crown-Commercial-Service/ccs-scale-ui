@@ -11,27 +11,27 @@
         </div>
         <div id="accordion-with-summary-sections-content-{{ loop.index }}" class="govuk-accordion__section-content">
             <p>
-                <strong>Framework ID:</strong>
+                <strong>Agreement ID:</strong>
                 {{ framework.number }}
                 <strong>End Date:</strong>
                 {{ framework.endDate|date("d/m/Y") }}
             </p>
-             <div>
-            {% if  framework.lots is defined %}
-                {% include "/results_page_items/lots.html.twig" %}
-            {% endif %}
-            </div>
-            <div class="framework-description" style="font-family: Source Sans Pro;">{{ framework.description|raw }}</div>
+
+            <div class="framework-description" style="font-family: Source Sans Pro">{{ framework.description|raw }}</div>
            
+            <div>
+                {% if framework.lots is defined %}
+                    {% include "/results_page_items/lots.html.twig" %}
+                {% endif %}
+            </div>
+
             <br>
             <span class='hidden_msgs' id="new-window-{{ loop.index }}">{{ framework.name }} Open in a new tab</span>
             <a  target="_blank" class='view-framework-details-ulr govuk-button govuk-button--secondary'
             aria-describedby="new-window-{{ loop.index }}" data-module="govuk-button"
-            href="https://www.crowncommercial.gov.uk/agreements/{{ framework.number }}">
-            View framework details
-        </a>
+            href="https://www.crowncommercial.gov.uk/agreements/{{ framework.number }}">View agreement details</a>
         
-    </div>
+        </div>
 </div>
 {% endif %}
 {% endfor %}
