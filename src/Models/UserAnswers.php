@@ -135,7 +135,7 @@ class UserAnswers
         $formatedJourneys = $this->groupJourneyByIds($journeys);
         $selectedJourneys =  $formatedJourneys[$journeyId];
 
-        $selectJourneyQuestion = "What type of $searchBy do you need";
+        $selectJourneyQuestion = "What type of $searchBy do you need?";
 
         $selectedJourneyAnswer = [
             'question' => $selectJourneyQuestion,
