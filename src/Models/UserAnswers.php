@@ -62,10 +62,6 @@ class UserAnswers
         return $answersFormart;
     }
 
-    private function orderAnswersAlfabetically(){
-
-    }
-
     /**
      * Check if an answer is an UUID
      *
@@ -113,8 +109,7 @@ class UserAnswers
                         'answerText' => $answer['text'],
                         'answer'=> $postData[$answer['id']],
                         $answer['text'] => true
-
-                ];
+                    ];
                 }
             }
         }
