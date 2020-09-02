@@ -29,8 +29,6 @@ class GuideMatchJourneyModel
 
     private $journeyHistory;
 
-    // private $lastJourneyQuestionAnswers = [];
-
     private $lastJourneyAction = [];
 
     private $apiResponseType;
@@ -245,21 +243,7 @@ class GuideMatchJourneyModel
     }
 
 
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    private function setLastJourneyAnswers()
-    {
-        if (!empty($this->lastJourneyAction['answers'])) {
-            foreach ($this->lastJourneyAction['answers'] as $answer) {
-                $this->lastJourneyQuestionAnswers[] = $answer['answer'];
-            }
-        }
-    }
-
-
+    
     /**
      * Get question from history which was on specific step of journey
      *
@@ -396,8 +380,6 @@ class GuideMatchJourneyModel
                 $this->handleApiResponse($apiResponse['outcome']['data']);
             }
         }
-    
-        $this->setLastJourneyAnswers();
     }
 
     /**
