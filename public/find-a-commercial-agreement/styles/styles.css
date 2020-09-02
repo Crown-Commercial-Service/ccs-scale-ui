@@ -6222,7 +6222,10 @@ a.skip-main:focus {
   #Journey Result Page
 \*------------------------------------*/
 .journey-answers .govuk-summary-list__value:last-child {
-  width: 17%; }
+  width: 15%; }
+
+.journey-answers .govuk-summary-list__value:last-child a {
+  white-space: nowrap; }
 
 .govuk-summary-list {
   margin: 0; }
