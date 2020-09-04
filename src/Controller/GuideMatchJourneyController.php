@@ -73,12 +73,12 @@ class GuideMatchJourneyController extends AbstractController
                 'hint' => $model->getHint(),
                 'lastQuestionId' =>  $lastQuestionId,
                 'journeyHistory' => $journeyHistory,
-                'gPage' => $gPage,
-                'lastPage' => $gPage-1,
+                'gPage' => $gPage-1,
+                'lastPage' => $gPage-2,
                 'errorMessage' => $errorMsg[0]['errorMessage'],
                 'pageTitle' => $questionText,
-                'currentPage' => $gPage,
-                'showError' => 10
+                'currentPage' => $gPage-1,
+                'showError' => 1
             ]);
         }
 
@@ -150,7 +150,7 @@ class GuideMatchJourneyController extends AbstractController
      * @param array $journeyHistory
      * @return Response
      */
-    private function journeyNextQuestion(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId, string $gPage, array $journeyHistory)
+    private function journeyNextQuestion(GuideMatchJourneyModel $model, string $searchBy, string $journeyId, string $journeyInstanceId,  $gPage, array $journeyHistory)
     {
         $nextPage  = $gPage + 1;
         $lastPage = $gPage - 1;

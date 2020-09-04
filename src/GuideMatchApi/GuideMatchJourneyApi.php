@@ -196,9 +196,8 @@ class GuideMatchJourneyApi
             $content = $response->toArray();
         } catch (Exception $e) {
             throw new Exception('Invalid API response:'.$e->getMessage());
-        }
-      //  dd($content);
-     
+        }  
+           
         return $content;
     }
 }
