@@ -33,14 +33,6 @@ if ('prod' === $env) {
     $kernel = new CacheKernel($kernel);
 }
 
-if(!empty($_GET['debug'])){
-
-    dump(getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
-    dump(getenv('GUIDED_MATCH_SERVICE_API_KEY'));
-    dump(getenv('AGREEMENTS_SERVICE_ROOT_URL'));
-    dump(getenv('AGREEMENTS_SERVICE_API_KEY'));
-die();
-}
 
 $uri = $_SERVER['REQUEST_URI'];
 

@@ -22,7 +22,7 @@
             <div class="govuk-grid-row">
 
                 <form action="#" onsubmit="return validate()" name="question" method="post">
-                    <div class="govuk-form-group {{ errorMessage is defined ? 'govuk-form-group--error' }}" id="form-layout">
+                    <div class="govuk-form-group {{ errorMessage is defined and showError is defined ? 'govuk-form-group--error' }}" id="form-layout">
                         <fieldset class="govuk-fieldset  restrict-width">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 <h1 class="govuk-fieldset__heading">What type of {{ searchBy }} do you need?</h1>
