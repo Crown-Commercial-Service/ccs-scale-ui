@@ -50,7 +50,6 @@
                                 <div id="changed-name-hint" class="govuk-hint">{{- hint|raw -}}</div>
                             </div>
                             {% endif %}
-
                             {% include"/includes/question_error.html.twig" %}
 
                             {% include "/questions_types/#{type}.html.twig" %}
@@ -69,6 +68,8 @@
                 <span class='hidden_msgs' id="contact-ccs-intermediar-page">Contact CCS - intermediar page</span>
 
                 <p class="govuk-body">Need help with this service? 
+                
+                {% if journeyHistory is not empty %}
                 <a 
                  aria-describedby="contact-ccs-intermediar-page"
                 href="{{ 
@@ -83,7 +84,15 @@
 
                     }
                     )}}?q={{ searchBy|url_encode }}"
-               >Contact CCS</a></p>
+               >Contact CCS</a>
+               {% else %}
+                    <a 
+                    aria-describedby="contact-ccs-intermediar-page"
+                    href="{{ 
+                    path( 'contact-ccs-page-journeys')}}?q={{ searchBy|url_encode }}"
+                >Contact CCS</a>
+               {% endif %}
+               </p>
             </div>
         </main>
     </div>
