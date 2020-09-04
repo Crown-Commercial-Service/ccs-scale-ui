@@ -29,11 +29,11 @@ class GuideMatchJourneyModel
 
     private $journeyHistory;
 
-    private $lastJourneyAction = [];
-
     private $apiResponseType;
 
     private $agreementData;
+
+    private $failureValidations;
 
     /**
      * Get Guide Match Api response
@@ -73,6 +73,10 @@ class GuideMatchJourneyModel
         if (!empty($apiResponse[0]['answerDefinitions'])) {
             $this->setDefinedAnswers($apiResponse[0]['answerDefinitions']);
             $this->orderAnswerDefinitions();
+        }
+
+        if (!empty($apiResponse[0]['failureValidations'])) {
+            $this->setFailureValidation($apiResponse[0]['failureValidations']);
         }
     }
 
@@ -395,5 +399,15 @@ class GuideMatchJourneyModel
             }
             return ($a['order'] < $b['order']) ? -1 : 1;
         });
+    }
+
+    private function setFailureValidation($failureValidations){
+        $this->failureValidations = $failureValidations;
+
+    }
+
+    public function getFailureValidation(){
+       return $this->failureValidations;
+
     }
 }

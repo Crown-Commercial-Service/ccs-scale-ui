@@ -35,6 +35,7 @@ class GuideMatchJourneyController extends AbstractController
         $model = new GuideMatchJourneyModel($api);
 
         //get POST data
+    
         $postData = $request->request->all();
         $formType = !empty($postData['form-type']) ? $postData['form-type'] : '';
 
@@ -55,7 +56,7 @@ class GuideMatchJourneyController extends AbstractController
             $model->setQuestionDetails($journeyInstanceId, $questionUuid);
 
             $definedAnwers = $model->getDefinedAnswers();
-
+            $errorMsg =  $model->getFailureValidation();
             $userAnswer =  new UserAnswers();
             $formatAnswers = $userAnswer->getFormatUserAnswers($postData, $definedAnwers);
             $questionText = $model->getText();
@@ -74,9 +75,10 @@ class GuideMatchJourneyController extends AbstractController
                 'journeyHistory' => $journeyHistory,
                 'gPage' => $gPage,
                 'lastPage' => $gPage-1,
-                'errorMessage' => $validate->getErrorMessage(),
+                'errorMessage' => $errorMsg[0]['errorMessage'],
                 'pageTitle' => $questionText,
-                'currentPage' => $gPage
+                'currentPage' => $gPage,
+                'showError' => 10
             ]);
         }
 
@@ -169,6 +171,7 @@ class GuideMatchJourneyController extends AbstractController
             $userAnswers = $model->getQuestionAnswers($lastQuestionId, $journeyHistory);
         }
 
+        $errorMsg =  $model->getFailureValidation();
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
             'journeyId' => $journeyId,
@@ -184,7 +187,10 @@ class GuideMatchJourneyController extends AbstractController
             'gPage' => $nextPage,
             'lastPage' => $lastPage,
             'pageTitle' => $questionText,
-            'currentPage' => $gPage
+            'currentPage' => $gPage,
+            'errorMessage' => $errorMsg[0]['errorMessage'],
+          
+          
         ]);
     }
 
