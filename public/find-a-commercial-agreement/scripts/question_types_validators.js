@@ -49,7 +49,10 @@ function validate() {
     var isValid           = false;
     var formLayout        = document.getElementById('form-layout');
     var errorNoSelection  = document.getElementById('no-selection');
+    var errorSummary      = document.getElementById('error-summary');
+    var errorSummaryContainer  = document.getElementById('error-summary-container');
     errorNoSelection.style.display = "none";
+    errorSummary.style.display = "none";
 
 
     for (var i = 0; i < document.getElementsByClassName('v-selector').length; i++) {
@@ -57,9 +60,10 @@ function validate() {
     }
 
     if (isValid === false) {
+
         formLayout.classList.add('govuk-form-group--error');
         errorNoSelection.style.display = 'block';
-        errorNoSelection.textContent = "You need to select something.";
+        errorSummary.style.display = 'block';        
         var Forminputs = document.getElementsByClassName("govuk-radios__input");
         
         setTimeout(function(){
@@ -113,6 +117,7 @@ function validate() {
 function resetErrors(radio) {
     document.getElementById('no-selection').style.display = 'none';
     document.getElementById('no-input').style.display = 'none';
+    document.getElementById('error-summary').style.display = 'none';
     document.getElementById('form-layout').classList.remove('govuk-form-group--error');
     document.getElementById('conditional-'.concat(radio.value)).style.borderLeftColor ='#bfc1c3';
     document.getElementById('input-'.concat(radio.value)).classList.remove('govuk-input--error')

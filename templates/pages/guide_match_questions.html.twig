@@ -36,12 +36,15 @@
         {% endif %}
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper questions-page" id="main-content">
-            <div class="govuk-grid-row">
+            <div class="govuk-grid-row restrict-width">
 
-                <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy|url_encode}}"
-                      onsubmit="return validate()" name="question" method="post">
+                <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy|url_encode}}" 
+                onsubmit="return validate()" name="question" method="post">
+                    
+                    {% include"/includes/question_error_summary.html.twig" %}
                     <div class="govuk-form-group {{ errorMessage is defined  and showError is defined  ? 'govuk-form-group--error' }}" id="form-layout">
-                        <fieldset class="govuk-fieldset  restrict-width">
+
+                        <fieldset class="govuk-fieldset">
                             <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
                                 <h1 class="govuk-fieldset__heading">{{ text }}</h1>
                             </legend>
@@ -96,4 +99,8 @@
             </div>
         </main>
     </div>
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset('find-a-commercial-agreement/scripts/question_types_validators.js') }}" ></script>
 {% endblock %}
