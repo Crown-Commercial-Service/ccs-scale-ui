@@ -1,0 +1,18 @@
+<div id="error-summary" class="govuk-error-summary" role="alert" data-module="govuk-error-summary" 
+style="display:{{ errorMessage is defined and showError is defined  ? 'block' : 'none' }}">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      <li id="error-summary-container">
+        <span class="govuk-visually-hidden">Error:</span>
+        {% if  errorMessage is defined %}
+        <a href="#{{definedAnswers|first.id}}">
+          {{ errorMessage|striptags }}
+          </a>
+        {% endif %}
+      </li>
+    </ul>
+  </div>
+</div>
