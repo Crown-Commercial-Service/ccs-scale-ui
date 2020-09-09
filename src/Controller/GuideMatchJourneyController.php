@@ -47,7 +47,6 @@ class GuideMatchJourneyController extends AbstractController
 
  
         if (!$validate->isValid()) {
-            $this->addFlash('error', '');
                 
             $lastQuestionId =  !empty($postData['lastQuestionId']) ? $postData['lastQuestionId'] : '';
             $journeyHistory = !empty($postData['journeyHistory']) ? $postData['journeyHistory'] : '';
