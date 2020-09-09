@@ -11,7 +11,6 @@ use App\GuideMatchApi\GuideMatchGetJourneysApi;
 use App\Models\JourneysModel;
 use App\Models\QuestionsValidators\ValidatorsFactory;
 use App\Models\QuestionsValidators\ErrorMessages;
-
 use Exception;
 
 
@@ -25,8 +24,7 @@ class GuidedMatchJourneysController extends AbstractController{
         $showError = null;
         
         if(empty($searchBy)){
-            throw new Exception('Invalid request');
-            
+            throw new Exception('Invalid request'); 
         }
 
         if($request->getMethod() === "POST"){
@@ -35,11 +33,6 @@ class GuidedMatchJourneysController extends AbstractController{
             $formType = !empty($postData['form-type']) ? $postData['form-type'] : '';
 
             $validate = $this->validateUserAnswer($formType, $postData);
-
-           
-            
-
-
             $csfrToken = $request->request->get('token');
             $journeyId = $request->request->get('uuid');
             $searchBy = $request->request->get('searchBy');
@@ -54,7 +47,6 @@ class GuidedMatchJourneysController extends AbstractController{
 
             //if it's not redirected it means that we have an error
             $showError = 1;
-
 
         }
 
@@ -89,5 +81,4 @@ class GuidedMatchJourneysController extends AbstractController{
     {
         return ValidatorsFactory::getValidator($formType, $userAnswer);
     }
-
 }
