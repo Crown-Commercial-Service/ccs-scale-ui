@@ -1,4 +1,4 @@
-FROM php:7.4.4-apache
+FROM php:apache
 
 ENV PORT 9030
 
@@ -47,21 +47,20 @@ RUN composer update
 #RUN composer dump-env dev
 
 #install javascript modules
-RUN npm install
+#RUN npm install
 
 #COPY ./custom.ini /usr/local/etc/php/conf.d
 
 # restart apache
 RUN service apache2 restart
 
-RUN chmod 777 ./public/speedTest.log
 
 VOLUME /var/www/html/ccs
 
 #set container port
 EXPOSE $PORT
 
-CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground ; npm run build
+CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
 
 
 # usage :

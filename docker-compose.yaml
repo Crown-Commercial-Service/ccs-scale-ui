@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+    php:
+        build: 
+            context: ./
+            dockerfile: './DockerfilePhp'
+        networks:
+            - backend
+        volumes:
+            - .:/var/www/html/ccs
+            - /var/www/html/ccs/vendor/
+
+    apache:
+        build: 
+            context: ./
+            dockerfile: './DockerfileApache'
+        depends_on:
+            - php
+        networks:
+            - backend
+            - frontend
+        ports:
+            - "9030:80"
+        volumes:
+            - .:/var/www/html/ccs
+         
+networks:
+    frontend:
+    backend:

@@ -1,0 +1,18 @@
+FROM httpd
+RUN apt-get update; \
+    apt-get upgrade;
+# Copy apache vhost file to proxy php requests to php-fpm container
+COPY apache.conf /usr/local/apache2/conf/apache.conf
+RUN echo "Include /usr/local/apache2/conf/apache.conf" \
+    >> /usr/local/apache2/conf/httpd.conf
+
+#RUN sed -i '/LoadModule rewrite_module/s/^#//g' /usr/local/apache2/conf/apache.conf
+
+#RUN a2enmod rewrite
+#WORKDIR  /var/www/html/ccs
+
+#COPY ./public ./public
+
+
+
+#CMD sed -i "s/80/$PORT/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf && docker-php-entrypoint apache2-foreground
