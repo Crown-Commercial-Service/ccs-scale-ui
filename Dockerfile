@@ -1,4 +1,4 @@
-FROM php:7.4.4-apache
+FROM php:7.4.10-apache
 
 ENV PORT 9030
 
@@ -19,6 +19,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ENV APACHE_DOCUMENT_ROOT = /var/www/html/ccs/public
 RUN sed -ri -e 's!/var/www/html!/var/www/html/ccs/public!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!/var/www/html/ccs/public!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Remove server version from 'Server' header and footer signature
+RUN sed -i -e 's/ServerTokens OS/ServerTokens Prod/' /etc/apache2/conf-enabled/security.conf
+RUN sed -i -e 's/ServerSignature On/ServerSignature Off/' /etc/apache2/conf-enabled/security.conf
+
 RUN a2enmod rewrite
 RUN a2enmod php7
 
@@ -30,6 +35,9 @@ RUN echo "ServerName localhost:$PORT" >> /etc/apache2/apache2.conf
 
 #COPY ./composer.json ./
 
+# Configure PHP
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+RUN sed -i -e 's/expose_php = On/expose_php = Off/' "$PHP_INI_DIR/php.ini"
 
 # increase memory limit to 2GB
 RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
