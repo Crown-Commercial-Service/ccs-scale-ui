@@ -36,8 +36,8 @@ RUN echo "ServerName localhost:$PORT" >> /etc/apache2/apache2.conf
 #COPY ./composer.json ./
 
 # Configure PHP
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-RUN sed -i -e 's/expose_php = On/expose_php = Off/' "$PHP_INI_DIR/php.ini"
+# RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+# RUN sed -i -e 's/expose_php = On/expose_php = Off/' "$PHP_INI_DIR/php.ini"
 
 # increase memory limit to 2GB
 RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
@@ -61,8 +61,6 @@ RUN npm install
 
 # restart apache
 RUN service apache2 restart
-
-RUN chmod 777 ./public/speedTest.log
 
 VOLUME /var/www/html/ccs
 
