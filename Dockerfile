@@ -39,8 +39,8 @@ RUN echo "ServerName localhost:$PORT" >> /etc/apache2/apache2.conf
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/conf.d/php.ini"
 RUN sed -i -e 's/expose_php = On/expose_php = Off/' "$PHP_INI_DIR/conf.d/php.ini"
 
-# increase memory limit to 2GB
-RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
+# increase memory limit to 2.5GB
+RUN echo 'memory_limit = 2560M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 RUN echo 'opcache.preload=/var/www/html/ccs/var/cache/prod/srcApp_KernelProdContainer.preload.php' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 RUN echo 'opcache.memory_consumption=256' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 RUN echo 'opcache.max_accelerated_files=20000' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
