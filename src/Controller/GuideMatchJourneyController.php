@@ -14,6 +14,9 @@ use App\GuideMatchApi\GuideMatchJourneyApi;
 use App\Models\Encrypt;
 use App\Models\UserAnswersFormType\UserAnswerFormatFactory;
 use App\Models\QuestionsValidators\ValidatorsFactory;
+use App\Models\QuestionsValidators\ErrorMesssage;
+
+
 use App\Models\UserAnswers;
 use Exception;
 
@@ -60,6 +63,13 @@ class GuideMatchJourneyController extends AbstractController
             $userAnswer =  new UserAnswers();
             $formatAnswers = $userAnswer->getFormatUserAnswers($postData, $definedAnwers);
             $questionText = $model->getText();
+
+             //set error message
+             $errorMessage = [];
+             //if is more than one more error messages than
+             if(count($errorMsg) > 1 ){
+
+             }
        
             return $this->render('pages/guide_match_questions.html.twig', [
                 'searchBy' => $searchBy,

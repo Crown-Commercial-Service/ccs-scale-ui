@@ -25,16 +25,7 @@ abstract class AbstractValidators
         return $this->isValid;
     }
 
-    /**
-     * If a validation is failed return a error message
-     *
-     * @return string
-     */
-    public function getErrorMessage()
-    {
-        return $this->errorMessage;
-        ;
-    }
+    
 
     abstract public function validate();
 }
