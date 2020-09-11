@@ -35,9 +35,13 @@ RUN echo "ServerName localhost:$PORT" >> /etc/apache2/apache2.conf
 
 #COPY ./composer.json ./
 
+# TODO: Recommended but causes OOM error when loading composer during image build
 # Configure PHP (and use recommended production settings - see https://hub.docker.com/_/php)
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/conf.d/php.ini"
-RUN sed -i -e 's/expose_php = On/expose_php = Off/' "$PHP_INI_DIR/conf.d/php.ini"
+# RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/conf.d/php.ini"
+# RUN sed -i -e 's/expose_php = On/expose_php = Off/' "$PHP_INI_DIR/conf.d/php.ini"
+
+# Workaround:
+RUN echo 'expose_php = Off' >> conf.d/security.ini
 
 # increase memory limit to 2.5GB
 RUN echo 'memory_limit = 2560M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
