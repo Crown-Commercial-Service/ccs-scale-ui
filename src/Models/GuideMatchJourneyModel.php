@@ -33,7 +33,7 @@ class GuideMatchJourneyModel
 
     private $agreementData;
 
-    private $failureValidations;
+    private $failureValidations = [];
 
     /**
      * Get Guide Match Api response
@@ -402,12 +402,11 @@ class GuideMatchJourneyModel
     }
 
     private function setFailureValidation($failureValidations){
+       
         $this->failureValidations = $failureValidations;
-
     }
 
     public function getFailureValidation(){
        return $this->failureValidations;
-
     }
 }

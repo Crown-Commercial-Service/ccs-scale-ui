@@ -4,46 +4,43 @@ declare(strict_types=1);
 namespace App\Models\QuestionsValidators;
 
 use App\Models\QuestionsValidators\AbstractValidators;
-use App\Models\QuestionsValidators\ErrorMessages;
+use App\Models\QuestionsValidators\ErrorTypeCodes;
 
 class ValidateBooleanList extends AbstractValidators
 {
+    
 
-   
-    /**
-     * TBD: it's a partial validation until we receive validation criteria for each question from Guide Match API
-     * Validate user answer from a boolean list,  at this moment it validates only for empty
-     *
-     * @return void
-     */
     public function validate()
     {
         if (!empty($this->userAnswer['uuid'])) {
             $this->isValid = true;
-
             if (isset($this->userAnswer[$this->userAnswer['uuid']])) {
                 if (empty($this->userAnswer[$this->userAnswer['uuid']])) {
                     $this->isValid = false;
-                    $this->errorMessage = ErrorMessages::EMPTY_INPUT;
+                    $this->errorCode = ErrorTypeCodes::NO_SELECTION;
                 }
             }
 
             if (!empty($this->userAnswer['inputType-'.$this->userAnswer['uuid']])) {
                 if ($this->userAnswer['inputType-'.$this->userAnswer['uuid']] == 'number') {
-                    if (!is_numeric($this->userAnswer[$this->userAnswer['uuid']])) {
+                    if(empty($this->userAnswer[$this->userAnswer['uuid']])){
                         $this->isValid = false;
-                        $this->errorMessage = ErrorMessages::SHOULD_BE_NUMBER;
+                        $this->errorCode = ErrorTypeCodes::NO_VALUE;
+                    }
+                    else if (!is_numeric($this->userAnswer[$this->userAnswer['uuid']])) {
+                        $this->isValid = false;
+                        $this->errorCode = ErrorTypeCodes::CHECK_WHOLE_NUMBER;
                     } else {
                         if ($this->userAnswer[$this->userAnswer['uuid']] <= 0) {
                             $this->isValid = false;
-                            $this->errorMessage = ErrorMessages::SHOUD_BE_A_POZITIVE_NUMBER;
+                            $this->errorCode = ErrorTypeCodes::CHECK_WHOLE_NUMBER;
                         }
                     }
                 }
             }
         } else {
             $this->isValid = false;
-            $this->errorMessage = ErrorMessages::EMPTY_USER_ANSWER;
+            $this->errorCode = ErrorTypeCodes::NO_SELECTION;
         }
     }
 }
