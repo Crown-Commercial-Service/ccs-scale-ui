@@ -16,6 +16,8 @@ use App\Models\JourneysModel;
 
 class GuideMatchContactCssController extends AbstractController
 {
+    private $pageTitle = 'Contact CCS';
+
     public function contactCss(Request $request, $journeyId, $journeyInstanceId,$questionUuid, $journeyHistory, $gPage)
     {
 
@@ -55,7 +57,7 @@ class GuideMatchContactCssController extends AbstractController
             'journeyHistory' => $journeyHistory,
             'lastPage' => $gPage,
             'lastQuestionId' => $questionUuid,
-            'pageTitle' => 'Contact CCS',
+            'pageTitle' => $this->pageTitle,
             'historyAnswered' => $userAnswersFormatedForView,
             'redirectToResultPage' => $resultPage,
             'agreements' => !empty($agreements) ? urlencode($agreements) : '',
