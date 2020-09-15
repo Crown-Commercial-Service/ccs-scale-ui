@@ -17,7 +17,15 @@ class GuidedMatchJourneysController extends AbstractController{
 
 
      private $pageTitle = 'Select a Journey';
-     private $errorMessage = 'Select which area suits your requirements';
+
+     //simulate an API error message
+     private $errorMessage  = [
+            [
+               "failureValidationTypeCode" => 'noSelection',
+               "errorMessage" => 'Select which area suits your requirements'
+
+            ] 
+        ];
 
     public function searchJourneys(Request $request){
 
@@ -69,15 +77,20 @@ class GuidedMatchJourneysController extends AbstractController{
             return $this->redirect(" /find-a-commercial-agreement/start-journey/{$journeyId}?q={$searchBy}");
         }
 
-        return $this->render('pages/guide_match_journeys.html.twig', [
+        $renderData = [
             'searchBy' => rawurldecode($searchBy),
             'journeys' => $journeys,
             'journeyId' => !empty($journeyId) ? $journeyId : null,
             'pageTitle' => $this->pageTitle,
-            'showError' => $showError,
-            'errorMessage' => $this->errorMessage,
-            'errorsMessages'=> []
-        ]);
+            'errorMessage' => $this->errorMessage[0]['errorMessage'],
+            'errorsMessages'=> $this->errorMessage
+        ];
+
+        if(!empty($showError)){
+            $renderData['showError'] = 1;
+        }
+
+        return $this->render('pages/guide_match_journeys.html.twig', $renderData );
     }
 
     private function validateUserAnswer(string $formType, array $userAnswer)
