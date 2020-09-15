@@ -16,8 +16,10 @@ style="display:{{ errorMessage is defined and showError is defined  ? 'block' : 
               <div class='apiErrorsMsg' data-error-type="{{errMssg.failureValidationTypeCode}}">
                     {{ errMssg.errorMessage|raw }}
               </div>
-            {% endfor %}         
+            {% endfor %}
+           
           </div>         
+
       {% endif %}
       </li>
     </ul>
