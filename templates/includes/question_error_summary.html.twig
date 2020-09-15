@@ -8,9 +8,11 @@ style="display:{{ errorMessage is defined and showError is defined and showError
       <li id="error-summary-container">
         <span class="govuk-visually-hidden">Error:</span>
         {% if  errorMessage is defined %}
-          <div id = "head-error-msg">
+        <a href="#{{ definedAnswers is defined ? definedAnswers|first.id : journeys|first.journeyId ~ '-1'}}">
+          <div id="head-error-msg" class="govuk-error-message">
               {{ errorMessage|raw }}
-          </div>         
+          </div>
+        </a>
       {% endif %}
       </li>
     </ul>
