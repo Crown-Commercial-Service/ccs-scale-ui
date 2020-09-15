@@ -22,7 +22,6 @@ class GuideMatchJourneyController extends AbstractController
 {
     public function journey(Request $request, $journeyId, $journeyInstanceId, $questionUuid, $gPage)
     {
-        //dd($gPage);
         $searchBy = $request->query->get('q');
         $csfrToken = $request->request->get('token');
 
