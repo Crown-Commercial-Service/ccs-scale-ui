@@ -20,12 +20,11 @@ class GuidedMatchJourneysController extends AbstractController{
 
      //simulate an API error message
      private $errorMessage  = [
-            [
-               "failureValidationTypeCode" => 'noSelection',
-               "errorMessage" => 'Select which area suits your requirements'
-
-            ] 
-        ];
+        [
+            "failureValidationTypeCode" => 'noSelection',
+            "errorMessage" => 'Select which area suits your requirements'
+        ] 
+    ];
 
     public function searchJourneys(Request $request){
 
