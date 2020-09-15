@@ -22,6 +22,9 @@ use Exception;
 
 class GuideMatchJourneyResultController extends AbstractController
 {
+
+    private $pageTitle = 'Result Journey Page';
+
     public function journeyResult(string $journeyId, string $journeyInstanceId, $agreements=null)
     {
         // get journey History
@@ -39,6 +42,7 @@ class GuideMatchJourneyResultController extends AbstractController
         $lastQuestion = end($historyUserAnswers);
         $lastQuestionId = $lastQuestion['question']['id'];
         $lastPage = count($historyUserAnswers) - 1;
+
         // format answers for view
         $userAnswers = new UserAnswers();
         $userAnswersFormatedForView = $userAnswers->formatForView($historyUserAnswers);
@@ -74,7 +78,7 @@ class GuideMatchJourneyResultController extends AbstractController
                 'journeyHistory' => $journeyHistory,
                 'lastPage' => $lastPage,
                 'lastQuestionId' => $lastQuestionId,
-                'pageTitle' => 'Result Journey Page',
+                'pageTitle' => $this->pageTitle,
                 'journeysPage' => $journeysPage
             ]);
         }
@@ -104,7 +108,7 @@ class GuideMatchJourneyResultController extends AbstractController
             'isScale' => $agrementModel->getScale(),
             'lastPage' => $lastPage,
             'agreements' => $agreements,
-            'pageTitle' => 'Result Journey Page',
+            'pageTitle' => $this->pageTitle,
             'journeysPage' => $journeysPage
         ]);
     }
