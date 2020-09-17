@@ -47,7 +47,7 @@ class StartJourneyController extends AbstractController
             'lastPage' => 0,
             'pageTitle' => $questionText,
             'currentPage'=>1,
-            'errorMessages' => $apiErrorMsg
+            'errorsMessages' => $apiErrorMsg
         ]);
     }
 }
