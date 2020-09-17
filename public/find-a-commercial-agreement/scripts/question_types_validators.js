@@ -55,10 +55,10 @@ function validate() {
     // checkbox and radio buttons validation
     var isValid           = false;
 
-    const NO_SELECTION  = 'noSelection';
-    const NO_VALUE      = 'noValue';
-    const CHECK_NUMBER  = 'checkNumber';
-    const CHECK_WHOLE_NUMBER  = 'checkWholeNumber';
+    var NO_SELECTION  = 'noSelection';
+    var NO_VALUE      = 'noValue';
+    var CHECK_NUMBER  = 'checkNumber';
+    var CHECK_WHOLE_NUMBER  = 'checkWholeNumber';
     var   errorType = '';
 
     var formLayout        = document.getElementById('form-layout');
