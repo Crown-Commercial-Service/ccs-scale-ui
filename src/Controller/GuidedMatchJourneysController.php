@@ -81,12 +81,12 @@ class GuidedMatchJourneysController extends AbstractController{
             'journeys' => $journeys,
             'journeyId' => !empty($journeyId) ? $journeyId : null,
             'pageTitle' => $this->pageTitle,
-            'errorMessage' => $this->errorMessage[0]['errorMessage'],
             'errorsMessages'=> $this->errorMessage
         ];
 
         if(!empty($showError)){
             $renderData['showError'] = 1;
+            $renderData['errorMessage'] = $this->errorMessage[0]['errorMessage'];
         }
 
         return $this->render('pages/guide_match_journeys.html.twig', $renderData );
