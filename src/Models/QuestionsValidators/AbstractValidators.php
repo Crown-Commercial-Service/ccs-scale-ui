@@ -7,7 +7,7 @@ abstract class AbstractValidators
 {
     protected $userAnswer;
     protected $isValid;
-    protected $errorMessage;
+    protected $errorCode;
     
     public function __construct(array $userAnswer)
     {
@@ -25,16 +25,10 @@ abstract class AbstractValidators
         return $this->isValid;
     }
 
-    /**
-     * If a validation is failed return a error message
-     *
-     * @return string
-     */
-    public function getErrorMessage()
-    {
-        return $this->errorMessage;
-        ;
+    public function getErrorCode(){
+        return $this->errorCode;
     }
 
+    
     abstract public function validate();
 }

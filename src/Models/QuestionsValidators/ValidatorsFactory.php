@@ -11,6 +11,13 @@ use App\Models\QuestionsValidators\ValidateMultipleCheckboxes;
  */
  class ValidatorsFactory
  {
+     /**
+      * return a Validation related with type of form
+      *
+      * @param string $formType
+      * @param array $userAnswer
+      * @return object
+      */
      public static function getValidator(string $formType, array $userAnswer)
      {
          switch ($formType) {

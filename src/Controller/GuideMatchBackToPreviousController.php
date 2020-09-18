@@ -61,7 +61,8 @@ class GuideMatchBackToPreviousController extends AbstractController
             'gPage' => $nextPage,
             'lastPage' => $lastPage,
             'pageTitle' => $questionText,
-            'currentPage' => $gPage
+            'currentPage' => $gPage,
+            'errorsMessages' => $model->getFailureValidation()
         ]);
     }
 }
