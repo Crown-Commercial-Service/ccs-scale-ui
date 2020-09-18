@@ -125,13 +125,25 @@ function validate() {
         }  
     }  
 
-
     var errors = document.getElementsByClassName("resetErrors");
+    var found = false;
+    for (var i = 0; i < errors.length; i++) {
+        if (errors.item(i).dataset.errorType == errorType) {
+            found = true;
+            break;
+        }
+    }
+    if (found == false) {
+        errorType = CHECK_NUMBER;
+    }
+
     for (var i = 0; i < errors.length; i++) {
         if (errors.item(i).dataset.errorType == errorType) {
             errors.item(i).classList.remove("apiErrorsMsg");
         }
     }
+
+    
 
     return isValid;
 }
