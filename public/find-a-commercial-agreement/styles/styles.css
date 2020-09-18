@@ -6224,6 +6224,12 @@ a.skip-main:focus {
   color: #b10e1e;
   font-weight: 700; }
 
+.resetErrors p {
+  font-family: "Source Sans Pro",Helvetica,Arial,sans-serif;
+  font-size: 19px;
+  color: #b10e1e;
+  font-weight: 700; }
+
 .apiErrorsMsg {
   display: none; }
 

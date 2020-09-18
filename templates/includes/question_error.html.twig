@@ -5,9 +5,10 @@
             {{ errorMessage|raw }}
         {% endif %}
         {% for errMssg in errorsMessages  %}
-            <div class='apiErrorsMsg' data-error-type="{{errMssg.failureValidationTypeCode}}">
+            <div class='apiErrorsMsg resetErrors' data-error-type="{{errMssg.failureValidationTypeCode}}">
                 {{ errMssg.errorMessage|raw }}
             </div>
         {% endfor %}
+
     </span>
 </div>
