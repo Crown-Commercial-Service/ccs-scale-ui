@@ -47,7 +47,6 @@ class GuideMatchJourneyController extends AbstractController
 
  
         if (!$validate->isValid()) {
-            $this->addFlash('error', '');
                 
             $lastQuestionId = !empty($postData['lastQuestionId']) ? $postData['lastQuestionId'] : '';
             $journeyHistory = !empty($postData['journeyHistory']) ? $postData['journeyHistory'] : '';
@@ -69,7 +68,14 @@ class GuideMatchJourneyController extends AbstractController
             $userAnswer =  new UserAnswers();
             $formatAnswers = $userAnswer->getFormatUserAnswers($postData, $definedAnwers);
 
-            
+            //we nedd to track the page where error validation ocur to keep the page  consistent
+            if(empty($postData['errorPage'])){
+                $errorPage = $gPage <= 2 ? $gPage : $gPage-1;
+
+            }else{
+                $errorPage =$postData['errorPage'];
+            }
+            $gPage = $errorPage;
             
             return $this->render('pages/guide_match_questions.html.twig', [
                 'searchBy' => $searchBy,
@@ -84,12 +90,13 @@ class GuideMatchJourneyController extends AbstractController
                 'lastQuestionId' =>  $lastQuestionId,
                 'journeyHistory' => $journeyHistory,
                 'gPage' => $gPage,
-                'lastPage' => $gPage,
+                'lastPage' => $gPage-1,
                 'errorsMessages' => $apiErrorMessages,
                 'pageTitle' => $questionText,
                 'currentPage' => $gPage-1,
                 'errorMessage' => $errorMessage,
-                'showError' => 1
+                'showError' => 1,
+                'errorPage' => $errorPage
             ]);
         }
 
