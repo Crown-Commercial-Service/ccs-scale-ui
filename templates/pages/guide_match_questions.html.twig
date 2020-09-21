@@ -58,11 +58,19 @@
                             {% include "/questions_types/#{type}.html.twig" %}
                         </fieldset>
                     </div>
-                    {% if  gPage >  1  and  journeyHistory is defined %}
-                        <input type='hidden' id='lastQuestionId' name='lastQuestionId' value="{{ lastQuestionId }}">
+                    {% if gPage > 1 and journeyHistory is defined %}
                         <input type='hidden' id='journeyHistory' name='journeyHistory' value="{{ journeyHistory }}">
                     {% endif %}
+
+                      {% if  lastQuestionId is defined %}
+                        <input type='hidden' id='lastQuestionId' name='lastQuestionId' value="{{ lastQuestionId }}">
+                    {% endif %}
+
                         <input type="hidden" name="token" value="{{ csrf_token('save-answers') }}"/>
+
+                    {% if  errorPage is defined %}
+                        <input type='hidden'  name='errorPage' value="{{ errorPage }}">
+                    {% endif %}
 
                     <button class="govuk-button" data-module="govuk-button" type="submit">
                         Continue
@@ -102,5 +110,4 @@
 {% endblock %}
 {% block script %}
     {{ parent() }}
-    <script src="{{ asset('find-a-commercial-agreement/scripts/question_types_validators.js') }}" ></script>
 {% endblock %}
