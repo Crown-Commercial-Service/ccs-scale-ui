@@ -90,6 +90,7 @@ class GuideMatchJourneyResultController extends AbstractController
         $agrementModel = new GuideMatchAgreementModel($agreementsApi, $agreementsData);
         $frameworks = $agrementModel->getAgreements();
         $lots = $agrementModel->getLotsData();
+        $orderedLots = $agrementModel->orderedLotsData($lots);
 
         return $this->render('pages/result_page.html.twig', [
             'searchBy' => $searchBy,
@@ -97,7 +98,7 @@ class GuideMatchJourneyResultController extends AbstractController
             'historyAnswered' => $userAnswersFormatedForView,
             'frameworks' => $frameworks,
             'countFrameworks' => count($frameworks),
-            'lotsData' => $lots,
+            'lotsData' => $orderedLots,
             'journeyId' => $journeyId,
             'journeyInstanceId' => $journeyInstanceId,
             'journeyHistory' => $journeyHistory,
