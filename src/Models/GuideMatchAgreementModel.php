@@ -70,7 +70,22 @@ class GuideMatchAgreementModel
         }
     }
 
-   
+
+    public function orderedLotsData(array $lotsData){
+
+        if (!empty($lotsData)) {
+            foreach ($lotsData as $agreementKey => $lots) {
+            
+                uksort($lots, function ($a, $b) {
+                    return strnatcmp($a, $b);
+                });
+
+                $lotsDataOrdered[$agreementKey] = $lots;
+            }
+
+            return $lotsDataOrdered;
+        }
+    }
 
     public function getLotsData()
     {
