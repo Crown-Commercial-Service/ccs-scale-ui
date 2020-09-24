@@ -48,8 +48,10 @@ class GuideMatchAgreementModel
             }
             $this->countLots += !empty($agrement['lots']) ? count($agrement['lots']) : 0;
             $lotsTitle = '';
-           
-            if (!empty($agrement['lots'])) {
+
+            if (!empty($agrement['lots'])) {  
+                $this->orderLots($agrement);
+
                 foreach ($agrement['lots'] as $lot) {
                     $lotNumber = 'Lot '. $lot['number'];
                     $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], 'Lot '. $lot['number']);
@@ -70,20 +72,12 @@ class GuideMatchAgreementModel
         }
     }
 
-
-    public function orderedLotsData(array $lotsData){
-
-        if (!empty($lotsData)) {
-            foreach ($lotsData as $agreementKey => $lots) {
-            
-                uksort($lots, function ($a, $b) {
-                    return strnatcmp($a, $b);
-                });
-
-                $lotsDataOrdered[$agreementKey] = $lots;
-            }
-
-            return $lotsDataOrdered;
+    public function orderLots(&$agrement)
+    {
+        if (count($agrement['lots']) > 1) {
+            usort($agrement['lots'], function ($a, $b) {
+                return strnatcmp($a['number'], $b['number']);
+            });
         }
     }
 
