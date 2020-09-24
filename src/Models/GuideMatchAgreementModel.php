@@ -50,7 +50,7 @@ class GuideMatchAgreementModel
             $lotsTitle = '';
 
             if (!empty($agrement['lots'])) {  
-                $this->orderLots($agrement);
+                $this->orderLots($agrement['lots']);
 
                 foreach ($agrement['lots'] as $lot) {
                     $lotNumber = 'Lot '. $lot['number'];
@@ -72,10 +72,10 @@ class GuideMatchAgreementModel
         }
     }
 
-    public function orderLots(&$agrement)
+    public function orderLots(&$lots)
     {
-        if (count($agrement['lots']) > 1) {
-            usort($agrement['lots'], function ($a, $b) {
+        if (count($lots) > 1) {
+            usort($lots, function ($a, $b) {
                 return strnatcmp($a['number'], $b['number']);
             });
         }
