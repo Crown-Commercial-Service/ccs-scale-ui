@@ -59,6 +59,8 @@ function validate() {
     var NO_VALUE      = 'noValue';
     var CHECK_NUMBER  = 'checkNumber';
     var CHECK_WHOLE_NUMBER  = 'checkWholeNumber';
+    var CHECK_POSITIVE_NUMBER = "checkPositiveNumber";
+
     var   errorType = '';
 
     var formLayout        = document.getElementById('form-layout');
@@ -106,21 +108,41 @@ function validate() {
     if (typeof conditionalInput !== "undefined") {
         if (!hasClass(conditionalInput, 'govuk-radios__conditional--hidden')) {
             var inputElement = document.getElementsByClassName('conditional-input-selector')[0];
+
+            var inputValue =  inputElement.value.trim();
+
+            var isNotHoleNumer = false;    
+            if((!isNaN(inputValue) && inputValue.indexOf('.') != -1)){
+                isNotHoleNumer = true;
+            }
+
             // if it does not have a value we throw errors and block button
-            if (!inputElement.value.trim() || parseFloat(inputElement.value.trim()) <= 0 || isNaN(inputElement.value)) {
+            if (!inputValue || parseFloat(inputValue) <= 0 || isNaN(inputValue) || isNotHoleNumer ) {
                 isValid = false;
                 inputElement.classList.add('govuk-input--error');
                 formLayout.classList.add('govuk-form-group--error');
                 conditionalInput.style.borderLeftColor ='#b10e1e';
                 errorSummary.style.display = 'block'; 
                 errorNoSelection.style.display = 'block';
+
+                //default error
                 errorType = NO_VALUE;
-                if (isNaN(inputElement.value)) {
+               
+
+                if (isNaN(inputValue)) {
                     errorType = CHECK_NUMBER;
                 }
-                if (parseFloat(inputElement.value.trim()) <= 0) {
+
+                if(isNotHoleNumer){
                     errorType = CHECK_WHOLE_NUMBER;
                 }
+
+                if (parseFloat(inputValue) <= 0) {
+                    errorType = CHECK_POSITIVE_NUMBER;
+                }
+                
+                
+
             }
         }  
     }  

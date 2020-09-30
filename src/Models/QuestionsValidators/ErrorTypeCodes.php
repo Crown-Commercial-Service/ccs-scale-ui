@@ -9,6 +9,7 @@ namespace App\Models\QuestionsValidators;
     const NO_VALUE  = 'noValue';
     const CHECK_NUMBER = 'checkNumber';
     const CHECK_WHOLE_NUMBER  = 'checkWholeNumber';
+    const CHECK_POSITIVE_NUMBER = "checkPositiveNumber";
 
  }
 
