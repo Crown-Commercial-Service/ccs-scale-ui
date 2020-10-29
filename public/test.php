@@ -9,6 +9,19 @@ if (!empty($_GET['debug'])) {
 var_dump($_GET);
 echo 'Hellor world';
 
-$gm_api = file_get_contents("https://o8eqlgajbi-vpce-09bc0b188b0cf0095.execute-api.eu-west-2.amazonaws.com/sbx2");
-echo $gm_api;
+// Create a stream
+$opts = array(
+  'http'=>array(
+    'method'=>"GET",
+    'header'=>"Accept-language: en\r\n" .
+              "x-api-key: ".$_ENV["GUIDED_MATCH_SERVICE_API_KEY"]."\r\n"
+  )
+);
+
+$context = stream_context_create($opts);
+
+// Open the file using the HTTP headers set above
+$file = file_get_contents($_ENV["GUIDED_MATCH_SERVICE_ROOT_URL"]."/scale/guided-match-service/search-journeys/housing", false, $context);
+echo $file;
+
 ?>
