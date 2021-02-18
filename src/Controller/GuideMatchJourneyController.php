@@ -14,6 +14,7 @@ use App\GuideMatchApi\GuideMatchJourneyApi;
 use App\Models\Encrypt;
 use App\Models\UserAnswersFormType\UserAnswerFormatFactory;
 use App\Models\QuestionsValidators\ValidatorsFactory;
+use App\Models\QuestionsValidators\ErrorMessage;
 use App\Models\UserAnswers;
 use Exception;
 
@@ -35,7 +36,6 @@ class GuideMatchJourneyController extends AbstractController
         $model = new GuideMatchJourneyModel($api);
 
         //get POST data
-    
         $postData = $request->request->all();
         $formType = !empty($postData['form-type']) ? $postData['form-type'] : '';
 
@@ -47,20 +47,36 @@ class GuideMatchJourneyController extends AbstractController
 
  
         if (!$validate->isValid()) {
-            $this->addFlash('error', '');
                 
-            $lastQuestionId =  !empty($postData['lastQuestionId']) ? $postData['lastQuestionId'] : '';
+            $lastQuestionId = !empty($postData['lastQuestionId']) ? $postData['lastQuestionId'] : '';
             $journeyHistory = !empty($postData['journeyHistory']) ? $postData['journeyHistory'] : '';
            
             // get question
             $model->setQuestionDetails($journeyInstanceId, $questionUuid);
+            $apiErrorMessages =  $model->getFailureValidation();
+            $questionText = $model->getText();
+            //exists more than one possible error message
+            if(count($apiErrorMessages) > 1){
+                $errorCode = $validate->getErrorCode();
+                $erromMessageObj = new ErrorMessage($errorCode, $apiErrorMessages);
+                $errorMessage = $erromMessageObj->getErrorMessage();
+            }else{
+                $errorMessage = $apiErrorMessages[0]['errorMessage'];
+            }
 
             $definedAnwers = $model->getDefinedAnswers();
-            $errorMsg =  $model->getFailureValidation();
             $userAnswer =  new UserAnswers();
             $formatAnswers = $userAnswer->getFormatUserAnswers($postData, $definedAnwers);
-            $questionText = $model->getText();
-       
+
+            //we nedd to track the page where error validation ocur to keep the page  consistent
+            if(empty($postData['errorPage'])){
+                $errorPage = $gPage <= 2 ? $gPage : $gPage-1;
+
+            }else{
+                $errorPage =$postData['errorPage'];
+            }
+            $gPage = $errorPage;
+            
             return $this->render('pages/guide_match_questions.html.twig', [
                 'searchBy' => $searchBy,
                 'journeyId' => $journeyId,
@@ -73,20 +89,15 @@ class GuideMatchJourneyController extends AbstractController
                 'hint' => $model->getHint(),
                 'lastQuestionId' =>  $lastQuestionId,
                 'journeyHistory' => $journeyHistory,
-                'gPage' => $gPage-1,
-                'lastPage' => $gPage-2,
-                'errorMessage' => $errorMsg[0]['errorMessage'],
+                'gPage' => $gPage,
+                'lastPage' => $gPage-1,
+                'errorsMessages' => $apiErrorMessages,
                 'pageTitle' => $questionText,
                 'currentPage' => $gPage-1,
-                'showError' => 1
+                'errorMessage' => $errorMessage,
+                'showError' => 1,
+                'errorPage' => $errorPage
             ]);
-        }
-
-        //get question form type to know, used to know how the answer will be handle to be send to API
-        $formType = $postData['form-type'];
-
-        if (empty($formType)) {
-            throw new Exception('Invalid request');
         }
 
         $formatAnswerObject = UserAnswerFormatFactory::getFormTypeObject($formType, $postData);
@@ -94,7 +105,7 @@ class GuideMatchJourneyController extends AbstractController
         //get the answer correctly formeted to be send to API
         $userQuestionResponse = $formatAnswerObject->getAnswersFormated();
        
-       
+        //send user response to API
         $model->getDecisionTree($journeyInstanceId, $questionUuid, $userQuestionResponse);
 
         $apiResponseType = $model->getApiResponseType();
@@ -172,6 +183,7 @@ class GuideMatchJourneyController extends AbstractController
         }
 
         $errorMsg =  $model->getFailureValidation();
+
         return $this->render('pages/guide_match_questions.html.twig', [
             'searchBy' => $searchBy,
             'journeyId' => $journeyId,
@@ -188,8 +200,7 @@ class GuideMatchJourneyController extends AbstractController
             'lastPage' => $lastPage,
             'pageTitle' => $questionText,
             'currentPage' => $gPage,
-            'errorMessage' => $errorMsg[0]['errorMessage'],
-          
+            'errorsMessages' => $errorMsg,          
           
         ]);
     }

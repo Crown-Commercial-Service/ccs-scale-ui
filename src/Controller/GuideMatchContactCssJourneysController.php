@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class GuideMatchContactCssJourneysController extends AbstractController
 {
+    private $pageTitle = 'Contact CCS';
+
     public function contactCss(Request $request)
     {
 
@@ -24,7 +26,7 @@ class GuideMatchContactCssJourneysController extends AbstractController
             'journeyHistory' => "",
             'lastPage' => 0,
             'lastQuestionId' => "",
-            'pageTitle' => 'Contact CCS',
+            'pageTitle' => $this->pageTitle,
             'historyAnswered' => "",
             'redirectToResultPage' => false,
             'agreements' => "",

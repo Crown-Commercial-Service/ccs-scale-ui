@@ -30,7 +30,7 @@ class StartJourneyController extends AbstractController
         $model = new GuideMatchJourneyModel($api);
         $model->startJourney($journeyUuid, $searchBy);
         $questionText = $model->getText();
-        $errorMsg =  $model->getFailureValidation();
+        $apiErrorMsg =  $model->getFailureValidation();
 
         return $this->render('pages/guide_match_questions.html.twig', [
             'journeyInstanceId' => $model->getJourneyInstanceId(),
@@ -47,7 +47,7 @@ class StartJourneyController extends AbstractController
             'lastPage' => 0,
             'pageTitle' => $questionText,
             'currentPage'=>1,
-            'errorMessage' => $errorMsg[0]['errorMessage']
+            'errorsMessages' => $apiErrorMsg
         ]);
     }
 }

@@ -45,8 +45,22 @@ function uncheckMExclusive() {
 // When no input is provided from the user this function
 // blocks the continue button and displays errors.
 function validate() {
+    //goes to all errors and resets them on refresh or load
+    var errors = document.getElementsByClassName("resetErrors");
+    for (var i = 0; i < errors.length; i++) {
+        if (!errors.item(i).classList.contains("apiErrorsMsg")) {
+            errors.item(i).classList.add("apiErrorsMsg");
+        }
+    }
     // checkbox and radio buttons validation
     var isValid           = false;
+
+    var NO_SELECTION  = 'noSelection';
+    var NO_VALUE      = 'noValue';
+    var CHECK_NUMBER  = 'checkNumber';
+    var CHECK_WHOLE_NUMBER  = 'checkWholeNumber';
+    var   errorType = '';
+
     var formLayout        = document.getElementById('form-layout');
     var errorNoSelection  = document.getElementById('no-selection');
     var errorSummary      = document.getElementById('error-summary');
@@ -65,6 +79,7 @@ function validate() {
         errorNoSelection.style.display = 'block';
         errorSummary.style.display = 'block';        
         var Forminputs = document.getElementsByClassName("govuk-radios__input");
+        errorType = NO_SELECTION;
         
         setTimeout(function(){
             
@@ -84,31 +99,51 @@ function validate() {
     }
 
     // conditional input validation logic
-    var errorNoInput      = document.getElementById('no-input');
-    var conditionalInputs = document.getElementsByClassName('conditional-input');
+    var conditionalInput = document.getElementsByClassName('conditional-input')[0];
 
     // I check all conditional inputs,
     // if one is not hidden we check if it has a value
-    for(var i in conditionalInputs) {
-        if (Number(i)) {
-            if (!hasClass(conditionalInputs[i], 'govuk-radios__conditional--hidden')) {
-                var inputElement = conditionalInputs[i].firstElementChild.childNodes[7];
-                // if it does not have a value we throw errors and block button
-                if (!inputElement.value.trim() || parseFloat(inputElement.value.trim()) <= 0) {
-                    isValid = false;
-                    inputElement.classList.add('govuk-input--error');
-                    formLayout.classList.add('govuk-form-group--error');
-                    conditionalInputs[i].style.borderLeftColor ='#b10e1e';
-                    errorNoInput.style.display = 'block';
-                    errorNoSelection.style.display = 'none';
-                    errorNoInput.textContent = "Please provide input.";
-                    if (parseFloat(inputElement.value.trim()) <= 0) {
-                        errorNoInput.textContent = "Enter a value greater than zero.";
-                    }
+    if (typeof conditionalInput !== "undefined") {
+        if (!hasClass(conditionalInput, 'govuk-radios__conditional--hidden')) {
+            var inputElement = document.getElementsByClassName('conditional-input-selector')[0];
+            // if it does not have a value we throw errors and block button
+            if (!inputElement.value.trim() || parseFloat(inputElement.value.trim()) <= 0 || isNaN(inputElement.value)) {
+                isValid = false;
+                inputElement.classList.add('govuk-input--error');
+                formLayout.classList.add('govuk-form-group--error');
+                conditionalInput.style.borderLeftColor ='#b10e1e';
+                errorSummary.style.display = 'block'; 
+                errorNoSelection.style.display = 'block';
+                errorType = NO_VALUE;
+                if (isNaN(inputElement.value)) {
+                    errorType = CHECK_NUMBER;
                 }
-            }    
+                if (parseFloat(inputElement.value.trim()) <= 0) {
+                    errorType = CHECK_WHOLE_NUMBER;
+                }
+            }
+        }  
+    }  
+
+    var errors = document.getElementsByClassName("resetErrors");
+    var found = false;
+    for (var i = 0; i < errors.length; i++) {
+        if (errors.item(i).dataset.errorType == errorType) {
+            found = true;
+            break;
         }
     }
+    if (found == false) {
+        errorType = CHECK_NUMBER;
+    }
+
+    for (var i = 0; i < errors.length; i++) {
+        if (errors.item(i).dataset.errorType == errorType) {
+            errors.item(i).classList.remove("apiErrorsMsg");
+        }
+    }
+
+    
 
     return isValid;
 }
@@ -125,6 +160,7 @@ function resetErrors(radio) {
 
 
 window.addEventListener('load', function() {
+
     setTimeout(function(){
         var conditionalInputs = document.getElementsByClassName('conditional-input');
         for(var i in conditionalInputs) {

@@ -116,7 +116,7 @@ class GuideMatchJourneyApi
         ) {
             throw new Exception('Invalid arguments of method');
         }
-       
+
         $data = [
             "id"=> $questionsUuid,
             'answers' => $questionResponse

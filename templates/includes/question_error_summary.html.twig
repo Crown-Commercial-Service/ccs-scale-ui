@@ -7,11 +7,21 @@ style="display:{{ errorMessage is defined and showError is defined  ? 'block' : 
     <ul class="govuk-list govuk-error-summary__list">
       <li id="error-summary-container">
         <span class="govuk-visually-hidden">Error:</span>
-        {% if  errorMessage is defined %}
-        <a href="#{{definedAnswers|first.id}}">
-          {{ errorMessage|striptags }}
-          </a>
-        {% endif %}
+        {% if  errorsMessages is defined %}
+          <div id="head-error-msg">
+            <a href="#{{ definedAnswers is defined ? definedAnswers|first.id : journeys|first.journeyId ~ '-1'}}">
+          
+              {% if errorMessage is defined %}
+                 {{ errorMessage|raw }}
+              {% endif %}
+              {% for errMssg in errorsMessages  %}
+                  <div class='apiErrorsMsg resetErrors' data-error-type="{{errMssg.failureValidationTypeCode}}">
+                        {{ errMssg.errorMessage|raw }}
+                  </div>
+              {% endfor %} 
+            </a>   
+          </div>         
+      {% endif %}
       </li>
     </ul>
   </div>
