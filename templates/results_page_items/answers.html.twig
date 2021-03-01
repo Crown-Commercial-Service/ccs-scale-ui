@@ -57,7 +57,7 @@
     {% if  agreementsNames is defined %}
         <div class="govuk-summary-list__row">
         <dl class="govuk-summary-list">
-            <dt class="govuk-summary-list__key">  Agreement(s)/Lot(s) recommendations</dt>         
+            <dt class="govuk-summary-list__key">  Agreement or lot recommendations</dt>         
             <dd class="govuk-summary-list__value">
                 {% for agreement in agreementsNames %}
                     {{agreement.name}}({{agreement.number}}){{ agreement.lotsTitle is empty  ? '' : ', ' ~  agreement.lotsTitle }}
