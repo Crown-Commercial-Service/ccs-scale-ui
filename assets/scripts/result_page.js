@@ -22,10 +22,10 @@ if (window.matchMedia("(min-width: 601px)").matches){
 });
 
 function toggleAccordionControll(controllerElement) {
-    if (controllerElement.textContent == "Show Details") {
-        controllerElement.textContent = "Hide Details";
+    if (controllerElement.textContent == "Show details") {
+        controllerElement.textContent = "Hide details";
     } else {
-        controllerElement.textContent = "Show Details";
+        controllerElement.textContent = "Show details";
     }
 
 }
@@ -44,9 +44,9 @@ window.onload = function(){
         controller.classList.add("govuk-link");
         controller.href="";
         if (isExtended == "true") {
-            controller.textContent = "Hide Details";
+            controller.textContent = "Hide details";
         } else {
-            controller.textContent = "Show Details";
+            controller.textContent = "Show details";
         }
         elementRoot.appendChild(controller);
 
