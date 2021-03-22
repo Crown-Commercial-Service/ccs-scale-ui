@@ -64,6 +64,7 @@ class GuidedMatchJourneysController extends AbstractController{
 
         $journeysModel = new JourneysModel($api,$searchBy);
         $journeys = $journeysModel->getJourneys();
+        
         if(count($journeys) === 1){
 
             $redirect = $request->query->get('r');
@@ -75,6 +76,8 @@ class GuidedMatchJourneysController extends AbstractController{
             $journeyId = $journeys[0]["journeyId"];
             return $this->redirect(" /find-a-commercial-agreement/start-journey/{$journeyId}?q={$searchBy}");
         }
+
+        $journeys = $this->orderingJourneys($journeys);
 
         $renderData = [
             'searchBy' => rawurldecode($searchBy),
@@ -95,5 +98,20 @@ class GuidedMatchJourneysController extends AbstractController{
     private function validateUserAnswer(string $formType, array $userAnswer)
     {
         return ValidatorsFactory::getValidator($formType, $userAnswer);
+    }
+
+    private function orderingJourneys(array $journeys)
+    {
+        $indexCount = 0;
+        foreach ($journeys as $journey) {
+            if ($journey['modifier'] == 'GM Lite'){
+                $temp = $journeys[$indexCount];
+                unset($journeys[$indexCount]);
+                array_push($journeys, $temp);
+                break;
+            }
+            $indexCount += 1;
+        }
+        return $journeys;
     }
 }
