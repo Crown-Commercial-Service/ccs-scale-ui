@@ -65,6 +65,7 @@ RUN npm install
 
 # restart apache
 RUN service apache2 restart
+RUN chmod -R 0777 var/cache/prod
 
 VOLUME /var/www/html/ccs
 
