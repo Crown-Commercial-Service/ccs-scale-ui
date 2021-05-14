@@ -1,10 +1,8 @@
 
 # GM PAGES
 landing_page:
-  path: /find-a-commercial-agreement/landing-page
+  path: /find-a-commercial-agreement/{landing-page}
   controller: App\Controller\LandingPageController::landingPage 
-  defaults:
-    path: /find-a-commercial-agreement
 
 question_page:
   path: /find-a-commercial-agreement/journey/{journeyId}/{journeyInstanceId}/{questionUuid}/{gPage}
