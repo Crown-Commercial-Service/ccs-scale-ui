@@ -1,5 +1,9 @@
 
 # GM PAGES
+home_page:
+  path: /find-a-commercial-agreement
+  controller: App\Controller\LandingPageController::landingPage
+  
 landing_page:
   path: /find-a-commercial-agreement/landing-page
   controller: App\Controller\LandingPageController::landingPage 
