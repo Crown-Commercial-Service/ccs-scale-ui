@@ -16,6 +16,7 @@ class StartJourneyController extends AbstractController
     public function startJourney(Request $request, $journeyUuid)
     {
         $searchBy = $request->query->get('q');
+        $gmLiteOldAnswer = $request->query->get('old');
 
         if ($request->getMethod() === 'POST') {
             $csfrToken = $request->request->get('token');
@@ -47,7 +48,8 @@ class StartJourneyController extends AbstractController
             'lastPage' => 0,
             'pageTitle' => $questionText,
             'currentPage'=>1,
-            'errorsMessages' => $apiErrorMsg
+            'errorsMessages' => $apiErrorMsg,
+            'gmLiteOldAnswer'=> $gmLiteOldAnswer
         ]);
     }
 }
