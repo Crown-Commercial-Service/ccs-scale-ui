@@ -51,7 +51,7 @@
 
                                         <div class="govuk-radios__item">
                                             <input class="govuk-radios__input v-selector" id="{{ journey.journeyId }}-{{loop.index}}" name="uuid" type="radio"
-                                                value="{{ journey.journeyId }}" aria-describedby="{{journey.journeyId}}-{{loop.index}}" >
+                                                value="{{ journey.journeyId }}" aria-describedby="{{journey.journeyId}}-{{loop.index}}" {{ checked }}>
                                             <label class="govuk-label govuk-radios__label govuk-label--s" for="{{journey.journeyId }}-{{loop.index}}">
                                                 {{- journey.selectionText -}}
                                             </label>

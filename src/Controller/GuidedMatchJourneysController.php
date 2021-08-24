@@ -72,9 +72,9 @@ class GuidedMatchJourneysController extends AbstractController{
                 return $this->redirect("/find-a-commercial-agreement/landing-page?q={$searchBy}");
 
             }
-          
+            $gmLiteOldAnswer = $journeyId;
             $journeyId = $journeys[0]["journeyId"];
-            return $this->redirect(" /find-a-commercial-agreement/start-journey/{$journeyId}?q={$searchBy}");
+            return $this->redirect(" /find-a-commercial-agreement/start-journey/{$journeyId}?q={$searchBy}&old={$gmLiteOldAnswer}");
         }
 
         $journeys = $this->orderingJourneys($journeys);

@@ -29,3 +29,6 @@ node_modules
 .idea
 .phplint-cache
 .DS_Store
+
+.vscode
+.vscode/*
