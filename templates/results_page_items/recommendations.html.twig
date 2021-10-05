@@ -5,7 +5,10 @@
         <div class="govuk-accordion__section-header">
             <div class="govuk-accordion__section-heading">
                 <div class="govuk-accordion__section-button" id="accordion-default-heading-{{ loop.index }}">
-                    <h3 class="govuk-heading-m">{{ framework.name }}</h3>
+                    <h3 class="govuk-heading-m govuk-!-margin-right-2" style="float:left" >{{ framework.name }}</h3>
+                    {% if "now"|date('Y-m-d') > framework.endDate|date('Y-m-d') %}
+                        <p class="govuk-tag ccs-tag ccs-tag--error">Expired: {{ framework.endDate|date("d/m/Y") }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
