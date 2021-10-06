@@ -70,6 +70,7 @@ VOLUME /var/www/html/ccs
 #RUN if [ -d var/cache/prod ]; then chmod -R 0777 var/cache/prod; fi
 RUN chmod -R 0777 var/cache/prod
 
+
 #set container port
 EXPOSE $PORT
 
