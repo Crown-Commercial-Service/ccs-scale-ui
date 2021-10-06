@@ -67,6 +67,7 @@ RUN npm install
 RUN service apache2 restart
 
 VOLUME /var/www/html/ccs
+RUN if [ -d var/cache/prod ]; then chmod -R 0777 var/cache/prod; fi
 
 #set container port
 EXPOSE $PORT
