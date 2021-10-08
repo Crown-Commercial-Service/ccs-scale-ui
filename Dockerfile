@@ -66,7 +66,8 @@ RUN npm install
 # restart apache
 RUN service apache2 restart
 
-RUN mkdir -p var/cache/prod/http_cache && chmod -R 777 var/cache/prod/http_cache
+RUN mkdir -p var/cache/prod/http_cache && chmod -R 777 var/cache
+RUN mkdir -p var/log && chmod -R 777 var/log
 
 VOLUME /var/www/html/ccs
 
