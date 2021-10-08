@@ -66,6 +66,8 @@ RUN npm install
 # restart apache
 RUN service apache2 restart
 
+RUN mkdir -p var/cache/prod/http_cache
+
 VOLUME /var/www/html/ccs
 
 #set container port
