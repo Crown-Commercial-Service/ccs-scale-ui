@@ -33,9 +33,6 @@ if ($_SERVER['APP_DEBUG']) {
     }
 }
 
-if ($_SERVER['APP_ENV'] == 'prod'){
-    umask(0000);
-}
 
 $kernel = new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']);
 $application = new Application($kernel);
