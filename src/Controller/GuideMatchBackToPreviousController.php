@@ -35,7 +35,7 @@ class GuideMatchBackToPreviousController extends AbstractController
         $questionId = $model->getUuid();
 
         // Go back to the first page of journey
-        if ($gPage < 1) {
+        if ($gPage < 0) {
             if ($journeyId != "c9dd4455-7d23-4822-9912-eab4da9fc5a2"){
                 $journeyId = $journeyId == "c9dd4455-7d23-4822-9912-eab4da9fc5a2" ? $journeyHistoryData[0]["answers"][0]["answer"] : $journeyId;
                 return $this->redirect("/find-a-commercial-agreement/guidedmatch?q={$searchBy}&journeyId={$journeyId}");
