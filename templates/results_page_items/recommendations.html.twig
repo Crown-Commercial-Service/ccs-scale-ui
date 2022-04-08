@@ -20,7 +20,7 @@
                 {{ framework.endDate|date("d/m/Y") }}
             </p>
 
-            <div class="framework-description" style="font-family: Source Sans Pro">{{ framework.description|raw }}</div>
+            <div class="framework-description" style="font-family: Source Sans Pro"><p>{{ framework.description|raw }}</p></div>
            
             <div>
                 {% if framework.lots is defined %}
