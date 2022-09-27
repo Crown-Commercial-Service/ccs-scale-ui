@@ -25,6 +25,9 @@
         "preferred-install": {
             "*": "dist"
         },
+        "allow-plugins": {
+            "symfony/*": true
+        },
         "sort-packages": true
     },
     "autoload": {
