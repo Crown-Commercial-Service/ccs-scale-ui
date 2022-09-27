@@ -45,8 +45,6 @@
 
            var cookiePreferences = JSON.parse(readCookie('cookie_preferences'));
            if (cookiePreferences !== null) {
-                if (cookiePreferences.usage === true) {
-
                     (function (w, d, s, l, i) {
                         w[l] = w[l] || [];
                         w[l].push({
@@ -62,7 +60,6 @@
                         f.parentNode.insertBefore(j, f);
                     })(window, document, 'script', 'dataLayer', 'GTM-5NQGRQN');
 
-                }
             }
         </script>
 </head>
