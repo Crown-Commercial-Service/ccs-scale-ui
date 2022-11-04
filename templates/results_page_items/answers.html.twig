@@ -59,9 +59,16 @@
         <dl class="govuk-summary-list">
             <dt class="govuk-summary-list__key">  Agreement or lot recommendations</dt>         
             <dd class="govuk-summary-list__value">
-                {% for agreement in agreementsNames %}
-                    {{agreement.name}}({{agreement.number}}){{ agreement.lotsTitle is empty  ? '' : ', ' ~  agreement.lotsTitle }}
+
+                {% for framework in frameworks %}
+                    <b>{{framework.name}}({{framework.number}})</b><br>
+                    {% if  lotsData[framework.number] is defined %}  
+                        {% for lot in lotsData[framework.number] %}
+                            <div class='govuk-!-padding-left-3'>{{lot.number}}: {{lot.name}}</div>
+                        {% endfor %}
+                    {% endif %}
                 {% endfor %}
+
             </dd>
             <dd class="govuk-summary-list__value"></dd>
         </dl>
