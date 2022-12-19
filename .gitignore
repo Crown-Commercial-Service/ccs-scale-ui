@@ -5,7 +5,6 @@
 /.env.*.local
 /.env
 /public/bundles/
-/public/find-a-commercial-agreement/*
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
