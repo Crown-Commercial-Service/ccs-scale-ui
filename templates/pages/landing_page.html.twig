@@ -9,33 +9,56 @@
 {% endblock %}
 
 {% block body %}
-    <!-- required wrapper 1 -->
-    <div class="govuk-width-container">
-        {% include "/includes/phase_banner.html.twig" %}
-            <span class='hidden_msgs' id="back-to-search-result"> to search result</span>
-            <a aria-describedby="back-to-search-result" class="govuk-back-link" href="/agreements/search?q={{ searchBy }}">Back</a>
-        <!-- required wrapper 2 -->
-        <main class="govuk-main-wrapper " id="main-content">
-        <section>
-                <div class="govuk-grid-row">
-                    <div class="govuk-grid-column-full restrict-width">
-                        <h1 class="govuk-heading-xl page-title">Find a commercial agreement</h1>
-                        <p class="govuk-body page-intro">Use this service to help you find which agreements could meet your needs by answering a few short questions.</p>
-                        <h2 class="govuk-heading-m">Before you start</h2>
-                        <p class="govuk-body">It may be helpful to know the following information (but this is not essential):</p>
-                        <ul class="govuk-list govuk-list--bullet">
-                            <li>the product or service you need</li>
-                            <li>the sector or organisation you are buying for</li>
-                            <li>your estimated budget</li>
-                            <li>if you are buying a service, an estimated length of contract and location of where the work needs to take place</li>
-                        </ul>
+    {% set maintenance = true %}
 
-                        <a href="{{ path('guided-match-journeys')}}?q={{searchBy|url_encode}}" role="button" 
-                        class="govuk-button govuk-button--start govuk-!-margin-top-6 govuk-!-margin-bottom-9" 
-                        data-module="govuk-button">Start now</a>
+    {% if maintenance %}
+        <div class="govuk-width-container">
+            <main class="govuk-main-wrapper govuk-main-wrapper--l" id="main-content" role="main">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-two-thirds">
+                        <h1 class="govuk-heading-l">Sorry, the service is unavailable</h1>
+                        <p class="govuk-body">
+                        Our find a commercial agreement service is currently down for maintenance.
+                        </p>
+                        <p class="govuk-body">
+                        Check back soon to use the service.
+                        </p>
+                        <p class="govuk-body">
+                        If you need urgent support contact our <a href="https://www.crowncommercial.gov.uk/contact">customer service centre</a>.
+                        </p>
                     </div>
                 </div>
-            </section>
-        </main>
-    </div>
+            </main>
+        </div>
+    {% else %}
+        <!-- required wrapper 1 -->
+        <div class="govuk-width-container">
+            {% include "/includes/phase_banner.html.twig" %}
+                <span class='hidden_msgs' id="back-to-search-result"> to search result</span>
+                <a aria-describedby="back-to-search-result" class="govuk-back-link" href="/agreements/search?q={{ searchBy }}">Back</a>
+            <!-- required wrapper 2 -->
+            <main class="govuk-main-wrapper " id="main-content">
+            <section>
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-full restrict-width">
+                            <h1 class="govuk-heading-xl page-title">Find a commercial agreement</h1>
+                            <p class="govuk-body page-intro">Use this service to help you find which agreements could meet your needs by answering a few short questions.</p>
+                            <h2 class="govuk-heading-m">Before you start</h2>
+                            <p class="govuk-body">It may be helpful to know the following information (but this is not essential):</p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>the product or service you need</li>
+                                <li>the sector or organisation you are buying for</li>
+                                <li>your estimated budget</li>
+                                <li>if you are buying a service, an estimated length of contract and location of where the work needs to take place</li>
+                            </ul>
+
+                            <a href="{{ path('guided-match-journeys')}}?q={{searchBy|url_encode}}" role="button" 
+                            class="govuk-button govuk-button--start govuk-!-margin-top-6 govuk-!-margin-bottom-9" 
+                            data-module="govuk-button">Start now</a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    {% endif %}
 {% endblock %}
