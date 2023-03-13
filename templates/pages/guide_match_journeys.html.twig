@@ -61,7 +61,7 @@
                                         </div>
                                     {% endfor %}
                                     <input type='hidden' name='form-type' value='boolean'>
-                                    <input type='hidden' name='searchBy' value='{{ searchBy }}'>
+                                    <input type='hidden' name='searchBy' value='{{ searchBy|url_encode }}'>
                                 </div>
                         </fieldset>
                     </div>
