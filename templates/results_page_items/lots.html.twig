@@ -5,7 +5,7 @@
         {% for lot in  lotsData[framework.number] %}
             <div class ='gm-lots-containers'>
                 
-                <dt class="apollo-list--definition__key"> <h3 class="govuk-heading-m">{{lot.number}}: {{lot.name}}</h3> </dt>
+                <dt class="apollo-list--definition__key"> <h3 class="govuk-heading-m">Lots {{lot.number}}: {{lot.name}}</h3> </dt>
                 
                 <dd class="apollo-list--definition__value"> {{lotsData[framework.number][lot.number].description|raw}} </dd>
             </div>

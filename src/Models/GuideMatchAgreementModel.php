@@ -51,8 +51,13 @@ class GuideMatchAgreementModel
            
             if (!empty($agrement['lots'])) {
                 foreach ($agrement['lots'] as $lot) {
-                    $lotNumber = 'Lot '. $lot['number'];
-                    $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], 'Lot '. $lot['number']);
+                    $lotNumber = $lot['number'];
+                    $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], $lot['number']);
+
+                    if ($lotDetails == null){
+                        $lotDetails = $this->agreementApi->getLotDetails($agrement['number'], 'Lot '. $lot['number']);
+                        $lotDetails["number"] = str_replace('Lot ','',$lotDetails["number"]);
+                    }
                     $this->lotsData[$agrement['number']][$lotNumber] =  $lotDetails;
                     $lotsTitle .= !empty($lotsTitle) ? ' or ' . $lotDetails['number'] .': '.$lotDetails['name'] : $lotDetails['number'] .': '.$lotDetails['name'];
                     $this->scale = isset($lot['scale']) && !$lot['scale'] ? $lot['scale'] : $this->scale;

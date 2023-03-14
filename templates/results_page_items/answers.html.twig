@@ -64,7 +64,7 @@
                     <b>{{framework.name}}({{framework.number}})</b><br>
                     {% if  lotsData[framework.number] is defined %}  
                         {% for lot in lotsData[framework.number] %}
-                            <div class='govuk-!-padding-left-3'>{{lot.number}}: {{lot.name}}</div>
+                            <div class='govuk-!-padding-left-3'> Lots {{lot.number}}: {{lot.name}}</div>
                         {% endfor %}
                     {% endif %}
                 {% endfor %}
