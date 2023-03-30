@@ -36,7 +36,8 @@
                         {% if answer.seletectJourney is defined %}
                             <a aria-describedby="change-answer-journey" href="{{path('guided-match-journeys')}}?q={{searchByEncoded}}">Change</a>
                         {% else %}
-                            <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}&changeAnswer=1">Change</a>
+                            {% set journeyUuidAndDomain = "%s%s%s"|format(journeyId,'&',domainName) %}
+                            <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuidAndDomain': journeyUuidAndDomain })}}?q={{searchByEncoded}}&changeAnswer=1">Change</a>
                         {% endif %}
                     {% endif %}
                 </dd>

@@ -12,6 +12,7 @@ class GuideMatchJourneyHistoryModel
    
     private $journeyHistoryAnswers;
     private $searchTerm;
+    private $selectedDomain;
     private $outcomeData;
     private $outcomeType;
 
@@ -34,6 +35,10 @@ class GuideMatchJourneyHistoryModel
 
         if (!empty($journeyHistory['searchTerm'])) {
             $this->setSearchTerm($journeyHistory['searchTerm']);
+        }
+
+        if (!empty($journeyHistory['selectedDomain'])) {
+            $this->setSelectedDomain($journeyHistory['selectedDomain']);
         }
 
         if (!empty($journeyHistory['journeyHistory'])) {
@@ -70,6 +75,27 @@ class GuideMatchJourneyHistoryModel
     public function getSearchTerm()
     {
         return $this->searchTerm;
+    }
+
+        /**
+     * Setter function for selected domain of journey
+     *
+     * @param string $searchTerm
+     * @return void
+     */
+    private function setSelectedDomain(string $selectedDomain)
+    {
+        $this->selectedDomain = $selectedDomain;
+    }
+
+    /**
+     * Getter function for selected domain of journey
+     *
+     * @return string
+     */
+    public function getSelectedDomain()
+    {
+        return $this->selectedDomain;
     }
 
     /**

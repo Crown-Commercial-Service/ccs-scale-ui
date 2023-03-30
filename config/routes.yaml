@@ -21,7 +21,7 @@ back_to_search:
   controller: App\Controller\TacticalSerchResultController:backToSearch
 
 start-journey:
-  path: /find-a-commercial-agreement/start-journey/{journeyUuid}
+  path: /find-a-commercial-agreement/start-journey/{journeyUuidAndDomain}
   controller: App\Controller\StartJourneyController:startJourney
 
 back-to-previous:

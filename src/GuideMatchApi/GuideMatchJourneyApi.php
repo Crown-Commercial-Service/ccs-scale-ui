@@ -51,7 +51,7 @@ class GuideMatchJourneyApi
      * @param string $journeyId
      * @return void
      */
-    public function startJourney(string $searchBy, string $journeyId)
+    public function startJourney(string $searchBy, string $journeyId, string $selectedDomain)
     {
        
 
@@ -60,7 +60,7 @@ class GuideMatchJourneyApi
         }
         $response = $this->httpClient->request('POST', $this->baseApiUrl."/scale/guided-match-service/journeys/{$journeyId}", [
             'headers' => ['x-api-key' => getenv('GUIDED_MATCH_SERVICE_API_KEY')],
-            'json' => ['searchTerm' => $searchBy]
+            'json' => ['searchTerm' => $searchBy, 'selectedDomain' => $selectedDomain]
         ]);
 
         return $this->handleApiResponse($response);

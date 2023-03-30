@@ -60,7 +60,7 @@ class GuideMatchJourneyResultController extends AbstractController
         $journeysPage =  false;
         if (count($journeys) > 1) {
                 
-            $selectedJourney =  $userAnswers->addSelectedJourneyToUserAnswers($searchBy,$journeyId,$journeys);
+            $selectedJourney =  $userAnswers->addSelectedJourneyToUserAnswers($searchBy,$journeyId,$journeys,$journeyHistoryModel->getSelectedDomain());
             array_unshift($userAnswersFormatedForView,$selectedJourney);
             $journeysPage =  true;
         }
@@ -79,7 +79,8 @@ class GuideMatchJourneyResultController extends AbstractController
                 'lastPage' => $lastPage,
                 'lastQuestionId' => $lastQuestionId,
                 'pageTitle' => $this->pageTitle,
-                'journeysPage' => $journeysPage
+                'journeysPage' => $journeysPage,
+                'domainName'=>$journeyHistoryModel->getSelectedDomain()
             ]);
         }
 
@@ -109,7 +110,8 @@ class GuideMatchJourneyResultController extends AbstractController
             'lastPage' => $lastPage,
             'agreements' => $agreements,
             'pageTitle' => $this->pageTitle,
-            'journeysPage' => $journeysPage
+            'journeysPage' => $journeysPage,
+            'domainName'=>$journeyHistoryModel->getSelectedDomain()
         ]);
     }
 }

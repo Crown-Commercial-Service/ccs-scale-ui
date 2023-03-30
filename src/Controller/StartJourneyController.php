@@ -13,10 +13,14 @@ use Exception;
 
 class StartJourneyController extends AbstractController
 {
-    public function startJourney(Request $request, $journeyUuid)
+    public function startJourney(Request $request, $journeyUuidAndDomain)
     {
         $searchBy = $request->query->get('q');
         $gmLiteOldAnswer = $request->query->get('old');
+
+        $tempArray = explode("&", $journeyUuidAndDomain);
+        $journeyUuid= $tempArray[0];
+        $domainName = !isset($tempArray[1]) ? 'null' : $tempArray[1]; 
 
         if ($request->getMethod() === 'POST') {
             $csfrToken = $request->request->get('token');
@@ -29,7 +33,7 @@ class StartJourneyController extends AbstractController
         $api = new GuideMatchJourneyApi($httpClient, getenv('GUIDED_MATCH_SERVICE_ROOT_URL'));
        
         $model = new GuideMatchJourneyModel($api);
-        $model->startJourney($journeyUuid, $searchBy);
+        $model->startJourney($journeyUuid, $searchBy, $domainName);
         $questionText = $model->getText();
         $apiErrorMsg =  $model->getFailureValidation();
 
@@ -49,7 +53,8 @@ class StartJourneyController extends AbstractController
             'pageTitle' => $questionText,
             'currentPage'=>1,
             'errorsMessages' => $apiErrorMsg,
-            'gmLiteOldAnswer'=> $gmLiteOldAnswer
+            'gmLiteOldAnswer'=> $gmLiteOldAnswer,
+            'domainName'=>$domainName
         ]);
     }
 }

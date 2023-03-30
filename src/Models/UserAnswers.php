@@ -116,8 +116,7 @@ class UserAnswers
         return $answers;
     }
 
-
-    public function addSelectedJourneyToUserAnswers( string $searchBy, string $journeyId, array $journeys){
+    public function addSelectedJourneyToUserAnswers( string $searchBy, string $journeyId, array $journeys, string $selectedDomain){
 
         if(
             empty($journeyId) &&
@@ -133,10 +132,10 @@ class UserAnswers
         $selectJourneyQuestion = "What type of $searchBy do you need?";
 
         $selectedJourneyAnswer = [
-            'question' => $selectJourneyQuestion,
-            'answerTxt' => $selectedJourneys['selectionText'],
-            'changeUrl' => '#',
-            'seletectJourney' => true
+            'question'          => $selectJourneyQuestion,
+            'answerTxt'         => $selectedDomain != null ? $selectedDomain :$selectedJourneys['selectionText'],
+            'changeUrl'         => '#',
+            'seletectJourney'   => true
         ];
 
        return $selectedJourneyAnswer;
