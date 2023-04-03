@@ -87,9 +87,9 @@ class GuideMatchJourneyModel
      * @param [type] $searchBy
      * @return void
      */
-    public function startJourney(string $journeyUuid, string $searchBy)
+    public function startJourney(string $journeyUuid, string $searchBy, string $selectedDomain)
     {
-        $apiResponse =  $this->journeyApi->startJourney($searchBy, $journeyUuid);
+        $apiResponse =  $this->journeyApi->startJourney($searchBy, $journeyUuid, $selectedDomain);
 
         if (!empty($apiResponse['journeyInstanceId'])) {
             $this->setJourneyInstanceId($apiResponse['journeyInstanceId']);

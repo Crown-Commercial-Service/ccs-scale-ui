@@ -42,7 +42,7 @@ class GuideMatchContactCssController extends AbstractController
         $journeysPage =  false;
         if (count($journeys) > 1) {
             
-            $selectedJourney =  $userAnswers->addSelectedJourneyToUserAnswers($searchBy,$journeyId,$journeys);
+            $selectedJourney =  $userAnswers->addSelectedJourneyToUserAnswers($searchBy,$journeyId,$journeys, null);
             array_unshift($userAnswersFormatedForView,$selectedJourney);
             $journeysPage = true;
         }
@@ -61,7 +61,8 @@ class GuideMatchContactCssController extends AbstractController
             'historyAnswered' => $userAnswersFormatedForView,
             'redirectToResultPage' => $resultPage,
             'agreements' => !empty($agreements) ? urlencode($agreements) : '',
-            'journeysPage' => $journeysPage
+            'journeysPage' => $journeysPage,
+            'domainName'=>''
           
         ]);
         

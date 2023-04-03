@@ -109,7 +109,7 @@
                                     Start again to change your answers</a>
                                 {% else %}
                                     <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                                    href="{{ path('start-journey', {'journeyUuid': journeyId})}}?q={{searchByEncoded}}">
+                                    href="{{ path('start-journey', {'journeyUuidAndDomain': journeyId})}}?q={{searchByEncoded}}">
                                     Start again to change your answers</a>
                                 {% endif %} 
                                 

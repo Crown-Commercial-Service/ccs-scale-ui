@@ -41,7 +41,7 @@ class GuideMatchBackToPreviousController extends AbstractController
                 return $this->redirect("/find-a-commercial-agreement/guidedmatch?q={$searchBy}&journeyId={$journeyId}");
             }
             $model = new GuideMatchJourneyModel($api);
-            $model->startJourney($journeyId, $searchBy);
+            $model->startJourney($journeyId, $searchBy,'');
         }
 
         $userAnswers= [];
@@ -66,7 +66,8 @@ class GuideMatchBackToPreviousController extends AbstractController
             'lastPage' => $lastPage,
             'pageTitle' => $questionText,
             'currentPage' => $gPage,
-            'errorsMessages' => $model->getFailureValidation()
+            'errorsMessages' => $model->getFailureValidation(),
+            'domainName'=>''
         ]);
     }
 }

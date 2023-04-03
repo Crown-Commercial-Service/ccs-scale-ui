@@ -96,7 +96,8 @@ class GuideMatchJourneyController extends AbstractController
                 'currentPage' => $gPage-1,
                 'errorMessage' => $errorMessage,
                 'showError' => 1,
-                'errorPage' => $errorPage
+                'errorPage' => $errorPage,
+                'domainName'=>''
             ]);
         }
 
@@ -201,7 +202,7 @@ class GuideMatchJourneyController extends AbstractController
             'pageTitle' => $questionText,
             'currentPage' => $gPage,
             'errorsMessages' => $errorMsg,          
-          
+            'domainName'=>''
         ]);
     }
 
