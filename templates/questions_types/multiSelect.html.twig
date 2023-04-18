@@ -24,7 +24,7 @@
 
             <label class="govuk-label govuk-checkboxes__label" for="{{ answer.id }}" >{{- answer.text -}}</label>
             {% if answer.hint is defined  and answer.hint is not empty %}
-                <span class="govuk-hint govuk-checkboxes__hint" id="hint-answer-{{answer.id}}"> {{- answer.hint|raw -}} </span>
+                <div class="govuk-hint govuk-checkboxes__hint" id="hint-answer-{{answer.id}}"> {{- answer.hint|raw -}} </div>
             {% endif %}
         </div>
     {% endfor %}
