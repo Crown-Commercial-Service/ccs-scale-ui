@@ -61,3 +61,12 @@
         width: 13px;
     }
 }
+
+@media (min-width: 40.0625em) {
+
+    .govuk-summary-list__key,
+    .govuk-summary-list__value,
+    .govuk-summary-list__actions {
+        border-bottom: 1px solid #bfc1c3;
+    }
+}
