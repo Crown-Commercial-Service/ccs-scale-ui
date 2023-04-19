@@ -62,9 +62,6 @@
             "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
         }
     },
-    "strata/frontend": {
-        "version": "dev-master"
-    },
     "strata/http-cache-clear": {
         "version": "v0.1.0"
     },

@@ -8,7 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "rollbar/rollbar-php-symfony-bundle": "4.0.0",
-        "strata/frontend": "0.7.0",
+        "ccs/strata-frontend": "0.7.0",
         "studio24/http-cache-clear": "^0.2",
         "symfony/apache-pack": "^1.0",
         "symfony/asset": "^5.4",
