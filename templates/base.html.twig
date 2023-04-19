@@ -18,12 +18,12 @@
     {% block pageMetaTags %}{{ (page is defined)? page.head.getAllMetaHtml()|raw : '' }}{% endblock %}
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.ons.gov.uk/sdc/design-system/19.3.0/css/main.css"> -->
     {% if app.environment == "prod" %}
-        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css') }} ">
+        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css?v=1.0.0') }} ">
     {% else %}
         {# To debug CSS in other environments (not live), change the below to
          # styles.css instead of styles.min.css
          #}
-        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css') }} ">
+        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css?v=1.0.0') }} ">
     {% endif %}
  
     <script src="{{ asset('find-a-commercial-agreement/scripts/cookie.js') }}"></script>
@@ -49,8 +49,8 @@
 {{ include('/includes/footer.html.twig') }}
 
 {% block script %}
-    <script src="{{ asset('find-a-commercial-agreement/scripts/all.js') }}"></script>
-    <script src="{{ asset('find-a-commercial-agreement/scripts/app.js') }}"></script>
+    <script src="{{ asset('find-a-commercial-agreement/scripts/all.js?v=1.0.0') }}"></script>
+    <script src="{{ asset('find-a-commercial-agreement/scripts/app.js?v=1.0.0') }}"></script>
     <script src="{{ asset('find-a-commercial-agreement/scripts/startGOVUKFrontend.js') }}"></script>
 {% endblock %}
 

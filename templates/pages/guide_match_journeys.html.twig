@@ -55,7 +55,7 @@
                                                 {{- journey.selectionText -}}
                                             </label>
                                             {% if journey.selectionDescription is defined  and journey.selectionDescription  is not empty %}
-                                                <span id="{{journey.journeyId}}-{{loop.index}}" class="govuk-hint govuk-radios__hint">{{- journey.selectionDescription|raw -}}</span>
+                                                <div id="{{journey.journeyId}}-{{loop.index}}" class="govuk-hint govuk-radios__hint">{{- journey.selectionDescription|raw -}}</div>
                                             {% endif %}
                                         </div>
                                     {% endfor %}

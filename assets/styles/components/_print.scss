@@ -6,7 +6,6 @@
 
     border: 0;
     @include govuk-font(19, $weight: regular);
-    @include govuk-focusable;
     color: $govuk-link-colour;
     text-decoration: underline;
 
@@ -14,7 +13,7 @@
     &:focus,
     &:active {
 
-        color: $govuk-link-hover-colour;
+        color: $govuk-focus-colour;
         text-decoration: none;
 
     }
