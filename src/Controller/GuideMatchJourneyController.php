@@ -141,7 +141,7 @@ class GuideMatchJourneyController extends AbstractController
         if (!empty($agreementData)) {
             $agreementDataJson = json_encode($agreementData);
             $encrypt = new Encrypt($agreementDataJson);
-            $agreementDataEncoded =  urlencode($encrypt->getEncryptedString());
+            $agreementDataEncoded = urlencode($encrypt->getEncryptedString());
         }
 
         return  $this->redirectToRoute("journey-result", [

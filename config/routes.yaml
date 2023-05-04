@@ -29,15 +29,22 @@ back-to-previous:
   controller: App\Controller\GuideMatchBackToPreviousController::backToPrevious
   defaults:
     gPage: 0
+  requirements:
+        journeyHistory: ".+"
+        gPage: "\\d+"
 
 journey-result:
   path: /find-a-commercial-agreement/result/{journeyId}/{journeyInstanceId}/{agreements?}
   controller: App\Controller\GuideMatchJourneyResultController::journeyResult
+  requirements:
+        agreements: ".+"
 
 
 contact-ccs-page:
   path: /find-a-commercial-agreement/contact-ccs/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchContactCssController::contactCss
+  requirements:
+        journeyHistory: ".+"
 
 contact-ccs-page-journeys:
   path: /find-a-commercial-agreement/contact-ccs-journeys/

@@ -42,7 +42,7 @@ class GuideMatchContactCssController extends AbstractController
         $journeysPage =  false;
         if (count($journeys) > 1) {
             
-            $selectedJourney =  $userAnswers->addSelectedJourneyToUserAnswers($searchBy,$journeyId,$journeys, null);
+            $selectedJourney =  $userAnswers->addSelectedJourneyToUserAnswers($searchBy,$journeyId,$journeys, "");
             array_unshift($userAnswersFormatedForView,$selectedJourney);
             $journeysPage = true;
         }

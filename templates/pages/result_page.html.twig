@@ -23,7 +23,7 @@
             'journeyId': journeyId,
             'journeyInstanceId': journeyInstanceId,
             'questionUuid': lastQuestionId,
-            'journeyHistory': journeyHistory, 
+            'journeyHistory': journeyHistory,
             'gPage': lastPage,
         }
         )}}?q={{ searchByEncoded }}"
@@ -131,5 +131,5 @@
 {% endblock %}
 {% block script %}
     {{ parent() }}
-    <script src="{{ asset('find-a-commercial-agreement/scripts/result_page.js') }}" ></script>
+    <script src="{{ asset('find-a-commercial-agreement/scripts/result_page.js?v=1.0') }}" ></script>
 {% endblock %}
