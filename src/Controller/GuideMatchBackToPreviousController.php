@@ -23,6 +23,10 @@ class GuideMatchBackToPreviousController extends AbstractController
         $model = new GuideMatchJourneyModel($api);
 
         // Decript journey history answers
+        // Symfony 5 doesn 't allow %2F encoded slashes in route so we are removing forward slashes
+        // see https://github.com/symfony/symfony/issues/13017
+        $journeyHistory = substr($journeyHistory, 0, -2);
+        $journeyHistory = str_replace('/', '%2F', $journeyHistory);
         $decrypt = new Decrypt(urldecode($journeyHistory));
         $journeyHistoryData = json_decode($decrypt->getDecryptedString(), true);
         $model->setQuestionDetails($journeyInstanceId, $questionUuid);
