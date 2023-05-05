@@ -36,6 +36,8 @@ class Encrypt
      */
     public function getEncryptedString()
     {
-        return $this->encryptedString;
+        // remove slashes as symfony routing does like them
+        $encryptedString = str_replace('/', '*', $this->encryptedString); 
+        return $encryptedString;
     }
 }

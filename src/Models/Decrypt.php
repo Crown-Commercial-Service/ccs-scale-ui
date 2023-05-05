@@ -9,7 +9,8 @@ class Decrypt
 
     public function __construct(string $stringToDecrypt)
     {
-        $this->decryptString($stringToDecrypt);
+        $stringWithSlashes = str_replace('*', '/', $stringToDecrypt);
+        $this->decryptString($stringWithSlashes);
     }
 
     /**
