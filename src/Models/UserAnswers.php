@@ -116,7 +116,7 @@ class UserAnswers
         return $answers;
     }
 
-    public function addSelectedJourneyToUserAnswers( string $searchBy, string $journeyId, array $journeys, string $selectedDomain){
+    public function addSelectedJourneyToUserAnswers( string $searchBy, string $journeyId, array $journeys, $selectedDomain){
 
         if(
             empty($journeyId) &&
