@@ -10,6 +10,11 @@ $env = $_SERVER['APP_ENV'] ?? 'prod';
 
 $debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
 
+// enable debug only on dev and local
+if (strtolower($env) == 'ppd') {
+    $debug = false;
+}
+
 if ($debug) {
     umask(0000);
     Debug::enable();
