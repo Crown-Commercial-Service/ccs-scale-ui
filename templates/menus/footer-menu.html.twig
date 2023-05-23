@@ -1,9 +1,11 @@
-<h2 class="govuk-footer__heading govuk-!-font-size-22">{{ menu.name }}</h2>
+{% if inlineMenu %}
+    <ul class="govuk-footer__inline-list govuk-!-display-none-print govuk-list govuk-!-font-size-18">
+        {% include 'menus/sub-menu.html.twig' with {'menu_list': menu.children, inlineMenu: true} %}
+    </ul>
+{% else %}
+    <h2 class="govuk-footer__heading govuk-!-font-size-22">{{ menu.name }}</h2>
 
-<ul class="govuk-list govuk-!-font-size-18">
-    {% for menu_item in menu.children %}
-        <li>
-            <a class="govuk-footer__link" href="{{ menu_item.url|modify_url  }}">{{ menu_item.label }}</a>
-        </li>
-    {% endfor %}
+    <ul class="govuk-list govuk-!-font-size-18">
+        {% include 'menus/sub-menu.html.twig' with {'menu_list': menu.children} %}
 </ul>
+{% endif %} 
