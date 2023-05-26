@@ -44,6 +44,7 @@ class GuidedMatchJourneysController extends AbstractController{
             $validate = $this->validateUserAnswer($formType, $postData);
             $csfrToken = $request->request->get('token');
             $journeyId = $request->request->get('uuid');
+            $journeyId = str_replace('/', '', $journeyId);
             $searchBy = $request->request->get('searchBy');
 
             if( empty($journeyId) && !$this->isCsrfTokenValid('save-answers', $csfrToken)) {
