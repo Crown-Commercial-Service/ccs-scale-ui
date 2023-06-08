@@ -139,6 +139,7 @@ class GuideMatchJourneyController extends AbstractController
         $agreementDataEncoded = '';
        
         if (!empty($agreementData)) {
+            usort($agreementData, array($this,"compare_by_rm_number"));
             $agreementDataJson = json_encode($agreementData);
             $encrypt = new Encrypt($agreementDataJson);
             $agreementDataEncoded = urlencode($encrypt->getEncryptedString());
@@ -209,5 +210,9 @@ class GuideMatchJourneyController extends AbstractController
     private function validateUserAnswer(string $formType, array $userAnswer)
     {
         return ValidatorsFactory::getValidator($formType, $userAnswer);
+    }
+
+    private function compare_by_rm_number($agreementA, $agreementB) {
+        return strcmp($agreementA['number'], $agreementB['number']);
     }
 }
