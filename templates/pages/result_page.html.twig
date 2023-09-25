@@ -16,6 +16,7 @@
         <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
         <a 
         aria-describedby="back-to_prev"
+        onclick="back();"
         href="{{ 
         path( 
         'back-to-previous',
@@ -49,12 +50,17 @@
 
                         <div class="govuk-grid-column-three-quarters restrict-width">
                             {% set lotstTitle = '' %}
+                            {% set rmNumbers = '' %}
+
                             {% for framework in frameworks %}
-                            {% if  framework is not empty %}
-                            {% set lotstTitle = framework.lotsTitle %}
-                            {% endif %}
+                                {% if  framework is not empty %}
+                                    {% set rmNumbers = rmNumbers ~ ' ' ~ framework.number %}
+                                    {% set lotstTitle = framework.lotsTitle %}
+                                {% endif %}
                             {% endfor %}
-                            
+                            <script> pushDataLayer('complete', null, null, 'Recommended' + rmNumbers); </script>
+
+
                             <section id="recommendations">
                                 <h2 class="govuk-heading-l result-heading">Recommended agreements</h2>
                                 {{ include('results_page_items/recommendations.html.twig') }}
@@ -101,15 +107,16 @@
 
                                         }
                                         )}}?q={{ searchBy|url_encode }}"
+                                        onclick="contact();"
                                 >Contact CCS</a></p>
 
                                 {% if journeysPage is defined and  journeysPage is not empty %}
                                     <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                                    href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}">
+                                    href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}" onclick="pushDataLayer('start again', 'Start again to change your answers', null, null);">
                                     Start again to change your answers</a>
                                 {% else %}
                                     <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                                    href="{{ path('start-journey', {'journeyUuidAndDomain': journeyId})}}?q={{searchByEncoded}}">
+                                    href="{{ path('start-journey', {'journeyUuidAndDomain': journeyId})}}?q={{searchByEncoded}}" onclick="pushDataLayer('start again', 'Start again to change your answers', null, null);">
                                     Start again to change your answers</a>
                                 {% endif %} 
                                 

@@ -28,19 +28,21 @@
                         'gPage': lastPage,
                     }
                     )}}?q={{ searchBy|url_encode }}"
+                    onclick="back();"
                 class="govuk-back-link">Back</a>
         {% else %}
 
           <span class='hidden_msgs' id="back-to-landing-page"> to start journey page</span>
-          <a aria-describedby="back-to-landing-page" href="{{ path('guided-match-journeys')}}?q={{ searchBy|url_encode }}&d={{domainName}}&r=back" class="govuk-back-link">Back</a>
+          <a aria-describedby="back-to-landing-page"
+          onclick="back();"
+          href="{{ path('guided-match-journeys')}}?q={{ searchBy|url_encode }}&d={{domainName}}&r=back" class="govuk-back-link">Back</a>
         {% endif %}
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper questions-page" id="main-content">
             <div class="govuk-grid-row restrict-width">
 
                 <form action="{{ path('question_page', {'journeyId': journeyId ,'journeyInstanceId': journeyInstanceId ,'questionUuid': uuid, 'gPage': gPage}) }}?q={{ searchBy|url_encode}}" 
-                onsubmit="return validate()" name="question" method="post">
-                    
+                onsubmit="return questionType('{{type}}')" name="question" method="post">
                     {% include"/includes/question_error_summary.html.twig" %}
                     <div class="govuk-form-group {{ errorMessage is defined  and showError is defined  ? 'govuk-form-group--error' }}" id="form-layout">
 
@@ -95,12 +97,14 @@
 
                     }
                     )}}?q={{ searchBy|url_encode }}"
+                    onclick="contact();"
                >Contact CCS</a>
                {% else %}
                     <a 
                     aria-describedby="contact-ccs-intermediar-page"
                     href="{{ 
                     path( 'contact-ccs-page-journeys')}}?q={{ searchBy|url_encode }}"
+                    onclick="contact();"
                 >Contact CCS</a>
                {% endif %}
                </p>
