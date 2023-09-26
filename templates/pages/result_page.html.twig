@@ -50,7 +50,7 @@
 
                         <div class="govuk-grid-column-three-quarters restrict-width">
                             {% set lotstTitle = '' %}
-                            {% set rmNumbers = '' %}
+                            {% set rmNumbers = ' ' %}
 
                             {% for framework in frameworks %}
                                 {% if  framework is not empty %}
@@ -58,7 +58,8 @@
                                     {% set lotstTitle = framework.lotsTitle %}
                                 {% endif %}
                             {% endfor %}
-                            <script> pushDataLayer('complete', null, null, 'Recommended' + rmNumbers); </script>
+
+                            <script> pushDataLayer('complete', null, null, 'Recommended{{rmNumbers}}'); </script>
 
 
                             <section id="recommendations">
