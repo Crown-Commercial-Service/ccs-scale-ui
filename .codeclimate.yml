@@ -1,2 +1,3 @@
 exclude_patterns:
 - "assets/scripts/all.js"
+- "tests/"
