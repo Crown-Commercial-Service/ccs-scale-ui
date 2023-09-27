@@ -45,6 +45,7 @@ function uncheckMExclusive() {
 // When no input is provided from the user this function
 // blocks the continue button and displays errors.
 function validate() {
+
     //goes to all errors and resets them on refresh or load
     var errors = document.getElementsByClassName("resetErrors");
     for (var i = 0; i < errors.length; i++) {
@@ -67,10 +68,16 @@ function validate() {
     var errorSummaryContainer  = document.getElementById('error-summary-container');
     errorNoSelection.style.display = "none";
     errorSummary.style.display = "none";
-
+    var gmUUID = null;
+    var answer = null;
 
     for (var i = 0; i < document.getElementsByClassName('v-selector').length; i++) {
-        if (document.getElementsByClassName('v-selector')[i].checked) isValid = true;
+        if (document.getElementsByClassName('v-selector')[i].checked){
+            isValid = true;
+            gmUUID  = document.getElementsByClassName('v-selector')[i].value.substring(0,36);
+            answer  = document.getElementsByClassName('v-selector')[i].value.substring(37);
+            break;
+        }
     }
 
     if (isValid === false) {
@@ -143,7 +150,11 @@ function validate() {
         }
     }
 
-    
+    if (isValid){
+        pushDataLayer('continue: User selected '+ gmUUID, 'Continue', null, answer);
+    } else {
+        pushDataLayer('error', 'Continue', 'Select which area suits your requirements', answer);
+    }
 
     return isValid;
 }

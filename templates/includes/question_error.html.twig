@@ -2,6 +2,7 @@
     <span id="no-selection" class="govuk-error-message" style="display:{{ errorMessage is defined and showError is defined  ? 'block' : 'none' }}">
         <span class="govuk-visually-hidden">Error:</span>
         {% if  errorMessage is defined %}
+            <script> pushDataLayer('error','Continue', "{{ errorMessage is defined ? errorMessage|raw : null }}", null ); </script>
             {{ errorMessage|raw }}
         {% endif %}
         {% for errMssg in errorsMessages  %}

@@ -35,7 +35,9 @@
         <div class="govuk-width-container">
             {% include "/includes/phase_banner.html.twig" %}
                 <span class='hidden_msgs' id="back-to-search-result"> to search result</span>
-                <a aria-describedby="back-to-search-result" class="govuk-back-link" href="/agreements/search?q={{ searchBy }}">Back</a>
+                <a aria-describedby="back-to-search-result" class="govuk-back-link" 
+                onclick="back();"
+                href="/agreements/search?q={{ searchBy }}">Back</a>
             <!-- required wrapper 2 -->
             <main class="govuk-main-wrapper " id="main-content">
             <section>
@@ -54,6 +56,7 @@
 
                             <a href="{{ path('guided-match-journeys')}}?q={{searchBy|url_encode}}" role="button" 
                             class="govuk-button govuk-button--start govuk-!-margin-top-6 govuk-!-margin-bottom-9" 
+                            onclick="pushDataLayer('start', 'Start now', null, null);"
                             data-module="govuk-button">Start now</a>
                         </div>
                     </div>
