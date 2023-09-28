@@ -5,3 +5,6 @@ log/*
 tmp/*
 Dockerfile
 README.rdoc
+
+/public/find-a-commercial-agreement
+/node_modules

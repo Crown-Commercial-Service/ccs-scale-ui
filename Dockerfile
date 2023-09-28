@@ -6,11 +6,14 @@ ENV PORT 9030
 WORKDIR  /var/www/html/ccs
 
 RUN apt-get update
-RUN apt-get install -y  git unzip zip curl
+RUN apt-get install -y  git unzip zip curl npm 
 
 # install node/npm
-RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
-RUN apt-get -y install nodejs
+SHELL ["/bin/bash", "--login", "-c"]
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+RUN . ~/.nvm/nvm.sh
+RUN nvm install 16.13.1
 
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -54,12 +57,14 @@ COPY ./ ./
 
 
 # run composer update
-RUN composer update
+RUN composer install
 
 #RUN composer dump-env dev
 
 #install javascript modules
 RUN npm install
+
+RUN npm run build
 
 #COPY ./custom.ini /usr/local/etc/php/conf.d
 
