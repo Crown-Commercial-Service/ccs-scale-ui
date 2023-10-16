@@ -8,6 +8,28 @@
                         {% if "now"|date('Y-m-d') > framework.endDate|date('Y-m-d') %}
                             <h3 class="govuk-heading-m govuk-!-margin-right-2" style="float:left" >{{ framework.name }}</h3>
                             <p class="govuk-tag ccs-tag ccs-tag--error">Expired: {{ framework.endDate|date("d/m/Y") }}</p>
+                            <div class="govuk-warning-text">
+                                <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+                                <strong class="govuk-warning-text__text">
+                                    <span class="govuk-warning-text__assistive">Warning</span>
+                                        This agreement has expired. <a 
+                                                aria-describedby="contact-ccs-intermediar-page"
+                                                href="{{ 
+                                                path( 
+                                                    'contact-ccs-page',
+                                                    {
+                                                        'journeyId': journeyId,
+                                                        'journeyInstanceId': journeyInstanceId,
+                                                        'questionUuid': 0,
+                                                        'journeyHistory': journeyHistory, 
+                                                        'gPage': lastPage,
+
+                                                    }
+                                                    )}}?q={{ searchBy|url_encode }}"
+                                                    onclick="contact();"
+                                            >Contact CCS</a> for further help.
+                                </strong>
+                            </div>
                         {% else %}
                             <h3 class="govuk-heading-m govuk-!-margin-right-2">{{ framework.name }}</h3>
                         {% endif %}
