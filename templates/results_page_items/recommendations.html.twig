@@ -12,22 +12,7 @@
                                 <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
                                 <strong class="govuk-warning-text__text">
                                     <span class="govuk-warning-text__assistive">Warning</span>
-                                        This agreement has expired. <a 
-                                                aria-describedby="contact-ccs-intermediar-page"
-                                                href="{{ 
-                                                path( 
-                                                    'contact-ccs-page',
-                                                    {
-                                                        'journeyId': journeyId,
-                                                        'journeyInstanceId': journeyInstanceId,
-                                                        'questionUuid': 0,
-                                                        'journeyHistory': journeyHistory, 
-                                                        'gPage': lastPage,
-
-                                                    }
-                                                    )}}?q={{ searchBy|url_encode }}"
-                                                    onclick="contact();"
-                                            >Contact CCS</a> for further help.
+                                        This agreement has expired. <a href="https://www.crowncommercial.gov.uk/contact">Contact CCS</a> for further help.
                                 </strong>
                             </div>
                         {% else %}
