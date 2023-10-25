@@ -103,11 +103,13 @@
                                             'journeyId': journeyId,
                                             'journeyInstanceId': journeyInstanceId,
                                             'questionUuid': 0,
+                                            'agreements': agreements,
+                                            'resultPage': true,
                                             'journeyHistory': journeyHistory, 
                                             'gPage': lastPage,
 
                                         }
-                                        )}}?q={{ searchBy|url_encode }}"
+                                        )}}&q={{ searchBy|url_encode }}"
                                         onclick="contact();"
                                 >Contact CCS</a></p>
 
