@@ -13,7 +13,7 @@
         {{ include('includes/phase_banner.html.twig') }}
 
         <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
-        {% if journeysPage is defined %}
+        {% if journeysPage is defined and journeysPage > 1 %}
             <a 
             aria-describedby="back-to_prev"
             href="{{ 

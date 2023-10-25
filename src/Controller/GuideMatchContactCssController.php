@@ -60,7 +60,7 @@ class GuideMatchContactCssController extends AbstractController
             'pageTitle' => $this->pageTitle,
             'historyAnswered' => $userAnswersFormatedForView,
             'redirectToResultPage' => $resultPage,
-            'agreements' => !empty($agreements) ? urlencode($agreements) : '',
+            'agreements' => !empty($agreements) ? $agreements : '',
             'journeysPage' => $journeysPage,
             'domainName'=>''
           
