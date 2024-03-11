@@ -26,6 +26,9 @@
         <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css?v=1.2.0') }} ">
     {% endif %}
 
+    {# Browser icon #}
+    <link rel="icon" href="/assets/images/favicon.ico?v=1" />
+
     {% block blocking_javascript %}
         <script>
             if ('{{ app.environment }}' == "local" || '{{ app.environment }}' == "prod") {
