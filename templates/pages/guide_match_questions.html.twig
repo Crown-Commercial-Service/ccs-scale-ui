@@ -13,6 +13,8 @@
     <div class="govuk-width-container">
         {% include "/includes/phase_banner.html.twig" %}
 
+        {% include "/includes/breadcrumb_journey.html.twig" %}
+
         {% if  gPage >  1  and  journeyHistory is defined %}
             <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
             <a 
