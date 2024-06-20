@@ -29,6 +29,8 @@
     {# Browser icon #}
     <link rel="icon" href="/assets/images/favicon.ico?v=1" />
 
+    {# For data layer - outputs environment to be used in js file #}
+    <div id="app-env" style="display: none" data-env='{{ app.environment }}'></div>
     {% block blocking_javascript %}
         <script>
             if ('{{ app.environment }}' == "local" || '{{ app.environment }}' == "prod") {
