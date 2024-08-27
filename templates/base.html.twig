@@ -18,12 +18,12 @@
     {% block pageMetaTags %}{{ (page is defined)? page.head.getAllMetaHtml()|raw : '' }}{% endblock %}
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.ons.gov.uk/sdc/design-system/19.3.0/css/main.css"> -->
     {% if app.environment == "prod" %}
-        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css?v=1.2.0') }} ">
+        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css?v=1.2.1') }} ">
     {% else %}
         {# To debug CSS in other environments (not live), change the below to
          # styles.css instead of styles.min.css
          #}
-        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css?v=1.2.0') }} ">
+        <link rel="stylesheet" href="{{ asset ('find-a-commercial-agreement/styles/styles.min.css?v=1.2.1') }} ">
     {% endif %}
 
     {# Browser icon #}
@@ -47,7 +47,7 @@
 </head>
 
 <body class="govuk-template__body">
-<script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+<script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
 
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NQGRQN" height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -67,11 +67,13 @@
 {{ include('/includes/footer.html.twig') }}
 
 {% block script %}
-    <script src="{{ asset('find-a-commercial-agreement/scripts/all.js?v=1.2.0') }}"></script>
-    <script>
-    window.GOVUKFrontend.initAll()
+    <script type="module" src="{{ asset('find-a-commercial-agreement/scripts/all.js?v=1.2.1') }}"></script>
+    <script type="module">
+        import { initAll } from '/find-a-commercial-agreement/scripts/all.js'
+        window.addEventListener("DOMContentLoaded", function() {
+            initAll()
+        }, false);  
     </script>
-    <script src="{{ asset('find-a-commercial-agreement/scripts/app.js?v=1.2.0') }}"></script>
 {% endblock %}
 
 </body>

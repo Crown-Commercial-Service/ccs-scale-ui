@@ -28,12 +28,6 @@ $offset                        : 4;
     color : $govuk-button-text-colour;
   }
 
-  @include govuk-compatibility(govuk_template) {
-    &:link:focus {
-      color : $govuk-button-text-colour;
-    }
-  }
-
   &:focus {
     border-color : #ffdd00;
     outline      : 3px solid rgba(0, 0, 0, 0);
@@ -74,9 +68,6 @@ $offset                        : 4;
     top                : 0;
     -webkit-box-shadow : 0 $button-shadow-size 0 $govuk-button-shadow-colour;
     box-shadow         : 0 $button-shadow-size 0 $govuk-button-shadow-colour;
-    @include govuk-if-ie8 {
-      border-bottom : $button-shadow-size solid $govuk-button-shadow-colour;
-    }
   }
 }
 
