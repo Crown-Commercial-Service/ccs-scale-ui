@@ -27,6 +27,12 @@
                 {{ framework.number }}
                 <strong>End date:</strong>
                 {{ framework.endDate|date("d/m/Y") }}
+                
+                {% if framework.agreementType is defined and framework.agreementType is not empty %}
+                <strong>Agreement Type:</strong>
+                    {{ framework.agreementType }}
+                {% endif %}
+
             </p>
 
             <div class="framework-description" style="font-family: Source Sans Pro"><p>{{ framework.description|raw }}</p></div>
