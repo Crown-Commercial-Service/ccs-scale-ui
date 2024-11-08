@@ -28,7 +28,7 @@
                 <strong>End date:</strong>
                 {{ framework.endDate|date("d/m/Y") }}
                 
-                {% if framework.agreementType is defined and framework.agreementType is not empty %}
+                {% if env_for_TPP != "prod" and framework.agreementType is defined and framework.agreementType is not empty %}
                 <strong>Agreement Type:</strong>
                     {{ framework.agreementType }}
                 {% endif %}
