@@ -10,136 +10,140 @@
 
 
 {% block body %}
-<div class="--govuk-width-container">
-    <div class="govuk-width-container">
-        {{ include('includes/phase_banner.html.twig') }}
-        
-        {% include "/includes/breadcrumb_journey.html.twig" %}
-        <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
-        <a 
-        aria-describedby="back-to_prev"
-        onclick="back();"
-        href="{{ 
-        path( 
-        'back-to-previous',
-        {
-            'journeyId': journeyId,
-            'journeyInstanceId': journeyInstanceId,
-            'questionUuid': lastQuestionId,
-            'journeyHistory': journeyHistory,
-            'gPage': lastPage,
-        }
-        )}}?q={{ searchByEncoded }}"
-        class="govuk-back-link">Back</a>
+{% if journeyId == "a251180c-b3f0-46fa-87e2-15bd3f34dcea" %}
+    {% include '/pages/CNZ_result_page.html.twig' %}
+{% else %}
+    <div class="--govuk-width-container">
+        <div class="govuk-width-container">
+            {{ include('includes/phase_banner.html.twig') }}
+            
+            {% include "/includes/breadcrumb_journey.html.twig" %}
+            <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
+            <a 
+            aria-describedby="back-to_prev"
+            onclick="back();"
+            href="{{ 
+            path( 
+            'back-to-previous',
+            {
+                'journeyId': journeyId,
+                'journeyInstanceId': journeyInstanceId,
+                'questionUuid': lastQuestionId,
+                'journeyHistory': journeyHistory,
+                'gPage': lastPage,
+            }
+            )}}?q={{ searchByEncoded }}"
+            class="govuk-back-link">Back</a>
 
-        <main class="govuk-main-wrapper" id="main-content">
-            <div class="govuk-grid-row">
-                <div class="govuk-grid-column-full">
-                    <div>
-                        <h1 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, we think there 
-                            {{countFrameworks > 1 ? 'are':'is'}} </h1>
-                            <h2 class="govuk-heading-xl page-title">
-                                <strong>{{ countFrameworks }} agreement{{countFrameworks > 1 ? 's'}}
-                                    {% if  countLots > 0 %}
-                                    and {{ countLots }} {{  countLots == 1 ? 'lot':'lots' }}
+            <main class="govuk-main-wrapper" id="main-content">
+                <div class="govuk-grid-row">
+                    <div class="govuk-grid-column-full">
+                        <div>
+                            <h1 class="govuk-heading-xl page-title govuk-!-margin-bottom-2">Based on your answers, we think there 
+                                {{countFrameworks > 1 ? 'are':'is'}} </h1>
+                                <h2 class="govuk-heading-xl page-title">
+                                    <strong>{{ countFrameworks }} agreement{{countFrameworks > 1 ? 's'}}
+                                        {% if  countLots > 0 %}
+                                        and {{ countLots }} {{  countLots == 1 ? 'lot':'lots' }}
+                                        {% endif %}
+                                        that {{  countFrameworks == 1 ? 'matches':'match' }} your needs
+                                    </strong>
+                                </h2>
+                            </div>
+
+                            {{ include('results_page_items/section_anchors.html.twig') }}
+
+                            <div class="govuk-grid-column-three-quarters restrict-width">
+                                {% set lotstTitle = '' %}
+                                {% set rmNumbers = ' ' %}
+
+                                {% for framework in frameworks %}
+                                    {% if  framework is not empty %}
+                                        {% set rmNumbers = rmNumbers ~ ' ' ~ framework.number %}
+                                        {% set lotstTitle = framework.lotsTitle %}
                                     {% endif %}
-                                    that {{  countFrameworks == 1 ? 'matches':'match' }} your needs
-                                </strong>
-                            </h2>
-                        </div>
+                                {% endfor %}
 
-                        {{ include('results_page_items/section_anchors.html.twig') }}
-
-                        <div class="govuk-grid-column-three-quarters restrict-width">
-                            {% set lotstTitle = '' %}
-                            {% set rmNumbers = ' ' %}
-
-                            {% for framework in frameworks %}
-                                {% if  framework is not empty %}
-                                    {% set rmNumbers = rmNumbers ~ ' ' ~ framework.number %}
-                                    {% set lotstTitle = framework.lotsTitle %}
-                                {% endif %}
-                            {% endfor %}
-
-                            <script> pushDataLayer('complete', null, null, 'Recommended{{rmNumbers}}'); </script>
+                                <script> pushDataLayer('complete', null, null, 'Recommended{{rmNumbers}}'); </script>
 
 
-                            <section id="recommendations">
-                                <h2 class="govuk-heading-l result-heading">Recommended agreements</h2>
-                                {{ include('results_page_items/recommendations.html.twig') }}
-                            </section>
+                                <section id="recommendations">
+                                    <h2 class="govuk-heading-l result-heading">Recommended agreements</h2>
+                                    {{ include('results_page_items/recommendations.html.twig') }}
+                                </section>
 
-                            <!-- <section id="options">
-                                <h2 class="govuk-heading-l result-heading">Your next steps</h2>
-                                <ul class="govuk-list govuk-list">
-                                    <li>1. Read the framework documents  for
-                                        {% for agreement in agreementsNames %}
-                                        <a class='govuk-link' href="https://www.crowncommercial.gov.uk/agreements/{{ agreement.number }}"> {{ agreement.name }}</a>
-                                        {% endfor %}
-                                        to understand what's available
-                                    </li>
-                                    <li>2. Start the online procurement for your chosen lot</li>
-                                </ul>
-                            </section> -->
+                                <!-- <section id="options">
+                                    <h2 class="govuk-heading-l result-heading">Your next steps</h2>
+                                    <ul class="govuk-list govuk-list">
+                                        <li>1. Read the framework documents  for
+                                            {% for agreement in agreementsNames %}
+                                            <a class='govuk-link' href="https://www.crowncommercial.gov.uk/agreements/{{ agreement.number }}"> {{ agreement.name }}</a>
+                                            {% endfor %}
+                                            to understand what's available
+                                        </li>
+                                        <li>2. Start the online procurement for your chosen lot</li>
+                                    </ul>
+                                </section> -->
 
-                            <section id="definitions">
-                                <h2 class="govuk-heading-l result-heading">Routes to market definitions</h2>
-                                {% include "/results_page_items/definitions.html.twig" %}
-                            </section>
+                                <section id="definitions">
+                                    <h2 class="govuk-heading-l result-heading">Routes to market definitions</h2>
+                                    {% include "/results_page_items/definitions.html.twig" %}
+                                </section>
 
-                            <section id="answers">
+                                <section id="answers">
 
-                                {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
+                                    {% include "/results_page_items/answers.html.twig" with {'lotstTitle': lotstTitle,'changeAnswer':1} %}
 
-                                {% include "/includes/print-page.html.twig" %}
+                                    {% include "/includes/print-page.html.twig" %}
+                                    
+                                    <span class='hidden_msgs' id="contact-ccs-intermediar-page">Contact CCS - intermediar page</span>
+
+                                    <p class="govuk-body">Need help with this service? 
+                                        <a 
+                                        aria-describedby="contact-ccs-intermediar-page"
+                                        href="{{ 
+                                        path( 
+                                            'contact-ccs-page',
+                                            {
+                                                'journeyId': journeyId,
+                                                'journeyInstanceId': journeyInstanceId,
+                                                'questionUuid': 0,
+                                                'agreements': agreements,
+                                                'resultPage': true,
+                                                'journeyHistory': journeyHistory, 
+                                                'gPage': lastPage,
+
+                                            }
+                                            )}}&q={{ searchBy|url_encode }}"
+                                            onclick="contact();"
+                                    >Contact CCS</a></p>
+
+                                    {% if journeysPage is defined and  journeysPage is not empty %}
+                                        <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                                        href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}" onclick="pushDataLayer('start again', 'Start again to change your answers', null, null);">
+                                        Start again to change your answers</a>
+                                    {% else %}
+                                        <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                                        href="{{ path('start-journey', {'journeyUuidAndDomain': journeyId})}}?q={{searchByEncoded}}" onclick="pushDataLayer('start again', 'Start again to change your answers', null, null);">
+                                        Start again to change your answers</a>
+                                    {% endif %} 
+                                    
+                                    <div style="background-color: #f3f2f1; padding: 0.5em">
+                                        <h3 class="govuk-heading-s">Tell us what you think</h3>
+                                        <span class='hidden_msgs' id="result-feedback"> Provide feedback survey in a new tab</span>
+                                        <p class="govuk-body"><a href="https://crowncommercial.qualtrics.com/jfe/form/SV_73Yi3SxOXUhaZYa"  target="_blank"
+                                        aria-describedby="result-feedback">Provide feedback
+                                        </a> to help us improve this service. The survey takes about 1 minute to complete. All of the questions are optional.</p>
+                                    </div>
+                                </section>
                                 
-                                <span class='hidden_msgs' id="contact-ccs-intermediar-page">Contact CCS - intermediar page</span>
-
-                                <p class="govuk-body">Need help with this service? 
-                                    <a 
-                                    aria-describedby="contact-ccs-intermediar-page"
-                                    href="{{ 
-                                    path( 
-                                        'contact-ccs-page',
-                                        {
-                                            'journeyId': journeyId,
-                                            'journeyInstanceId': journeyInstanceId,
-                                            'questionUuid': 0,
-                                            'agreements': agreements,
-                                            'resultPage': true,
-                                            'journeyHistory': journeyHistory, 
-                                            'gPage': lastPage,
-
-                                        }
-                                        )}}&q={{ searchBy|url_encode }}"
-                                        onclick="contact();"
-                                >Contact CCS</a></p>
-
-                                {% if journeysPage is defined and  journeysPage is not empty %}
-                                    <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                                    href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}" onclick="pushDataLayer('start again', 'Start again to change your answers', null, null);">
-                                    Start again to change your answers</a>
-                                {% else %}
-                                    <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
-                                    href="{{ path('start-journey', {'journeyUuidAndDomain': journeyId})}}?q={{searchByEncoded}}" onclick="pushDataLayer('start again', 'Start again to change your answers', null, null);">
-                                    Start again to change your answers</a>
-                                {% endif %} 
-                                
-                                <div style="background-color: #f3f2f1; padding: 0.5em">
-                                    <h3 class="govuk-heading-s">Tell us what you think</h3>
-                                    <span class='hidden_msgs' id="result-feedback"> Provide feedback survey in a new tab</span>
-                                    <p class="govuk-body"><a href="https://crowncommercial.qualtrics.com/jfe/form/SV_73Yi3SxOXUhaZYa"  target="_blank"
-                                    aria-describedby="result-feedback">Provide feedback
-                                    </a> to help us improve this service. The survey takes about 1 minute to complete. All of the questions are optional.</p>
-                                </div>
-                            </section>
-                            
+                            </div>
                         </div>
                     </div>
-                </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
+{% endif %}
 {% endblock %}
 {% block script %}
     {{ parent() }}

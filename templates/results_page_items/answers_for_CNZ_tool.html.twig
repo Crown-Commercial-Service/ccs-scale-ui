@@ -1,0 +1,47 @@
+<div class="govuk-body journey-answers">
+    <h2 class="govuk-heading-l result-heading">Your answers</h2>
+
+    {% set index = 0 %}
+    {% for answer in historyAnswered %}
+        <div class="govuk-summary-list__row">
+            <dl class="govuk-summary-list">
+                <dt class="govuk-summary-list__key"> {{answer.question}}</dt>
+                <dd class="govuk-summary-list__value"> {{answer.answerTxt|raw}}</dd>
+                <dd class="govuk-summary-list__value no-print">
+                    {% if  index >  0 %}
+                        <a  aria-describedby="change-answer-{{index}}"
+                        href="{{ 
+                            path( 
+                                'back-to-previous',
+                                {
+                                    'journeyId': journeyId,
+                                    'journeyInstanceId': journeyInstanceId,
+                                    'questionUuid': answer.prevQuestionId,
+                                    'journeyHistory': journeyHistory, 
+                                    'gPage': index,
+                                }
+                                )}}?q={{ searchByEncoded }}&changeAnswer=1"
+                        >Change</a>
+
+                    {% else %}
+                        {% if answer.seletectJourney is defined %}
+                            <a aria-describedby="change-answer-journey" href="{{path('guided-match-journeys')}}?q={{searchByEncoded}}">Change</a>
+                        {% else %}
+                            {% set journeyUuidAndDomain = "%s%s%s"|format(journeyId,'&',domainName) %}
+                            <a aria-describedby="change-answer-{{index}}" href="{{ path('start-journey', {'journeyUuidAndDomain': journeyUuidAndDomain })}}?q={{searchByEncoded}}&changeAnswer=1">Change</a>
+                        {% endif %}
+                    {% endif %}
+                </dd>
+            </dl>
+        </div>
+        
+        {% if answer.seletectJourney is not defined %}
+          <span class='hidden_msgs' id="change-answer-{{index}}">answer for question: {{answer.question}}</span>
+            {% set index = index + 1 %}
+        {% else %}
+        <span class='hidden_msgs' id="change-answer-journey">answer for question: {{answer.question}}</span>
+
+        {% endif %}
+    {% endfor %}
+        
+</div>
