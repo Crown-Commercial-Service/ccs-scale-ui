@@ -29,8 +29,10 @@
                                 <h3>
                                 <ul class="list--inline govuk-body-s govuk-!-margin-bottom-2">
                                     <li> <strong>Agreement ID:</strong> {{ framework.number }} </li>
-                                    <li> <strong>Start Date:</strong> {{ framework.startDate|date('d/m/Y') }} </li>
                                     <li> <strong>End Date:</strong> {{ framework.endDate|date('d/m/Y') }} </li>
+                                    {% if env_for_TPP != "prod" and framework.agreementType is defined and framework.agreementType is not empty %}
+                                        <li> <strong>Agreement Type:</strong> {{ framework.agreementType }} </li>
+                                    {% endif %}
                                 </ul>
 
                                 <div class="framework-description" style="font-family: Source Sans Pro"><p>{{ framework.description|raw }}</p></div>
