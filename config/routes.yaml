@@ -55,4 +55,9 @@ guided-match-health-check:
   path: /guided-match/health-check
   controller: App\Controller\GuidedMatchHealthCheckController:testHealth
   
-
+# carbon net zero 
+CNZ_landing_page:
+  path: /carbon-net-zero/find-a-carbon-net-zero-solution
+  controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+  defaults:
+    template: /pages/CNZ_landing_page.html.twig
