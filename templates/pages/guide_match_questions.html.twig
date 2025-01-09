@@ -33,11 +33,15 @@
                     onclick="back();"
                 class="govuk-back-link">Back</a>
         {% else %}
-
-          <span class='hidden_msgs' id="back-to-landing-page"> to start journey page</span>
-          <a aria-describedby="back-to-landing-page"
-          onclick="back();"
-          href="{{ path('guided-match-journeys')}}?q={{ searchBy|url_encode }}&d={{domainName}}&r=back" class="govuk-back-link">Back</a>
+        
+            {% if searchBy == "CNZ_tools" %}
+                <a aria-describedby="back-to-landing-page" onclick="back();" href="/carbon-net-zero/find-a-carbon-net-zero-solution" class="govuk-back-link">Back</a>
+            {% else %}
+                <span class='hidden_msgs' id="back-to-landing-page"> to start journey page</span>
+                <a aria-describedby="back-to-landing-page"
+                onclick="back();"
+                href="{{ path('guided-match-journeys')}}?q={{ searchBy|url_encode }}&d={{domainName}}&r=back" class="govuk-back-link">Back</a>
+            {% endif %}
         {% endif %}
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper questions-page" id="main-content">

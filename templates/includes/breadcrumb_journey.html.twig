@@ -3,12 +3,18 @@
         <li class="govuk-breadcrumbs__list-item" id="govuk-breadcrumbs_home">
             <a class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
+        {% if searchBy != "CNZ_tools" %}
+            <li class="govuk-breadcrumbs__list-item" id="govuk-breadcrumbs_search">
+                <a class="govuk-breadcrumbs__link" href="/agreements?keyword={{ searchBy }}">Search
+                    agreement</a>
+            </li>
+        {% endif %}
         <li class="govuk-breadcrumbs__list-item" id="govuk-breadcrumbs_search">
-            <a class="govuk-breadcrumbs__link" href="/agreements?keyword={{ searchBy }}">Search
-                agreement</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item" id="govuk-breadcrumbs_search">
+        {% if searchBy == "CNZ_tools" %}
+            <a class="govuk-breadcrumbs__link" href="/carbon-net-zero/find-a-carbon-net-zero-solution">Back to start</a>
+        {% else %}
             <a class="govuk-breadcrumbs__link" href="/find-a-commercial-agreement/landing-page?q={{ searchBy }}">Back to start</a>
+        {% endif %}
         </li>
         <li class="govuk-breadcrumbs__list-item" aria-current="page" id="govuk-breadcrumbs_guided_match">{{ pageTitle }}</li>
     </ol>
