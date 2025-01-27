@@ -36,11 +36,11 @@
                             <div class="grey-backgroud">
                                 {% for url in URLs %}
                                     <h3 class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
-                                        <a href="http://{{ url.link }}" >{{ url.text }}</a> 
+                                        <a href="{{ url.link }}" >{{ url.text }}</a> 
                                     </h3>
                                     <div class="framework-description" style="font-family: Source Sans Pro"><p>{{ url.hint|raw }}</p></div>
 
-                                    <a class="govuk-button no-print govuk-!-margin-bottom-0" data-module="govuk-button" href="http://{{ url.link }}">Read more</a>
+                                    <a class="govuk-button no-print govuk-!-margin-bottom-0" data-module="govuk-button" href="{{ url.link }}">Read more</a>
                                 {% endfor %}
                             </div>
 
