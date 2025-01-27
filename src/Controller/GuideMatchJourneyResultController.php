@@ -82,6 +82,25 @@ class GuideMatchJourneyResultController extends AbstractController
                 'journeysPage' => $journeysPage,
                 'domainName'=>$journeyHistoryModel->getSelectedDomain()
             ]);
+        }elseif($journeyHistoryModel->getOutcomeType()  === GuideMatchResponseType::GuideMatchResponseURL) {
+            $decrypt = new Decrypt(urldecode($agreements));
+            $data = json_decode($decrypt->getDecryptedString(), true);
+
+            return $this->render('pages/CNZ_result_page_url.html.twig', [
+                'pageTitle' => $this->pageTitle,
+                'journeyId' => $journeyId,
+                'journeyInstanceId' => $journeyInstanceId,
+                'lastQuestionId' => $lastQuestionId,
+                'journeyHistory' => $journeyHistory,
+                'lastPage' => $lastPage,
+                'journeysPage' => $journeysPage,
+                'env_for_TPP' => getenv('APP_ENV'),
+                'searchBy' => $searchBy,
+                'searchByEncoded' => rawurlencode($searchBy),
+                'historyAnswered' => $userAnswersFormatedForView,
+                'domainName'=>$journeyHistoryModel->getSelectedDomain(),
+                'URLs' => $data,
+            ]);
         }
 
         $decrypt = new Decrypt(urldecode($agreements));

@@ -32,6 +32,8 @@ class GuideMatchJourneyModel
     private $apiResponseType;
 
     private $agreementData;
+    
+    private $urlEndpoint;
 
     private $failureValidations = [];
 
@@ -342,6 +344,17 @@ class GuideMatchJourneyModel
         return $this->agreementData;
     }
 
+    
+    private function setUrlEndpoint(array $urlEndpoint)
+    {
+        $this->urlEndpoint = $urlEndpoint;
+    }
+    
+    public function getUrlEndpoint()
+    {
+        return $this->urlEndpoint;
+    }
+
 
     /**
      * Get question details from API
@@ -377,11 +390,19 @@ class GuideMatchJourneyModel
 
         if ($this->apiResponseType != GuideMatchResponseType::GuideMatchResponseSupport) {
             if (!empty($apiResponse['outcome']['data'])) {
-                if ($this->apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement) {
-                    $this->setAgreementData($apiResponse['outcome']['data']);
+
+                switch ($this->apiResponseType) {
+                    case GuideMatchResponseType::GuideMatchResponseAgreement:
+                        $this->setAgreementData($apiResponse['outcome']['data']);
+                        break;
+                    case GuideMatchResponseType::GuideMatchResponseURL:
+                        $this-> setUrlEndpoint($apiResponse['outcome']['data']);
+                        break;
+                    default:
+                        $this->handleApiResponse($apiResponse['outcome']['data']);
+
                 }
-                
-                $this->handleApiResponse($apiResponse['outcome']['data']);
+
             }
         }
     }
