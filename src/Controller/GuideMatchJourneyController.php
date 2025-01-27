@@ -115,7 +115,8 @@ class GuideMatchJourneyController extends AbstractController
         //redirect to journey result page
         if (
             $apiResponseType == GuideMatchResponseType::GuideMatchResponseSupport ||
-            $apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement
+            $apiResponseType == GuideMatchResponseType::GuideMatchResponseAgreement ||
+            $apiResponseType == GuideMatchResponseType::GuideMatchResponseURL
         ) {
             return $this->redirectToResultsPage($model, $journeyId, $journeyInstanceId);
         }
@@ -135,7 +136,7 @@ class GuideMatchJourneyController extends AbstractController
      */
     private function redirectToResultsPage(GuideMatchJourneyModel $model, string $journeyId, string $journeyInstanceId)
     {
-        $agreementData = $model->getAgreementData();
+        $agreementData = $model->getApiResponseType() == "agreement" ? $model->getAgreementData() : $model->getUrlEndpoint(); 
         $agreementDataEncoded = '';
        
         if (!empty($agreementData)) {

@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Guided Match Journey - searched for {{searchBy}}  - {{pageTitle}}{% endblock %}
+
+{% block header %}
+{% embed '/includes/header.html.twig' %}
+{% block bannerarea %}{% endblock %}
+{% endembed %}
+{% endblock %}
+
+{% block body %}
+    <div class="--govuk-width-container">
+        <div class="govuk-width-container">
+            {{ include('includes/phase_banner.html.twig') }}
+
+                <span class='hidden_msgs' id="back-to_prev"> to previous question</span>
+                <a 
+                aria-describedby="back-to_prev"
+                onclick="back();"
+                href="{{ path( 'back-to-previous', {
+                    'journeyId': journeyId,
+                    'journeyInstanceId': journeyInstanceId,
+                    'questionUuid': lastQuestionId,
+                    'journeyHistory': journeyHistory,
+                    'gPage': lastPage,
+                }
+                )}}?q={{ searchByEncoded }}" class="govuk-back-link">Back</a>
+
+                <main class="govuk-main-wrapper" id="main-content">
+                    <div class="govuk-grid-row">
+                        <div class="govuk-grid-column-two-thirds">
+                            <h1 class="govuk-heading-xl page-title govuk-!-margin-bottom-4"> Carbon net zero agreement results</h1> 
+                            <h2 class="page-title-prepend">Based on your answers, we suggest using the following solution(s):</h2>
+
+
+                            <div class="grey-backgroud">
+                                {% for url in URLs %}
+                                    <h3 class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
+                                        <a href="http://{{ url.link }}" >{{ url.text }}</a> 
+                                    </h3>
+                                    <div class="framework-description" style="font-family: Source Sans Pro"><p>{{ url.hint|raw }}</p></div>
+
+                                    <a class="govuk-button no-print govuk-!-margin-bottom-0" data-module="govuk-button" href="http://{{ url.link }}">Read more</a>
+                                {% endfor %}
+                            </div>
+
+                            {% include "/results_page_items/answers_for_CNZ_tool.html.twig" %}
+
+                            {% include "/includes/print-page.html.twig" %}
+                                        
+                            <span class='hidden_msgs' id="contact-ccs-intermediar-page">Contact CCS - intermediar page</span>
+
+                            <p class="govuk-body">Need help with this service? 
+                                <a 
+                                aria-describedby="contact-ccs-intermediar-page"
+                                href="{{ 
+                                path( 
+                                    'contact-ccs-page',
+                                    {
+                                        'journeyId': journeyId,
+                                        'journeyInstanceId': journeyInstanceId,
+                                        'questionUuid': 0,
+                                        'resultPage': true,
+                                        'journeyHistory': journeyHistory, 
+                                        'gPage': lastPage,
+
+                                    }
+                                    )}}&q={{ searchBy|url_encode }}"
+                                    onclick="contact();"
+                            >Contact CCS</a></p>
+
+                            {% if journeysPage is defined and  journeysPage is not empty %}
+                                <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                                href="{{ path('guided-match-journeys')}}?q={{searchByEncoded}}" onclick="pushDataLayer('start again', 'Start again to change your answers', null, null);">
+                                Start again to change your answers</a>
+                            {% else %}
+                                <a class="govuk-button govuk-button--secondary no-print" data-module="govuk-button" 
+                                href="{{ path('start-journey', {'journeyUuidAndDomain': journeyId})}}?q={{searchByEncoded}}" onclick="pushDataLayer('start again', 'Start again to change your answers', null, null);">
+                                Start again to change your answers</a>
+                            {% endif %} 
+                            
+                            <div style="background-color: #f3f2f1; padding: 0.5em">
+                                <h3 class="govuk-heading-s">Tell us what you think</h3>
+                                <span class='hidden_msgs' id="result-feedback"> Provide feedback survey in a new tab</span>
+                                <p class="govuk-body"><a href="https://crowncommercial.qualtrics.com/jfe/form/SV_73Yi3SxOXUhaZYa"  target="_blank"
+                                aria-describedby="result-feedback">Provide feedback
+                                </a> to help us improve this service. The survey takes about 1 minute to complete. All of the questions are optional.</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </main>
+
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+    <script src="{{ asset('find-a-commercial-agreement/scripts/result_page.js?v=1.0') }}" ></script>
+{% endblock %}
