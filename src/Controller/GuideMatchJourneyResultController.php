@@ -94,7 +94,6 @@ class GuideMatchJourneyResultController extends AbstractController
                 'journeyHistory' => $journeyHistory,
                 'lastPage' => $lastPage,
                 'journeysPage' => $journeysPage,
-                'env_for_TPP' => getenv('APP_ENV'),
                 'searchBy' => $searchBy,
                 'searchByEncoded' => rawurlencode($searchBy),
                 'historyAnswered' => $userAnswersFormatedForView,
@@ -112,7 +111,6 @@ class GuideMatchJourneyResultController extends AbstractController
         $lots = $agrementModel->getLotsData();
 
         return $this->render('pages/result_page.html.twig', [
-            'env_for_TPP' => getenv('APP_ENV'),
             'searchBy' => $searchBy,
             'searchByEncoded' => rawurlencode($searchBy),
             'historyAnswered' => $userAnswersFormatedForView,
