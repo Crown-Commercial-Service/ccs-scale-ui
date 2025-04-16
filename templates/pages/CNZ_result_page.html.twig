@@ -16,6 +16,9 @@
             )}}?q={{ searchByEncoded }}" class="govuk-back-link">Back</a>
 
             <main class="govuk-main-wrapper" id="main-content">
+                
+                {% set rmNumbers = '' %}
+                
                 <div class="govuk-grid-row">
                     <div class="govuk-grid-column-two-thirds">
                         <h1 class="govuk-heading-xl page-title govuk-!-margin-bottom-4"> Carbon net zero agreement results</h1> 
@@ -24,6 +27,9 @@
 
                         <div class="grey-backgroud">
                             {% for framework in frameworks %}
+                                
+                                {% set rmNumbers = rmNumbers ~ ' ' ~ framework.number %}
+                                
                                 <h3 class="govuk-heading-m ccs-heading-link ccs-heading-link--inline govuk-!-margin-bottom-2 ccs-font-weight-semibold govuk-!-font-size-22">
                                     <a href="https://www.crowncommercial.gov.uk/agreements/{{ framework.number }}">{{ framework.name }}</a> 
                                 <h3>
@@ -41,6 +47,7 @@
                             {% endfor %}
                         </div>
 
+                        <script> pushDataLayer('complete', null, null, 'Recommended {{rmNumbers}}'); </script>
                         {% include "/results_page_items/answers_for_CNZ_tool.html.twig" %}
 
                         {% include "/includes/print-page.html.twig" %}

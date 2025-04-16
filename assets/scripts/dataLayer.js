@@ -12,6 +12,15 @@ function pushDataLayer(interaction_type, link_text, interaction_detail, step){
     }
 }
 
+function dataLayerPageView(array) {
+    array = (typeof array === 'string') ? JSON.parse(array) : array;
+    var env = document.getElementById('app-env').dataset.env;
+
+    if (env == "local" || env == "prod") {
+        window.dataLayer.push(array);
+    }
+}
+
 function questionType(type){
     var answer = null;
 
