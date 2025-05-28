@@ -1,6 +1,6 @@
 # System routes
 healthcheck:
-  path: /find-a-commercial-agreement/healthcheck_r53
+  path: /carbon-net-zero/healthcheck_r53
   controller: App\Controller\LandingPageController::healthcheck
 
 # GM PAGES
