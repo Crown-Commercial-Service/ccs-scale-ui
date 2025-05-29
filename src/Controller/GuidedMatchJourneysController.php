@@ -52,7 +52,7 @@ class GuidedMatchJourneysController extends AbstractController{
             }
 
             if ($validate->isValid()) {
-                return $this->redirect(" /find-a-commercial-agreement/start-journey/{$journeyId}?q={$searchBy}");
+                return $this->redirect(" /carbon-net-zero/start-journey/{$journeyId}?q={$searchBy}");
             }
 
             //if it's not redirected it means that we have an error
@@ -70,12 +70,12 @@ class GuidedMatchJourneysController extends AbstractController{
 
             $redirect = $request->query->get('r');
             if(!empty($redirect)){
-                return $this->redirect("/find-a-commercial-agreement/landing-page?q={$searchBy}");
+                return $this->redirect("/carbon-net-zero/landing-page?q={$searchBy}");
 
             }
             $gmLiteOldAnswer = $journeyId;
             $journeyId = $journeys[0]["journeyId"];
-            return $this->redirect(" /find-a-commercial-agreement/start-journey/{$journeyId}?q={$searchBy}&old={$gmLiteOldAnswer}");
+            return $this->redirect(" /carbon-net-zero/start-journey/{$journeyId}?q={$searchBy}&old={$gmLiteOldAnswer}");
         }
 
         $journeys = $this->orderingJourneys($journeys);

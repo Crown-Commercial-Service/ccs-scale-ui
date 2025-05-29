@@ -6,5 +6,5 @@ tmp/*
 Dockerfile
 README.rdoc
 
-/public/find-a-commercial-agreement
+/public/carbon-net-zero
 /node_modules

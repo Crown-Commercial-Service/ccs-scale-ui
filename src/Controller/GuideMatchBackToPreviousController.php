@@ -37,7 +37,7 @@ class GuideMatchBackToPreviousController extends AbstractController
         if ($gPage < 0) {
             if ($journeyId != "c9dd4455-7d23-4822-9912-eab4da9fc5a2"){
                 $journeyId = $journeyId == "c9dd4455-7d23-4822-9912-eab4da9fc5a2" ? $journeyHistoryData[0]["answers"][0]["answer"] : $journeyId;
-                return $this->redirect("/find-a-commercial-agreement/guidedmatch?q={$searchBy}&journeyId={$journeyId}");
+                return $this->redirect("/carbon-net-zero/guidedmatch?q={$searchBy}&journeyId={$journeyId}");
             }
             $model = new GuideMatchJourneyModel($api);
             $model->startJourney($journeyId, $searchBy,'');

@@ -20,7 +20,7 @@
 
 node_modules
 /public/assets
-/public/find-a-commercial-agreement
+/public/carbon-net-zero
 
 
 ###> squizlabs/php_codesniffer ###
