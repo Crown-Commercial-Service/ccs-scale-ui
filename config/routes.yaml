@@ -5,50 +5,50 @@ healthcheck:
 
 # GM PAGES
 landing_page:
-  path: /find-a-commercial-agreement/landing-page
+  path: /carbon-net-zero/landing-page
   controller: App\Controller\LandingPageController::landingPage 
 
 question_page:
-  path: /find-a-commercial-agreement/journey/{journeyId}/{journeyInstanceId}/{questionUuid}/{gPage}
+  path: /carbon-net-zero/journey/{journeyId}/{journeyInstanceId}/{questionUuid}/{gPage}
   controller: App\Controller\GuideMatchJourneyController::journey
   defaults:
     gPage: 0
 
 result_page:
-  path: /find-a-commercial-agreement/result-page
+  path: /carbon-net-zero/result-page
   controller: App\Controller\ResultPageController::resultPage
 
 
 # Tactical back to search
 back_to_search:
-  path: /find-a-commercial-agreement/back-to-search-results/
+  path: /carbon-net-zero/back-to-search-results/
   controller: App\Controller\TacticalSerchResultController:backToSearch
 
 start-journey:
-  path: /find-a-commercial-agreement/start-journey/{journeyUuidAndDomain}
+  path: /carbon-net-zero/start-journey/{journeyUuidAndDomain}
   controller: App\Controller\StartJourneyController:startJourney
 
 back-to-previous:
-  path: /find-a-commercial-agreement/journey-back/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
+  path: /carbon-net-zero/journey-back/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchBackToPreviousController::backToPrevious
   defaults:
     gPage: 0
 
 journey-result:
-  path: /find-a-commercial-agreement/result/{journeyId}/{journeyInstanceId}/{agreements?}
+  path: /carbon-net-zero/result/{journeyId}/{journeyInstanceId}/{agreements?}
   controller: App\Controller\GuideMatchJourneyResultController::journeyResult
 
 
 contact-ccs-page:
-  path: /find-a-commercial-agreement/contact-ccs/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
+  path: /carbon-net-zero/contact-ccs/{journeyId}/{journeyInstanceId}/{questionUuid}/{journeyHistory}/{gPage}
   controller: App\Controller\GuideMatchContactCssController::contactCss
 
 contact-ccs-page-journeys:
-  path: /find-a-commercial-agreement/contact-ccs-journeys/
+  path: /carbon-net-zero/contact-ccs-journeys/
   controller: App\Controller\GuideMatchContactCssJourneysController::contactCss
 
 guided-match-journeys:
-  path: /find-a-commercial-agreement/guidedmatch
+  path: /carbon-net-zero/guidedmatch
   controller: App\Controller\GuidedMatchJourneysController:searchJourneys
 
 guided-match-health-check:

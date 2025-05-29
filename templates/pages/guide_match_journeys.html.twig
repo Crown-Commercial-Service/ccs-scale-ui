@@ -18,7 +18,7 @@
         <span class='hidden_msgs' id="back-to-search-result"> to start journey</span>
         <a aria-describedby="back-to-search-result" class="govuk-back-link" 
         onclick="back();"
-        href="/find-a-commercial-agreement/landing-page?q={{ searchBy|url_encode }}">Back</a>
+        href="/carbon-net-zero/landing-page?q={{ searchBy|url_encode }}">Back</a>
 
         <!-- required wrapper 2 -->
         <main class="govuk-main-wrapper questions-page" id="main-content">
@@ -90,5 +90,5 @@
 {% endblock %}
 {% block script %}
     {{ parent() }}
-    <script src="{{ asset('find-a-commercial-agreement/scripts/question_types_validators.js') }}" ></script>
+    <script src="{{ asset('carbon-net-zero/scripts/question_types_validators.js') }}" ></script>
 {% endblock %}
