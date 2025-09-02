@@ -5,7 +5,7 @@
 .footer-global {
 
     background-color: $ccs-footer-colour;
-    color: govuk-colour("white");
+    color: govuk-colour("black");
     padding-top: govuk-px-to-rem(50);
     margin-top: govuk-px-to-rem(50);
 
@@ -26,7 +26,7 @@
 
 .govuk-footer__link.govuk-footer__link {
 
-    color: white;
+    color: govuk-colour("black");
     text-decoration: underline;
 
     &:visited {
@@ -137,6 +137,12 @@
 
 .govuk-footer__copyright-display-block {
     display: block;
+    background-image: url(/carbon-net-zero/images/govuk-crest.svg) !important;
+    background-size: 106px 102px !important;
+
+    &:hover {
+        color: grey !important;
+    }
 }
 
 .govuk-footer-remove-flex-grow {

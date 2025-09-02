@@ -1,7 +1,7 @@
-$govuk-button-colour           : govuk-colour("secondary");
+$govuk-button-colour           : #BBC946;
 $govuk-button-hover-colour     : darken($govuk-button-colour, 5%);
 $govuk-button-shadow-colour    : darken($govuk-button-colour, 15%);
-$govuk-button-text-colour      : govuk-colour("white");
+$govuk-button-text-colour      : govuk-colour("black");
 $govuk-button-radius           : 3px !default;
 $govuk-button-colour-secondary : govuk-colour("grey-2");
 
