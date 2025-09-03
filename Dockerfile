@@ -5,6 +5,8 @@ ENV PORT 9030
 #set aplication directory
 WORKDIR  /var/www/html/ccs
 
+RUN echo "deb http://security.debian.org/debian-security bullseye-security main contrib non-free" > /etc/apt/sources.list
+
 RUN apt-get update
 RUN apt-get install -y  git unzip zip curl npm 
 
