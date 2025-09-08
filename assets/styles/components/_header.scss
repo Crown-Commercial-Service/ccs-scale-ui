@@ -5,25 +5,25 @@
 .header-global {
 
     background: $ccs-colour;
-    color: govuk-colour("white");
+    color: govuk-colour("black");
 
 }
 
 .header-global--news-details {
 
     background: #404040;
-    color: govuk-colour("white");
+    color: govuk-colour("black");
 
 }
 
 .header-global a {
 
-    color: white;
+    color: govuk-colour("black");
 
     &:hover,
     &:active {
 
-        color: govuk-colour("grey-4");
+        color: govuk-colour("black");
 
     }
     &:focus {
