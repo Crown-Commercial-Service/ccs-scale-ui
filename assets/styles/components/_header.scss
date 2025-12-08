@@ -5,25 +5,22 @@
 .header-global {
 
     background: $ccs-colour;
-    color: govuk-colour("black");
+    color: #000000;
 
-}
-
-.header-global--news-details {
-
-    background: #404040;
-    color: govuk-colour("black");
+    @media only print {
+        padding-bottom: 20px; // print with graphics: fix bottom header light red line
+    }
 
 }
 
 .header-global a {
 
-    color: govuk-colour("black");
+    color: #000000;
 
     &:hover,
     &:active {
 
-        color: govuk-colour("black");
+        color: govuk-colour("light-grey");
 
     }
     &:focus {
@@ -31,12 +28,62 @@
         color: $govuk-focus-text-colour;
 
     }
+    @media only print {
+        color: #000000;
+    }
 
 }
 
-.logo {
+.header-global--news-details {
 
+    background: #404040;
+    color: govuk-colour("white");
+
+    @include govuk-media-query($from: tablet) {
+        button {
+        color: govuk-colour("white");
+
+        &:hover {
+            border: none;
+        }
+
+         .arrow {
+            border-color: white;
+        }
+
+    }
+       
+    }
+
+}
+
+.nav-wrapper-logo {
+
+    @include govuk-media-query($from: desktop) {
+
+        margin-right: auto;
+        margin-top: govuk-px-to-rem(32);
+    }
+}
+
+.desktop-nav-logo {
+    display: none;
+
+    @include govuk-media-query($from: desktop) {
+        display: block;
+    }
+}
+
+.mobile-nav-logo {
+    
     display: block;
+
+    @include govuk-media-query($from: desktop) {
+        display: none;
+    }
+}
+
+.logo {
 
     max-width: govuk-px-to-rem(110);
 
@@ -46,13 +93,9 @@
 
     }
 
-    img {
-        max-width: 100%;
-    }
-
     @include govuk-media-query($from: desktop) {
 
-        max-width: govuk-px-to-rem(140);
+        max-width: govuk-px-to-rem(246);
 
     }
 
