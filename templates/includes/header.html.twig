@@ -3,45 +3,39 @@
 
         {% block bannerarea %}
             <div class="govuk-phase-banner">
-                <p class="govuk-phase-banner__content">
-                    <strong class="govuk-tag govuk-phase-banner__content__tag ">beta </strong> 
-<span class='hidden_msgs' id="banner-feedback"> Open feedback survey in a new tab</span>
-        <span class="govuk-phase-banner__text">
-            This is a new service – your
-            <a aria-describedby="banner-feedback" class="govuk-link" href="https://crowncommercial.qualtrics.com/jfe/form/SV_b2hqVz3TYDCxN2u" target="_blank">feedback</a>
-            will help us to improve it. 
-        </span>
-                </p>
+                {% include '/includes/phase-banner-content.html.twig' %}
             </div>
         {% endblock %}
 
         <div class="nav-wrapper">
-
-            <a href="/"  class="logo"><img src="/carbon-net-zero/images/CCS_BLACK_AW.svg" aria-label="Graphic link Go to the CCS homepage" alt="Go to the CCS homepage">
-            </a>
+            <div class="nav-wrapper-logo">
+                <a href="/" class="logo mobile-nav-logo">
+                    <img class="navLogo" src="/carbon-net-zero/images/CCS_BLACK_STACKED.svg" alt="Go to CCS Homepage" width="140" height="117" />
+                </a>
+                <a href="/" class="logo desktop-nav-logo">
+                    <img class="navLogo" src="/carbon-net-zero/images/CCS_BLACK_LINEAR.png" alt="Go to CCS Homepage" width="140" height="117" />
+                </a>
+            </div>
+            
 
             <button class="global-navigation__toggler" data-toggler="nav">
-                <span>Menu</span> <span class="icon">
-<svg width="16" height="13" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor" stroke-width="2" fill="none" fill-rule="evenodd" stroke-linecap="square"><path d="M14.5 1.12H1.464M14.5 6.12H1.464M14.5 11.24H1.464"/></g></svg>
-        </span>
+                <span>Menu</span> <span class="icon-menu-closed"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M14.9561 3.59459L13.3615 2L7.47022 7.89124L1.59508 2.01609L0.000483532 3.61069L7.47187 11.0821L9.06646 9.48748L9.06482 9.48583L14.9561 3.59459Z" fill="#6a99ff"/>
+</svg></span>
+                 <span class="icon-menu-open" style="display:none"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="12" viewBox="0 0 15 12" fill="none">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M0.0439452 8.40541L1.63854 10L7.52978 4.10876L13.4049 9.98391L14.9995 8.38931L7.52813 0.917931L5.93354 2.51252L5.93518 2.51417L0.0439452 8.40541Z" fill="#6a99ff"/>
+</svg></span>
             </button>
 
             {% block mainnavigation %}
-                <nav class="global-navigation"  data-toggle="nav" data-app-uri="http://localhost:8001/guided-match/example" data-app-pathinfo="/guided-match/example" aria-hidden="false">
-                    {% if wordpress_api != '' %}
-                        {{ render(controller(
-                            'App\\Controller\\MenuController::menu',
-                            { 'id': 22, 'templatePath': 'menus/secondary-menu.html.twig' }
-                        )) }}
+            <nav class="global-navigation" data-toggle="nav" data-app-uri="{{ app.request.uri }}" data-app-pathinfo="{{ app.request.pathinfo }}">
 
-                        {{ render(controller(
-                            'App\\Controller\\MenuController::menu',
-                            { 'id': 21, 'templatePath': 'menus/primary-menu.html.twig' }
-                        )) }}
-                    {% else %}
-                        {{ include('includes/local_wordpress_items/local_header.html.twig') }}
-                    {% endif %}
-                </nav>
+                {{ render(controller(
+                    'App\\Controller\\MenuController::menu',
+                    { 'id': 195, 'currentPath': app.request.pathinfo, 'templatePath': 'menus/primary-menu.html.twig' }
+                )) }}
+
+            </nav>
 
             {% endblock %}
         </div>
