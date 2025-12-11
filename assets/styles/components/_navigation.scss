@@ -32,7 +32,7 @@
 
         display: flex;
         flex-flow: row nowrap;
-        padding: govuk-px-to-rem(22) 0 govuk-px-to-rem(26) 0;
+        padding: 0 0 govuk-px-to-rem(16) 0;
         text-align: right;
         gap: 15px;
 
@@ -55,7 +55,7 @@
         background-color: transparent;
         margin-top: 0;
         margin-bottom: govuk-px-to-rem(2) ;
-        margin-top: govuk-px-to-rem(20);
+        margin-top: govuk-px-to-rem(10);
 
     }
 
@@ -158,45 +158,16 @@
 
 }
 
-.nav-list-ppg {
-
-    order: 1;
-    padding-top: govuk-px-to-rem(30);
-    position: relative;
-    padding-bottom: govuk-px-to-rem(30);
-
-    @include govuk-media-query($from: desktop) {
-
-        display: none;
-
-    }
-
-    .nav-list__link {
-                font-weight: 600;
-                font-size: 1.45rem;
-                line-height: 1.05;
-    }
-
-    p {
-        margin-bottom: 0px;
-        color: white;
-        font-weight: 600 !important;
-    }
-
-    &:before {
-
-        content: " ";
-        display: block;
-        position: absolute;
-        top: govuk-px-to-rem(20);
-        left: govuk-px-to-rem(15);
-        width: calc(100% - 30px);
-        height: govuk-px-to-rem(1);
-        background-color: rgba(white, 0.42);
 
 
-    }
+.nav-list__link {
+            font-weight: 600;
+            font-size: 1.45rem;
+            line-height: 1.05;
 }
+
+
+ 
 
 
 
@@ -262,8 +233,9 @@
 
     // GDS uses an 8-key font scale which predefines which sizes are available.
     // This allows fonts to scale with breakpoints
-    @include govuk-font(20, $weight: bold);
+    @include govuk-font(20, $weight: regular);
     font-size: 1.45rem;
+    font-weight: 600 !important;
 
     @include govuk-media-query($from: tablet) {
             font-size: 0.9rem!important;
@@ -271,9 +243,9 @@
 
     @include govuk-media-query($from: 1300) {
     
-            @include govuk-font(20, $weight: bold);
+            @include govuk-font(20, $weight: regular);
             font-size: 1.1rem!important;
-    
+            font-weight: 600 !important;
     }
 
 }
