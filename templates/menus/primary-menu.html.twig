@@ -9,7 +9,7 @@
             <div class="dropdown-content">
                 <ul class="nav-list">
                     {% for sub_menu_item in menu_item.children %}
-                       <li><a href="{{sub_menu_item.url}}">{{sub_menu_item.label}}</a></li>
+                       <li><a href="{{sub_menu_item.url|modify_url}}">{{sub_menu_item.label}}</a></li>
                     {% endfor %}
                 </ul>
             </div>

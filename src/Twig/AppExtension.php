@@ -21,19 +21,22 @@ class AppExtension extends AbstractExtension
     {
         $url = '';
         $badDomains  = [
-            'webdev-cms.crowncommercial.gov.uk'
+            'webdev-cms.crowncommercial.gov.uk',
+            'webprod-cms.crowncommercial.gov.uk',
+            'ccs-agreements.cabinetoffice.localhost',
+            'webuat-cms.crowncommercial.gov.uk',
         ];
 
         foreach ($badDomains as $badDomain) {
             if ($badDomain == parse_url($cmsUrl, PHP_URL_HOST)) {
-                $url = str_replace($badDomain, 'www.crowncommercial.gov.uk', $cmsUrl);
+                $url = str_replace($badDomain, parse_url($_ENV['CCS_DOMAIN'], PHP_URL_HOST), $cmsUrl);
             }
         }
 
         if ($cmsUrl[0] == '/') {
-            $url = "https://www.crowncommercial.gov.uk" . $cmsUrl;
+            $url = $_ENV['CCS_DOMAIN'] . $cmsUrl;
         }
 
-        return $url? $url : $cmsUrl;
+        return $url ? $url : $cmsUrl;
     }
 }
